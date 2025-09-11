@@ -1,4 +1,3 @@
-import { criticalCSS } from "@/lib/critical-css"
 import "@/globals.css"
 import { ThemeProvider } from "./components/layouts/ThemeProvider"
 import { GlobalProviderLayout } from "@/components/layouts/GlobalProviderLayout"
@@ -131,9 +130,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         `}
       </Script>
       <head>
-        {/* Inline critical CSS for immediate render */}
-        <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
-
         {/* Font preconnections for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

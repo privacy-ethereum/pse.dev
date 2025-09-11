@@ -1,5 +1,10 @@
 "use client"
 
+import { LABELS } from "@/app/labels"
+import { ProjectCategory, ProjectInterface } from "@/lib/types"
+import { uniq } from "@/lib/utils"
+import { useQuery } from "@tanstack/react-query"
+import Fuse from "fuse.js"
 import {
   createContext,
   useContext,
@@ -8,11 +13,6 @@ import {
   useMemo,
   useCallback,
 } from "react"
-import { useQuery } from "@tanstack/react-query"
-import Fuse from "fuse.js"
-import { ProjectCategory, ProjectInterface } from "@/lib/types"
-import { uniq } from "@/lib/utils"
-import { LABELS } from "@/app/labels"
 
 export type ProjectSortBy = "random" | "asc" | "desc" | "relevance"
 export type ProjectFilter =
@@ -47,6 +47,7 @@ export const FilterLabelMapping: Record<ProjectFilter, string> = {
 interface ProjectsContextType {
   projects: ProjectInterface[]
   researchs: ProjectInterface[]
+  graduatedProjects: ProjectInterface[]
   isLoading: boolean
   isError: boolean
   error: Error | null
@@ -188,10 +189,12 @@ const sortProjectByFn = ({
     )
   }
 
-  return sortedProjectList.map((project: any) => ({
-    id: project?.id?.toLowerCase(),
-    ...project,
-  }))
+  return sortedProjectList
+    .map((project: any) => ({
+      id: project?.id?.toLowerCase(),
+      ...project,
+    }))
+    .filter((project: any) => project?.graduated !== true)
 }
 
 const getProjectFilters = (projects: ProjectInterface[]): FiltersProps => {
@@ -330,6 +333,12 @@ export function ProjectsProvider({ children, tag }: ProjectsProviderProps) {
     [filteredProjects, sortBy]
   )
 
+  const graduatedProjects = useMemo(() => {
+    return fetchedProjects.filter(
+      (project: ProjectInterface) => project.graduated === true
+    )
+  }, [fetchedProjects])
+
   const toggleFilter = useCallback(
     ({
       tag: filterKey,
@@ -413,6 +422,7 @@ export function ProjectsProvider({ children, tag }: ProjectsProviderProps) {
       onSelectTheme,
       sortProjectBy,
       refetch,
+      graduatedProjects,
     }),
     [
       projects,
@@ -432,6 +442,7 @@ export function ProjectsProvider({ children, tag }: ProjectsProviderProps) {
       onSelectTheme,
       sortProjectBy,
       refetch,
+      graduatedProjects,
     ]
   )
 

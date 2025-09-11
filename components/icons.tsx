@@ -850,4 +850,34 @@ export const Icons = {
       />
     </svg>
   ),
+  SliderArrowNext: ({ size = 16, ...props }: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="17"
+      height="17"
+      viewBox="0 0 17 17"
+      fill="none"
+      {...props}
+    >
+      <path
+        d="M12.6624 9.7091L0.489595 9.70981V7.71011L12.661 7.7094L7.29762 2.346L8.71183 0.931787L16.49 8.70996L8.71183 16.4881L7.29762 15.0739L12.6624 9.7091Z"
+        fill="#50C3E0"
+      />
+    </svg>
+  ),
+  SliderArrowPrev: ({ size = 16, ...props }: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="17"
+      height="17"
+      viewBox="0 0 17 17"
+      fill="none"
+      {...props}
+    >
+      <path
+        d="M4.33756 9.7091L16.5104 9.70981V7.71011L4.33898 7.7094L9.70238 2.346L8.28817 0.931787L0.509993 8.70996L8.28817 16.4881L9.70238 15.0739L4.33756 9.7091Z"
+        fill="#50C3E0"
+      />
+    </svg>
+  ),
 }

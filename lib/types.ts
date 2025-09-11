@@ -84,6 +84,7 @@ export interface ProjectTeamMember {
 export interface ProjectInterface {
   id: string
   hasWiki?: boolean // show project with wiki page template
+  graduated?: boolean
   youtubeLinks?: string[]
   team?: ProjectTeamMember[]
   license?: string

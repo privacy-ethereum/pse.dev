@@ -72,7 +72,7 @@ export const ArticleInEvidenceCard = ({
           {
             "px-5 lg:px-16 py-6 lg:py-16": size === "lg",
             "px-6 py-4 lg:p-8": size === "sm",
-            "px-6 lg:p-16": size === "xl",
+            "px-6 lg:p-16 justify-center": size === "xl",
             "!p-0 lg:!p-0": !backgroundCover,
           },
           contentClassName
@@ -187,7 +187,7 @@ export const ArticleInEvidenceCard = ({
           src={article.image ?? "/fallback.webp"}
           alt="Article hero image"
           fill
-          className="object-cover -z-10"
+          className="object-cover z-[0]"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={false}
         />

@@ -122,6 +122,18 @@ export const LABELS = {
     ERROR_LOADING_VIDEOS: "Error loading videos",
     CHECK_OUT_OUR_YOUTUBE:
       "Check out our YouTube to learn the latest in advanced cryptography.",
+    LEARN_AND_CONNECT: {
+      TITLE: "Learn & Connect",
+      DESCRIPTION:
+        "Join the Ethereum R&D discord to get updates on PSE projects and talk with other privacy builders and researchers about the future of privacy on Ethereum.",
+      ACTION: "Join the ETH R&D Discord",
+    },
+    COLLABORATE_AND_CONTRIBUTE: {
+      TITLE: "Collaborate & Contribute",
+      DESCRIPTION:
+        "Connect with us on the Ethereum Magicians to dive into technical discussions, give feedback, make proposals, and collaborate on research and development.",
+      ACTION: "Join Ethereum Magicians",
+    },
   },
   NEWS_SECTION: {
     RECENT_UPDATES: "Recent Updates",
@@ -221,6 +233,8 @@ export const LABELS = {
   },
   PROJECTS_PAGE: {
     TITLE: "Explore Our Projects",
+    GRADUATED_PROJECTS:
+      "Explore graduated projects that have spun out into the ecosystem",
   },
   RESEARCH_PAGE: {
     TITLE: "Explore Our Research",

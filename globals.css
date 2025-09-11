@@ -15,7 +15,7 @@ html {
 
 /* Custom responsive navigation */
 .nav-responsive {
-  display: none;
+  display: none !important;
 }
 
 @media (min-width: 768px) {

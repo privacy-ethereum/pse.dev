@@ -28,6 +28,7 @@ tldr: "Brief project summary" # Short description of the project
 # ========================================
 category: "research" # Project category: "research" | "devtools" | "application"
 license: "MIT" # Project license
+graduated: false # Project graduated
 tags: # Project tags
   keywords: ["tag1", "tag2", "tag3"] # Relevant keywords
   themes: ["privacy", "scalability"] # Project themes

@@ -1,6 +1,7 @@
 ---
 id: "cursive"
 name: "Cursive"
+graduated: true
 image: "cursive.webp"
 section: "grant"
 projectStatus: "active"
@@ -23,7 +24,7 @@ tags:
   themes: ["build", "play"]
 links:
   github: "https://github.com/cursive-team"
-  website: "https://www.cursive.team/"
+  website: "https://www.cursive.computer/"
 ---
 
 What began as an experimental initiative to transform PSE's theoretical cryptography research into tangible applications has evolved into a dedicated lab that incubates practical ways to connect people through applied cryptography.

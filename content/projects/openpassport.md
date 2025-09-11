@@ -1,7 +1,8 @@
 ---
 id: "openpassport"
-name: "OpenPassport"
+name: "Self"
 image: "openpassport.webp"
+graduated: true
 section: "grant"
 projectStatus: "active"
 category: "application"

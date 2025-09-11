@@ -3,6 +3,7 @@ id: "zk-email"
 name: "ZK Email"
 image: "zk-email.webp"
 section: "collaboration"
+graduated: true
 projectStatus: "active"
 category: "application"
 tldr: "ZK Email is a library that allows for anonymous verification of email signatures while masking specific data."

@@ -1,6 +1,7 @@
 ---
 id: "zkp2p"
 name: "ZKP2P"
+graduated: true
 image: "zkp2p.webp"
 section: "grant"
 projectStatus: "active"

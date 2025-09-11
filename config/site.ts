@@ -25,6 +25,9 @@ export const siteConfig = {
       "https://github.com/privacy-ethereum/acceleration-program",
     coreProgram:
       "https://docs.google.com/forms/d/e/1FAIpQLSendzYY0z_z7fZ37g3jmydvzS9I7OWKbY2JrqAnyNqeaBHvMQ/viewform",
+    magicians: "https://ethereum-magicians.org",
+    researchAndDevelopmentDiscord:
+      "https://discord.com/channels/595666850260713488/1410354969386946560",
   },
   addGithubResource:
     "https://github.com/privacy-ethereum/website-v2/blob/main/content/resources.md",
