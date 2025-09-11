@@ -10,7 +10,7 @@ export const ProjectGraduated = () => {
   const { graduatedProjects } = useProjects()
 
   return (
-    <div className="flex flex-col gap-10 justify-center dark:bg-anakiwa-975 py-16 lg:py-20 overflow-hidden">
+    <div className="flex flex-col gap-10 justify-center dark:bg-anakiwa-975 py-16 lg:py-20 overflow-hidden bg-cover-gradient dark:bg-none">
       <span className="dark:text-tuatara-100 text-tuatara-950 text-xl lg:text-3xl lg:leading-[45px] font-normal font-sans text-center lg:px-0 px-4">
         {LABELS.PROJECTS_PAGE.GRADUATED_PROJECTS}
       </span>
