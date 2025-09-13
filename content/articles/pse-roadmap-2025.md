@@ -100,7 +100,7 @@ These are PSE’s highest priority initiatives we’re starting or continuing ex
     - Add privacy transfer features using PCD and folding. Targeting PoC by Devconnect
     - Add post-quantum accumulation scheme.
     - Work with Intmax and other ecosystem players on path to integration.
-- Support Kohaku ([privacy wallet PoC](https://github.com/ethereum/wallet-poc/blob/main/kohaku-testnet-roadmap.md))
+- Support Kohaku (privacy wallet PoC).
     - Implement zk account recovery combination framework of N of M methods
     - *Oversight of keystore implementation for stealth addresses
     - .. and more on private reads side
@@ -172,4 +172,4 @@ If you read all this way and saw something that didn’t make sense or could be 
 
 If you want to reach us over chat please go for [ethresearch discord](https://t.co/EqHJvFlv9E) in the #privacy channel. Find our work at [pse.dev/projects](https://pse.dev/projects) and [pse.dev/research](https://pse.dev/research). Learn our published work at both [ethresear.ch](https://ethresear.ch/) and [ethereum-magicians.org](https://ethereum-magicians.org/). 
 
-Hope to see you all at Devconnect in one of the following events we’ll be present, organizing, or supporting: Ethereum Cypherpunk Congress, Privacy Community Hub, zkTLS Day, zkID Day, Ethereum Privacy Stack, Encryption Days, Noircon2, and many mored
+Hope to see you all at Devconnect in one of the following events we’ll be present, organizing, or supporting: Ethereum Cypherpunk Congress, Privacy Community Hub, zkTLS Day, zkID Day, Ethereum Privacy Stack, Encryption Days, Noircon2, and many more
