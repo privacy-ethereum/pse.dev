@@ -136,7 +136,7 @@ These are PSE’s highest priority initiatives we’re starting or continuing ex
 - Methodically study the SOTA of ORAM and PIR and share insights in peer-reviewed venues
 - Translate the outcomes of research research into ORAM and PIR into the Ethereum user experience: wallets, browser, and RPC nodes.
 
-**On Prove anywhere**
+**On Private proving**
 
 ### (6) Data portability
 
