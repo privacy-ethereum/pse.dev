@@ -27,7 +27,7 @@ Our prototype implementation demonstrates a PlasmaFold aggregator running on low
 
 ## Protocol description
 
-We succintly describe here the PlasmaFold L2 protocol, where further details can be found in the [eprint](). PlasmaFold runs on two kind of proofs: (1) a block proof $\Pi^{\mathsf{block}}_{t}$ produced by the aggregator and (2) a balance proof $\Pi^{\mathsf{balance}}_{id}$ managed by each user. 
+We succinctly describe here the PlasmaFold L2 protocol, where further details can be found in the [eprint](). PlasmaFold runs on two kind of proofs: (1) a block proof $\Pi^{\mathsf{block}}_{t}$ produced by the aggregator and (2) a balance proof $\Pi^{\mathsf{balance}}_{id}$ managed by each user. 
 
 First, the aggregator builds a transaction tree $\mathcal{T}^{\mathsf{tx}}_t$, composed of leaves consisting in transaction hashes. Before running the IVC prover, the aggregator proposes to each transaction sender with id $id$ the root $r^{\mathsf{tx}}_{t}$ along a merkle inclusion proof $\pi^{\mathsf{tx}}_{t}[id]$ for their corresponding $id$ and transaction within $\mathcal{T}^{\mathsf{tx}}_t$. Transaction senders acknowledge receiving and checking the proposal by sending back their signature over their transaction and the aggregator's transaction tree root $\mathtt{sign(} \mathsf{tx} \vert \vert r^{\mathsf{tx}}_{t}\mathtt{)}$.
 
