@@ -112,7 +112,7 @@ Unlike Semaphore's LeanIMT, Merkle-Patricia Tries lack a deterministic structure
 
 #### What about logs?
 
-[Logs](https://info.etherscan.com/what-is-event-logs/) could be a way around the huge state if we limit the scope in time and operations we're interested in (+1 for [EIP-7708](https://ethereum-magicians.org/t/eip-7708-eth-transfers-emit-a-log/20034)). Even though indexing problems don't get easier, building something like a private [EthRecepits](https://github.com/daimo-eth/ethreceipts) can be practical due to the small size of the base data, providing a solution for one of the most common use cases for block explorers. [QuietRPC](https://github.com/oskarth/quietrpc/tree/main) is exploring a private RPC solution based on logs and two-hop PIR.
+[Logs](https://info.etherscan.com/what-is-event-logs/) could be a way around the huge state if we limit the scope in time and operations we're interested in (+1 for [EIP-7708](https://ethereum-magicians.org/t/eip-7708-eth-transfers-emit-a-log/20034)). Even though indexing problems don't get easier, building something like a private [EthReceipts](https://github.com/daimo-eth/ethreceipts) can be practical due to the small size of the base data, providing a solution for one of the most common use cases for block explorers. [QuietRPC](https://github.com/oskarth/quietrpc/tree/main) is exploring a private RPC solution based on logs and two-hop PIR.
 
 ### Data Verification
 
