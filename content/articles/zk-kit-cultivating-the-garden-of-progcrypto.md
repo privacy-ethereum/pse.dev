@@ -16,7 +16,7 @@ ProgCrypto libraries are _especially_ special because they shield developers fro
 
 But that is only true when libraries are: 
 - Open-sourced for maximal eye-ball attention and bug detection
-- Well-tested and re-(re-(..))-audited
+- Well-tested and audited
 - Carefully designed to avoid accidental mishaps that can result from poorly designed interfaces and leaky data-function encapsulations
 - Well-documented not only to minimize onboarding overhead on developers but also ensure proper use and understanding of security assumptions
 
