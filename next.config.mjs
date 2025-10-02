@@ -131,6 +131,13 @@ const nextConfig = {
 
   // Optimize runtime chunk size
   webpack: (config, { isServer, dev }) => {
+    // Ensure TS path alias '@/*' resolves at build-time (esp. on Vercel/Linux)
+    config.resolve = config.resolve || {}
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      "@": path.resolve(__dirname),
+    }
+
     if (isServer) {
       config.externals.push("erlpack")
     }
