@@ -1,0 +1,170 @@
+---
+authors: ["PSE Team"]
+title: "PSE October 2025 Newsletter"
+image: "/articles/pse-october-2025/cover.webp"
+tldr: "A roundup of what PSE teams have been up to and looking ahead to Devconnect"
+date: "2025-10-15"
+tags: ["newsletter"]
+---
+
+This past month we had the big announcement of [Sam’s departure](/blog/a-thank-you), and also the new changes of **Andy** taking the helm of PSE and **Igor** joining on to lead privacy efforts at the Ethereum Foundation.
+
+We published the [PSE Roadmap on Ethereum Magicians](https://ethereum-magicians.org/t/pse-roadmap-2025-and-beyond/25423) and [got great reactions](https://x.com/samonchain/status/1966576928422269050) from the community, which have sparked dozens of new collaborations and conversations with external teams.
+
+As we head towards Devconnect, it’s always good to remember why we’re here — and what gets us excited about working at PSE:
+
+> Ethereum is on the path to becoming the settlement layer for the world, but without strong privacy,  
+> it risks becoming the backbone of global surveillance rather than global freedom.  
+>  
+> *Our mission is to help define and deliver on Ethereum’s privacy roadmap.*
+
+Here’s what our teams have been up to:
+
+---
+
+## 🏗️ Private Writes
+
+### Private Governance
+
+The Private Governance team has been wrapping up research for MACI V4, researching and writing for our *State of Private Report 2025*, and helping organize the Privacy domain for Gitcoin Grants 24.  
+
+We will be releasing our *State of Private Voting Report* at the end of October and will be presenting it at Devconnect. The Privacy domain for [GG24](https://www.gitcoin.co/blog/announcing-gitcoin-grants-24) will be held from **October 14–28**.
+
+### Semaphore
+
+We've been focused on bringing the latest Semaphore stable release to life across our entire stack.  
+
+We successfully deployed the smart contracts on all supported mainnets, updated subgraphs, and released [v4.13.1](https://github.com/semaphore-protocol/semaphore/releases/tag/v4.13.1). Alongside this, we updated the boilerplate and extension apps and packages — including benchmarks, the explorer, and contract extensions — ensuring everything is aligned with the newest version.  
+
+We also updated the `semaphore-rs` project to be compatible with the latest stable release. On the research and education side, we presented Semaphore at the Core Program Brazil and at the Ecuador ZK Core Program.
+
+Looking ahead, we'll be presenting Semaphore at the Dev3Pack ZK & Privacy Bootcamp and mentoring at Invisible Garden, while continuing to support the community and maintain the protocol.
+
+### iO
+
+We wrote a new paper about a novel lookup-table evaluation technique over lattice-based key-homomorphic encodings, in particular BGG+ encodings. The paper will be publicly available soon on ePrint.
+
+**What’s next:**
+
+- Improvements on the lookup-table evaluation technique and circuits to simulate arithmetic  
+- FHE evaluation over BGG+ encodings  
+- A new post about applications of cryptographic primitives connecting to iO  
+
+### vFHE
+
+We published an overview of the FHE + blockchain ecosystem on [ethresear.ch](https://ethresear.ch/t/open-application-driven-fhe-for-ethereum/23044), outlining the potential use cases and key challenges for bringing fully homomorphic encryption into blockchain systems.  
+
+We are now working on specifying and implementing FHE benchmarks that can help quantify the overhead of FHE for basic functionalities such as comparisons and range lookups. The goal is to provide guidance on how to choose and combine FHE schemes effectively, depending on the structure of the computation and the required level of precision.  
+
+We will continue developing the benchmarks, focusing on comparisons and digit decomposition, and analyzing how their performance scales when working with numbers of different sizes.
+
+### PlasmaFold
+
+We have been heads down working on a way to get a scalable, cheap, and private transaction L2 using client-side proving.  
+
+We’ve also been implementing post-quantum aggregation techniques, which will eventually help serve our next iterations — building a post-quantum secure private L2.
+
+### IPTF (Institutional Privacy Task Force; formerly Enterprise Privacy)
+
+The IPTF has been mapping first-hand validated institutional privacy requirements to patterns and vendors in the Ethereum ecosystem.  
+
+They’ve started going public, giving talks at DeCompute in Singapore, and will soon release a public version of their market map.  
+
+If you are an institution or vendor, reach out at [iptf.ethereum.org](https://iptf.ethereum.org/) or follow [@iptf_updates](https://x.com/iptf_updates)!
+
+---
+
+## 🪢 Prove Anywhere
+
+### Mopro
+
+Over the past few weeks, we’ve been focused on strengthening Flutter support within Mopro, starting with a proof of concept for `flutter_rust_bridge` where bindings can now be generated directly with `cargo run --bin flutter` and used in a Flutter app without extra glue code.  
+
+From there, we expanded support to include circom and halo2, iOS simulator, and Android, while beginning integration work for Noir.  
+
+This effort culminated in a major refactor where `mopro-ffi` and the CLI no longer depend on adapters — those now live in templates, making the developer experience cleaner and more modular.  
+
+We also released new crates like `circom-prover`, `mopro-ffi`, and `mopro-cli`, and [templates such as R1CS0](https://github.com/zkmopro/mopro-r0-example-app) for easier onboarding.
+
+On the community side, it was exciting to see strong momentum at ETHGlobal New Delhi, which saw **40 submissions** in total.  
+
+Among them, projects like AccessFi, zkETHer, Wisk, and ZeroSurf all showcased Mopro-powered integrations and earned top prizes across tracks.  
+
+We also received several high-quality PRs from the OnlyDust waves, showing that Mopro is cultivating a community where ideas, fixes, and improvements flow in from diverse contributors — reinforcing an open-source-first mindset.  
+
+Overall, the past month has been about pushing forward developer tooling, modular refactors, and real-world adoption through hackathons and collaborations.
+
+### TLSNotary
+
+We’re putting the finishing touches on the `alpha.13` release, which includes several protocol-level improvements and BLAKE3 commitments.  
+
+The focus remains on making the protocol faster, cleaner, and easier to integrate across contexts.
+
+In parallel, work continues on our plugin-based SDK and a minimal, reusable TLSNotary component for browsers.  
+
+We also published new benchmarks and are preparing an interactive demo for Devconnect. Make sure to attend [zkTLS Day](https://devconnect.org/calendar?event=zktls-day)!
+
+### zkID Standards
+
+Over the past month, our team has made significant progress across zkID, zkPDF, and Revocation initiatives.  
+
+For zkID, we released the first draft of the zkID paper, integrated zero-knowledge support into Spartan2, and implemented rerandomized commitments along with device-binding key extractor circuits. We’ve also explored memory optimization strategies to enhance performance.
+
+On the zkPDF side, we launched our first stable release, `zkPDF v0.0.1`, complete with documentation, a compatibility check website, and a project template.  
+
+We showcased zkPDF at ETHGlobal Delhi, where it was tested across diverse real-world PDFs such as bank invoices, DocuSign files, and DigiLocker records — receiving nine quality submissions.  
+
+Meanwhile, our work on Revocation is exploring Merkle Tree–based revocation solutions. We also collaborated with the DIF team on a broader revocation report.
+
+### ZK-Kit
+
+We've made some exciting progress with ZK-Kit recently!  
+
+The new website is now live at [zkkit.org](https://zkkit.org/) 🎉, and we've published both a [blog post](https://pse.dev/blog/zk-kit-cultivating-the-garden-of-progcrypto) and an [announcement](https://x.com/PrivacyEthereum/status/1970763696348582094) about ZK-Kit's Exit to the Community.  
+
+We've already received several applications from people interested in helping maintain and grow the project.
+
+Looking ahead, our main focus is to work closely with the community to support and expand ZK-Kit together.  
+
+We're also keen to connect with more partners and maintainers who share our vision of building and sustaining privacy-preserving tools in the open.
+
+### Client-Side Proving
+
+In September, we enhanced our benchmarking platform by expanding proof system coverage for SHA-256 to include Binius64 and Ligetron.  
+
+Adding Ligetron helped us establish the non-Rust benchmarking pipeline for future contributions. We also built the first version of automated results processing in CI and refactored the Rust benchmarking harness to make future contributions as easy as implementing a few closures.
+
+We started collaborating with [EthProofs](https://ethproofs.org/), who are happy to host our benchmarking results under a new “Client-Side Proving” section (coming soon).
+
+Something to look forward to: a [zkID & CSP Day at Devconnect](https://devconnect.org/calendar?event=zkid-day).  
+
+We’ve finalized the CSP-related agenda (TBA) and are looking forward to seeing you there on **November 18th!**
+
+### Privacy Experience
+
+This month we sharpened PX: hosted our second office hours, kicked off user interviews, ran a MACI developer audit, shipped zkkit, and launched a new privacy section on [ethereum.org](https://ethereum.org/).  
+
+We also spoke with dozens of privacy projects, had our Privacy Community Hub approved, and are making steady progress across all event initiatives with zkID, zkTLS, research days, and the Privacy Stack.
+
+---
+
+## 🧪 Private Reads
+
+### Private RPC
+
+With Igor joining the group set out to bring privacy to nodes and wallets broadcasting Ethereum transactions (specifically the `eth_sendRawTransaction` RPC call).  
+
+We spent some time looking into the new modular Rust implementation of Tor (`arti`) and kicked off working groups with various stakeholders, with initial execution plans being ironed out.
+
+### Kohaku
+
+In collaboration with Oblivious Labs, Kohaku, and Helio, we are helping bring privacy to remote reads of the Ethereum state from a Kohaku-embedded Helios light client.  
+
+The state reads are served from an ORAM server, mitigating privacy leakage server-side that can result from observing access patterns.  
+
+We are currently working on baking Helios into Kohaku, hardening the wallet–TEE connection, and supporting [task #4](https://docs.fileverse.io/0xcBB491DE19EFE7ffD6EA67C65023b6C4AcC5cceF/0#key=1iHVehGw7Whnf8IXsPOgVzFDyVGElelia_WcBVGkCQQ2xqvSxAtbhK3EaaMZybrt).
+
+**What’s next:**
+
+- Receive TEE–ORAM deliverable from OL  
+- Collaborate with Helios to intercept state-access EVM opcodes
