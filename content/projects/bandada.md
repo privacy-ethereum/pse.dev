@@ -3,7 +3,7 @@ id: "bandada"
 name: "Bandada"
 image: "bandada.webp"
 section: "pse"
-projectStatus: "maintained"
+projectStatus: "inactive"
 category: "application"
 tldr: "An open-source tool for managing privacy-preserving groups of anonymous individuals."
 tags:
@@ -36,25 +36,11 @@ links:
   website: "https://bandada.pse.dev"
   twitter: "https://twitter.com/BandadaDevs"
 extraLinks:
-  buildWith:
-    - label: "Bandada API"
-      url: "https://api.bandada.pse.dev/"
-    - label: "Bandada API SDK"
-      url: "https://github.com/bandada-infra/bandada/tree/main/libs/api-sdk"
-    - label: "Bandada Boilerplate"
-      url: "https://github.com/bandada-infra/boilerplate"
-  play:
-    - label: "Bandada Dashboard"
-      url: "https://app.bandada.pse.dev/"
-    - label: "Bandada Boilerplate Live App"
-      url: "https://demo.bandada.pse.dev/"
   learn:
     - label: "Bandada Website"
       url: "https://bandada.pse.dev/"
     - label: "Bandada Documentation"
       url: "https://docs.bandada.pse.dev/"
-    - label: "Bandada Board"
-      url: "https://github.com/orgs/bandada-infra/projects/1"
 ---
 
 ### Overview
