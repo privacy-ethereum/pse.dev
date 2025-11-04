@@ -36,7 +36,7 @@ describe("API Test Coverage", () => {
   it("covers all critical API functionality", () => {
     const expectedTestCategories = [
       "Content APIs (articles, projects)",
-      "Search functionality (Algolia integration)",
+      "Search functionality (local)",
       "External integrations (Discord, YouTube)",
       "RSS feed generation",
       "Error handling and validation",
