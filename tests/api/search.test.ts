@@ -1,33 +1,42 @@
 import { GET } from "@/app/api/search/route"
 import { NextRequest } from "next/server"
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest"
+import { describe, it, expect, vi, beforeEach } from "vitest"
 
-// Mock algoliasearch
-const mockSearch = vi.fn()
-const mockInitIndex = vi.fn()
+// Mock content functions
+const mockGetArticles = vi.fn()
+const mockGetProjects = vi.fn()
 
-vi.mock("algoliasearch", () => ({
-  default: vi.fn((appId: string, apiKey: string) =>
-    appId && apiKey
-      ? {
-          initIndex: mockInitIndex,
-        }
-      : null
-  ),
+vi.mock("@/lib/content", () => ({
+  getArticles: () => mockGetArticles(),
+  getProjects: () => mockGetProjects(),
 }))
 
-// Mock environment variables
-const originalEnv = process.env
+// Mock search functions (uses real implementation)
+vi.mock("@/lib/search", async () => {
+  const actual = await vi.importActual("@/lib/search")
+  return actual
+})
 
 describe("/api/search", () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    process.env = { ...originalEnv }
-    mockInitIndex.mockReturnValue({ search: mockSearch })
-  })
-
-  afterEach(() => {
-    process.env = originalEnv
+    mockGetArticles.mockReturnValue([
+      {
+        id: "test-article",
+        title: "Test Article",
+        content: "This is test content",
+        tldr: "Test summary",
+        date: "2024-01-01",
+        tags: [{ id: "test", name: "Test" }],
+      },
+    ])
+    mockGetProjects.mockReturnValue([
+      {
+        id: "test-project",
+        title: "Test Project",
+        description: "Test project description",
+      },
+    ])
   })
 
   const createMockRequest = (searchParams: Record<string, string> = {}) => {
@@ -36,19 +45,6 @@ describe("/api/search", () => {
       url.searchParams.set(key, value)
     })
     return new NextRequest(url.toString())
-  }
-
-  const mockSearchResults = {
-    hits: [
-      {
-        objectID: "1",
-        title: "Test Article",
-        description: "Test description",
-        url: "/articles/test",
-      },
-    ],
-    nbHits: 1,
-    page: 0,
   }
 
   describe("GET /api/search", () => {
@@ -61,9 +57,8 @@ describe("/api/search", () => {
       expect(data).toEqual({
         results: [],
         status: "empty",
-        availableIndexes: [],
+        availableIndexes: ["blog", "projects"],
       })
-      expect(mockSearch).not.toHaveBeenCalled()
     })
 
     it("returns empty results when query is whitespace only", async () => {
@@ -75,65 +70,55 @@ describe("/api/search", () => {
       expect(data).toEqual({
         results: [],
         status: "empty",
-        availableIndexes: [],
-      })
-      expect(mockSearch).not.toHaveBeenCalled()
-    })
-
-    it("returns error when Algolia credentials are missing", async () => {
-      // Clear environment variables to simulate missing credentials
-      process.env.ALGOLIA_APP_ID = ""
-      process.env.ALGOLIA_SEARCH_API_KEY = ""
-
-      const request = createMockRequest({ query: "test" })
-      const response = await GET(request)
-      const data = await response.json()
-
-      expect(response.status).toBe(500)
-      expect(data).toEqual({
-        error: "Search client not initialized - missing Algolia credentials",
-        availableIndexes: [],
+        availableIndexes: ["blog", "projects"],
       })
     })
 
-    it("returns error for search when credentials are invalid", async () => {
-      // Test with invalid but present credentials
-      process.env.ALGOLIA_APP_ID = ""
-      process.env.ALGOLIA_SEARCH_API_KEY = ""
-
-      const request = createMockRequest({
-        query: "test query",
-        index: "blog",
-      })
+    it("searches articles by title", async () => {
+      const request = createMockRequest({ query: "test article" })
       const response = await GET(request)
       const data = await response.json()
 
-      expect(response.status).toBe(500)
-      expect(data).toEqual({
-        error: "Search client not initialized - missing Algolia credentials",
-        availableIndexes: [],
-      })
+      expect(response.status).toBe(200)
+      expect(data.status).toBe("success")
+      expect(data.results).toHaveLength(2)
+      expect(data.results[0].indexName).toBe("blog")
+      expect(data.results[0].hits[0].title).toBe("Test Article")
     })
 
-    it("handles search errors gracefully for specific index", async () => {
-      const error = new Error("Algolia search failed")
-
-      // Set up valid credentials but mock will reject
-      process.env.ALGOLIA_APP_ID = ""
-      process.env.ALGOLIA_SEARCH_API_KEY = ""
-
-      const request = createMockRequest({
-        query: "test",
-        index: "blog",
-      })
+    it("searches projects by description", async () => {
+      const request = createMockRequest({ query: "project", index: "projects" })
       const response = await GET(request)
       const data = await response.json()
 
-      expect(response.status).toBe(500)
-      expect(data).toEqual({
-        error: "Search client not initialized - missing Algolia credentials",
-        availableIndexes: [],
-      })
+      expect(response.status).toBe(200)
+      expect(data.status).toBe("success")
+      expect(data.hits).toBeDefined()
+      expect(data.hits[0].title).toBe("Test Project")
+    })
+
+    it("returns no results for non-matching query", async () => {
+      const request = createMockRequest({ query: "nonexistent" })
+      const response = await GET(request)
+      const data = await response.json()
+
+      expect(response.status).toBe(200)
+      expect(data.status).toBe("success")
+      expect(data.results).toHaveLength(0)
+    })
+
+    it("respects hitsPerPage parameter", async () => {
+      mockGetArticles.mockReturnValue([
+        { id: "1", title: "Article 1", content: "test", date: "2024-01-01" },
+        { id: "2", title: "Article 2", content: "test", date: "2024-01-02" },
+        { id: "3", title: "Article 3", content: "test", date: "2024-01-03" },
+      ])
+
+      const request = createMockRequest({ query: "test", hitsPerPage: "2" })
+      const response = await GET(request)
+      const data = await response.json()
+
+      expect(data.results[0].hits).toHaveLength(2)
     })
   })
 })
