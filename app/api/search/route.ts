@@ -70,11 +70,11 @@ export async function GET(request: NextRequest) {
       .slice(0, hitsPerPage)
       .map(({ project }) => ({
         objectID: project.id,
-        title: project.title,
+        title: project.name || project.title,
         description: project.description || project.tldr,
-        url: `/project/${project.id}`,
+        url: `/projects/${project.id}`,
         _highlightResult: {
-          title: { value: highlight(project.title, query) },
+          title: { value: highlight(project.name || project.title, query) },
           description: {
             value: highlight(project.description || project.tldr || "", query),
           },
