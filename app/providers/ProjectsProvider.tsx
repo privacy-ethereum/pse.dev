@@ -3,8 +3,8 @@
 import { LABELS } from "@/app/labels"
 import { ProjectCategory, ProjectInterface } from "@/lib/types"
 import { uniq } from "@/lib/utils"
+import { searchProjects as fuseSearchProjects } from "@/lib/search"
 import { useQuery } from "@tanstack/react-query"
-import Fuse from "fuse.js"
 import {
   createContext,
   useContext,
@@ -91,74 +91,43 @@ const filterProjects = ({
   findAnyMatch?: boolean
   projects?: ProjectInterface[]
 }) => {
-  const projectList = projectListItems.map((project: any) => ({
+  let projectList = projectListItems.map((project: any) => ({
     ...project,
     id: project?.id?.toLowerCase(),
   }))
 
-  const keys = [
-    "name",
-    "tldr",
-    "tags.themes",
-    "tags.keywords",
-    "tags.builtWith",
-    "projectStatus",
-  ]
+  const noActiveFilters =
+    Object.keys(activeFilters).length === 0 && searchPattern.length === 0
+  if (noActiveFilters) return projectList
 
-  const tagsFiltersQuery: Record<string, string>[] = []
+  // Apply tag filters first
+  projectList = projectList.filter((project: any) => {
+    return Object.entries(activeFilters).every(([filterKey, filterValues]) => {
+      if (!filterValues || filterValues.length === 0) return true
 
-  Object.entries(activeFilters).forEach(([key, values]) => {
-    values.forEach((value) => {
-      if (!value) return
-      tagsFiltersQuery.push({
-        [`tags.${key}`]: value,
+      const projectTags = project.tags?.[filterKey] || []
+
+      return filterValues.some((filterValue: string) => {
+        if (Array.isArray(projectTags)) {
+          return projectTags.some((tag: string) =>
+            tag.toLowerCase() === filterValue.toLowerCase()
+          )
+        }
+        return false
       })
     })
   })
 
-  const noActiveFilters =
-    tagsFiltersQuery.length === 0 && searchPattern.length === 0
-  if (noActiveFilters) return projectList
-
-  let query: any = {}
-
-  if (findAnyMatch) {
-    query = {
-      $or: [...tagsFiltersQuery, { name: searchPattern }],
-    }
-  } else if (searchPattern?.length === 0) {
-    query = {
-      $and: [...tagsFiltersQuery],
-    }
-  } else if (tagsFiltersQuery.length === 0) {
-    query = {
-      name: searchPattern,
-    }
-  } else {
-    query = {
-      $and: [
-        {
-          $and: [...tagsFiltersQuery],
-        },
-        { name: searchPattern },
-      ],
-    }
+  // Apply text search
+  if (searchPattern.length > 0) {
+    projectList = fuseSearchProjects(projectList, searchPattern)
   }
 
-  const fuse = new Fuse(projectList, {
-    threshold: 0.3,
-    useExtendedSearch: true,
-    includeScore: true,
-    findAllMatches: true,
-    distance: 200,
-    keys,
-  })
-
-  const result = fuse.search(query)?.map(({ item, score }) => ({
-    ...item,
-    score,
+  // Add score for sorting
+  return projectList.map((project: any) => ({
+    ...project,
+    score: 0,
   }))
-  return result ?? []
 }
 
 const sortProjectByFn = ({

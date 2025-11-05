@@ -1,83 +1,52 @@
-function escapeRegex(str: string): string {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+import Fuse from "fuse.js"
+
+interface SearchResult<T> {
+  item: T
+  score: number
 }
 
-export function searchText(text: string | undefined, query: string): boolean {
-  if (!text) return false
-  // Use word boundary matching: matches whole words or word starts
-  const escapedQuery = escapeRegex(query)
-  const regex = new RegExp(`\\b${escapedQuery}`, "i")
-  return regex.test(text)
+// Search articles with proper field weights
+export function searchArticles<T>(articles: T[], query: string): T[] {
+  if (!query.trim()) return articles
+
+  const fuse = new Fuse(articles, {
+    keys: [
+      { name: "title", weight: 1.0 },
+      { name: "tags.name", weight: 0.75 },
+      { name: "tldr", weight: 0.5 },
+      { name: "content", weight: 0.25 },
+    ],
+    threshold: 0.3,
+    distance: 100,
+    includeScore: true,
+    ignoreLocation: true,
+  })
+
+  return fuse.search(query).map((result) => result.item)
 }
 
-export function calculateRelevance(
-  item: {
-    title?: string
-    name?: string
-    content?: string
-    description?: string
-    tldr?: string
-    tags?: any
-  },
-  query: string
-): number {
-  const q = query.toLowerCase()
-  let score = 0
+// Search projects with proper field weights
+export function searchProjects<T>(projects: T[], query: string): T[] {
+  if (!query.trim()) return projects
 
-  // Title/name match (highest priority)
-  const titleOrName = item.title || item.name
-  if (titleOrName && searchText(titleOrName, q)) {
-    score += 100
-    // Exact title match gets bonus
-    if (titleOrName.toLowerCase() === q) score += 50
-    // Title starts with query gets bonus
-    if (titleOrName.toLowerCase().startsWith(q)) score += 25
-  }
+  const fuse = new Fuse(projects, {
+    keys: [
+      { name: "name", weight: 1.0 },
+      { name: "tags.themes", weight: 0.75 },
+      { name: "tags.keywords", weight: 0.75 },
+      { name: "tags.builtWith", weight: 0.75 },
+      { name: "tldr", weight: 0.5 },
+      { name: "description", weight: 0.5 },
+      { name: "projectStatus", weight: 0.25 },
+      { name: "content", weight: 0.25 },
+    ],
+    threshold: 0.3,
+    distance: 200,
+    findAllMatches: true,
+    includeScore: true,
+    useExtendedSearch: true,
+  })
 
-  // Tag match (high priority) - handle both article and project tag formats
-  if (item.tags) {
-    let tagMatches = false
-
-    // Article format: [{ id: "test", name: "Test" }]
-    if (Array.isArray(item.tags)) {
-      tagMatches = item.tags.some((tag) => {
-        if (typeof tag === "string") {
-          return searchText(tag, q)
-        }
-        if (tag.name) {
-          return searchText(tag.name, q)
-        }
-        return false
-      })
-    }
-    // Project format: { keywords: ["tag1", "tag2"] }
-    else if (item.tags.keywords && Array.isArray(item.tags.keywords)) {
-      tagMatches = item.tags.keywords.some((keyword: string) =>
-        searchText(keyword, q)
-      )
-    }
-
-    if (tagMatches) {
-      score += 50
-    }
-  }
-
-  // TLDR/description match (medium priority)
-  if (searchText(item.tldr, q) || searchText(item.description, q)) {
-    score += 25
-  }
-
-  // Content match (lower priority)
-  if (searchText(item.content, q)) {
-    score += 10
-  }
-
-  return score
+  return fuse.search(query).map((result) => result.item)
 }
 
-export function highlight(text: string | undefined, query: string): string {
-  if (!text) return ""
-  const escapedQuery = escapeRegex(query)
-  const regex = new RegExp(`\\b(${escapedQuery})`, "gi")
-  return text.replace(regex, "<mark>$1</mark>")
-}

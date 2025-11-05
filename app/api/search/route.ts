@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getArticles, getProjects } from "@/lib/content"
-import { calculateRelevance, highlight } from "@/lib/search"
+import { searchArticles, searchProjects } from "@/lib/search"
 
 export const revalidate = 300 // 5 minutes
 
@@ -25,28 +25,13 @@ export async function GET(request: NextRequest) {
   // Search articles
   if (!indexName || indexName === "blog") {
     const articles = getArticles()
-    const matches = articles
-      .map((article) => ({
-        article,
-        relevance: calculateRelevance(article, query),
-      }))
-      .filter(({ relevance }) => relevance > 0)
-      .sort((a, b) => b.relevance - a.relevance)
+    const matches = searchArticles(articles, query)
       .slice(0, hitsPerPage)
-      .map(({ article }) => ({
+      .map((article: any) => ({
         objectID: article.id,
         title: article.title,
         content: article.tldr || article.content.slice(0, 200),
         url: `/blog/${article.id}`,
-        _highlightResult: {
-          title: { value: highlight(article.title, query) },
-          content: {
-            value: highlight(
-              article.tldr || article.content.slice(0, 200),
-              query
-            ),
-          },
-        },
       }))
 
     if (matches.length > 0) {
@@ -60,25 +45,13 @@ export async function GET(request: NextRequest) {
   // Search projects
   if (!indexName || indexName === "projects") {
     const projects = getProjects()
-    const matches = projects
-      .map((project) => ({
-        project,
-        relevance: calculateRelevance(project, query),
-      }))
-      .filter(({ relevance }) => relevance > 0)
-      .sort((a, b) => b.relevance - a.relevance)
+    const matches = searchProjects(projects, query)
       .slice(0, hitsPerPage)
-      .map(({ project }) => ({
+      .map((project: any) => ({
         objectID: project.id,
         title: project.name || project.title,
         description: project.description || project.tldr,
         url: `/projects/${project.id}`,
-        _highlightResult: {
-          title: { value: highlight(project.name || project.title, query) },
-          description: {
-            value: highlight(project.description || project.tldr || "", query),
-          },
-        },
       }))
 
     if (matches.length > 0) {
