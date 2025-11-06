@@ -4,7 +4,7 @@ import { searchArticles, searchProjects } from "@/lib/search"
 
 export const revalidate = 300 // 5 minutes
 
-const allIndexes = ["blog", "projects"]
+const allIndexes = ["blog", "projects", "research"]
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
@@ -42,10 +42,15 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  // Search projects
+  // Search projects (applications and devtools only)
   if (!indexName || indexName === "projects") {
-    const projects = getProjects()
-    const matches = searchProjects(projects, query)
+    const allProjects = getProjects()
+    const projectsOnly = allProjects.filter(
+      (p: any) =>
+        p.category?.toLowerCase() === "application" ||
+        p.category?.toLowerCase() === "devtools"
+    )
+    const matches = searchProjects(projectsOnly, query)
       .slice(0, hitsPerPage)
       .map((project: any) => ({
         objectID: project.id,
@@ -57,6 +62,29 @@ export async function GET(request: NextRequest) {
     if (matches.length > 0) {
       results.push({
         indexName: "projects",
+        hits: matches,
+      })
+    }
+  }
+
+  // Search research (research category only)
+  if (!indexName || indexName === "research") {
+    const allProjects = getProjects()
+    const researchOnly = allProjects.filter(
+      (p: any) => p.category?.toLowerCase() === "research"
+    )
+    const matches = searchProjects(researchOnly, query)
+      .slice(0, hitsPerPage)
+      .map((project: any) => ({
+        objectID: project.id,
+        title: project.name || project.title,
+        description: project.description || project.tldr,
+        url: `/projects/${project.id}`,
+      }))
+
+    if (matches.length > 0) {
+      results.push({
+        indexName: "research",
         hits: matches,
       })
     }
