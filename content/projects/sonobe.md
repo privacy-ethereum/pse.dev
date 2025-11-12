@@ -30,12 +30,12 @@ In collaboration with [0xPARC](https://0xparc.org), [Sonobe](https://github.com/
   - [ProtoGalaxy](https://eprint.iacr.org/2023/1106)
 - **Decider backends:**
 
-  - Groth16 and KZG commitment [proofs](https://privacy-scaling-explorations.github.io/sonobe-docs/usage/decider-prove.html) which are [verifiable on-chain](https://privacy-scaling-explorations.github.io/sonobe-docs/usage/solidity-verifier.html).
+  - Groth16 and KZG commitment [proofs](https://sonobe.pse.dev/usage/decider.html#decider-prove) which are [verifiable on-chain](https://sonobe.pse.dev/usage/solidity-verifier.html).
 
 - **Other features:**
 
-  - [ZK Layer](https://privacy-scaling-explorations.github.io/sonobe-docs/usage/nova-zk.html)
-  - In-browser [WASM usage](https://privacy-scaling-explorations.github.io/sonobe-docs/usage/wasm.html)
+  - [ZK Layer](https://sonobe.pse.dev/usage/nova-zk.html)
+  - In-browser [WASM usage](https://sonobe.pse.dev/usage/wasm.html)
 
 - **Example projects:**
   - [Bitcoin light client](https://github.com/dmpierre/sonobe-btc) leveraging Sonobe
