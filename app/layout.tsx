@@ -158,10 +158,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         {/* External service optimization */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-
-        {/* Algolia search preconnect for faster search */}
-        <link rel="preconnect" href="https://latency-dsn.algolia.net" />
-        <link rel="dns-prefetch" href="https://search.algolia.com" />
       </head>
       <body suppressHydrationWarning>
         <GlobalProviderLayout>
