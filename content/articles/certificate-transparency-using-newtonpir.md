@@ -1,6 +1,6 @@
 ---
 authors: ["PSE Team"]
-title: "Certificate Transparency Using NewtonPIR"
+title: "Certificate Transparency Using NewtonPIR [PAPER WITHDRAWN]"
 image: "/articles/certificate-transparency-using-newtonpir/certificate-transparency-using-newtonpir-cover.webp"
 tldr: "This post was written by PSE grantee Vishal Kulkarni."
 date: "2025-01-28"
@@ -37,7 +37,7 @@ Certificate transparency is an important tool for protecting users from security
 
 **NewtonPIR**
 
-[Private Information Retrieval (PIR)](https://arxiv.org/abs/2304.14397) is a protocol that lets a user get information from a database without revealing to the owner what data they retrieved. PIR has many potential uses in privacy-preserving applications, but it requires complex communication and computation which can be prohibitively expensive with large databases. There are many PIR implementations taking different approaches cryptographic techniques. [NewtonPIR](https://eprint.iacr.org/2024/1909.pdf) is a proposed scheme for highly efficient PIR using [Fully Homomorphic Encryption (FHE)](https://mirror.xyz/privacy-scaling-explorations.eth/D8UHFW1t48x2liWb5wuP6LDdCRbgUH_8vOFvA0tNDJA).
+[Private Information Retrieval (PIR)](https://arxiv.org/abs/2304.14397) is a protocol that lets a user get information from a database without revealing to the owner what data they retrieved. PIR has many potential uses in privacy-preserving applications, but it requires complex communication and computation which can be prohibitively expensive with large databases. There are many PIR implementations taking different approaches cryptographic techniques. [NewtonPIR (WITHDRAWN)](https://eprint.iacr.org/archive/2024/1909/1732446191.pdf) is a proposed scheme for highly efficient PIR using [Fully Homomorphic Encryption (FHE)](https://mirror.xyz/privacy-scaling-explorations.eth/D8UHFW1t48x2liWb5wuP6LDdCRbgUH_8vOFvA0tNDJA).
 
 ### Private CT queries with NewtonPIR
 
