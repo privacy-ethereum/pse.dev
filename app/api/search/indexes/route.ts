@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 // These should be the same indexes used in the search route
 // to ensure consistency
-const allIndexes = ["blog", "projects"]
+const allIndexes = ["blog", "projects", "research"]
 
 export async function GET() {
   try {
