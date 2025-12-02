@@ -6,6 +6,7 @@ import { ArticleInEvidenceCard } from "./article-in-evidance-card"
 import { ArticleListCard } from "./article-list-card"
 import { LABELS } from "@/app/labels"
 import { Article, ArticleTag } from "@/lib/content"
+import { searchArticles } from "@/lib/search"
 import { useQuery } from "@tanstack/react-query"
 import { Search as SearchIcon } from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -77,16 +78,7 @@ export const ArticlesList: React.FC<ArticlesListProps> = ({
   if (searchQuery === "all") {
     otherArticles = articles
   } else if (searchQuery?.length > 0) {
-    otherArticles = articles.filter((article: Article) => {
-      const title = article.title.toLowerCase()
-      const content = article.content.toLowerCase()
-      const tags =
-        article.tags?.map((tag: ArticleTag) => tag.name.toLowerCase()) ?? []
-      return (
-        title.includes(searchQuery.toLowerCase()) ||
-        tags.some((tag: string) => tag.includes(searchQuery.toLowerCase()))
-      )
-    })
+    otherArticles = searchArticles(articles, searchQuery)
   }
 
   const hasTag = tag !== undefined
