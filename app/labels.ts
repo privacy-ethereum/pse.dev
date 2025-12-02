@@ -74,6 +74,7 @@ export const LABELS = {
     SEARCH_PROJECT_PLACEHOLDER: "Search project title or keyword",
     LAST_UPDATED_AT: "Last updated {{date}}",
     PROJECT_LIBRARY: "Project Library",
+    PROJECT_RESEARCH_LIBRARY: "Research Library",
     BACK_TO_PROJECT_LIBRARY: "Back to project library",
     DISCOVER_MORE: "Discover more",
     GO_TO_HOME: "Go to homepage",

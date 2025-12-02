@@ -74,7 +74,13 @@ export const ProjectContent = ({ project }: { project: ProjectInterface }) => {
   const projectStatusMessage =
     ProjectStatusMessageMap?.[project?.projectStatus as ProjectStatus]
 
-  const isResearchProject = project?.category === ProjectCategory.RESEARCH
+  const isResearchProject =
+    project?.category?.toLowerCase() === ProjectCategory.RESEARCH.toLowerCase()
+  const backLink = isResearchProject ? "/research" : "/projects"
+
+  console.table({
+    isResearchProject,
+  })
 
   return (
     <section className="bg-project-page-gradient dark:bg-transparent-gradient relative">
@@ -117,10 +123,12 @@ export const ProjectContent = ({ project }: { project: ProjectInterface }) => {
                 <div className="w-full ">
                   <div className="flex flex-col">
                     <div className="flex flex-col gap-6 text-left">
-                      <AppLink href="/projects">
+                      <AppLink href={backLink}>
                         <Icons.arrowLeft />
                         <span className="font-sans text-base">
-                          {LABELS.COMMON.PROJECT_LIBRARY}
+                          {isResearchProject
+                            ? LABELS.COMMON.PROJECT_RESEARCH_LIBRARY
+                            : LABELS.COMMON.PROJECT_LIBRARY}
                         </span>
                       </AppLink>
                       <div className="flex flex-col gap-2">
