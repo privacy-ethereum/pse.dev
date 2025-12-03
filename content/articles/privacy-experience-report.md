@@ -69,14 +69,14 @@ Following the task, participants reflected on their **overall experience**, disc
 > “I thought shielded would mean my vote would always be private… weird that I had to hover to see details.”
 > 
 
-![Snapshot UI](attachment:b2ff97b4-fab0-4dea-b417-d6bcc3f63f85:image.png)
+![Snapshot UI](public/articles/privacy-experience-report/snapshot-UI1.webp)
 
 Snapshot UI
 
 > “There are so many leaks if I’m using Alchemy… what is the point?”
 > 
 
-![Privacy Pool Github](attachment:c6aeccc7-8783-4730-959f-9119291c8991:image.png)
+![Privacy Pool Github](public/articles/privacy-experience-report/Privacy-Pool-Github_1.webp)
 
 Privacy Pool Github
 
@@ -102,14 +102,14 @@ Privacy Pool Github
 > “If the last release was three months ago and not many stars, I don’t feel confident.”
 > 
 
-![Railgun Github](attachment:7f1e16ce-0ed0-4bd6-8780-630be3db1dce:38d91eaf-ca73-4677-a5f8-130194559ce5.png)
+![Railgun Github](public/articles/privacy-experience-report/Railgun-Github_1.webp)
 
 Railgun Github
 
 > “Only you and Fluidkey can see all your transactions… Fluidkey team? Operator? What does that mean?”
 > 
 
-![Fluidkey UI](attachment:d296639b-f90b-4f78-a3c9-c3d06d11fb59:285cd763-070e-478d-8dd0-f17c802a6aba.png)
+![Fluidkey UI](public/articles/privacy-experience-report/Fluidkey-UI_1.webp)
 
 Fluidkey UI
 
@@ -132,18 +132,18 @@ Fluidkey UI
 > “Why do I need to buy an ENS just to test?”
 > 
 
-![Snapshot UI](attachment:86670388-7f27-42e2-a480-4312dddabd91:image.png)
+![Snapshot UI](public/articles/privacy-experience-report/Snapshot UI_2.webp)
 
 Snapshot UI
 
-![Snapshot UI](attachment:f4423481-f76f-40c2-9c2a-be30e0b76b00:image.png)
+![Snapshot UI](public/articles/privacy-experience-report/Snapshot UI_3.webp)
 
 Snapshot UI
 
 > “I would never trust online generated seed, that’s the basic of crypto security.”
 > 
 
-![Privacy Pool UI](attachment:ef0605ce-87b5-4a95-8401-68b5495873c1:d11a9920-2879-4986-abe7-8b1afc17f171.png)
+![Privacy Pool UI](public/articles/privacy-experience-report/Privacy Pool UI.webp)
 
 Privacy Pool UI
 
@@ -167,14 +167,14 @@ Privacy Pool UI
 > “Where are the privacy controls? It’s just this tiny text.”
 > 
 
-![Snapshot/Shutter UI](attachment:1ae82364-dd21-4865-bb6e-a3b3ead8345b:image.png)
+![Snapshot/Shutter UI](public/articles/privacy-experience-report/Snapshot_Shutter UI_1.webp)
 
 Snapshot/Shutter UI
 
 > “If it’s private by default, that’s perfect. I shouldn’t have to think about it.”
 > 
 
-![Flashbot UI](attachment:30afbd3b-74dd-4466-912e-fadab60aa921:image.png)
+![Flashbot UI](public/articles/privacy-experience-report/Flashbot UI_1.webp)
 
 Flashbot UI
 
@@ -194,25 +194,25 @@ Flashbot UI
 > “There’s no testing mode. I wouldn’t send 1 ETH through something untested.”
 > 
 
-![Flashbot UI](attachment:1840a3b1-e022-48cb-b4f4-b0f648c62d11:image.png)
+![Flashbot UI](public/articles/privacy-experience-report/Flashbot UI_2.webp)
 
 Flashbot UI
 
 > “I want to see the contract before confirming the transaction.”
 > 
 
-![Etherscan of Privacy Pool tx](attachment:b459abac-92b6-452f-a009-95e8cabf4411:4f985abd-2266-4b91-8f19-9a57c0016765.png)
+![Etherscan of Privacy Pool tx](public/articles/privacy-experience-report/Etherscan of Privacy Pool tx.webp)
 
 Etherscan of Privacy Pool tx
 
-![Privacy Pool contract on Etherscan](attachment:7249594f-5351-413b-bac6-1301b9deeb4b:9e6673b1-f221-4425-8dd9-6cb19be71d05.png)
+![Privacy Pool contract on Etherscan](public/articles/privacy-experience-report/Privacy Pool contract on Etherscan.webp)
 
 Privacy Pool contract on Etherscan
 
 > “I wouldn’t download something random, even on this machine.”
 > 
 
-![Railgun UI](attachment:ba830f04-e34d-418a-b544-9709e5055553:ad50497f-bf7d-4c3c-9b5d-e45e666cd5f2.png)
+![Railgun UI](public/articles/privacy-experience-report/Railgun UI_1.webp)
 
 Railgun UI
 
@@ -235,7 +235,7 @@ Railgun UI
 > “For large fund transfers I’d plan ahead, so waiting isn’t a big issue.”
 > 
 
-![Privacy Pool UI](attachment:22a0d829-168e-4cbd-8fb4-a3ca40fda6ad:ec27b933-13ff-400e-b0af-f5e7db80ee6a.png)
+![Privacy Pool UI](public/articles/privacy-experience-report/Privacy Pool UI_2.webp)
 
 Privacy Pool UI
 
@@ -255,14 +255,14 @@ Privacy Pool UI
 > “A normal user probably doesn’t know what stealth addresses are, even I’m not sure I could define it.”
 > 
 
-![Fluidkey UI](attachment:ea7fa472-a339-4aba-a249-16361a733039:image.png)
+![Fluidkey UI](public/articles/privacy-experience-report/Fluidkey UI_3.webp)
 
 Fluidkey UI
 
 > “‘Power user’ makes me feel like maybe I’m not technical enough.”
 > 
 
-![Fluidkey UI](attachment:b23ad33a-6138-45c1-94a3-2db105e6a0fe:image.png)
+![Fluidkey UI](public/articles/privacy-experience-report/Fluidkey UI_4.webp)
 
 Fluidkey UI
 
@@ -284,7 +284,7 @@ Fluidkey UI
 > “Anything that makes me feel a little bit more safe is important, like links to audits, social proof.”
 > 
 
-![Fluidkey UI](attachment:acc23807-5e2b-4583-8a8d-b02c86f09d44:image.png)
+![Fluidkey UI](public/articles/privacy-experience-report/Fluidkey UI_5.webp)
 
 Fluidkey UI
 
