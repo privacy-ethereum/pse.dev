@@ -21,7 +21,7 @@ Enhancing Ethereum through cryptographic research and collective experimentation
 
 #### For internal, PSE member:
 
-- Suggest to tag: @kalidiagne, @psedesign for PR review.
+- Suggest to tag: @wslyvh, @psedesign, andyguzmaneth for PR review.
 - If question, please reach out in discord channel #website-pse
 
 #### For external:
