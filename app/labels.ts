@@ -21,6 +21,7 @@ export const LABELS = {
       RESEARCH: "Research",
       ABOUT: "About",
       BLOG: "Blog",
+      ECOSYSTEM: "Ecosystem",
     },
     FOOTER: {
       DESCRIPTION:
@@ -243,6 +244,12 @@ export const LABELS = {
       "Our research model is open source, iterative, and driven by real-world use cases.",
     ACTIVE_RESEARCH: "Active Research",
     PAST_RESEARCH: "Past Research",
+  },
+  ECOSYSTEM_PAGE: {
+    TITLE: "Explore Our Ecosystem",
+    SUBTITLE:
+      "Explore our ecosystem exploration artifacts, from reports to maps.",
+    ARTIFACTS: "Ecosystem Artifacts",
   },
   RESOURCES_PAGE: {
     TITLE: "Resources",
