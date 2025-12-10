@@ -1,7 +1,76 @@
 import fs from "fs"
-import path from "path"
 import matter from "gray-matter"
 import jsYaml from "js-yaml"
+import path from "path"
+
+// Valid base paths for images in the public folder
+const VALID_IMAGE_BASES = ["articles", "projects", "project", "project-banners"]
+
+/**
+ * Normalizes image paths in markdown content to ensure they resolve correctly.
+ * Handles various user input formats and converts them to /{basePath}/[slug]/[filename]
+ * @param content - The markdown content to process
+ * @param defaultBasePath - The default base path to use if none is detected (e.g., "articles" or "projects")
+ */
+function normalizeContentImagePaths(
+  content: string,
+  defaultBasePath: string = "articles"
+): string {
+  const normalizeImagePath = (imagePath: string): string => {
+    // Skip external URLs, data URIs, and anchor links
+    if (
+      imagePath.startsWith("http://") ||
+      imagePath.startsWith("https://") ||
+      imagePath.startsWith("data:") ||
+      imagePath.startsWith("#")
+    ) {
+      return imagePath
+    }
+
+    let normalized = imagePath.trim()
+
+    // Remove leading ./ or ../
+    normalized = normalized.replace(/^(?:\.\.?\/)+/, "")
+
+    // Remove leading /
+    normalized = normalized.replace(/^\/+/, "")
+
+    // Remove public/ prefix (with or without leading slash already handled)
+    normalized = normalized.replace(/^public\//, "")
+
+    // Check if path already starts with a valid base
+    const hasValidBase = VALID_IMAGE_BASES.some((base) =>
+      normalized.startsWith(`${base}/`)
+    )
+
+    // If no valid base, prepend the default base path
+    if (!hasValidBase) {
+      normalized = `${defaultBasePath}/${normalized}`
+    }
+
+    // Add leading /
+    return `/${normalized}`
+  }
+
+  // Match markdown images: ![alt](path) - handles optional title
+  const markdownImageRegex = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g
+  content = content.replace(markdownImageRegex, (match, alt, imagePath) => {
+    const normalized = normalizeImagePath(imagePath)
+    return `![${alt}](${normalized})`
+  })
+
+  // Match HTML img tags: <img src="path" /> or <img src='path' />
+  const htmlImageRegex = /(<img\s+[^>]*src=)(["'])([^"']+)\2([^>]*>)/gi
+  content = content.replace(
+    htmlImageRegex,
+    (match, prefix, quote, imagePath, suffix) => {
+      const normalized = normalizeImagePath(imagePath)
+      return `${prefix}${quote}${normalized}${quote}${suffix}`
+    }
+  )
+
+  return content
+}
 
 export interface Project {
   id: string
@@ -138,7 +207,7 @@ export function getArticles(options?: {
         id,
         ...data,
         tags: normalizedTags,
-        content,
+        content: normalizeContentImagePaths(content, "articles"),
       }
     },
   })
@@ -183,6 +252,11 @@ export function getProjects(options?: {
   let allProjects = getMarkdownContent<Project>({
     directory: projectsDirectory,
     excludeFiles: ["readme", "_readme", "_project-template"],
+    processContent: (data, content, id) => ({
+      id,
+      ...data,
+      content: normalizeContentImagePaths(content, "projects"),
+    }),
   })
 
   // Filter by tag if provided
