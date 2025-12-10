@@ -274,7 +274,7 @@ Fluidkey UI
 
 → Frame privacy as _trustable infrastructure_ — emphasizing stability, safety, and proof over abstraction.
 
-## Map to p**ain points vs opportunities and provide design suggestions**
+## Map to pain points vs opportunities and provide design suggestions
 
 _Summarize the themes we identified as pain points and opportunities_
 
