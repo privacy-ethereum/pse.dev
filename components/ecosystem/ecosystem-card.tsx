@@ -12,6 +12,8 @@ export interface EcosystemItem {
   imageAlt?: string
   href?: string
   type?: "report" | "map" | "other"
+  date?: string
+  team?: string
   cardTags?: {
     primary?: string
     secondary?: string
@@ -32,6 +34,7 @@ const tagCardVariants = cva(
       variant: {
         primary: "bg-[#D8FEA8]",
         secondary: "bg-[#C2E8F5]",
+        team: "bg-[#E8D5FF]",
       },
     },
   }
@@ -58,7 +61,7 @@ export default function EcosystemCard({
   border = false,
   className,
 }: EcosystemCardProps) {
-  const { id, title, description, image, imageAlt, href, cardTags } = item
+  const { id, title, description, image, imageAlt, href, date, team, cardTags } = item
 
   const cardContent = (
     <>
@@ -94,6 +97,11 @@ export default function EcosystemCard({
               {title}
             </h3>
           )}
+          {date && (
+            <p className="text-sm text-tuatara-400 dark:text-tuatara-400">
+              {date}
+            </p>
+          )}
           {description?.length > 0 && (
             <div className="flex flex-col h-24 gap-4">
               <p className="text-tuatara-500 text-base line-clamp-4 dark:text-tuatara-200">
@@ -104,8 +112,8 @@ export default function EcosystemCard({
         </div>
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
-            {cardTags && (
-              <div className="flex items-center gap-1">
+            {(cardTags || team) && (
+              <div className="flex items-center gap-1 flex-wrap">
                 {cardTags?.primary && (
                   <div className={tagCardVariants({ variant: "primary" })}>
                     {cardTags.primary}
@@ -114,6 +122,11 @@ export default function EcosystemCard({
                 {cardTags?.secondary && (
                   <div className={tagCardVariants({ variant: "secondary" })}>
                     {cardTags.secondary}
+                  </div>
+                )}
+                {team && (
+                  <div className={tagCardVariants({ variant: "team" })}>
+                    {team}
                   </div>
                 )}
               </div>

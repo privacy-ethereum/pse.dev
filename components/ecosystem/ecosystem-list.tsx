@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import EcosystemCard, { EcosystemItem } from "./ecosystem-card"
 import {
   SectionWrapper,
@@ -17,31 +18,125 @@ const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
       "An in-depth analysis of private voting protocols in the Ethereum ecosystem.",
     type: "report",
     href: "https://pse.dev/articles/state-of-private-voting-2026/state-of-private-voting-2026.pdf",
+    image: "/images/ecosystem/state-of-private-voting-2026.png",
+    imageAlt: "State of Private Voting 2026",
+    date: "November 2025",
+    team: "PSE, Shutter Network",
     cardTags: {
       primary: "Report",
       secondary: "Voting",
     },
   },
   {
-    id: "zk-snarks-ecosystem-map",
-    title: "ZK-SNARKs Ecosystem Map",
+    id: "private-transfers",
+    title: "Private Transfers",
     description:
-      "A comprehensive mapping of the ZK-SNARKs ecosystem, evaluating ZKP solutions using standardized and reproducible benchmarks.",
-    type: "map",
+      "Research and documentation on private transfer protocols and mechanisms in the Ethereum ecosystem, exploring privacy-preserving transaction technologies.",
+    type: "report",
+    href: "https://publish.obsidian.md/private-writes/Private+Transfers/Phase+A/00_Index/Phase+A+Index",
+    date: "December 2025",
+    team: "PSE",
     cardTags: {
-      primary: "Map",
-      secondary: "ZK-SNARKs",
+      primary: "Report",
+      secondary: "Private Transfers",
     },
   },
   {
-    id: "privacy-technology-landscape",
-    title: "Privacy Technology Landscape",
+    id: "research-brief-identity",
+    title: "Research Brief: Identity",
     description:
-      "An in-depth analysis of privacy-preserving technologies in the Ethereum ecosystem, covering zero-knowledge proofs, fully homomorphic encryption, and more.",
+      "A research brief exploring identity systems, privacy-preserving identity solutions, and identity protocols in the Ethereum ecosystem.",
     type: "report",
+    href: "https://pse-team.notion.site/Research-Brief-Identity-4e819dd75a5d4137a4a639080ccbe5a4",
+    date: "March 2024",
+    team: "PSE",
     cardTags: {
       primary: "Report",
-      secondary: "Privacy",
+      secondary: "Identity",
+    },
+  },
+  {
+    id: "pse-identity-research",
+    title: "PSE Identity Research",
+    description:
+      "Comprehensive research on identity systems, privacy-preserving identity protocols, and identity solutions for the Ethereum ecosystem.",
+    type: "report",
+    href: "https://pse-team.notion.site/PSE-Identity-Research-30fc197196494fcdb5f4117c6c734b53?pvs=74",
+    date: "June 2024",
+    team: "PSE",
+    cardTags: {
+      primary: "Report",
+      secondary: "Identity",
+    },
+  },
+  {
+    id: "identity-research-page-1",
+    title: "Identity Research",
+    description:
+      "Research documentation on identity systems and privacy-preserving identity technologies in blockchain ecosystems.",
+    type: "report",
+    href: "https://www.notion.so/pse-team/6a6eaafed9b3486ebdb3dcf84e201fe5?v=2e1ffa04558b4b5d99014ec18b321415&p=f7bc6d108f76445bae372abd2b411363&pm=s",
+    date: "2024",
+    team: "PSE",
+    cardTags: {
+      primary: "Report",
+      secondary: "Identity",
+    },
+  },
+  {
+    id: "evaluation-framework-ssi-solutions",
+    title: "Evaluation Framework for SSI Solutions",
+    description:
+      "A comprehensive evaluation framework for assessing Self-Sovereign Identity (SSI) solutions, providing standardized criteria and methodologies for comparing identity systems.",
+    type: "report",
+    href: "https://pse-team.notion.site/Evaluation-Framework-for-SSI-Solutions-8eceb793a5b442cb8da65acc3c337d5c",
+    date: "July 2024",
+    team: "PSE",
+    cardTags: {
+      primary: "Report",
+      secondary: "Identity",
+    },
+  },
+  {
+    id: "l2s-report",
+    title: "L2s Report",
+    description:
+      "A comprehensive analysis of Layer 2 scaling solutions for Ethereum, covering rollups, state channels, and other scaling technologies.",
+    type: "report",
+    href: "https://cdn.prod.website-files.com/6728e9076a3b5a8ca8ec4816/6931c20f55129e498a8da223_%5BCompressed%5D%20L2s%20Report.pdf",
+    date: "November 2025",
+    team: "Etherealize",
+    cardTags: {
+      primary: "Report",
+      secondary: "Layer 2",
+    },
+  },
+  {
+    id: "open-application-driven-fhe-ethereum",
+    title: "Open, Application-Driven FHE for Ethereum",
+    description:
+      "A comprehensive analysis of Fully Homomorphic Encryption (FHE) for Ethereum, covering use cases, ecosystem players, scheme choices, verifiability, and key management challenges.",
+    type: "report",
+    href: "https://ethresear.ch/t/open-application-driven-fhe-for-ethereum/23044",
+    date: "September 2025",
+    team: "PSE",
+    cardTags: {
+      primary: "Report",
+      secondary: "FHE",
+    },
+  },
+  {
+    id: "combined-ssi-research",
+    title: "Combined SSI Research",
+    description:
+      "Comprehensive research on Self-Sovereign Identity (SSI) solutions, covering identity systems, privacy-preserving protocols, and decentralized identity technologies.",
+    type: "report",
+    href: "https://pse-team.notion.site/Combined-SSI-research-f7bc6d108f76445bae372abd2b411363?pvs=74",
+    date: "September 2024",
+    team: "PSE",
+    cardTags: {
+      primary: "Report",
+      secondary: "Identity",
     },
   },
 ]
