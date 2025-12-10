@@ -692,7 +692,7 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
   ol: ({ ordered, ...props }) =>
     createMarkdownElement(ordered ? "ol" : "ul", {
       className:
-        "list-decimal text-tuatara-600 font-sans text-lg font-normal mt-3 dark:text-tuatara-200",
+        "ml-6 list-decimal text-tuatara-600 font-sans text-lg font-normal mt-3 dark:text-tuatara-200",
       ...props,
     }),
   table: Table,
@@ -826,6 +826,11 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
         "w-auto w-auto mx-auto rounded-lg object-cover dark:bg-white dark:p-3",
       ...props,
     }),
+  blockquote: ({ children }) => (
+    <blockquote className="border-l-4 border-tuatara-400 dark:border-tuatara-500 pl-4 italic text-tuatara-600 dark:text-tuatara-300">
+      {children}
+    </blockquote>
+  ),
   "footnote-ref": ({ identifier, label }) => {
     const handleClick = useCallback(
       (e: React.MouseEvent) => {
