@@ -17,6 +17,7 @@ export interface EcosystemItem {
   cardTags?: {
     primary?: string
     secondary?: string
+    wip?: boolean
   }
 }
 
@@ -35,6 +36,7 @@ const tagCardVariants = cva(
         primary: "bg-[#D8FEA8]",
         secondary: "bg-[#C2E8F5]",
         team: "bg-[#E8D5FF]",
+        wip: "bg-[#FFB84D] font-semibold",
       },
     },
   }
@@ -90,9 +92,14 @@ export default function EcosystemCard({
               </span>
             </div>
           )}
-          {/* Teams in top-right corner of banner */}
-          {teams.length > 0 && (
+          {/* Teams and WIP tag in top-right corner of banner */}
+          {(teams.length > 0 || cardTags?.wip) && (
             <div className="absolute top-2 right-2 flex items-center gap-1 flex-wrap justify-end">
+              {cardTags?.wip && (
+                <div className={tagCardVariants({ variant: "wip" })}>
+                  WIP
+                </div>
+              )}
               {teams.map((teamName, index) => (
                 <div key={index} className={tagCardVariants({ variant: "team" })}>
                   {teamName}
@@ -103,9 +110,14 @@ export default function EcosystemCard({
         </div>
       )}
       <div className="flex flex-col justify-between gap-4 p-4 bg-white rounded-b-lg dark:bg-black relative">
-        {/* Teams in top-right corner when no banner */}
-        {!showBanner && teams.length > 0 && (
+        {/* Teams and WIP tag in top-right corner when no banner */}
+        {!showBanner && (teams.length > 0 || cardTags?.wip) && (
           <div className="absolute top-4 right-4 flex items-center gap-1 flex-wrap justify-end">
+            {cardTags?.wip && (
+              <div className={tagCardVariants({ variant: "wip" })}>
+                WIP
+              </div>
+            )}
             {teams.map((teamName, index) => (
               <div key={index} className={tagCardVariants({ variant: "team" })}>
                 {teamName}
@@ -139,7 +151,7 @@ export default function EcosystemCard({
           )}
         </div>
         <div className="flex flex-col gap-2 mt-auto">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             {cardTags && (
               <div className="flex items-center gap-1 flex-wrap">
                 {cardTags.primary && (
@@ -150,6 +162,11 @@ export default function EcosystemCard({
                 {cardTags.secondary && (
                   <div className={tagCardVariants({ variant: "secondary" })}>
                     {cardTags.secondary}
+                  </div>
+                )}
+                {cardTags.wip && (
+                  <div className={tagCardVariants({ variant: "wip" })}>
+                    WIP
                   </div>
                 )}
               </div>

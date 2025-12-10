@@ -6,7 +6,6 @@ import { SectionWrapper } from "@/app/components/wrappers/SectionWrapper"
 import { LABELS } from "@/app/labels"
 import { useState } from "react"
 
-// Placeholder data - replace with actual data source later
 const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
   {
     id: "state-of-private-voting-2026",
@@ -18,7 +17,7 @@ const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
     image: "/images/ecosystem/state-of-private-voting-2026.png",
     imageAlt: "State of Private Voting 2026",
     date: "November 2025",
-    team: "PSE, Shutter Network",
+    team: "PSE, Shutter",
     cardTags: {
       primary: "Report",
       secondary: "Voting",
@@ -36,6 +35,21 @@ const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
     cardTags: {
       primary: "Report",
       secondary: "Private Transfers",
+      wip: true,
+    },
+  },
+  {
+    id: "navigating-privacy-compliance-blockchain",
+    title: "Navigating Privacy and Compliance in Blockchain Systems",
+    description:
+      "An analysis of privacy-preserving technologies and compliance considerations in blockchain systems, exploring the intersection of cryptographic privacy and regulatory requirements.",
+    type: "report",
+    href: "https://drive.google.com/file/d/1eeCZbLfKP3nxLECaCVlPinva948V9dKX/view",
+    date: "December 2025",
+    team: "Inco, Predicate",
+    cardTags: {
+      primary: "Report",
+      secondary: "Privacy",
     },
   },
   {
@@ -124,17 +138,69 @@ const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
   },
 ]
 
+// Helper function to parse date strings like "November 2025" or "December 2025"
+function parseDate(dateString: string | undefined): Date {
+  if (!dateString) return new Date(0) // Return epoch for items without dates (will sort last)
+
+  const months: Record<string, number> = {
+    january: 0,
+    february: 1,
+    march: 2,
+    april: 3,
+    may: 4,
+    june: 5,
+    july: 6,
+    august: 7,
+    september: 8,
+    october: 9,
+    november: 10,
+    december: 11,
+  }
+
+  const parts = dateString.trim().toLowerCase().split(" ")
+  if (parts.length >= 2) {
+    const monthName = parts[0]
+    const year = parseInt(parts[1], 10)
+    const month = months[monthName] ?? 0
+
+    if (!isNaN(year)) {
+      return new Date(year, month, 1)
+    }
+  }
+
+  return new Date(0) // Return epoch if parsing fails
+}
+
+// Sort function to order by date (most recent first)
+function sortByDateDescending(a: EcosystemItem, b: EcosystemItem): number {
+  const dateA = parseDate(a.date)
+  const dateB = parseDate(b.date)
+  return dateB.getTime() - dateA.getTime()
+}
+
 export const EcosystemList = () => {
   const [ecosystemItems] = useState<EcosystemItem[]>(MOCK_ECOSYSTEM_ITEMS)
 
+  // Filter items for PSE reports (reports that include PSE in team)
+  const pseReports = ecosystemItems
+    .filter((item) => {
+      if (!item.team) return false
+      // Check if team includes "PSE" (case-insensitive)
+      const teamLower = item.team.toLowerCase()
+      return teamLower.includes("pse")
+    })
+    .sort(sortByDateDescending)
+
   // Filter items for external research reports (reports not from PSE)
-  const externalResearchReports = ecosystemItems.filter((item) => {
-    if (item.type !== "report") return false
-    if (!item.team) return false
-    // Check if team doesn't include "PSE" (case-insensitive)
-    const teamLower = item.team.toLowerCase()
-    return !teamLower.includes("pse")
-  })
+  const externalResearchReports = ecosystemItems
+    .filter((item) => {
+      if (item.type !== "report") return false
+      if (!item.team) return false
+      // Check if team doesn't include "PSE" (case-insensitive)
+      const teamLower = item.team.toLowerCase()
+      return !teamLower.includes("pse")
+    })
+    .sort(sortByDateDescending)
 
   if (ecosystemItems.length === 0) {
     return (
@@ -154,7 +220,7 @@ export const EcosystemList = () => {
       <div className="flex flex-col justify-between gap-10">
         <SectionWrapper title={LABELS.ECOSYSTEM_PAGE.ARTIFACTS.toUpperCase()}>
           <div className="grid grid-cols-1 gap-4 md:gap-x-6 md:gap-y-10 lg:grid-cols-3 items-stretch">
-            {ecosystemItems.map((item: EcosystemItem) => (
+            {pseReports.map((item: EcosystemItem) => (
               <EcosystemCard
                 key={item.id}
                 item={item}
