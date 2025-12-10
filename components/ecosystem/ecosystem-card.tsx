@@ -41,7 +41,7 @@ const tagCardVariants = cva(
 )
 
 const ecosystemCardVariants = cva(
-  "flex flex-col overflow-hidden rounded-lg transition duration-200 ease-in border border-transparent",
+  "flex flex-col overflow-hidden rounded-lg transition duration-200 ease-in border border-transparent h-full",
   {
     variants: {
       showBanner: {
@@ -63,6 +63,14 @@ export default function EcosystemCard({
 }: EcosystemCardProps) {
   const { id, title, description, image, imageAlt, href, date, team, cardTags } = item
 
+  // Parse teams - split by comma and trim whitespace
+  const teams = team
+    ? team
+        .split(",")
+        .map((t) => t.trim())
+        .filter((t) => t.length > 0)
+    : []
+
   const cardContent = (
     <>
       {showBanner && (
@@ -82,10 +90,30 @@ export default function EcosystemCard({
               </span>
             </div>
           )}
+          {/* Teams in top-right corner of banner */}
+          {teams.length > 0 && (
+            <div className="absolute top-2 right-2 flex items-center gap-1 flex-wrap justify-end">
+              {teams.map((teamName, index) => (
+                <div key={index} className={tagCardVariants({ variant: "team" })}>
+                  {teamName}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
-      <div className="flex flex-col justify-between h-full gap-8 p-4 bg-white rounded-b-lg dark:bg-black">
-        <div className="flex flex-col justify-start gap-2">
+      <div className="flex flex-col justify-between gap-4 p-4 bg-white rounded-b-lg dark:bg-black relative">
+        {/* Teams in top-right corner when no banner */}
+        {!showBanner && teams.length > 0 && (
+          <div className="absolute top-4 right-4 flex items-center gap-1 flex-wrap justify-end">
+            {teams.map((teamName, index) => (
+              <div key={index} className={tagCardVariants({ variant: "team" })}>
+                {teamName}
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="flex flex-col justify-start gap-2 flex-1">
           {href ? (
             <Link href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>
               <h3 className="text-2xl font-bold leading-7 text-primary duration-200 cursor-pointer hover:text-anakiwa-500">
@@ -103,30 +131,25 @@ export default function EcosystemCard({
             </p>
           )}
           {description?.length > 0 && (
-            <div className="flex flex-col h-24 gap-4">
+            <div className="flex flex-col gap-4">
               <p className="text-tuatara-500 text-base line-clamp-4 dark:text-tuatara-200">
                 {description}
               </p>
             </div>
           )}
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 mt-auto">
           <div className="flex justify-between">
-            {(cardTags || team) && (
+            {cardTags && (
               <div className="flex items-center gap-1 flex-wrap">
-                {cardTags?.primary && (
+                {cardTags.primary && (
                   <div className={tagCardVariants({ variant: "primary" })}>
                     {cardTags.primary}
                   </div>
                 )}
-                {cardTags?.secondary && (
+                {cardTags.secondary && (
                   <div className={tagCardVariants({ variant: "secondary" })}>
                     {cardTags.secondary}
-                  </div>
-                )}
-                {team && (
-                  <div className={tagCardVariants({ variant: "team" })}>
-                    {team}
                   </div>
                 )}
               </div>

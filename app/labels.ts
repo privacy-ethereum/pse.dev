@@ -250,6 +250,8 @@ export const LABELS = {
     SUBTITLE:
       "Explore our ecosystem exploration artifacts, from reports to maps.",
     ARTIFACTS: "Ecosystem Artifacts",
+    EXTERNAL_RESEARCH_REPORTS:
+      "Explore ecosystem research reports done by other teams outside PSE",
   },
   RESOURCES_PAGE: {
     TITLE: "Resources",

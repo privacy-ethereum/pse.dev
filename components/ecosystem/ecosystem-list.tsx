@@ -2,12 +2,9 @@
 
 import React from "react"
 import EcosystemCard, { EcosystemItem } from "./ecosystem-card"
-import {
-  SectionWrapper,
-  SectionWrapperTitle,
-} from "@/app/components/wrappers/SectionWrapper"
+import { SectionWrapper } from "@/app/components/wrappers/SectionWrapper"
 import { LABELS } from "@/app/labels"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 // Placeholder data - replace with actual data source later
 const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
@@ -63,20 +60,6 @@ const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
     type: "report",
     href: "https://pse-team.notion.site/PSE-Identity-Research-30fc197196494fcdb5f4117c6c734b53?pvs=74",
     date: "June 2024",
-    team: "PSE",
-    cardTags: {
-      primary: "Report",
-      secondary: "Identity",
-    },
-  },
-  {
-    id: "identity-research-page-1",
-    title: "Identity Research",
-    description:
-      "Research documentation on identity systems and privacy-preserving identity technologies in blockchain ecosystems.",
-    type: "report",
-    href: "https://www.notion.so/pse-team/6a6eaafed9b3486ebdb3dcf84e201fe5?v=2e1ffa04558b4b5d99014ec18b321415&p=f7bc6d108f76445bae372abd2b411363&pm=s",
-    date: "2024",
     team: "PSE",
     cardTags: {
       primary: "Report",
@@ -142,29 +125,16 @@ const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
 ]
 
 export const EcosystemList = () => {
-  const [isMounted, setIsMounted] = useState(false)
   const [ecosystemItems] = useState<EcosystemItem[]>(MOCK_ECOSYSTEM_ITEMS)
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    return (
-      <div className="flex flex-col gap-10">
-        <div className="flex flex-col gap-6 overflow-hidden">
-          <SectionWrapperTitle className={"after:left-[100px] lg:after:left-[200px]"}>
-            <div className="h-3 lg:h-4 w-[120px] lg:w-[220px] bg-gray-200 animate-pulse rounded-lg"></div>
-          </SectionWrapperTitle>
-        </div>
-        <div className="grid items-start justify-between w-full grid-cols-1 gap-2 md:grid-cols-3 md:gap-6">
-          <div className="min-h-[200px] border border-gray-200 bg-gray-200 animate-pulse rounded-lg overflow-hidden"></div>
-          <div className="min-h-[200px] border border-gray-200 bg-gray-200 animate-pulse rounded-lg overflow-hidden"></div>
-          <div className="min-h-[200px] border border-gray-200 bg-gray-200 animate-pulse rounded-lg overflow-hidden"></div>
-        </div>
-      </div>
-    )
-  }
+  // Filter items for external research reports (reports not from PSE)
+  const externalResearchReports = ecosystemItems.filter((item) => {
+    if (item.type !== "report") return false
+    if (!item.team) return false
+    // Check if team doesn't include "PSE" (case-insensitive)
+    const teamLower = item.team.toLowerCase()
+    return !teamLower.includes("pse")
+  })
 
   if (ecosystemItems.length === 0) {
     return (
@@ -183,7 +153,7 @@ export const EcosystemList = () => {
     <div className="relative grid items-start justify-between grid-cols-1">
       <div className="flex flex-col justify-between gap-10">
         <SectionWrapper title={LABELS.ECOSYSTEM_PAGE.ARTIFACTS.toUpperCase()}>
-          <div className="grid grid-cols-1 gap-4 md:gap-x-6 md:gap-y-10 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:gap-x-6 md:gap-y-10 lg:grid-cols-3 items-stretch">
             {ecosystemItems.map((item: EcosystemItem) => (
               <EcosystemCard
                 key={item.id}
@@ -194,6 +164,25 @@ export const EcosystemList = () => {
             ))}
           </div>
         </SectionWrapper>
+        {externalResearchReports.length > 0 && (
+          <div className="flex flex-col gap-10 justify-center dark:bg-anakiwa-975 py-16 lg:py-20 overflow-hidden bg-cover-gradient dark:bg-none">
+            <span className="dark:text-tuatara-100 text-tuatara-950 text-xl lg:text-3xl lg:leading-[45px] font-normal font-sans text-center lg:px-0 px-4">
+              {LABELS.ECOSYSTEM_PAGE.EXTERNAL_RESEARCH_REPORTS}
+            </span>
+            <div className="lg:px-4 px-4">
+              <div className="grid grid-cols-1 gap-4 md:gap-x-6 md:gap-y-10 lg:grid-cols-3 items-stretch">
+                {externalResearchReports.map((item: EcosystemItem) => (
+                  <EcosystemCard
+                    key={item.id}
+                    item={item}
+                    showBanner={true}
+                    border
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
