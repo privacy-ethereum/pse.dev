@@ -3,68 +3,61 @@ import matter from "gray-matter"
 import jsYaml from "js-yaml"
 import path from "path"
 
-// Valid base paths for images in the public folder
 const VALID_IMAGE_BASES = ["articles", "projects", "project", "project-banners"]
 
-/**
- * Normalizes image paths in markdown content to ensure they resolve correctly.
- * Handles various user input formats and converts them to /{basePath}/[slug]/[filename]
- * @param content - The markdown content to process
- * @param defaultBasePath - The default base path to use if none is detected (e.g., "articles" or "projects")
- */
-function normalizeContentImagePaths(
-  content: string,
-  defaultBasePath: string = "articles"
-): string {
-  const normalizeImagePath = (imagePath: string): string => {
-    // Skip external URLs, data URIs, and anchor links
-    if (
-      imagePath.startsWith("http://") ||
-      imagePath.startsWith("https://") ||
-      imagePath.startsWith("data:") ||
-      imagePath.startsWith("#")
-    ) {
-      return imagePath
-    }
+function normalizeImagePath(
+  imagePath: string | undefined,
+  defaultBasePath: string = "articles",
+  slug?: string
+): string | undefined {
+  if (!imagePath) return undefined
 
-    let normalized = imagePath.trim()
-
-    // Remove leading ./ or ../
-    normalized = normalized.replace(/^(?:\.\.?\/)+/, "")
-
-    // Remove leading /
-    normalized = normalized.replace(/^\/+/, "")
-
-    // Remove public/ prefix (with or without leading slash already handled)
-    normalized = normalized.replace(/^public\//, "")
-
-    // Check if path already starts with a valid base
-    const hasValidBase = VALID_IMAGE_BASES.some((base) =>
-      normalized.startsWith(`${base}/`)
-    )
-
-    // If no valid base, prepend the default base path
-    if (!hasValidBase) {
-      normalized = `${defaultBasePath}/${normalized}`
-    }
-
-    // Add leading /
-    return `/${normalized}`
+  if (
+    imagePath.startsWith("http://") ||
+    imagePath.startsWith("https://") ||
+    imagePath.startsWith("data:") ||
+    imagePath.startsWith("#")
+  ) {
+    return imagePath
   }
 
-  // Match markdown images: ![alt](path) - handles optional title
+  let normalized = imagePath.trim()
+  normalized = normalized.replace(/^(?:\.\.?\/)+/, "")
+  normalized = normalized.replace(/^\/+/, "")
+  normalized = normalized.replace(/^public\//, "")
+
+  const hasValidBase = VALID_IMAGE_BASES.some((base) =>
+    normalized.startsWith(`${base}/`)
+  )
+
+  if (!hasValidBase) {
+    const isJustFilename = !normalized.includes("/")
+    if (isJustFilename && slug) {
+      normalized = `${defaultBasePath}/${slug}/${normalized}`
+    } else {
+      normalized = `${defaultBasePath}/${normalized}`
+    }
+  }
+
+  return `/${normalized}`
+}
+
+function normalizeContentImagePaths(
+  content: string,
+  defaultBasePath: string = "articles",
+  slug?: string
+): string {
   const markdownImageRegex = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g
   content = content.replace(markdownImageRegex, (match, alt, imagePath) => {
-    const normalized = normalizeImagePath(imagePath)
+    const normalized = normalizeImagePath(imagePath, defaultBasePath, slug)
     return `![${alt}](${normalized})`
   })
 
-  // Match HTML img tags: <img src="path" /> or <img src='path' />
   const htmlImageRegex = /(<img\s+[^>]*src=)(["'])([^"']+)\2([^>]*>)/gi
   content = content.replace(
     htmlImageRegex,
     (match, prefix, quote, imagePath, suffix) => {
-      const normalized = normalizeImagePath(imagePath)
+      const normalized = normalizeImagePath(imagePath, defaultBasePath, slug)
       return `${prefix}${quote}${normalized}${quote}${suffix}`
     }
   )
@@ -103,7 +96,6 @@ export interface Article {
 const articlesDirectory = path.join(process.cwd(), "content/articles")
 const projectsDirectory = path.join(process.cwd(), "content/projects")
 
-// Generic function to read and process markdown content from any directory
 export function getMarkdownContent<T = any>(options: {
   directory: string
   excludeFiles?: string[]
@@ -120,23 +112,18 @@ export function getMarkdownContent<T = any>(options: {
       return null
     }
 
-    // Read markdown file as string
     const fullPath = path.join(directory, fileName)
     const fileContents = fs.readFileSync(fullPath, "utf8")
 
     try {
-      // Use matter with options to handle multiline strings
       const matterResult = matter(fileContents, {
         engines: {
           yaml: {
-            // Ensure multiline strings are parsed correctly
             parse: (str: string) => {
               try {
-                // Use js-yaml's safe load to parse the YAML with type assertion
                 return jsYaml.load(str) as object
               } catch (e) {
                 console.error(`Error parsing frontmatter in ${fileName}:`, e)
-                // Fallback to empty object if parsing fails
                 return {}
               }
             },
@@ -144,12 +131,10 @@ export function getMarkdownContent<T = any>(options: {
         },
       })
 
-      // Use custom processor if provided
       if (processContent) {
         return processContent(matterResult.data, matterResult.content, id)
       }
 
-      // Default processing - return raw data with content
       return {
         id,
         ...matterResult.data,
@@ -157,7 +142,6 @@ export function getMarkdownContent<T = any>(options: {
       }
     } catch (error) {
       console.error(`Error processing ${fileName}:`, error)
-      // Return minimal content data if there's an error
       return {
         id,
         title: `Error processing ${id}`,
@@ -181,13 +165,11 @@ export function getArticles(options?: {
     directory: articlesDirectory,
     excludeFiles: ["readme", "_readme", "_article-template"],
     processContent: (data, content, id) => {
-      // Normalize tags from both 'tags' and 'tag' fields
       const rawTags = [
         ...(Array.isArray(data?.tags) ? data.tags : []),
         ...(data?.tag ? [data.tag] : []),
       ]
 
-      // Process and normalize tags
       const normalizedTags = rawTags
         .map((tag) => {
           if (typeof tag !== "string") return null
@@ -206,15 +188,15 @@ export function getArticles(options?: {
       return {
         id,
         ...data,
+        image: normalizeImagePath(data.image, "articles", id),
         tags: normalizedTags,
-        content: normalizeContentImagePaths(content, "articles"),
+        content: normalizeContentImagePaths(content, "articles", id),
       }
     },
   })
 
   let filteredArticles = allArticles
 
-  // Filter by tag if provided
   if (tag) {
     const tagId = tag.toLowerCase()
     filteredArticles = filteredArticles.filter((article) =>
@@ -222,7 +204,6 @@ export function getArticles(options?: {
     )
   }
 
-  // Filter by project if provided
   if (project) {
     filteredArticles = filteredArticles.filter(
       (article) =>
@@ -230,13 +211,10 @@ export function getArticles(options?: {
     )
   }
 
-  // Sort posts by date
   return filteredArticles
     .sort((a, b) => {
       const dateA = new Date(a.date)
       const dateB = new Date(b.date)
-
-      // Sort in descending order (newest first)
       return dateB.getTime() - dateA.getTime()
     })
     .slice(0, limit)
@@ -255,21 +233,19 @@ export function getProjects(options?: {
     processContent: (data, content, id) => ({
       id,
       ...data,
-      content: normalizeContentImagePaths(content, "projects"),
+      image: normalizeImagePath(data.image, "projects", id),
+      content: normalizeContentImagePaths(content, "projects", id),
     }),
   })
 
-  // Filter by tag if provided
   if (tag) {
     allProjects = allProjects.filter((project) => project.tags?.includes(tag))
   }
 
-  // Filter by status if provided
   if (status) {
     allProjects = allProjects.filter((project) => project.status === status)
   }
 
-  // Apply limit if provided
   if (limit && limit > 0) {
     allProjects = allProjects.slice(0, limit)
   }
@@ -288,7 +264,6 @@ export const getArticleTags = () => {
     return acc
   }, [])
 
-  // Sort tags alphabetically by name
   return allTags.sort((a, b) => a.name.localeCompare(b.name))
 }
 
