@@ -162,7 +162,7 @@ Snapshot/Shutter UI
 
 > “If it’s private by default, that’s perfect. I shouldn’t have to think about it.”
 
-![Flashbot UI](/articles/privacy-experience-report/Flashbot-UI_1.webp)
+![Flashbot UI](/articles/privacy-experience-report/Flashbot UI_1.webp)
 
 Flashbot UI
 
@@ -181,7 +181,7 @@ _Behavior: Users feared doing irreversible or unverified actions (e.g., sending 
 
 > “There’s no testing mode. I wouldn’t send 1 ETH through something untested.”
 
-![Flashbot UI](/articles/privacy-experience-report/Flashbot-UI_2.webp)
+![Flashbot UI](/articles/privacy-experience-report/Flashbot UI_2.webp)
 
 Flashbot UI
 
@@ -237,7 +237,7 @@ _Behavior: Even advanced users struggled to articulate how features like stealth
 
 > “A normal user probably doesn’t know what stealth addresses are, even I’m not sure I could define it.”
 
-![Fluidkey UI](/articles/privacy-experience-report/Fluidkey-UI_3.webp)
+![Fluidkey UI](/articles/privacy-experience-report/Fluidkey UI_3.webp)
 
 Fluidkey UI
 
