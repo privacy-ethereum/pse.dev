@@ -39,6 +39,12 @@ function normalizeImagePath(
     }
   }
 
+  // URL-encode spaces in the path for browser compatibility
+  normalized = normalized
+    .split("/")
+    .map((segment) => encodeURIComponent(segment))
+    .join("/")
+
   return `/${normalized}`
 }
 
@@ -47,8 +53,12 @@ function normalizeContentImagePaths(
   defaultBasePath: string = "articles",
   slug?: string
 ): string {
-  const markdownImageRegex = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g
-  content = content.replace(markdownImageRegex, (match, alt, imagePath) => {
+  // Updated regex to capture everything inside parentheses, including spaces in filenames
+  const markdownImageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g
+  content = content.replace(markdownImageRegex, (match, alt, fullPath) => {
+    // Handle optional title (e.g., ![alt](path "title"))
+    const pathMatch = fullPath.match(/^(.+?)\s+"[^"]*"$/)
+    const imagePath = pathMatch ? pathMatch[1].trim() : fullPath.trim()
     const normalized = normalizeImagePath(imagePath, defaultBasePath, slug)
     return `![${alt}](${normalized})`
   })

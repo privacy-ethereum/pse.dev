@@ -68,13 +68,13 @@ _Behavior: Users frequently misunderstood what data or actions were protected ve
 
 > “I thought shielded would mean my vote would always be private… weird that I had to hover to see details.”
 
-![Snapshot UI](public/articles/privacy-experience-report/snapshot-UI1.webp)
+![Snapshot UI](/articles/privacy-experience-report/snapshot-UI1.webp)
 
 Snapshot UI
 
 > “There are so many leaks if I’m using Alchemy… what is the point?”
 
-![Privacy Pool Github](public/articles/privacy-experience-report/Privacy-Pool-Github_1.webp)
+![Privacy Pool Github](/articles/privacy-experience-report/Privacy-Pool-Github_1.webp)
 
 Privacy Pool Github
 
@@ -97,13 +97,13 @@ _Behavior: Trust decisions were driven by brand reputation, not by verifiable or
 
 > “If the last release was three months ago and not many stars, I don’t feel confident.”
 
-![Railgun Github](public/articles/privacy-experience-report/Railgun-Github_1.webp)
+![Railgun Github](/articles/privacy-experience-report/Railgun-Github_1.webp)
 
 Railgun Github
 
 > “Only you and Fluidkey can see all your transactions… Fluidkey team? Operator? What does that mean?”
 
-![Fluidkey UI](public/articles/privacy-experience-report/Fluidkey-UI_1.webp)
+![Fluidkey UI](/articles/privacy-experience-report/Fluidkey-UI_1.webp)
 
 Fluidkey UI
 
@@ -124,17 +124,17 @@ _Behavior: Participants found setup flows fragmented, verbose, or opaque, especi
 
 > “Why do I need to buy an ENS just to test?”
 
-![Snapshot UI](public/articles/privacy-experience-report/Snapshot UI_2.webp)
+![Snapshot UI](/articles/privacy-experience-report/Snapshot UI_2.webp)
 
 Snapshot UI
 
-![Snapshot UI](public/articles/privacy-experience-report/Snapshot UI_3.webp)
+![Snapshot UI](/articles/privacy-experience-report/Snapshot UI_3.webp)
 
 Snapshot UI
 
 > “I would never trust online generated seed, that’s the basic of crypto security.”
 
-![Privacy Pool UI](public/articles/privacy-experience-report/Privacy Pool UI.webp)
+![Privacy Pool UI](/articles/privacy-experience-report/Privacy Pool UI.webp)
 
 Privacy Pool UI
 
@@ -156,13 +156,13 @@ _Behavior: Users struggled with hidden controls, unclear defaults, and missing c
 
 > “Where are the privacy controls? It’s just this tiny text.”
 
-![Snapshot/Shutter UI](public/articles/privacy-experience-report/Snapshot_Shutter UI_1.webp)
+![Snapshot/Shutter UI](/articles/privacy-experience-report/Snapshot_Shutter UI_1.webp)
 
 Snapshot/Shutter UI
 
 > “If it’s private by default, that’s perfect. I shouldn’t have to think about it.”
 
-![Flashbot UI](public/articles/privacy-experience-report/Flashbot UI_1.webp)
+![Flashbot UI](/articles/privacy-experience-report/Flashbot-UI_1.webp)
 
 Flashbot UI
 
@@ -181,23 +181,23 @@ _Behavior: Users feared doing irreversible or unverified actions (e.g., sending 
 
 > “There’s no testing mode. I wouldn’t send 1 ETH through something untested.”
 
-![Flashbot UI](public/articles/privacy-experience-report/Flashbot UI_2.webp)
+![Flashbot UI](/articles/privacy-experience-report/Flashbot-UI_2.webp)
 
 Flashbot UI
 
 > “I want to see the contract before confirming the transaction.”
 
-![Etherscan of Privacy Pool tx](public/articles/privacy-experience-report/Etherscan of Privacy Pool tx.webp)
+![Etherscan of Privacy Pool tx](/articles/privacy-experience-report/Etherscan of Privacy Pool tx.webp)
 
 Etherscan of Privacy Pool tx
 
-![Privacy Pool contract on Etherscan](public/articles/privacy-experience-report/Privacy Pool contract on Etherscan.webp)
+![Privacy Pool contract on Etherscan](/articles/privacy-experience-report/Privacy Pool contract on Etherscan.webp)
 
 Privacy Pool contract on Etherscan
 
 > “I wouldn’t download something random, even on this machine.”
 
-![Railgun UI](public/articles/privacy-experience-report/Railgun UI_1.webp)
+![Railgun UI](/articles/privacy-experience-report/Railgun UI_1.webp)
 
 Railgun UI
 
@@ -218,7 +218,7 @@ _Behavior: Motivation to use privacy tools varied by context._
 
 > “For large fund transfers I’d plan ahead, so waiting isn’t a big issue.”
 
-![Privacy Pool UI](public/articles/privacy-experience-report/Privacy Pool UI_2.webp)
+![Privacy Pool UI](/articles/privacy-experience-report/Privacy Pool UI_2.webp)
 
 Privacy Pool UI
 
@@ -237,13 +237,13 @@ _Behavior: Even advanced users struggled to articulate how features like stealth
 
 > “A normal user probably doesn’t know what stealth addresses are, even I’m not sure I could define it.”
 
-![Fluidkey UI](public/articles/privacy-experience-report/Fluidkey UI_3.webp)
+![Fluidkey UI](/articles/privacy-experience-report/Fluidkey-UI_3.webp)
 
 Fluidkey UI
 
 > “‘Power user’ makes me feel like maybe I’m not technical enough.”
 
-![Fluidkey UI](public/articles/privacy-experience-report/Fluidkey UI_4.webp)
+![Fluidkey UI](/articles/privacy-experience-report/Fluidkey UI_4.webp)
 
 Fluidkey UI
 
@@ -264,7 +264,7 @@ _Behavior: Across all interviews, users consistently valued:_
 
 > “Anything that makes me feel a little bit more safe is important, like links to audits, social proof.”
 
-![Fluidkey UI](public/articles/privacy-experience-report/Fluidkey UI_5.webp)
+![Fluidkey UI](/articles/privacy-experience-report/Fluidkey UI_5.webp)
 
 Fluidkey UI
 
