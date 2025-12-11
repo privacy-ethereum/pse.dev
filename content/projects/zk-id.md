@@ -84,9 +84,9 @@ zkID's work aims to create a world where individuals have full control over thei
 
 ### Resources
 
-- [ZK Whiteboard Session: zkID (Anonymous Credentials), w/ Ying Tong](https://youtu.be/vqBef6XFB4A)
+- [ZK Whiteboard Sessions: zkID (Anonymous Credentials), w/ Ying Tong](https://youtu.be/vqBef6XFB4A)
 - [Privacy in Digital ID at Devconnect 2025 by Ying Tong (Slides)](https://docs.google.com/presentation/d/19iut5HjGO7PHBNZLctUmznb2LAmGbf5kYjtUtbtKLS8/edit?usp=sharing)
 - [Revocation in zkID: Merkle Tree-based Approaches at Devconnect 2025 by Vivian Plasencia (Slides)](https://docs.google.com/presentation/d/1QS0eneynnfMMXY0oFN4lj7vTmHzdYuXwegtGCf8Q7Ww/edit?usp=sharing)
-- [OpenAC presentation in December 2025 (Slides)](https://docs.google.com/presentation/d/1l8dyAP3Ax26VqjXcvu2H5HCnLcZLCatwjwh72Dv7V64/edit?usp=sharing)
+- [OpenAC presentation in December 2025 by zkID team (Slides)](https://docs.google.com/presentation/d/1l8dyAP3Ax26VqjXcvu2H5HCnLcZLCatwjwh72Dv7V64/edit?usp=sharing)
 
 For more information about zkID initiatives, technical standards, and ongoing projects, visit our GitHub repository and follow our research publications.
