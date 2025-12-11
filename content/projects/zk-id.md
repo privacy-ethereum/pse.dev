@@ -62,7 +62,7 @@ Standards like the IETF and EUDI framework are **global signaling mechanisms.** 
 
 2. **Research, Prototype, Subtraction**
 
-We [research](https://www.notion.so/Evaluation-Framework-for-SSI-Solutions-8eceb793a5b442cb8da65acc3c337d5c?pvs=21) and build standards-compliant, [**minimal and modular PoCs**](https://github.com/adria0/seediq-playground) like the [ZKP Wallet Unit](https://www.notion.so/External-zkID-ZKP-Wallet-Unit-Proposal-1bad57e8dd7e80c98d73fc7e7666375d?pvs=21) and libaries like [zkPDF](https://pse.dev/blog/zkpdf-unlocking-verifiable-data). This is done in collaboration with governments, to ensure practical real-world ZKP integration pathways.
+We [research](https://www.notion.so/Evaluation-Framework-for-SSI-Solutions-8eceb793a5b442cb8da65acc3c337d5c?pvs=21) and build standards-compliant, [**minimal and modular PoCs**](https://github.com/adria0/seediq-playground) like the [ZKP Wallet Unit](https://www.notion.so/External-zkID-ZKP-Wallet-Unit-Proposal-1bad57e8dd7e80c98d73fc7e7666375d?pvs=21) and libraries like [zkPDF](https://pse.dev/blog/zkpdf-unlocking-verifiable-data). This is done in collaboration with governments, to ensure practical real-world ZKP integration pathways.
 
 In November 2025 we launched the [OpenAC Whitepaper](https://github.com/privacy-ethereum/zkID/blob/main/paper/zkID.pdf), which introduces an open and lightweight anonymous credential system designed to be compatible with existing identity frameworks while providing unlinkability for issued credentials.
 
