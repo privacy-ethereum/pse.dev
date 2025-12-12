@@ -39,9 +39,8 @@ export const ProjectList = () => {
   const SCROLL_OFFSET = -400
   const [activeId, setActiveId] = useState("")
   const [isManualScroll, setIsManualScroll] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
 
-  const { projects, searchQuery, activeFilters } = useProjects()
+  const { projects, searchQuery, activeFilters, isLoading } = useProjects()
   const hasSearchParams =
     searchQuery?.length > 0 ||
     Object.values({
@@ -55,7 +54,6 @@ export const ProjectList = () => {
   const sectionsRef = useRef<NodeListOf<HTMLElement> | null>(null) // sections are constant so useRef might be better here
 
   useEffect(() => {
-    setIsMounted(true)
     if (typeof window !== "undefined") {
       sectionsRef.current = document.querySelectorAll("div[data-section]")
 
@@ -94,7 +92,7 @@ export const ProjectList = () => {
   }, [])
 
   // loading state skeleton
-  if (!isMounted) {
+  if (isLoading) {
     return (
       <div className="grid items-start justify-between w-full grid-cols-1 gap-2 md:grid-cols-4 md:gap-6">
         <div className="min-h-[380px] border border-gray-200 rounded-lg overflow-hidden">
