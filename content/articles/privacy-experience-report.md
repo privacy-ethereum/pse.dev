@@ -38,7 +38,7 @@ Users don’t reject privacy, they reject _invisible, unverified, or cognitively
 
 ## **Acknowledgements**
 
-This study would not have been possible without the pioneering work of the privacy projects we examined: **Fluidkey, Railgun, Privacy Pool, Flashbots,** and **Shutter (Shielded Voting DAO)**.
+This study would not have been possible without the pioneering work of the privacy projects we examined: [Fluidkey](https://www.fluidkey.com/), [Railgun](https://railgun.org/), [Privacy Pools](https://privacypools.com/), [Flashbots](https://www.flashbots.net/),** and [Shutter (Shielded Voting DAO)](https://www.shutter.network/shielded-voting).
 
 These projects represent the forefront of privacy innovation in the Ethereum ecosystem. Our intention is not to critique, but to learn from the leaders who are already shaping the future of private, verifiable, and user-respecting blockchain experiences. We are deeply grateful for their ongoing efforts to make privacy usable and accessible for all.
 
@@ -48,14 +48,14 @@ These projects represent the forefront of privacy innovation in the Ethereum eco
 
 We conducted **five one-on-one qualitative interviews** to explore how users interact with different privacy-focused on-chain tools and to understand their perceptions, challenges, and motivations around using them.
 
-Each participant was assigned **one privacy product**—either MEV Protection (Flashbots), Shielded Voting DAO, Privacy Pool, Fluidkey, or Railgun, along with a **specific usage task** (e.g., _create an account and deposit funds_). Participants were asked to **think aloud** as they completed the task, while the interviewer observed and probed to clarify their reasoning, expectations, and emotional responses.
+Each participant was assigned **one privacy product** (either MEV Protection (Flashbots), Shielded Voting DAO, Privacy Pools, Fluidkey, or Railgun) along with a **specific usage task** (e.g., _create an account and deposit funds_). Participants were asked to **think aloud** as they completed the task, while the interviewer observed and probed to clarify their reasoning, expectations, and emotional responses.
 
-Following the task, participants reflected on their **overall experience**, discussing what felt intuitive or confusing, what built or reduced trust, and whether they would consider using the tool again—and under what circumstances.
+Following the task, participants reflected on their **overall experience**, discussing what felt intuitive or confusing, what built or reduced trust, and whether they would consider using the tool again and under what circumstances.
 
 ## Thematic affinity mapping
 
 1. _Grouping similar sentiments like “Confusing trust boundary” or “Fear of revealing info unknowingly”_
-2. _Color coding for which product each feedback came from — that way you can see patterns across categories_
+2. _Color coding for which product each feedback came from so that you can see patterns across categories_
 
 ### **Pattern 1: Confusion Around What’s Actually Private**
 
@@ -76,7 +76,7 @@ Snapshot UI
 
 ![Privacy Pool Github](/articles/privacy-experience-report/Privacy-Pool-Github_1.webp)
 
-Privacy Pool Github
+Privacy Pools Github
 
 **Design implication:**
 
@@ -136,7 +136,7 @@ Snapshot UI
 
 ![Privacy Pool UI](/articles/privacy-experience-report/Privacy Pool UI.webp)
 
-Privacy Pool UI
+Privacy Pools UI
 
 **Design implication:**
 
@@ -189,11 +189,11 @@ Flashbot UI
 
 ![Etherscan of Privacy Pool tx](/articles/privacy-experience-report/Etherscan of Privacy Pool tx.webp)
 
-Etherscan of Privacy Pool tx
+Etherscan of Privacy Pools tx
 
 ![Privacy Pool contract on Etherscan](/articles/privacy-experience-report/Privacy Pool contract on Etherscan.webp)
 
-Privacy Pool contract on Etherscan
+Privacy Pools contract on Etherscan
 
 > “I wouldn’t download something random, even on this machine.”
 
@@ -220,7 +220,7 @@ _Behavior: Motivation to use privacy tools varied by context._
 
 ![Privacy Pool UI](/articles/privacy-experience-report/Privacy Pool UI_2.webp)
 
-Privacy Pool UI
+Privacy Pools UI
 
 **Design implication:**
 
@@ -272,7 +272,7 @@ Fluidkey UI
 
 **Design implication:**
 
-→ Frame privacy as _trustable infrastructure_ — emphasizing stability, safety, and proof over abstraction.
+→ Frame privacy as _trustable infrastructure_ , emphasizing stability, safety, and proof over abstraction.
 
 ## Map to pain points vs opportunities and provide design suggestions
 
