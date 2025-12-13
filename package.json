@@ -52,7 +52,7 @@
     "jquery": "^3.7.1",
     "js-yaml": "^4.1.0",
     "lucide-react": "0.105.0-alpha.4",
-    "next": "14",
+    "next": "14.2.35",
     "nodemon": "^3.0.3",
     "postcss": "^8.4.24",
     "prismjs": "^1.30.0",
