@@ -5,6 +5,8 @@ import path from "path"
 
 const VALID_IMAGE_BASES = ["articles", "projects", "project", "project-banners"]
 
+const FLAT_STORAGE_BASES = ["project-banners"]
+
 function normalizeImagePath(
   imagePath: string | undefined,
   defaultBasePath: string = "articles",
@@ -32,7 +34,9 @@ function normalizeImagePath(
 
   if (!hasValidBase) {
     const isJustFilename = !normalized.includes("/")
-    if (isJustFilename && slug) {
+    const isFlatStorage = FLAT_STORAGE_BASES.includes(defaultBasePath)
+
+    if (isJustFilename && slug && !isFlatStorage) {
       normalized = `${defaultBasePath}/${slug}/${normalized}`
     } else {
       normalized = `${defaultBasePath}/${normalized}`
@@ -243,7 +247,12 @@ export function getProjects(options?: {
     processContent: (data, content, id) => ({
       id,
       ...data,
-      image: normalizeImagePath(data.image, "projects", id),
+      image: normalizeImagePath(data.image, "project-banners", id),
+      previousBrandImage: normalizeImagePath(
+        data.previousBrandImage,
+        "project-banners",
+        id
+      ),
       content: normalizeContentImagePaths(content, "projects", id),
     }),
   })
