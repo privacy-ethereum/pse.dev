@@ -16,6 +16,10 @@ export function useAppSettings() {
       href: "/research",
     },
     {
+      title: LABELS.COMMON.MENU.ECOSYSTEM,
+      href: "/ecosystem",
+    },
+    {
       title: LABELS.COMMON.MENU.BLOG,
       href: "/blog",
     },
