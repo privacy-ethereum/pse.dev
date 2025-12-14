@@ -31,9 +31,7 @@ export async function generateMetadata({
 
   const content = project?.content
   const imageUrl =
-    (project?.image ?? "")?.length > 0
-      ? `/project-banners/${project?.image}`
-      : "/share-image.png"
+    (project?.image ?? "")?.length > 0 ? project.image : "/share-image.png"
 
   return {
     title: project?.name,

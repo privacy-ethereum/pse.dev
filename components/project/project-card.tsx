@@ -79,7 +79,7 @@ export default function ProjectCard({
           }}
         >
           <Image
-            src={`/project-banners/${image ? image : "fallback.webp"}`}
+            src={image || "/project-banners/fallback.webp"}
             alt="Project banner image"
             width={1200}
             height={630}

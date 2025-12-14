@@ -90,7 +90,7 @@ export default function ProjectCard({
       {showBanner && (
         <div className="relative flex flex-col border-b border-black/10 cursor-pointer">
           <Image
-            src={`/project-banners/${image ? image : "fallback.webp"}`}
+            src={image || "/project-banners/fallback.webp"}
             alt={`${name} banner`}
             width={1200}
             height={630}
