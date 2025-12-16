@@ -47,6 +47,8 @@ The report covers the following areas:
 
 The following is a summary table comparing the different private voting protocols based on the defined properties. You can find more details and information in the full report.
 
+We have since published an update with new properties: "Quantum Resistance" and "Open Source", which you can read about in the full PDF.
+
 ![Private voting protocols comparison table](/articles/state-of-private-voting-2026/table.webp)
 
 We hope you find this report useful and informative as we continue to explore and develop private voting solutions for decentralized governance. We believe the community is doing an amazing job pushing the boundaries of this particular field, and we look forward to seeing how these protocols evolve.
