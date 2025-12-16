@@ -29,7 +29,7 @@ const MOCK_ECOSYSTEM_ITEMS: EcosystemItem[] = [
     description:
       "Research and documentation on private transfer protocols and mechanisms in the Ethereum ecosystem, exploring privacy-preserving transaction technologies.",
     type: "report",
-    href: "https://publish.obsidian.md/private-writes/Private+Transfers/Phase+A/00_Index/Phase+A+Index",
+    href: "hhttps://publish.obsidian.md/private-writes/Private+Writes+Vault",
     date: "December 2025",
     team: "PSE",
     cardTags: {
