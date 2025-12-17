@@ -103,15 +103,6 @@ const nextConfig = {
           },
         ],
       },
-      {
-        source: "/articles/:path*\\.pdf",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=0, must-revalidate",
-          },
-        ],
-      },
     ]
   },
   // Configure compiler for modern browsers
