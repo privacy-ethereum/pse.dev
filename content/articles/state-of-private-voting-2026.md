@@ -17,7 +17,7 @@ tags: ["privacy", "governance", "voting", "DAOs", "MACI"] # (Optional) Add relev
 
 ## PDF Report
 
-The full PDF report can be accessed [**HERE**](https://pse.dev/articles/state-of-private-voting-2026/state-of-private-voting-2026.pdf).
+The full PDF report can be accessed [**HERE**](https://pse.dev/articles/state-of-private-voting-2026/state-of-private-voting-2026-v2.pdf).
 <br/>
 <br/>
 
