@@ -30,22 +30,10 @@ const queryClient = new QueryClient({
 const PSE_DARK_MODE_KEY = "pse-dark-mode"
 
 export function GlobalProvider({ children }: { children: ReactNode }) {
-  // Start with system preference to avoid null return
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Server-side safe default
-    if (typeof window === "undefined") return false
-
-    // Try to get system preference immediately
-    try {
-      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-      return mediaQuery.matches
-    } catch {
-      return false
-    }
-  })
+  const [isDarkMode, setIsDarkMode] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
-
-  // Initialize dark mode from localStorage or system preference
+  
+  // Initialize dark mode from localStorage or system preference AFTER hydration
   useEffect(() => {
     const storedPreference = localStorage.getItem(PSE_DARK_MODE_KEY)
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
