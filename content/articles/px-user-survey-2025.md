@@ -57,9 +57,8 @@ This context matters. If privacy tools are frequently abandoned or misunderstood
 ## 1. Clarity of Privacy Scope: High Importance, Low Confidence
 
 <aside>
-💬
 
-**Qualitative themes referenced:**
+**💬 Qualitative themes referenced:**
 
 - Theme 1: Clarity of privacy scope
 - Theme 5: Verification anxiety
@@ -82,9 +81,8 @@ Despite high experience levels, confidence remains limited. Users care deeply ab
 ## 2. Motivation: Privacy as Control, Not Secrecy
 
 <aside>
-💬
 
-**Qualitative themes referenced:**
+**💬 Qualitative themes referenced:**
 
 - **Theme 6:** Context-specific motivation
 
@@ -117,9 +115,8 @@ Users consistently frame privacy as:
 ## 3. Usage: Widely Tried, Rarely Habitual
 
 <aside>
-💬
 
-**Qualitative themes referenced:**
+**💬 Qualitative themes referenced:**
 
 - **Theme 3:** Technical friction
 - **Theme 4:** Usability and defaults
@@ -154,9 +151,8 @@ A clear pattern emerges:
 ## 4. Technical Friction: Usability Is the Primary Blocker
 
 <aside>
-💬
 
-**Qualitative themes referenced:**
+**💬 Qualitative themes referenced:**
 
 - **Theme 3:** Technical friction
 - **Theme 5:** Verification anxiety
@@ -193,9 +189,8 @@ Additional signals:
 ## 5. Trade-offs: Time Is Acceptable, Workflow Breakage Is Not
 
 <aside>
-💬
 
-**Qualitative themes referenced:**
+**💬 Qualitative themes referenced:**
 
 - **Theme 3:** Technical friction
 - **Theme 6:** Context-specific motivation
@@ -229,9 +224,8 @@ Users are willing to trade **time**, but not **cost or workflow disruption**:
 ## 6. Trust & Verification: Don’t Trust, Verify (But Make It Legible)
 
 <aside>
-💬
 
-**Qualitative themes referenced:**
+**💬 Qualitative themes referenced:**
 
 - **Theme 2:** Trust transparency
 - **Theme 5:** Verification anxiety
@@ -265,9 +259,8 @@ Social proof and branding rank significantly lower.
 ## 7. Confidence vs Capability: Why Adoption Fails Even for Experts
 
 <aside>
-💬
 
-**Qualitative themes referenced:**
+**💬 Qualitative themes referenced:**
 
 - **Theme 3:** Technical friction
 - **Theme 5:** Verification anxiety
