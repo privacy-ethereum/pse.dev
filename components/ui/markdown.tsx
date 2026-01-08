@@ -451,6 +451,51 @@ const rehypeProcessBrTags = () => {
   }
 }
 
+const rehypeStyleAside = () => {
+  return (tree: any) => {
+    const visit = (node: any) => {
+      if (node.type === "element" && node.tagName === "aside") {
+        if (!node.properties) {
+          node.properties = {}
+        }
+        if (!node.properties.className) {
+          node.properties.className = []
+        }
+        const classes = Array.isArray(node.properties.className)
+          ? node.properties.className
+          : [node.properties.className]
+        node.properties.className = [
+          ...classes,
+          "my-6",
+          "p-4",
+          "rounded-lg",
+          "bg-tuatara-50",
+          "dark:bg-tuatara-900",
+          "border-l-4",
+          "border-anakiwa-500",
+          "dark:border-anakiwa-400",
+          "[&>p]:text-tuatara-700",
+          "dark:[&>p]:text-tuatara-200",
+          "[&>p]:my-2",
+          "[&>ul]:text-tuatara-700",
+          "dark:[&>ul]:text-tuatara-200",
+          "[&>ul]:my-2",
+          "[&>strong]:text-tuatara-900",
+          "dark:[&>strong]:text-tuatara-100",
+        ]
+      }
+
+      if (node.children) {
+        node.children.forEach(visit)
+      }
+
+      return node
+    }
+
+    return visit(tree)
+  }
+}
+
 const CodeBlock = ({
   className,
   children,
@@ -953,7 +998,11 @@ export const Markdown = ({
         ...components,
       }
 
-      const rehypePlugins = [rehypeRaw as any, rehypeProcessBrTags as any]
+      const rehypePlugins = [
+        rehypeRaw as any,
+        rehypeProcessBrTags as any,
+        rehypeStyleAside as any,
+      ]
 
       setContent([
         <ReactMarkdown
@@ -972,7 +1021,11 @@ export const Markdown = ({
         <ReactMarkdown
           key="fallback"
           skipHtml={false}
-          rehypePlugins={[rehypeRaw as any, rehypeProcessBrTags as any]}
+          rehypePlugins={[
+            rehypeRaw as any,
+            rehypeProcessBrTags as any,
+            rehypeStyleAside as any,
+          ]}
           components={{
             ...REACT_MARKDOWN_CONFIG(darkMode),
             ...components,
