@@ -1,9 +1,10 @@
 ---
-title: "Privacy Experience User Survey"
+title: "Measuring the Privacy Experience on Ethereum"
 description: "This report extends our prior qualitative research with a user survey on the current state of privacy on Ethereum, including how people perceive, trust, and adopt privacy tools."
 date: "2026-01-08"
 authors:
   - "Privacy Experience"
+  - "Nicole Yeh"
 tags:
   - privacy
   - user experience
