@@ -3,7 +3,7 @@ id: "post-quantum-cryptography"
 name: "Post-Quantum Cryptography and Ethereum"
 image: ""
 section: "pse"
-projectStatus: "active"
+projectStatus: "maintained"
 category: "research"
 tldr: "Ensuring Ethereum's cryptographic security against future quantum threats."
 tags:
