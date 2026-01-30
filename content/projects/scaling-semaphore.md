@@ -3,7 +3,7 @@ id: "scaling-semaphore"
 name: "Scaling Semaphore"
 image: ""
 section: "pse"
-projectStatus: "active"
+projectStatus: "maintained"
 category: "research"
 tldr: "A scalable implementation of the Semaphore protocol"
 tags:

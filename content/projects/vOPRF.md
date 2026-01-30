@@ -3,7 +3,7 @@ id: "vOPRF"
 name: "Web2-ID Nullifiers using vOPRF"
 image: ""
 section: "pse"
-projectStatus: "active"
+projectStatus: "maintained"
 category: "research"
 tldr: "Enabling pseudonymous systems for Web2 identities using verifiable Oblivious PseudoRandom Functions (vOPRFs)."
 tags:
