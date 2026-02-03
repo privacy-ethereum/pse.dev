@@ -20,7 +20,7 @@ Enhancing Ethereum through cryptographic research and collective experimentation
 ## PR Review process
 
 - Translation PRs: Please tag a member who can help review your translation.
-- All PRs: Kindly clearly state your intention or the purpose of the pull request.
+- All PRs: Please clearly state your intention or the purpose of the pull request.
 - Suggestions: If you have any suggestions, feel free to open an issue.
 
 ## Run Locally
