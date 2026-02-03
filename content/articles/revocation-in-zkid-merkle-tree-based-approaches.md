@@ -5,7 +5,7 @@ image: "/articles/revocation-in-zkid-merkle-tree-based-approaches/cover.webp" # 
 tldr: "Merkle tree-based approaches enable efficient and privacy-preserving revocation checks for verifiable credentials using either membership proofs over valid credentials or non-membership proofs over revoked credentials. Membership proofs are faster to compute, while non-membership proofs scale better in practice since updates occur only when credentials are revoked." #Short summary
 date: "2026-02-03" # Publication date in ISO format
 tags: ["zero-knowledge", "zkID", "ZK-Kit"] # (Optional) Add relevant tags as an array of strings to categorize the article
-projects: ["zkID", "ZK-Kit"]
+projects: ["zk-id", "zk-kit"]
 ---
 
 **Summary**: Merkle trees are widely used in revocation systems for verifiable credentials, particularly in blockchain and smart contract contexts. They enable efficient and privacy-preserving revocation through two main approaches: membership proofs in a list of valid credentials and non-membership proofs in a list of revoked credentials. Benchmarks indicate that while membership proofs are faster to compute, non-membership proofs tend to be more efficient overall, as they require updates only when credentials are revoked, making them more scalable and cost-effective for real-world use.
