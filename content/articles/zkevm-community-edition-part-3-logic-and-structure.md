@@ -89,27 +89,27 @@ The zkEVM Community Edition is a rapidly evolving design. Each circuit iterates 
 
 The [EVM Circuit](https://github.com/privacy-scaling-explorations/zkevm-specs/blob/83ad4ed571e3ada7c18a411075574110dfc5ae5a/specs/evm-proof.md) is only concerned with execution. Specifically, the EVM Circuit validates [geth execution traces](https://geth.ethereum.org/docs/dapp/tracing) and verifies the transactions in the block have the correct execution results. This is usually done one opcode at a time to check each individual step in the transaction and to confirm the correct opcode was called at the correct time. The EVM Circuit is the final check to confirm the transaction and the State Circuit are valid.
 
-[State Circuit](https://privacy-scaling-explorations.github.io/zkevm-docs/architecture/state-circuit.html):
+[State Circuit](https://privacy-ethereum.github.io/zkevm-docs/architecture/state-circuit.html):
 
 - Verifies that each piece of data is consistent between different reads and writes (i.e. the data was changed correctly). It also serves as the lookup table for the EVM circuit to do random read-write access (i.e. access EVM data).
 
-[Tx Circuit](https://privacy-scaling-explorations.github.io/zkevm-docs/architecture/tx-circuit.html#tx-circuit):
+[Tx Circuit](https://privacy-ethereum.github.io/zkevm-docs/architecture/tx-circuit.html):
 
 - Verifies each transaction has a valid signature. It also serves as a lookup table for the EVM circuit to access data in the transaction.
 
-[Bytecode Circuit](https://privacy-scaling-explorations.github.io/zkevm-docs/architecture/bytecode-circuit.html#bytecode-circuit):
+[Bytecode Circuit](https://privacy-ethereum.github.io/zkevm-docs/architecture/bytecode-circuit.html):
 
 - Verifies each bytecode has a valid hash. It also serves as a lookup table for the EVM circuit to access data of any "index of bytecode."
 
-[ECDSA Cicruit](https://privacy-scaling-explorations.github.io/zkevm-docs/architecture/ecdsa-circuit.html#ecdsa-cicruit):
+[ECDSA Cicruit](https://privacy-ethereum.github.io/zkevm-docs/architecture/ecdsa-circuit.html#ecdsa-cicruit):
 
 - Verifies the public key from the signature is valid. It also serves as a lookup table for EVM and Tx circuit to do public key recovery.
 
-[Keccak Circuit](https://privacy-scaling-explorations.github.io/zkevm-docs/architecture/keccak-circuit.html#keccak-circuit):
+[Keccak Circuit](https://privacy-ethereum.github.io/zkevm-docs/architecture/keccak-circuit.html):
 
 - Verifies each hash is valid. It also serves as a lookup table for the EVM, Bytecode, Tx, and MPT circuit to calculate hash functions.
 
-[Merkle Patricia Trie (MPT) Circuit](https://privacy-scaling-explorations.github.io/zkevm-docs/architecture/mpt-circuit.html#merkle-patricia-trie-circuit):
+[Merkle Patricia Trie (MPT) Circuit](https://privacy-ethereum.github.io/zkevm-docs/architecture/mpt-circuit.html):
 
 - Verifies each update is valid. It also serves as a lookup table for the State and Tx circuit to update the Merkle Patricia Trie.
 
