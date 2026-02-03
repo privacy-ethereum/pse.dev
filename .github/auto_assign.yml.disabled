@@ -1,5 +1,5 @@
 addReviewers: true
 addAssignees: author
-reviewers: [kalidiagne, psedesign]
+reviewers: []
 skipKeywords: [wip]
 runOnDraft: false

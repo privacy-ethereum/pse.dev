@@ -3,7 +3,7 @@ id: "zk-kit"
 name: "ZK-Kit"
 image: "zk-kit.svg"
 section: "pse"
-projectStatus: "active"
+projectStatus: "maintained"
 category: "devtools"
 tldr: "A set of reusable libraries for zero-knowledge technologies."
 tags:
