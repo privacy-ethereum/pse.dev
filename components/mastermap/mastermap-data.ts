@@ -428,19 +428,128 @@ export const PROJECTS: ProjectData[] = [
     ],
   },
   {
-    id: "zk-apps",
-    name: "ZK Apps (Semaphore, MACI, zkEmail)",
+    id: "tlsnotary",
+    name: "TLSNotary",
     category: "private-proving",
-    status: "Production",
-    statusVariant: "production",
-    completion: 70,
+    status: "Active development",
+    statusVariant: "active",
+    completion: 15,
     description:
-      "Production-grade ZK applications. Anonymous group membership, anti-collusion voting, email verification.",
+      "Cryptographic proofs of web data authenticity using TLS and MPC. Approaching production readiness.",
+    href: "/mastermap/tlsnotary",
+    tags: ["zkTLS", "MPC", "Attestation", "SDK"],
+    now: [
+      {
+        name: "alpha-14",
+        description: "Latest protocol release with updated benchmarks.",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "SDK Preview",
+        description:
+          "Developer SDK preview for building on TLSNotary.",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "FOSDEM Presentation",
+        description: "Public communication: standard interfaces for zkTLS.",
+        status: "Feb 1-2",
+        statusDot: "yellow",
+      },
+    ],
+    next: [
+      {
+        name: "Production Ready Protocol",
+        description:
+          "Production-grade protocol implementation. Scoping in progress.",
+        status: "Planned \u00b7 Critical",
+        statusDot: "yellow",
+      },
+      {
+        name: "Full SDK",
+        description: "Complete developer SDK with full documentation.",
+        status: "Planned",
+        statusDot: "yellow",
+      },
+    ],
+    later: [
+      {
+        name: "Smart Contract Attestation",
+        description:
+          "Attestation workflow for on-chain verification of TLSNotary proofs.",
+        status: "Scoping",
+        statusDot: "gray",
+      },
+    ],
+  },
+  {
+    id: "verifiable-compute",
+    name: "Verifiable Compute",
+    category: "private-proving",
+    status: "Research & development",
+    statusVariant: "rd",
+    completion: 10,
+    description:
+      "Standard interface for verifiable computation in WebAssembly. Enables private applications to run in secure, isolated environments and use WASM as a portable compilation target for zkVMs without coupling to a specific proving system.",
     href: null,
-    tags: ["Semaphore", "MACI", "zkEmail"],
-    now: [],
-    next: [],
-    later: [],
+    tags: ["WASM", "zkVM", "VOLE", "WIT", "Verifiable Compute"],
+    now: [
+      {
+        name: "Interface requirements",
+        description:
+          "Research and define requirements for a verifiable compute interface (WIT, visibility semantics, host/guest boundary).",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "VOLE zkVM prototype",
+        description:
+          "Implement VOLE-based zkVM implementing the Verifiable Compute API. Target: web proof ecosystem and zkID.",
+        status: "In progress",
+        statusDot: "green",
+      },
+    ],
+    next: [
+      {
+        name: "Verifiable Compute SDK",
+        description:
+          "Prototype SDK for web and mobile (web extension, Kohaku integration; Mopro alignment for mobile).",
+        status: "Planned",
+        statusDot: "yellow",
+      },
+      {
+        name: "VOLE zkVM benchmarks",
+        description:
+          "Benchmark VOLE zkVM against other CSP candidates (e.g. Ligetron).",
+        status: "Planned",
+        statusDot: "yellow",
+      },
+      {
+        name: "TLSNotary integration",
+        description:
+          "Integrate VOLE zkVM into TLSNotary core protocol and Verifiable Compute SDK.",
+        status: "Planned",
+        statusDot: "yellow",
+      },
+    ],
+    later: [
+      {
+        name: "Ecosystem feedback",
+        description:
+          "Solicit ecosystem feedback and encourage other proving systems to implement the interface.",
+        status: "Q2 2026",
+        statusDot: "gray",
+      },
+      {
+        name: "Advanced zkVM features",
+        description:
+          "Oblivious control flow and ORAM for VOLE zkVM where needed.",
+        status: "R&D",
+        statusDot: "blue",
+      },
+    ],
   },
 
   // ─── Private Writes ───
@@ -616,7 +725,7 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "Reports & Specifications",
         description:
-          'Explainer documents building toward "State of Institutional Privacy" marquee report.',
+          "Explainer documents building toward \"State of Institutional Privacy\" marquee report.",
         status: "Planned",
         statusDot: "yellow",
       },
@@ -634,16 +743,16 @@ export const PROJECTS: ProjectData[] = [
 
   // ─── Private Reads ───
   {
-    id: "private-reads-core",
-    name: "PIR / UBT / Arti",
+    id: "pir",
+    name: "PIR",
     category: "private-reads",
     status: "Active R&D",
     statusVariant: "rd",
     completion: 20,
     description:
-      "PIR systems for L1 data, UBT node for provable state, Arti Tor in-browser for anonymous RPC.",
-    href: "/mastermap/private-reads",
-    tags: ["PIR", "UBT", "Arti", "Tor"],
+      "PIR schemes tailored for Ethereum state and history. Optimized for wallets, frontends, tax software, dApps.",
+    href: "/mastermap/pir",
+    tags: ["PIR", "Private state"],
     now: [
       {
         name: "PIR Systems (2-4 schemes)",
@@ -652,6 +761,29 @@ export const PROJECTS: ProjectData[] = [
         status: "In progress \u00b7 Critical",
         statusDot: "green",
       },
+    ],
+    next: [
+      {
+        name: "PIR Integration",
+        description: "\u22651 integration with wallet and/or light client.",
+        status: "Planned",
+        statusDot: "yellow",
+      },
+    ],
+    later: [],
+  },
+  {
+    id: "ubt",
+    name: "UBT",
+    category: "private-reads",
+    status: "Active R&D",
+    statusVariant: "rd",
+    completion: 15,
+    description:
+      "Provably L1-equivalent EL node using UBT data structure. MPT-equivalent.",
+    href: "/mastermap/ubt",
+    tags: ["UBT", "EIP7864", "Execution layer"],
+    now: [
       {
         name: "UBT Node (EIP7864)",
         description:
@@ -659,6 +791,22 @@ export const PROJECTS: ProjectData[] = [
         status: "In progress",
         statusDot: "green",
       },
+    ],
+    next: [],
+    later: [],
+  },
+  {
+    id: "arti",
+    name: "Arti",
+    category: "private-reads",
+    status: "Active R&D",
+    statusVariant: "rd",
+    completion: 20,
+    description:
+      "Tor client in-browser for anonymized RPC. Kohaku integration for plug-in anonymous routing in wallets and frontends.",
+    href: "/mastermap/arti",
+    tags: ["Arti", "Tor", "Kohaku"],
+    now: [
       {
         name: "Arti in-browser",
         description:
@@ -675,12 +823,6 @@ export const PROJECTS: ProjectData[] = [
       },
     ],
     next: [
-      {
-        name: "PIR Integration",
-        description: "\u22651 integration with wallet and/or light client.",
-        status: "Planned",
-        statusDot: "yellow",
-      },
       {
         name: "Privacy Dashboard",
         description:
@@ -708,63 +850,6 @@ export const PROJECTS: ProjectData[] = [
         description:
           "Drive integration of Arti for network-level-private RPC calls in wallet SDKs.",
         status: "Q2 2026",
-        statusDot: "gray",
-      },
-    ],
-  },
-  {
-    id: "tlsnotary",
-    name: "TLSNotary",
-    category: "private-reads",
-    status: "Active development",
-    statusVariant: "active",
-    completion: 15,
-    description:
-      "Cryptographic proofs of web data authenticity using TLS and MPC. Approaching production readiness.",
-    href: "/mastermap/tlsnotary",
-    tags: ["zkTLS", "MPC", "Attestation", "SDK"],
-    now: [
-      {
-        name: "alpha-14",
-        description: "Latest protocol release with updated benchmarks.",
-        status: "In progress",
-        statusDot: "green",
-      },
-      {
-        name: "SDK Preview",
-        description:
-          "Developer SDK preview for building on TLSNotary.",
-        status: "In progress",
-        statusDot: "green",
-      },
-      {
-        name: "FOSDEM Presentation",
-        description: "Public communication: standard interfaces for zkTLS.",
-        status: "Feb 1-2",
-        statusDot: "yellow",
-      },
-    ],
-    next: [
-      {
-        name: "Production Ready Protocol",
-        description:
-          "Production-grade protocol implementation. Scoping in progress.",
-        status: "Planned \u00b7 Critical",
-        statusDot: "yellow",
-      },
-      {
-        name: "Full SDK",
-        description: "Complete developer SDK with full documentation.",
-        status: "Planned",
-        statusDot: "yellow",
-      },
-    ],
-    later: [
-      {
-        name: "Smart Contract Attestation",
-        description:
-          "Attestation workflow for on-chain verification of TLSNotary proofs.",
-        status: "Scoping",
         statusDot: "gray",
       },
     ],
