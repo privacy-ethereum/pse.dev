@@ -368,64 +368,96 @@ export const PROJECTS: ProjectData[] = [
     statusVariant: "research",
     completion: 10,
     description:
-      "Practical indistinguishability obfuscation. Noise refreshing, blind PRFs, first 64-bit iO.",
+      "Practical indistinguishability obfuscation. 2026 focus: noise refreshing, blind PRF over key-homomorphic encodings, \u226564-bit obfuscation, SNARK verification kickoff.",
     href: "/mastermap/machina",
-    tags: ["iO", "GGH15", "Lattice", "Cryptography"],
+    tags: ["iO", "GGH15", "Lattice", "FHE", "key-homomorphic"],
     now: [
       {
-        name: "Noise Refreshing (GGH15 + dummy PRF)",
+        name: "FHE multiplication over encodings",
         description:
-          "Implement noise refreshing of GGH15 encodings with dummy blind PRF. Confirm parameters grow polylogarithmically.",
-        status: "In progress \u00b7 Critical",
+          "Implement FHE multiplication over key-homomorphic encodings. Foundation for blind PRF; unlocks predicate encryption / LFE.",
+        status: "Q1 2026 \u00b7 In progress",
         statusDot: "green",
       },
       {
-        name: "Benchmark Harness",
+        name: "Noise refreshing + dummy blind PRF",
         description:
-          "Circuit size/depth sensitivity analysis. Parameter growth behavior testing.",
-        status: "Planned",
+          "Implement noise refreshing of GGH15 encodings with replaceable dummy blind PRF. Confirm parameter growth is polylogarithmic.",
+        status: "Q2 2026",
+        statusDot: "green",
+      },
+      {
+        name: "Benchmark harness",
+        description:
+          "Circuit size/depth sensitivity and parameter-growth behavior. Set targets for real blind PRF circuit size.",
+        status: "Q2 2026",
         statusDot: "yellow",
       },
       {
-        name: "iO Paper (ACM CCS 2026)",
+        name: "Noise refreshing paper",
         description:
-          "Paper describing noise refreshing construction + security proof.",
-        status: "Planned",
+          "Paper: noise refreshing construction and security proof (venue TBD).",
+        status: "Q2 2026",
         statusDot: "yellow",
       },
     ],
     next: [
       {
-        name: "Blind PRF Implementation",
+        name: "Blind PRF over key-homomorphic encodings",
         description:
-          "Circuit evaluated over key-homomorphic encodings that simulates a PRF. Replace dummy PRF.",
-        status: "Q2-Q3 \u00b7 Critical",
+          "Circuit over encodings that simulates a PRF without revealing key or output. Replace dummy in noise refreshing.",
+        status: "Q2\u2013Q3 2026 \u00b7 Critical",
+        statusDot: "yellow",
+      },
+      {
+        name: "\u226564-bit obfuscation",
+        description:
+          "End-to-end obfuscation and evaluation for \u226564 input bits. First practical iO beyond lookup-table scale.",
+        status: "Q3 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "Devcon 2026",
+        description:
+          "Paper and presentation: first practical-performance iO for nontrivial input size.",
+        status: "Q3 2026",
         statusDot: "yellow",
       },
     ],
     later: [
       {
-        name: "\u226564-bit Obfuscation",
+        name: "SNARK verification over encodings",
         description:
-          "First practical iO for nontrivial input size. Lookup-table approach becomes impossible.",
-        status: "Q3 \u00b7 Critical milestone",
-        statusDot: "gray",
-      },
-      {
-        name: "Devcon Demo",
-        description:
-          "Present first practical-performance iO at Devcon Mumbai.",
+          "Milestone 5 kickoff: PV vs DV scheme selection, verification circuit over key-homomorphic encodings. Continues into Q1 2027.",
         status: "Q4 2026",
         statusDot: "gray",
       },
       {
-        name: "SNARK Verification",
+        name: "Collaboration: security \u00b7 efficiency",
         description:
-          "Implement SNARK verification over key-homomorphic encodings. PV vs DV scheme selection.",
-        status: "Q4 2026 kickoff",
+          "Academic collaboration on cryptanalysis (all-product LWE, evasive LWE, encodings) and efficiency improvements.",
+        status: "2026",
         statusDot: "gray",
       },
     ],
+    details: {
+      description: [
+        "Execute 2026 critical path toward practical iO",
+        "Noise refreshing in practice; real blind PRF; \u226564-bit obfuscation",
+        "SNARK verification over encodings (kickoff Q4)",
+      ],
+      deliverables: [
+        "FHE multiplication + noise refreshing (dummy then real blind PRF)",
+        "First \u226564-bit obfuscation with reproducible benchmarks",
+        "Noise refreshing + security proof paper; Devcon 2026 dissemination",
+        "SNARK verification scheme selection and early prototype (Q4)",
+      ],
+      impact: [
+        "First practical-performance iO for nontrivial input size",
+        "Foundation for predicate encryption / LFE implementations",
+        "Security and efficiency collaboration with academia",
+      ],
+    },
   },
   {
     id: "tlsnotary",
