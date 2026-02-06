@@ -23,6 +23,10 @@ export function useAppSettings() {
       title: LABELS.COMMON.MENU.BLOG,
       href: "/blog",
     },
+    {
+      title: LABELS.COMMON.MENU.MASTER_MAP,
+      href: "/mastermap",
+    },
   ]
 
   return {

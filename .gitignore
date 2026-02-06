@@ -57,3 +57,5 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 tsconfig.tsbuildinfo
+.vercel
+.env*.local
