@@ -55,6 +55,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <p className="text-base lg:text-lg text-tuatara-500 dark:text-tuatara-300 font-sans max-w-2xl leading-relaxed">
             {project.description}
           </p>
+          {project.projectUrl && (
+            <AppLink
+              href={project.projectUrl}
+              variant="blue"
+              className="font-sans text-sm font-semibold mt-1"
+            >
+              View project page &rsaquo;
+            </AppLink>
+          )}
         </div>
 
         {/* Completion + Status */}

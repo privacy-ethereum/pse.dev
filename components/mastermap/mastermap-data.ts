@@ -24,6 +24,7 @@ export interface ProjectData {
     impact: string[]
   }
   kpis?: { label: string; target: string; status: string }[]
+  projectUrl?: string
 }
 
 export type CategoryId =
@@ -828,15 +829,16 @@ export const PROJECTS: ProjectData[] = [
     later: [],
   },
   {
-    id: "arti",
-    name: "Arti",
+    id: "tor-in-js",
+    name: "Tor in JS",
     category: "private-reads",
     status: "Active R&D",
     statusVariant: "rd",
     completion: 20,
     description:
-      "Tor client in-browser for anonymized RPC. Kohaku integration for plug-in anonymous routing in wallets and frontends.",
-    href: "/mastermap/arti",
+      "Arti Tor client in-browser for anonymized RPC. Kohaku integration for plug-in anonymous routing in wallets and frontends.",
+    href: "/mastermap/tor-in-js",
+    projectUrl: "/projects/tor-in-js",
     tags: ["Arti", "Tor", "Kohaku"],
     now: [
       {
