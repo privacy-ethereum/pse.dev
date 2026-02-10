@@ -3,7 +3,7 @@ id: "maci"
 name: "MACI"
 image: "maci.webp"
 section: "pse"
-projectStatus: "active"
+projectStatus: "maintained"
 category: "application"
 tldr: "An on-chain voting solution that protects privacy and minimizes the risk of collusion and bribery"
 tags:
