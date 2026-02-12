@@ -9,10 +9,10 @@ export const siteConfig = {
     twitter: "https://x.com/PrivacyEthereum",
     github: "https://github.com/privacy-ethereum",
     docs: "https://ui.shadcn.com",
-    discord: "https://discord.com/invite/sF5CT5rzrR",
+    discord: "https://discord.gg/5vv7bk5u5y",
     articles: "https://pse.dev/blog",
     youtube: "https://www.youtube.com/@PrivacyEthereum",
-    jobs: "https://jobs.lever.co/ethereumfoundation/?department=Ethereum%20Foundation&team=Privacy%20and%20Scaling%20Explorations",
+    jobs: "https://jobs.ashbyhq.com/ethereum-foundation",
     termOfUse: "https://ethereum.org/en/terms-of-use/",
     privacyPolicy: "https://ethereum.org/en/privacy-policy/",
     activity:

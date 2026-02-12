@@ -146,9 +146,6 @@ export function SiteFooter() {
             </AppLink>
           </LinksWrapper>
           <LinksWrapper>
-            <AppLink href={siteConfig.links.discord} external variant="button">
-              <ItemLabel label="Feedback" />
-            </AppLink>
             <AppLink
               href={siteConfig.links.privacyPolicy}
               external
