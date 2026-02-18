@@ -71,6 +71,8 @@ export const CATEGORIES: Category[] = [
   },
 ]
 
+import { TLSNOTARY } from "./tlsnotary-data"
+
 export const PROJECTS: ProjectData[] = [
   // ─── Private Proving ───
   {
@@ -460,63 +462,7 @@ export const PROJECTS: ProjectData[] = [
       ],
     },
   },
-  {
-    id: "tlsnotary",
-    name: "TLSNotary",
-    category: "private-proving",
-    status: "Active development",
-    statusVariant: "active",
-    completion: 15,
-    description:
-      "Cryptographic proofs of web data authenticity using TLS and MPC. Approaching production readiness.",
-    href: "/mastermap/tlsnotary",
-    tags: ["zkTLS", "MPC", "Attestation", "SDK"],
-    now: [
-      {
-        name: "alpha-14",
-        description: "Latest protocol release with updated benchmarks.",
-        status: "In progress",
-        statusDot: "green",
-      },
-      {
-        name: "SDK Preview",
-        description:
-          "Developer SDK preview for building on TLSNotary.",
-        status: "In progress",
-        statusDot: "green",
-      },
-      {
-        name: "FOSDEM Presentation",
-        description: "Public communication: standard interfaces for zkTLS.",
-        status: "Feb 1-2",
-        statusDot: "yellow",
-      },
-    ],
-    next: [
-      {
-        name: "Production Ready Protocol",
-        description:
-          "Production-grade protocol implementation. Scoping in progress.",
-        status: "Planned \u00b7 Critical",
-        statusDot: "yellow",
-      },
-      {
-        name: "Full SDK",
-        description: "Complete developer SDK with full documentation.",
-        status: "Planned",
-        statusDot: "yellow",
-      },
-    ],
-    later: [
-      {
-        name: "Smart Contract Attestation",
-        description:
-          "Attestation workflow for on-chain verification of TLSNotary proofs.",
-        status: "Scoping",
-        statusDot: "gray",
-      },
-    ],
-  },
+  TLSNOTARY,
   {
     id: "verifiable-compute",
     name: "Verifiable Compute",
