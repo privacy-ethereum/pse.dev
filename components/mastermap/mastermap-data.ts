@@ -782,16 +782,16 @@ export const PROJECTS: ProjectData[] = [
     later: [],
   },
   {
-    id: "tor-in-js",
-    name: "Tor in JS",
+    id: "tor-js",
+    name: "tor-js",
     category: "private-reads",
     status: "Active R&D",
     statusVariant: "rd",
     completion: 20,
     description:
       "Arti Tor client in-browser for anonymized RPC. Kohaku integration for plug-in anonymous routing in wallets and frontends.",
-    href: "/mastermap/tor-in-js",
-    projectUrl: "/projects/tor-in-js",
+    href: "/mastermap/tor-js",
+    projectUrl: "/projects/tor-js",
     tags: ["Arti", "Tor", "Kohaku"],
     now: [
       {
