@@ -204,7 +204,7 @@ export const PROJECTS: ProjectData[] = [
         name: "Native Prover (Swift/Kotlin/RN/Flutter)",
         description:
           "Developers use Circom/Noir provers directly in native platforms without Rust toolchain setup.",
-        status: "In progress \u00b7 ~2 months",
+        status: "Done",
         statusDot: "green",
       },
       {
@@ -224,6 +224,13 @@ export const PROJECTS: ProjectData[] = [
     ],
     next: [
       {
+        name: "TWDIW Integration",
+        description:
+          "Provides a PoC showcasing OpenAC × TWDIW privacy-preserving age verification solution for online alcohol purchases in Taiwan.",
+        status: "Planned \u00b7 ~1 month",
+        statusDot: "yellow",
+      },
+      {
         name: "Mopro Pack (Plugin SDK)",
         description:
           "Plugin-level integration: consume prover as a functional SDK. Drop into existing stacks like Anon Aadhaar.",
@@ -234,7 +241,7 @@ export const PROJECTS: ProjectData[] = [
         name: "zkVM Mobile Study",
         description:
           "Port Jolt/Nexus/RISC0 to ARM64 mobile. Profile thermal throttling, battery impact.",
-        status: "Planned",
+        status: "Planned \u00b7 ~1 month",
         statusDot: "yellow",
       },
     ],
