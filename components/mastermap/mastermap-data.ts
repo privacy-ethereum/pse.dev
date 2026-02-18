@@ -83,19 +83,19 @@ export const PROJECTS: ProjectData[] = [
     description:
       "Benchmark ZKP systems, bridge ecosystem gaps, push toward PQ-sound on-chain verification.",
     href: "/mastermap/csp",
-    tags: ["Benchmarks", "Post-quantum", "WHIR", "GPU Accel"],
+    tags: ["Benchmarks", "Post-Quantum", "WHIR", "GPU Acceleration"],
     now: [
       {
-        name: "Benchmark 24 zkVMs",
+        name: "Benchmark 15 zkVMs and ZKP systems",
         description:
-          "Expand benchmarking to SHA256, ECDSA, Poseidon2, Keccak across 24 zkVMs and proof systems.",
+          "Expand [benchmarking](https://github.com/privacy-ethereum/csp-benchmarks) to ECDSA, Poseidon, Poseidon2 and Keccak across 15 zkVMs and proof systems.",
         status: "In progress",
         statusDot: "green",
       },
       {
-        name: "WHIR Assessment",
+        name: "WHIR-Based Systems Assessment",
         description:
-          "Finish SotA assessment of WHIR-based ZKP systems. Author consultation for potential improvements.",
+          "Finish [SotA assessment](https://hackmd.io/@clientsideproving/whir-based) of WHIR-based ZKP systems. Author consultation for potential improvements.",
         status: "In progress",
         statusDot: "green",
       },
@@ -109,16 +109,16 @@ export const PROJECTS: ProjectData[] = [
     ],
     next: [
       {
-        name: "KoalaBear Verifier",
+        name: "Small Field WHIR EVM Verifier",
         description:
-          "Refactor WHIR verifier for KoalaBear field. Smaller field enables gas cost optimizations.",
+          "Implement EVM WHIR verifier over a 31-bit prime field and benchmark its gas cost.",
         status: "Planned",
         statusDot: "yellow",
       },
       {
         name: "PQ ZKP On-chain",
         description:
-          "Post-quantum sound ZKP system directly verifiable on-chain with <1.5M gas verification.",
+          "WHIR-based post-quantum sound ZKP system directly verifiable on-chain with <1.5M gas cost.",
         status: "Planned \u00b7 Critical path",
         statusDot: "yellow",
       },
@@ -153,36 +153,36 @@ export const PROJECTS: ProjectData[] = [
         "Push adoption of PQ-sound proving systems",
       ],
       deliverables: [
-        "Comprehensive benchmarks across 24 systems",
-        "PQ ZKP system verifiable on-chain (<1.5M gas)",
+        "Comprehensive benchmarks across 15 systems",
+        "PQ client-side ZKP system verifiable on-chain (<1.5M gas)",
         "GPU-accelerated Jolt with >20% improvement",
       ],
       impact: [
         "Ecosystem uses benchmarks for informed decisions",
-        "Post-quantum readiness for Ethereum proofs",
-        "Client-side proving becomes practical on mobile",
+        "Post-quantum readiness for client-side ZKP",
+        "Improved performance for mobile ZKP",
       ],
     },
     kpis: [
       {
-        label: "Verification gas cost",
+        label: "WHIR EVM verification gas cost",
         target: "<1.5M gas (100+ bit security)",
         status: "In research",
       },
       {
-        label: "GPU proving improvement",
+        label: "Mobile GPU proving performance improvement",
         target: ">20% reduction",
         status: "In progress",
       },
       {
-        label: "Ecosystem citations per release",
+        label: "Ecosystem citations of benchmark results, per release",
         target: "10+",
         status: "Tracking",
       },
       {
-        label: "Community contributions",
+        label: "Community benchmark contributions",
         target: "3+ per quarter",
-        status: "Approached by gnark, Kakarot",
+        status: "Approached by Ligetron, Kakarot",
       },
     ],
   },
@@ -196,7 +196,7 @@ export const PROJECTS: ProjectData[] = [
     description:
       "Mobile-first proving infrastructure. Native provers for Swift/Kotlin/RN/Flutter. GPU crypto libraries.",
     href: "/mastermap/mopro",
-    tags: ["Mobile", "GPU", "zkVM", "Taiwan PTT"],
+    tags: ["Mobile", "GPU Acceleration", "zkVM", "Taiwan PTT"],
     now: [
       {
         name: "Native Prover (Swift/Kotlin/RN/Flutter)",
