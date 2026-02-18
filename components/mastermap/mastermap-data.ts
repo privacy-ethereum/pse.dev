@@ -111,7 +111,7 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "Small Field WHIR EVM Verifier",
         description:
-          "Implement EVM WHIR verifier on 31-bit prime field and benchmark the gas cost.",
+          "Implement EVM WHIR verifier over a 31-bit prime field and benchmark its gas cost.",
         status: "Planned",
         statusDot: "yellow",
       },
