@@ -88,7 +88,7 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "Benchmark 15 zkVMs and ZKP systems",
         description:
-          "Expand [benchmarking](https://github.com/privacy-ethereum/csp-benchmarks) to ECDSA, Poseidon, Poseidon2 and Keccak across 14 zkVMs and proof systems.",
+          "Expand [benchmarking](https://github.com/privacy-ethereum/csp-benchmarks) to ECDSA, Poseidon, Poseidon2 and Keccak across 15 zkVMs and proof systems.",
         status: "In progress",
         statusDot: "green",
       },
