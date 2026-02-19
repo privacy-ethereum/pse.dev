@@ -1,0 +1,16 @@
+<svg width="272" height="143" viewBox="0 0 272 143" xmlns="http://www.w3.org/2000/svg">
+  <rect width="272" height="143" fill="#1F8F3A"/>
+  <text
+    x="50%"
+    y="50%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="24"
+    font-style="italic"
+    font-weight="700"
+    fill="#FFFFFF"
+  >
+    Verifiable UBT
+  </text>
+</svg>

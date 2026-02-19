@@ -71,6 +71,8 @@ export const CATEGORIES: Category[] = [
   },
 ]
 
+import { TLSNOTARY } from "./tlsnotary-data"
+
 export const PROJECTS: ProjectData[] = [
   // ─── Private Proving ───
   {
@@ -202,7 +204,7 @@ export const PROJECTS: ProjectData[] = [
         name: "Native Prover (Swift/Kotlin/RN/Flutter)",
         description:
           "Developers use Circom/Noir provers directly in native platforms without Rust toolchain setup.",
-        status: "In progress \u00b7 ~2 months",
+        status: "Done",
         statusDot: "green",
       },
       {
@@ -222,6 +224,13 @@ export const PROJECTS: ProjectData[] = [
     ],
     next: [
       {
+        name: "TWDIW Integration",
+        description:
+          "Provides a PoC showcasing OpenAC × TWDIW privacy-preserving age verification solution for online alcohol purchases in Taiwan.",
+        status: "Planned \u00b7 ~1 month",
+        statusDot: "yellow",
+      },
+      {
         name: "Mopro Pack (Plugin SDK)",
         description:
           "Plugin-level integration: consume prover as a functional SDK. Drop into existing stacks like Anon Aadhaar.",
@@ -232,7 +241,7 @@ export const PROJECTS: ProjectData[] = [
         name: "zkVM Mobile Study",
         description:
           "Port Jolt/Nexus/RISC0 to ARM64 mobile. Profile thermal throttling, battery impact.",
-        status: "Planned",
+        status: "Planned \u00b7 ~1 month",
         statusDot: "yellow",
       },
     ],
@@ -390,6 +399,43 @@ export const PROJECTS: ProjectData[] = [
         name: "FOSDEM Presentation",
         description: "Public communication: standard interfaces for zkTLS.",
         status: "Feb 1-2",
+    id: "machina",
+    name: "Machina iO",
+    category: "private-proving",
+    status: "Research",
+    statusVariant: "research",
+    completion: 10,
+    description:
+      "Practical indistinguishability obfuscation. 2026 focus: noise refreshing, blind PRF over key-homomorphic encodings, \u226564-bit obfuscation, SNARK verification kickoff.",
+    href: "/mastermap/machina",
+    tags: ["iO", "GGH15", "Lattice", "FHE", "key-homomorphic"],
+    now: [
+      {
+        name: "FHE multiplication over encodings",
+        description:
+          "Implement FHE multiplication over key-homomorphic encodings. Foundation for blind PRF; unlocks predicate encryption / LFE.",
+        status: "Q1 2026 \u00b7 In progress",
+        statusDot: "green",
+      },
+      {
+        name: "Noise refreshing + dummy blind PRF",
+        description:
+          "Implement noise refreshing of GGH15 encodings with replaceable dummy blind PRF. Confirm parameter growth is polylogarithmic.",
+        status: "Q2 2026",
+        statusDot: "green",
+      },
+      {
+        name: "Benchmark harness",
+        description:
+          "Circuit size/depth sensitivity and parameter-growth behavior. Set targets for real blind PRF circuit size.",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "Noise refreshing paper",
+        description:
+          "Paper: noise refreshing construction and security proof (venue TBD).",
+        status: "Q2 2026",
         statusDot: "yellow",
       },
     ],
@@ -405,6 +451,24 @@ export const PROJECTS: ProjectData[] = [
         name: "Full SDK",
         description: "Complete developer SDK with full documentation.",
         status: "Planned",
+        name: "Blind PRF over key-homomorphic encodings",
+        description:
+          "Circuit over encodings that simulates a PRF without revealing key or output. Replace dummy in noise refreshing.",
+        status: "Q2\u2013Q3 2026 \u00b7 Critical",
+        statusDot: "yellow",
+      },
+      {
+        name: "\u226564-bit obfuscation",
+        description:
+          "End-to-end obfuscation and evaluation for \u226564 input bits. First practical iO beyond lookup-table scale.",
+        status: "Q3 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "Devcon 2026",
+        description:
+          "Paper and presentation: first practical-performance iO for nontrivial input size.",
+        status: "Q3 2026",
         statusDot: "yellow",
       },
     ],
@@ -418,6 +482,40 @@ export const PROJECTS: ProjectData[] = [
       },
     ],
   },
+        name: "SNARK verification over encodings",
+        description:
+          "Milestone 5 kickoff: PV vs DV scheme selection, verification circuit over key-homomorphic encodings. Continues into Q1 2027.",
+        status: "Q4 2026",
+        statusDot: "gray",
+      },
+      {
+        name: "Collaboration: security \u00b7 efficiency",
+        description:
+          "Academic collaboration on cryptanalysis (all-product LWE, evasive LWE, encodings) and efficiency improvements.",
+        status: "2026",
+        statusDot: "gray",
+      },
+    ],
+    details: {
+      description: [
+        "Execute 2026 critical path toward practical iO",
+        "Noise refreshing in practice; real blind PRF; \u226564-bit obfuscation",
+        "SNARK verification over encodings (kickoff Q4)",
+      ],
+      deliverables: [
+        "FHE multiplication + noise refreshing (dummy then real blind PRF)",
+        "First \u226564-bit obfuscation with reproducible benchmarks",
+        "Noise refreshing + security proof paper; Devcon 2026 dissemination",
+        "SNARK verification scheme selection and early prototype (Q4)",
+      ],
+      impact: [
+        "First practical-performance iO for nontrivial input size",
+        "Foundation for predicate encryption / LFE implementations",
+        "Security and efficiency collaboration with academia",
+      ],
+    },
+  },
+  TLSNOTARY,
   {
     id: "verifiable-compute",
     name: "Verifiable Compute",
@@ -829,16 +927,16 @@ export const PROJECTS: ProjectData[] = [
     later: [],
   },
   {
-    id: "tor-in-js",
-    name: "Tor in JS",
+    id: "tor-js",
+    name: "tor-js",
     category: "private-reads",
     status: "Active R&D",
     statusVariant: "rd",
     completion: 20,
     description:
       "Arti Tor client in-browser for anonymized RPC. Kohaku integration for plug-in anonymous routing in wallets and frontends.",
-    href: "/mastermap/tor-in-js",
-    projectUrl: "/projects/tor-in-js",
+    href: "/mastermap/tor-js",
+    projectUrl: "/projects/tor-js",
     tags: ["Arti", "Tor", "Kohaku"],
     now: [
       {
