@@ -1,7 +1,7 @@
 ---
 authors: ["PSE Team"]
 title: "PSE February 2026 Newsletter"
-image: "/articles/pse-february-2026/cover.webp"
+image: "/articles/pse-february-2026/feb-cover-image.jpg"
 tldr: "Updates from Private Writes, Private Proving, and Private Reads teams covering research progress, new releases, and ecosystem collaborations."
 date: "2026-02-19"
 tags: ["newsletter"]
