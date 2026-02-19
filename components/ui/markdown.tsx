@@ -451,6 +451,51 @@ const rehypeProcessBrTags = () => {
   }
 }
 
+const rehypeStyleAside = () => {
+  return (tree: any) => {
+    const visit = (node: any) => {
+      if (node.type === "element" && node.tagName === "aside") {
+        if (!node.properties) {
+          node.properties = {}
+        }
+        if (!node.properties.className) {
+          node.properties.className = []
+        }
+        const classes = Array.isArray(node.properties.className)
+          ? node.properties.className
+          : [node.properties.className]
+        node.properties.className = [
+          ...classes,
+          "my-6",
+          "p-4",
+          "rounded-lg",
+          "bg-tuatara-50",
+          "dark:bg-tuatara-900",
+          "border-l-4",
+          "border-anakiwa-500",
+          "dark:border-anakiwa-400",
+          "[&>p]:text-tuatara-700",
+          "dark:[&>p]:text-tuatara-200",
+          "[&>p]:my-2",
+          "[&>ul]:text-tuatara-700",
+          "dark:[&>ul]:text-tuatara-200",
+          "[&>ul]:my-2",
+          "[&>strong]:text-tuatara-900",
+          "dark:[&>strong]:text-tuatara-100",
+        ]
+      }
+
+      if (node.children) {
+        node.children.forEach(visit)
+      }
+
+      return node
+    }
+
+    return visit(tree)
+  }
+}
+
 const CodeBlock = ({
   className,
   children,
@@ -692,7 +737,7 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
   ol: ({ ordered, ...props }) =>
     createMarkdownElement(ordered ? "ol" : "ul", {
       className:
-        "list-decimal text-tuatara-600 font-sans text-lg font-normal mt-3 dark:text-tuatara-200",
+        "ml-6 list-decimal text-tuatara-600 font-sans text-lg font-normal mt-3 dark:text-tuatara-200",
       ...props,
     }),
   table: Table,
@@ -826,6 +871,11 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
         "w-auto w-auto mx-auto rounded-lg object-cover dark:bg-white dark:p-3",
       ...props,
     }),
+  blockquote: ({ children }) => (
+    <blockquote className="border-l-4 border-tuatara-400 dark:border-tuatara-500 pl-4 italic text-tuatara-600 dark:text-tuatara-300">
+      {children}
+    </blockquote>
+  ),
   "footnote-ref": ({ identifier, label }) => {
     const handleClick = useCallback(
       (e: React.MouseEvent) => {
@@ -948,7 +998,11 @@ export const Markdown = ({
         ...components,
       }
 
-      const rehypePlugins = [rehypeRaw as any, rehypeProcessBrTags as any]
+      const rehypePlugins = [
+        rehypeRaw as any,
+        rehypeProcessBrTags as any,
+        rehypeStyleAside as any,
+      ]
 
       setContent([
         <ReactMarkdown
@@ -967,7 +1021,11 @@ export const Markdown = ({
         <ReactMarkdown
           key="fallback"
           skipHtml={false}
-          rehypePlugins={[rehypeRaw as any, rehypeProcessBrTags as any]}
+          rehypePlugins={[
+            rehypeRaw as any,
+            rehypeProcessBrTags as any,
+            rehypeStyleAside as any,
+          ]}
           components={{
             ...REACT_MARKDOWN_CONFIG(darkMode),
             ...components,

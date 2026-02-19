@@ -3,7 +3,7 @@ id: "private-proof-delegation"
 name: "Private proof delegation"
 image: ""
 section: "pse"
-projectStatus: "active"
+projectStatus: "maintained"
 category: "research"
 tldr: "Private Delegated Proving aims to unlock efficient zero-knowledge proof (ZKP) generation for resource-constrained clients such as mobile phones, without compromising privacy."
 tags:

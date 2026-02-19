@@ -1,4 +1,4 @@
-import { GET } from "@/app/api/search/indexes/route"
+import { GET } from "../../app/api/search/indexes/route"
 import { describe, it, expect, vi } from "vitest"
 
 describe("/api/search/indexes", () => {
@@ -9,7 +9,7 @@ describe("/api/search/indexes", () => {
 
       expect(response.status).toBe(200)
       expect(data).toEqual({
-        indexes: ["blog", "projects"],
+        indexes: ["blog", "projects", "research"],
         status: "success",
       })
     })
@@ -32,9 +32,9 @@ describe("/api/search/indexes", () => {
       const data = await response.json()
 
       // Should match the allIndexes constant in search/route.ts
-      expect(data.indexes).toEqual(["blog", "projects"])
+      expect(data.indexes).toEqual(["blog", "projects", "research"])
       expect(Array.isArray(data.indexes)).toBe(true)
-      expect(data.indexes.length).toBe(2)
+      expect(data.indexes.length).toBe(3)
     })
 
     it("returns proper response structure", async () => {
@@ -45,7 +45,7 @@ describe("/api/search/indexes", () => {
         indexes: expect.any(Array),
         status: "success",
       })
-      expect(data.indexes).toEqual(["blog", "projects"])
+      expect(data.indexes).toEqual(["blog", "projects", "research"])
       expect(data.status).toBe("success")
     })
 

@@ -21,6 +21,8 @@ export const LABELS = {
       RESEARCH: "Research",
       ABOUT: "About",
       BLOG: "Blog",
+      ECOSYSTEM: "Ecosystem",
+      MASTER_MAP: "Master Map",
     },
     FOOTER: {
       DESCRIPTION:
@@ -243,6 +245,20 @@ export const LABELS = {
       "Our research model is open source, iterative, and driven by real-world use cases.",
     ACTIVE_RESEARCH: "Active Research",
     PAST_RESEARCH: "Past Research",
+  },
+  MASTER_MAP_PAGE: {
+    TITLE: "PSE Master Map",
+    SUBTITLE:
+      "A consolidated view of PSE's highest-priority initiatives across Private Proving, Private Writes, and Private Reads.",
+    DISCLAIMER: "Roadmaps are indicative and evolve with ecosystem feedback.",
+  },
+  ECOSYSTEM_PAGE: {
+    TITLE: "Explore Our Ecosystem",
+    SUBTITLE:
+      "Explore our ecosystem exploration artifacts, from reports to maps.",
+    ARTIFACTS: "Ecosystem Artifacts",
+    EXTERNAL_RESEARCH_REPORTS:
+      "Explore ecosystem research reports done by other teams outside PSE",
   },
   RESOURCES_PAGE: {
     TITLE: "Resources",

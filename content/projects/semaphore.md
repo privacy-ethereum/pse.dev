@@ -3,7 +3,7 @@ id: "semaphore"
 name: "Semaphore"
 image: "semaphore.webp"
 section: "pse"
-projectStatus: "active"
+projectStatus: "maintained"
 category: "devtools"
 tldr: "A zero-knowledge protocol for anonymous interactions."
 license: "MIT"
@@ -74,7 +74,7 @@ When a user broadcasts a message, Semaphore zero-knowledge proofs can ensure tha
 
 - Submit your idea to PSE's [acceleration program](https://github.com/privacy-scaling-explorations/acceleration-program) (check out this [discussion](https://github.com/orgs/semaphore-protocol/discussions/463) for potential ideas).
 - Work on [open issues](https://github.com/semaphore-protocol/semaphore/contribute)
-- Suggest new terms for our [glossary](https://semaphore.pse.dev/docs/glossary) ([website-issue](https://github.com/semaphore-protocol/website/issues/new?assignees=&labels=documentation&template=---glossary-term.md&title=))
+- Suggest new terms for our [glossary](https://docs.semaphore.pse.dev/glossary) ([website-issue](https://github.com/semaphore-protocol/website/issues/new?assignees=&labels=documentation&template=---glossary-term.md&title=))
 - Propose new networks for our [deployed contracts](https://semaphore.pse.dev/docs/deployed-contracts) ([semaphore-issue](https://github.com/semaphore-protocol/semaphore/issues/new?assignees=&labels=&template=----network.md&title=))
 - Suggest new developer tools ([semaphore-issue](https://github.com/semaphore-protocol/semaphore/issues/new?assignees=&labels=feature+%3Arocket%3A&template=---package.md&title=))
 - Share your Semaphore project with us ([semaphore-issue](https://github.com/semaphore-protocol/semaphore/issues/new?assignees=&labels=documentation++%F0%9F%93%96&template=----project.md&title=))

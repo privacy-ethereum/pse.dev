@@ -63,7 +63,7 @@ Before submitting, make sure to:
 
 Open Pull request following the previews step and for any help
 
-- Suggest to tag: @kalidiagne, @psedesign for PR review.
+- Suggest to tag: @wslyvh, @psedesign, andyguzmaneth for PR review.
 - If question, please reach out in discord channel #website-pse
 
 ## Important Notes
@@ -71,3 +71,23 @@ Open Pull request following the previews step and for any help
 - The folder name in `/public/articles` must **exactly match** your markdown filename (without the .md extension)
 - Use descriptive file names for your additional images
 - Optimize your images for web before adding them to keep page load times fast
+
+## Caching Policy
+
+Static assets have different caching behaviors:
+
+**Images** (`.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`, `.avif`) are cached aggressively with `immutable` headers for 1 year. This means once a user downloads an image, their browser will not re-request it.
+
+**Documents** (`.pdf`, etc.) use default browser caching, allowing updates to propagate within hours/days.
+
+### Updating Static Assets
+
+If you need to update an existing static file (image, PDF, etc.), follow the **cache-busting pattern**:
+
+1. **Do not replace the file in-place**, users with cached versions won't see updates
+2. **Use a versioned filename**, rename `report.pdf` to `report-v2.pdf`
+3. **Update all references** to point to the new filename
+
+This follows [Mozilla's recommendation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control#immutable) for immutable resources: include version/hashes in URLs rather than modifying existing files.
+
+See [issue #607](https://github.com/privacy-ethereum/pse.dev/issues/607) for context on this policy.

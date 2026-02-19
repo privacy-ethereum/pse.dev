@@ -21,7 +21,9 @@ links:
 
 ### Overview
 
-zkID is a strategic initiative of the Ethereum Foundation, in collaboration with Privacy Stewards of Ethereums (PSE), focused on advancing the use of Zero Knowledge Proofs (ZKPs) in digital identity systems. We contribute to PSE by leading research, coordination, education, and development efforts that enable privacy-preserving, interoperable, and standards-aligned identity infrastructure.
+zkID is a team within Privacy Stewards of Ethereum (PSE) at the Ethereum Foundation, focused on advancing the use of Zero Knowledge Proofs (ZKPs) in digital identity systems. We work on research, coordination, education, and development of privacy-preserving, interoperable, and standards-aligned identity infrastructure. 
+
+Across the identity ecosystem, we draft technical standards, maintain open-source resources, and prototype infrastructure that aligns with evolving regulatory frameworks. By facilitating collaboration between researchers, developers, governments, and institutions, we bridge foundational cryptographic research with real-world deployment and impact.
 
 ### Vision
 
@@ -60,7 +62,9 @@ Standards like the IETF and EUDI framework are **global signaling mechanisms.** 
 
 2. **Research, Prototype, Subtraction**
 
-We [research](https://www.notion.so/Evaluation-Framework-for-SSI-Solutions-8eceb793a5b442cb8da65acc3c337d5c?pvs=21) and build standards-compliant, [**minimal and modular PoCs**](https://github.com/adria0/seediq-playground) like the [ZKP Wallet Unit](https://www.notion.so/External-zkID-ZKP-Wallet-Unit-Proposal-1bad57e8dd7e80c98d73fc7e7666375d?pvs=21) and libaries like [zkPDF](https://pse.dev/blog/zkpdf-unlocking-verifiable-data). This is done in collaboration with governments, to ensure practical real-world ZKP integration pathways.
+We [research](https://www.notion.so/Evaluation-Framework-for-SSI-Solutions-8eceb793a5b442cb8da65acc3c337d5c?pvs=21) and build standards-compliant, [**minimal and modular PoCs**](https://github.com/adria0/seediq-playground) like the [ZKP Wallet Unit](https://www.notion.so/External-zkID-ZKP-Wallet-Unit-Proposal-1bad57e8dd7e80c98d73fc7e7666375d?pvs=21) and libraries like [zkPDF](https://pse.dev/blog/zkpdf-unlocking-verifiable-data). This is done in collaboration with governments, to ensure practical real-world ZKP integration pathways.
+
+In November 2025 we launched the [OpenAC Whitepaper](https://eprint.iacr.org/2026/251.pdf), which introduces an open and lightweight anonymous credential system designed to be compatible with existing identity frameworks while providing unlinkability for issued credentials.
 
 By delivering vendor-neutral, open-source PoCs, zkID aims to provide tangible working proof in production-ready environments.
 
@@ -79,5 +83,10 @@ zkID serves as a neutral translator and strategic steward, helping institutions 
 zkID's work aims to create a world where individuals have full control over their digital identity while maintaining privacy and security. Our efforts contribute to a more equitable and privacy-respecting digital future for all users.
 
 ### Resources
+
+- [ZK Whiteboard Sessions: zkID (Anonymous Credentials), w/ Ying Tong](https://youtu.be/vqBef6XFB4A)
+- [Privacy in Digital ID at Devconnect 2025 by Ying Tong (Slides)](https://docs.google.com/presentation/d/19iut5HjGO7PHBNZLctUmznb2LAmGbf5kYjtUtbtKLS8/edit?usp=sharing)
+- [Revocation in zkID: Merkle Tree-based Approaches at Devconnect 2025 by Vivian Plasencia (Slides)](https://docs.google.com/presentation/d/1QS0eneynnfMMXY0oFN4lj7vTmHzdYuXwegtGCf8Q7Ww/edit?usp=sharing)
+- [OpenAC presentation in December 2025 by zkID team (Slides)](https://docs.google.com/presentation/d/1l8dyAP3Ax26VqjXcvu2H5HCnLcZLCatwjwh72Dv7V64/edit?usp=sharing)
 
 For more information about zkID initiatives, technical standards, and ongoing projects, visit our GitHub repository and follow our research publications.

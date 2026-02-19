@@ -17,7 +17,7 @@ tags: ["privacy", "governance", "voting", "DAOs", "MACI"] # (Optional) Add relev
 
 ## PDF Report
 
-The full PDF report can be accessed [**HERE**](https://pse.dev/articles/state-of-private-voting-2026/state-of-private-voting-2026.pdf).
+The full PDF report can be accessed [**HERE**](https://pse.dev/articles/state-of-private-voting-2026/state-of-private-voting-2026-v2.pdf).
 <br/>
 <br/>
 
@@ -46,6 +46,8 @@ The report covers the following areas:
 - Future work
 
 The following is a summary table comparing the different private voting protocols based on the defined properties. You can find more details and information in the full report.
+
+We have since published an update with new properties: "Quantum Resistance" and "Open Source", which you can read about in the full PDF.
 
 ![Private voting protocols comparison table](/articles/state-of-private-voting-2026/table.webp)
 

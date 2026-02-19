@@ -47,7 +47,7 @@ export const BlogHeader = ({ post, imageAsCover }: BlogHeaderProps) => {
                 })}
               </div>
             )}
-            {post?.canonical && (
+            {post?.canonical && post.canonical.trim() && (
               <div
                 className={cn(
                   "text-sm italic  mt-1",

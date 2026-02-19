@@ -13,11 +13,9 @@ tags:
   types: ["Legos/dev tools", "Benchmarking", "Proof systems"]
 team:
   - name: "Alex Kuzmin"
-    email: "alex.kuzmin@pse.dev"
-  - name: "Guorong Du"
-    email: "dgr009@pse.dev"
+    email: "alex.kuzmin@ethereum.org"
   - name: "Brechy"
-    email: "brechy@pse.dev"
+    email: "brechy@ethereum.org"
 ---
 
 ### Project Overview
@@ -26,14 +24,14 @@ The Client-Side Proving project aims to develop practical and efficient implemen
 
 ### Objective
 
-We publish the CSP Quarterly Report, which benchmarks zkVMs and ZKP stacks for mobile feasibility. In parallel, we research promising ZKP stacks, prioritizing transparent (no-setup), post-quantum–sound ZKP systems with direct on-chain verification. All evaluations respect realistic mobile RAM budgets - under 4 GB on Android and 6 GB on iPhone.
+We publish the [CSP Quarterly Report](https://ethproofs.org/csp-benchmarks), which benchmarks zkVMs and ZKP systems for client-side feasibility. In parallel, we research promising ZKP stacks, prioritizing transparent (no-setup), post-quantum–sound ZKP systems with direct on-chain verification. All evaluations respect realistic mobile RAM budgets - under 4 GB on Android and 6 GB on iPhone.
 
 ### Project Status
 
 - **Stage:** MVP Development
 - **Status:** Active
 - **Team Lead:** Alex Kuzmin
-- **Team Members:** Guorong Du, Brechy
+- **Team Members:** Brechy
 
 ### Technical Approach
 
@@ -45,8 +43,9 @@ We publish the CSP Quarterly Report, which benchmarks zkVMs and ZKP stacks for m
 
 - **April 2025**: Established baseline benchmarks for common mobile hardware.
 - **June 2025**: Published the first benchmark results, [Efficient Client-Side Proving for zkID](https://pse.dev/blog/efficient-client-side-proving-for-zkid).
-- **Q3 2025 (planned)**: Researching the most efficient sumcheck-based ZKP system with WHIR PCS, adding Noir frontend and on-chain verifier
-- **Q4 2025 (planned)**: Publishing the first edition of the **CSP Quarterly Report** containing the benchmarks of demanding ZKP circuits (SHA-256, ECDSA) in latest ZKP systems and zkVMs that claim to be client-side oriented.
+- **November 2025**: Publishing the benchmark results of demanding ZKP circuits (SHA-256, ECDSA) in latest and popular ZKP systems and zkVMs that claim to be client-side oriented: https://ethproofs.org/csp-benchmarks.
+- **Q2 2026 (planned)**: Publishing the additional extended benchmarks (Keccak, Poseidon) and expanding the proving system and zkVM coverage 
+- **Q2 2026 (planned)**: [Researching](https://hackmd.io/@clientsideproving/whir-based) the most efficient post-quantum sumcheck-based ZKP system with WHIR PCS, on-chain verifier, and a frontend DSL
 
 ### Applications
 
@@ -57,11 +56,11 @@ Client-Side Proving enables numerous privacy-focused mobile applications, includ
 
 ### How to get in touch
 
-- Join the [PSE Discord](https://discord.com/invite/sF5CT5rzrR)
-- Reach out via email Alex: alex.kuzmin@pse.dev, Guorong Du: dgr009@pse.dev, Brechy: brechy@pse.dev
+- Reach out via email Alex: alex.kuzmin@ethereum.org, Brechy: brechy@ethereum.org
 
 ### Publications
 
+- [The Definitive CSP: Towards a Post-Quantum, On-Chain-Verifiable, Client-Side Proving System for ZK Applications](https://hackmd.io/@clientsideproving/whir-based)
 - [Benchmarks for Digital ID Wallet](https://hackmd.io/@clientsideproving/S1wiUc0n1e)
 - [Mobile Hardware Survey](https://hackmd.io/@clientsideproving/ByqafXAv1e)
 - [Plonky2 Sha256 Benchmarks](https://hackmd.io/@clientsideproving/B1xLCuJL5yg)

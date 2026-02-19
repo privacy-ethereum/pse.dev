@@ -19,16 +19,9 @@ Enhancing Ethereum through cryptographic research and collective experimentation
 
 ## PR Review process
 
-#### For internal, PSE member:
-
-- Suggest to tag: @kalidiagne, @psedesign for PR review.
-- If question, please reach out in discord channel #website-pse
-
-#### For external:
-
-- Translation PR: please tag a member you know that can help review your translation
-- Any type of PR: please state clear your intention
-  For any suggestion, feel free to open issue or send us a message on Discord #suggestion
+- Translation PRs: Please tag a member who can help review your translation.
+- All PRs: Please clearly state your intention or the purpose of the pull request.
+- Suggestions: If you have any suggestions, feel free to open an issue.
 
 ## Run Locally
 

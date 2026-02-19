@@ -172,4 +172,4 @@ If you're interested in reading more on Arbitrum's optimistic rollup, their docu
 - [Arbitrum Doc — Inside Arbitrum](https://developer.offchainlabs.com/docs/inside_arbitrum)
 - [Arbitrum Doc — Rollup Protocol](https://developer.offchainlabs.com/docs/rollup_protocol)
 - [Arbitrum Doc — AVM Design Rationale](https://developer.offchainlabs.com/docs/avm_design)
-- [Arbitrum Doc — Overview of Differences with Ethereum](https://developer.offchainlabs.com/docs/differences_overview)
+- [Arbitrum Doc — Overview of Differences with Ethereum](https://docs.arbitrum.io/build-decentralized-apps/arbitrum-vs-ethereum/comparison-overview)

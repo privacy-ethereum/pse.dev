@@ -73,9 +73,7 @@ export const WikiCard = ({ project, className = "" }: WikiCardProps) => {
         <Card className="bg-background" padding="none">
           <div className="relative flex h-[140px] items-center justify-center overflow-hidden rounded-t-lg">
             <Image
-              src={`/project-banners/${
-                project.image ? project.image : "fallback.webp"
-              }`}
+              src={project.image || "/project-banners/fallback.webp"}
               alt={`${project.name} banner`}
               fill
               className="object-cover"
@@ -132,7 +130,7 @@ export const WikiCard = ({ project, className = "" }: WikiCardProps) => {
           <Card padding="none">
             <div className="relative flex max-h-[140px] items-center justify-center overflow-hidden rounded-t-lg ">
               <Image
-                src={`/project-banners/${previousBrandImage}`}
+                src={previousBrandImage}
                 alt={`${project.name} banner`}
                 fill
                 className="object-cover"
