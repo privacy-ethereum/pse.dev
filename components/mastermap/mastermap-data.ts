@@ -371,6 +371,34 @@ export const PROJECTS: ProjectData[] = [
     },
   },
   {
+    id: "tlsnotary",
+    name: "TLSNotary",
+    category: "private-proving",
+    status: "Active development",
+    statusVariant: "active",
+    completion: 15,
+    description:
+      "Cryptographic proofs of web data authenticity using TLS and MPC. Approaching production readiness.",
+    href: "/mastermap/tlsnotary",
+    tags: ["zkTLS", "MPC", "Attestation", "SDK"],
+    now: [
+      {
+        name: "alpha-14",
+        description: "Latest protocol release with updated benchmarks.",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "SDK Preview",
+        description:
+          "Developer SDK preview for building on TLSNotary.",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "FOSDEM Presentation",
+        description: "Public communication: standard interfaces for zkTLS.",
+        status: "Feb 1-2",
     id: "machina",
     name: "Machina iO",
     category: "private-proving",
@@ -413,6 +441,16 @@ export const PROJECTS: ProjectData[] = [
     ],
     next: [
       {
+        name: "Production Ready Protocol",
+        description:
+          "Production-grade protocol implementation. Scoping in progress.",
+        status: "Planned \u00b7 Critical",
+        statusDot: "yellow",
+      },
+      {
+        name: "Full SDK",
+        description: "Complete developer SDK with full documentation.",
+        status: "Planned",
         name: "Blind PRF over key-homomorphic encodings",
         description:
           "Circuit over encodings that simulates a PRF without revealing key or output. Replace dummy in noise refreshing.",
@@ -436,6 +474,14 @@ export const PROJECTS: ProjectData[] = [
     ],
     later: [
       {
+        name: "Smart Contract Attestation",
+        description:
+          "Attestation workflow for on-chain verification of TLSNotary proofs.",
+        status: "Scoping",
+        statusDot: "gray",
+      },
+    ],
+  },
         name: "SNARK verification over encodings",
         description:
           "Milestone 5 kickoff: PV vs DV scheme selection, verification circuit over key-homomorphic encodings. Continues into Q1 2027.",
@@ -539,6 +585,105 @@ export const PROJECTS: ProjectData[] = [
   },
 
   // ─── Private Writes ───
+  {
+    id: "machina",
+    name: "Machina iO",
+    category: "private-writes",
+    status: "Research",
+    statusVariant: "research",
+    completion: 10,
+    description:
+      "Practical indistinguishability obfuscation. 2026 focus: noise refreshing, blind PRF over key-homomorphic encodings, \u226564-bit obfuscation, SNARK verification kickoff.",
+    href: "/mastermap/machina",
+    tags: ["iO", "GGH15", "Lattice", "FHE", "key-homomorphic"],
+    now: [
+      {
+        name: "FHE multiplication over encodings",
+        description:
+          "Implement FHE multiplication over key-homomorphic encodings. Foundation for blind PRF; unlocks predicate encryption / LFE.",
+        status: "Q1 2026 \u00b7 In progress",
+        statusDot: "green",
+      },
+      {
+        name: "Noise refreshing + dummy blind PRF",
+        description:
+          "Implement noise refreshing of GGH15 encodings with replaceable dummy blind PRF. Confirm parameter growth is polylogarithmic.",
+        status: "Q2 2026",
+        statusDot: "green",
+      },
+      {
+        name: "Benchmark harness",
+        description:
+          "Circuit size/depth sensitivity and parameter-growth behavior. Set targets for real blind PRF circuit size.",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "Noise refreshing paper",
+        description:
+          "Paper: noise refreshing construction and security proof (venue TBD).",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+    ],
+    next: [
+      {
+        name: "Blind PRF over key-homomorphic encodings",
+        description:
+          "Circuit over encodings that simulates a PRF without revealing key or output. Replace dummy in noise refreshing.",
+        status: "Q2\u2013Q3 2026 \u00b7 Critical",
+        statusDot: "yellow",
+      },
+      {
+        name: "\u226564-bit obfuscation",
+        description:
+          "End-to-end obfuscation and evaluation for \u226564 input bits. First practical iO beyond lookup-table scale.",
+        status: "Q3 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "Devcon 2026",
+        description:
+          "Paper and presentation: first practical-performance iO for nontrivial input size.",
+        status: "Q3 2026",
+        statusDot: "yellow",
+      },
+    ],
+    later: [
+      {
+        name: "SNARK verification over encodings",
+        description:
+          "Milestone 5 kickoff: PV vs DV scheme selection, verification circuit over key-homomorphic encodings. Continues into Q1 2027.",
+        status: "Q4 2026",
+        statusDot: "gray",
+      },
+      {
+        name: "Collaboration: security \u00b7 efficiency",
+        description:
+          "Academic collaboration on cryptanalysis (all-product LWE, evasive LWE, encodings) and efficiency improvements.",
+        status: "2026",
+        statusDot: "gray",
+      },
+    ],
+    details: {
+      description: [
+        "Execute 2026 critical path toward practical iO",
+        "Noise refreshing in practice; real blind PRF; \u226564-bit obfuscation",
+        "SNARK verification over encodings (kickoff Q4)",
+      ],
+      deliverables: [
+        "FHE multiplication + noise refreshing (dummy then real blind PRF)",
+        "First \u226564-bit obfuscation with reproducible benchmarks",
+        "Noise refreshing + security proof paper; Devcon 2026 dissemination",
+        "SNARK verification scheme selection and early prototype (Q4)",
+      ],
+      impact: [
+        "First practical-performance iO for nontrivial input size",
+        "Foundation for predicate encryption / LFE implementations",
+        "Security and efficiency collaboration with academia",
+      ],
+    },
+  },
   {
     id: "ptr",
     name: "Private Transfers (Research)",
