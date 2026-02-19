@@ -370,10 +370,80 @@ export const PROJECTS: ProjectData[] = [
       ],
     },
   },
+  TLSNOTARY,
+  {
+    id: "verifiable-compute",
+    name: "Verifiable Compute",
+    category: "private-proving",
+    status: "Research & development",
+    statusVariant: "rd",
+    completion: 10,
+    description:
+      "Standard interface for verifiable computation in WebAssembly. Enables private applications to run in secure, isolated environments and use WASM as a portable compilation target for zkVMs without coupling to a specific proving system.",
+    href: null,
+    tags: ["WASM", "zkVM", "VOLE", "WIT", "Verifiable Compute"],
+    now: [
+      {
+        name: "Interface requirements",
+        description:
+          "Research and define requirements for a verifiable compute interface (WIT, visibility semantics, host/guest boundary).",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "VOLE zkVM prototype",
+        description:
+          "Implement VOLE-based zkVM implementing the Verifiable Compute API. Target: web proof ecosystem and zkID.",
+        status: "In progress",
+        statusDot: "green",
+      },
+    ],
+    next: [
+      {
+        name: "Verifiable Compute SDK",
+        description:
+          "Prototype SDK for web and mobile (web extension, Kohaku integration; Mopro alignment for mobile).",
+        status: "Planned",
+        statusDot: "yellow",
+      },
+      {
+        name: "VOLE zkVM benchmarks",
+        description:
+          "Benchmark VOLE zkVM against other CSP candidates (e.g. Ligetron).",
+        status: "Planned",
+        statusDot: "yellow",
+      },
+      {
+        name: "TLSNotary integration",
+        description:
+          "Integrate VOLE zkVM into TLSNotary core protocol and Verifiable Compute SDK.",
+        status: "Planned",
+        statusDot: "yellow",
+      },
+    ],
+    later: [
+      {
+        name: "Ecosystem feedback",
+        description:
+          "Solicit ecosystem feedback and encourage other proving systems to implement the interface.",
+        status: "Q2 2026",
+        statusDot: "gray",
+      },
+      {
+        name: "Advanced zkVM features",
+        description:
+          "Oblivious control flow and ORAM for VOLE zkVM where needed.",
+        status: "R&D",
+        statusDot: "blue",
+      },
+    ],
+  },
+
+  // ─── Private Writes ───
   {
     id: "machina",
     name: "Machina iO",
-    category: "private-proving",
+    category: "private-writes",
     status: "Research",
     statusVariant: "research",
     completion: 10,
@@ -469,76 +539,6 @@ export const PROJECTS: ProjectData[] = [
       ],
     },
   },
-  TLSNOTARY,
-  {
-    id: "verifiable-compute",
-    name: "Verifiable Compute",
-    category: "private-proving",
-    status: "Research & development",
-    statusVariant: "rd",
-    completion: 10,
-    description:
-      "Standard interface for verifiable computation in WebAssembly. Enables private applications to run in secure, isolated environments and use WASM as a portable compilation target for zkVMs without coupling to a specific proving system.",
-    href: null,
-    tags: ["WASM", "zkVM", "VOLE", "WIT", "Verifiable Compute"],
-    now: [
-      {
-        name: "Interface requirements",
-        description:
-          "Research and define requirements for a verifiable compute interface (WIT, visibility semantics, host/guest boundary).",
-        status: "In progress",
-        statusDot: "green",
-      },
-      {
-        name: "VOLE zkVM prototype",
-        description:
-          "Implement VOLE-based zkVM implementing the Verifiable Compute API. Target: web proof ecosystem and zkID.",
-        status: "In progress",
-        statusDot: "green",
-      },
-    ],
-    next: [
-      {
-        name: "Verifiable Compute SDK",
-        description:
-          "Prototype SDK for web and mobile (web extension, Kohaku integration; Mopro alignment for mobile).",
-        status: "Planned",
-        statusDot: "yellow",
-      },
-      {
-        name: "VOLE zkVM benchmarks",
-        description:
-          "Benchmark VOLE zkVM against other CSP candidates (e.g. Ligetron).",
-        status: "Planned",
-        statusDot: "yellow",
-      },
-      {
-        name: "TLSNotary integration",
-        description:
-          "Integrate VOLE zkVM into TLSNotary core protocol and Verifiable Compute SDK.",
-        status: "Planned",
-        statusDot: "yellow",
-      },
-    ],
-    later: [
-      {
-        name: "Ecosystem feedback",
-        description:
-          "Solicit ecosystem feedback and encourage other proving systems to implement the interface.",
-        status: "Q2 2026",
-        statusDot: "gray",
-      },
-      {
-        name: "Advanced zkVM features",
-        description:
-          "Oblivious control flow and ORAM for VOLE zkVM where needed.",
-        status: "R&D",
-        statusDot: "blue",
-      },
-    ],
-  },
-
-  // ─── Private Writes ───
   {
     id: "ptr",
     name: "Private Transfers (Research)",
