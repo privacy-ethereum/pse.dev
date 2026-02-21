@@ -6,24 +6,38 @@ export const ZKID: ProjectData = {
   category: "private-proving",
   status: "Research & development",
   statusVariant: "rd",
-  completion: 15,
+  completion: 25,
   description:
     "Privacy-preserving identity proofs. OpenAC wallet unit aligned with EUDI. ZK-friendly primitives.",
   href: "/mastermap/zkid",
   tags: ["Identity", "EUDI", "OpenAC", "Standards"],
   now: [
     {
-      name: "OpenAC Paper",
+      name: "Revocation Reports",
       description:
-        "Address community feedback, refine explanations and strengthen the paper.",
-      status: "In progress",
+        "Publish Merkle Tree-Based report on PSE blog. Support the completion of the DIF Revocation report.",
+      status: "In Progress",
       statusDot: "green",
     },
     {
-      name: "Revocation Reports",
+      name: "Generalized Predicates",
       description:
-        "Publish Merkle Tree-Based report on PSE blog. Wrap up DIF Grant Revocation report.",
-      status: "In progress",
+        "Enable flexible, expressive, composable verification requests over verifiable credentials.",
+      status: "In Progress",
+      statusDot: "green",
+    },
+    {
+      name: "OpenAC SDKs",
+      description:
+        "Publish SDKs with complete documentation for external integration.",
+      status: "In Progress",
+      statusDot: "green",
+    },
+    {
+      name: "On-chain Verification",
+      description:
+        "Support EVM compatible on-chain verification of OpenAC proofs.",
+      status: "In Progress",
       statusDot: "green",
     },
     {
@@ -33,22 +47,22 @@ export const ZKID: ProjectData = {
       status: "Ongoing",
       statusDot: "green",
     },
+    {
+      name: "OpenAC Paper",
+      description:
+        "Address community feedback, refine content, and publish a revised version.",
+      status: "Completed",
+      statusDot: "green",
+    },
+    {
+      name: "Circom Optimization",
+      description:
+        "Improve efficiency, readability, and performance of existing circuits.",
+      status: "Completed",
+      statusDot: "green",
+    },
   ],
   next: [
-    {
-      name: "Generalized Predicates",
-      description:
-        "Enable flexible, expressive, composable verification requests over verifiable credentials.",
-      status: "Planned \u00b7 Critical path",
-      statusDot: "yellow",
-    },
-    {
-      name: "OpenAC SDKs",
-      description:
-        "Publish SDKs with complete documentation for external integration.",
-      status: "Planned",
-      statusDot: "yellow",
-    },
     {
       name: "EU Wallet Vendor Collaboration",
       description:
@@ -56,15 +70,15 @@ export const ZKID: ProjectData = {
       status: "Planned",
       statusDot: "yellow",
     },
+    {
+      name: "X.509 Certificate Support",
+      description:
+        "Implement support for X.509 certificates to enable use cases that rely on existing industry standards.",
+      status: "Planned",
+      statusDot: "yellow",
+    }
   ],
   later: [
-    {
-      name: "Circom Optimization",
-      description:
-        "Improve efficiency, readability, and performance of existing circuits.",
-      status: "Planned",
-      statusDot: "gray",
-    },
     {
       name: "Member State Pilot",
       description:
@@ -83,6 +97,8 @@ export const ZKID: ProjectData = {
       "Revised OpenAC paper",
       "Generalized predicates support",
       "OpenAC SDKs with full docs",
+      "X.509 Certificate support",
+      "EVM compatible on-chain verification support",
     ],
     impact: [
       "2+ external integrations (wallet/sandbox/institution)",
