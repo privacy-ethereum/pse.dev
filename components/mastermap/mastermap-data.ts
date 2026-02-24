@@ -216,9 +216,9 @@ export const PROJECTS: ProjectData[] = [
         statusDot: "green",
       },
       {
-        name: "Taiwan PTT Collaboration",
+        name: "ZK-Based Human Verification at Scale",
         description:
-          "Mobile + laptop native provers for Taiwan citizen ID verification. 100K+ users target.",
+          "Native mobile and desktop provers powering privacy-preserving human verification using government-grade identity credentials. Designed for real-world adoption, with an initial rollout targeting 100,000+ verified users.",
         status: "In progress \u00b7 Critical",
         statusDot: "green",
       },
