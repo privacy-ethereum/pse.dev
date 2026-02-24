@@ -199,7 +199,7 @@ export const PROJECTS: ProjectData[] = [
     description:
       "Mobile-first proving infrastructure. Native provers for Swift/Kotlin/RN/Flutter. GPU crypto libraries.",
     href: "/mastermap/mopro",
-    tags: ["Mobile", "GPU", "zkVM", "Taiwan PTT"],
+    tags: ["Mobile", "GPU", "zkVM"],
     now: [
       {
         name: "Native Prover (Swift/Kotlin/RN/Flutter)",
