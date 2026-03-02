@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="460" viewBox="0 0 1440 460" role="img" aria-labelledby="title desc">
+  <title id="title">Social Recovery SDK high-level architecture</title>
+  <desc id="desc">Noir zkJWT circuit feeds the TypeScript SDK, which calls RecoveryManager. RecoveryManager connects to PasskeyVerifier, ZkJwtVerifier and HonkVerifier, and EIP712Lib plus GuardianLib.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #0f172a; stroke-width: 2; rx: 12; }
+      .txt { fill: #0f172a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 21px; font-weight: 600; }
+      .sub { fill: #334155; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 16px; }
+      .arr { stroke: #0f172a; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0f172a"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1440" height="460"/>
+
+  <rect class="box" x="60" y="150" width="290" height="130"/>
+  <text class="txt" x="205" y="205" text-anchor="middle">Noir zkJWT circuit</text>
+  <text class="sub" x="205" y="235" text-anchor="middle">circuits/zkjwt</text>
+
+  <rect class="box" x="420" y="150" width="280" height="130"/>
+  <text class="txt" x="560" y="205" text-anchor="middle">TypeScript SDK</text>
+  <text class="sub" x="560" y="235" text-anchor="middle">sdk/</text>
+
+  <rect class="box" x="770" y="150" width="420" height="130"/>
+  <text class="txt" x="980" y="205" text-anchor="middle">RecoveryManager</text>
+  <text class="sub" x="980" y="235" text-anchor="middle">contracts/src/RecoveryManager.sol</text>
+
+  <rect class="box" x="1240" y="45" width="170" height="80"/>
+  <text class="txt" x="1325" y="93" text-anchor="middle">PasskeyVerifier</text>
+
+  <rect class="box" x="1200" y="185" width="210" height="90"/>
+  <text class="txt" x="1305" y="223" text-anchor="middle">ZkJwtVerifier</text>
+  <text class="sub" x="1305" y="247" text-anchor="middle">-> HonkVerifier</text>
+
+  <rect class="box" x="1200" y="315" width="210" height="90"/>
+  <text class="txt" x="1305" y="353" text-anchor="middle">EIP712Lib</text>
+  <text class="sub" x="1305" y="377" text-anchor="middle">+ GuardianLib</text>
+
+  <path class="arr" d="M350 215 L420 215"/>
+  <path class="arr" d="M700 215 L770 215"/>
+  <path class="arr" d="M1190 185 L1238 110"/>
+  <path class="arr" d="M1190 215 L1200 230"/>
+  <path class="arr" d="M1190 245 L1200 355"/>
+</svg>
