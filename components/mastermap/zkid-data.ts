@@ -6,19 +6,12 @@ export const ZKID: ProjectData = {
   category: "private-proving",
   status: "Research & development",
   statusVariant: "rd",
-  completion: 25,
+  completion: 40,
   description:
     "Privacy-preserving identity proofs. OpenAC wallet unit aligned with EUDI. ZK-friendly primitives.",
   href: "/mastermap/zkid",
   tags: ["Identity", "EUDI", "OpenAC", "Standards"],
   now: [
-    {
-      name: "Revocation Reports",
-      description:
-        "Publish Merkle Tree-Based report on PSE blog. Support the completion of the DIF Revocation report.",
-      status: "In Progress",
-      statusDot: "green",
-    },
     {
       name: "Generalized Predicates",
       description:
@@ -30,13 +23,6 @@ export const ZKID: ProjectData = {
       name: "OpenAC SDKs",
       description:
         "Publish SDKs with complete documentation for external integration.",
-      status: "In Progress",
-      statusDot: "green",
-    },
-    {
-      name: "On-chain Verification",
-      description:
-        "Support EVM compatible on-chain verification of OpenAC proofs.",
       status: "In Progress",
       statusDot: "green",
     },
@@ -58,6 +44,20 @@ export const ZKID: ProjectData = {
       name: "Circom Optimization",
       description:
         "Improve efficiency, readability, and performance of existing circuits.",
+      status: "Completed",
+      statusDot: "green",
+    },
+    {
+      name: "Revocation Reports",
+      description:
+        "Publish Merkle Tree-Based report on PSE blog. Support the completion of the DIF Revocation report.",
+      status: "Completed",
+      statusDot: "green",
+    },
+    {
+      name: "On-chain Verification",
+      description:
+        "Support EVM compatible on-chain verification of OpenAC proofs.",
       status: "Completed",
       statusDot: "green",
     },
