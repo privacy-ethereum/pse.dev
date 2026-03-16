@@ -65,7 +65,7 @@ Quick commands:
 
 ```bash
 # Run all tests (CI mode)
-yarn test:run
+yarn test
 
 # Watch mode (dev)
 yarn test:watch

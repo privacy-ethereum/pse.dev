@@ -525,10 +525,17 @@ export const PROJECTS: ProjectData[] = [
     statusVariant: "active",
     completion: 15,
     description:
-      "Benchmark protocols, prototype L2 precompiles, gas analysis, specify native shielded pools.",
+      "Analyse protocols, measure gas cost of protocols, explore privacy standardisation",
     href: "/mastermap/pte",
-    tags: ["L2 Precompiles", "Benchmarks", "RIPs", "Shielded Pools"],
+    tags: ["State of Private Transfers", "Gas Benchmarks", "ERCs", "ERC20s"],
     now: [
+      {
+        name: "Protocol Analysis",
+        description:
+          "Comprehensive analysis: analyse 2-3 protocols per technology category against a set of set of criteria.",
+        status: "In progress",
+        statusDot: "green",
+      },
       {
         name: "Protocol Benchmarks",
         description:
@@ -537,11 +544,11 @@ export const PROJECTS: ProjectData[] = [
         statusDot: "green",
       },
       {
-        name: "OP-stack Setup",
+        name: "Explore Approaches to ERC20 Transfer Anonymity",
         description:
-          "Run all OP stack components. Add test precompile to understand implementation mechanism.",
-        status: "Planned",
-        statusDot: "yellow",
+          "Explore approaches to ERC20 token transfer anonymity to compliment existing confidentiality standards. Open to explore privacy standardisation beyond this scope should compelling opportunities exist.",
+        status: "In progress",
+        statusDot: "green",
       },
     ],
     next: [
@@ -553,27 +560,27 @@ export const PROJECTS: ProjectData[] = [
         statusDot: "yellow",
       },
       {
-        name: "L2 Precompiles (2-3)",
+        name: "Build Standards",
         description:
-          "Implement 2-3 native changes (MVP: 1). Fuzz testing. Gas cost analysis for DoS protection.",
+        "If explorations into standardisation feaibility are successful, build ERC(s) with other teams.",
+        status: "Planned \u00b7 Critical",
+        statusDot: "yellow",
+      },
+      {
+        name: "Gather Standard Feedback and Requirements",
+        description:
+          "Standardisation requires user feedback and understanding of DeFi protocol interactions. Research and build requirements into any work.",
         status: "Planned \u00b7 Critical",
         statusDot: "yellow",
       },
     ],
     later: [
       {
-        name: "RIP Proposals",
+        name: "Promote ERC(s)",
         description:
-          "Propose precompile changes as Rollup Improvement Proposals.",
-        status: "Q3 2026",
-        statusDot: "gray",
-      },
-      {
-        name: "L2 Shielded Pool Spec",
-        description:
-          "Specification for native shielded pool: note-based vs account-based, deposit/transfer/withdraw.",
-        status: "Q2-Q3 2026",
-        statusDot: "gray",
+          "Promote ERC(s) along with teams we have worked with.",
+        status: "Planned \u00b7 Critical",
+        statusDot: "yellow",
       },
     ],
   },
