@@ -16,7 +16,7 @@ export const TLSNOTARY: ProjectData = {
       name: "Proxy Mode",
       description:
         "TLS proxy that generates attestations without requiring MPC. Simpler setup, lower latency, but more trust assumptions.",
-      status: "In progress",
+      status: "In review",
       statusDot: "green",
     },
     {
