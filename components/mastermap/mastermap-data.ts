@@ -357,95 +357,79 @@ export const PROJECTS: ProjectData[] = [
     category: "private-writes",
     status: "Research",
     statusVariant: "research",
-    completion: 10,
+    completion: 20,
     description:
       "Practical indistinguishability obfuscation. 2026 focus: noise refreshing, blind PRF over key-homomorphic encodings, \u226564-bit obfuscation, SNARK verification kickoff.",
     href: "/mastermap/machina",
-    tags: ["iO", "GGH15", "Lattice", "FHE", "key-homomorphic"],
+    tags: ["iO", "Lattice", "key-homomorphic encodings", "FHE", "GGH15"],
     now: [
       {
-        name: "FHE multiplication over encodings",
+        name: "FHE multiplication over key-homomorphic encodings",
         description:
           "Implement FHE multiplication over key-homomorphic encodings. Foundation for blind PRF; unlocks predicate encryption / LFE.",
-        status: "Q1 2026 \u00b7 In progress",
+        status: "Q1 2026 \u00b7 The FHE multiplication circuit compatible with key-homomorphic encodings has been implemented. A further optimization and the evaluation of the circuit over the encodings is underway.",
         statusDot: "green",
       },
       {
-        name: "Noise refreshing + dummy blind PRF",
+        name: "A paper on a new lookup table evaluation method over key-homomorphic encodings and low-depth modulo operation circuits",
+        description: "Publish a paper detailing a new method for evaluating lookup tables over key-homomorphic encodings, along with low-depth modulo operation circuits.",
+        status: "Q2 2026 \u00b7 The method and the circuit have been implemented, and the paper is in the process of being written.",
+        statusDot: "green",
+      },
+      {
+        name: "Noise refreshing with a dummy blind PRF",
         description:
           "Implement noise refreshing of GGH15 encodings with replaceable dummy blind PRF. Confirm parameter growth is polylogarithmic.",
-        status: "Q2 2026",
+        status: "Q2 2026 \u00b7 The noise refreshing with a dummy blind PRF has not been implemented yet, but the high-level design has been finalized.",
         statusDot: "green",
-      },
-      {
-        name: "Benchmark harness",
-        description:
-          "Circuit size/depth sensitivity and parameter-growth behavior. Set targets for real blind PRF circuit size.",
-        status: "Q2 2026",
-        statusDot: "yellow",
-      },
-      {
-        name: "Noise refreshing paper",
-        description:
-          "Paper: noise refreshing construction and security proof (venue TBD).",
-        status: "Q2 2026",
-        statusDot: "yellow",
       },
     ],
     next: [
       {
         name: "Blind PRF over key-homomorphic encodings",
         description:
-          "Circuit over encodings that simulates a PRF without revealing key or output. Replace dummy in noise refreshing.",
-        status: "Q2\u2013Q3 2026 \u00b7 Critical",
+          "Implement a circuit compatible with key-homomorphic encodings that simulates a PRF without revealing key or output. The circuit will be used to replace the dummy blind PRF in the noise refreshing construction.",
+        status: "Q2\u2013Q3 2026 \u00b7 The circuit is expected to be implementable by combining the gadgets implemented in Q1 2026, although further efficiency improvements and careful parameter tuning are still needed.",
         statusDot: "yellow",
       },
       {
-        name: "\u226564-bit obfuscation",
-        description:
-          "End-to-end obfuscation and evaluation for \u226564 input bits. First practical iO beyond lookup-table scale.",
+        name: "Diamond iO 2",
+        description: "Implement the next version of the diamond iO, which will support a larger input size without compromising efficiency. A paper describing the construction and its security proof will be published as well.",
         status: "Q3 2026",
         statusDot: "yellow",
       },
       {
-        name: "Devcon 2026",
+        name: "Devcon 2026: obfuscation for nontrivial input size",
         description:
-          "Paper and presentation: first practical-performance iO for nontrivial input size.",
+          "Demo and presentation: the first practical-performance iO for nontrivial input size (e.g., 64 input bits), or its concrete estimation of the required hardware costs and performance.",
         status: "Q3 2026",
         statusDot: "yellow",
       },
     ],
     later: [
       {
-        name: "SNARK verification over encodings",
+        name: "SNARK verification over key-homomorphic encodings",
         description:
-          "Milestone 5 kickoff: PV vs DV scheme selection, verification circuit over key-homomorphic encodings. Continues into Q1 2027.",
+          "Start implementing a SNARK verification circuit over key-homomorphic encodings. Continues into Q1 2027.",
         status: "Q4 2026",
-        statusDot: "gray",
-      },
-      {
-        name: "Collaboration: security \u00b7 efficiency",
-        description:
-          "Academic collaboration on cryptanalysis (all-product LWE, evasive LWE, encodings) and efficiency improvements.",
-        status: "2026",
         statusDot: "gray",
       },
     ],
     details: {
       description: [
-        "Execute 2026 critical path toward practical iO",
-        "Noise refreshing in practice; real blind PRF; \u226564-bit obfuscation",
-        "SNARK verification over encodings (kickoff Q4)",
+        "Improve efficiency of key-homomorphic encodings to enable blind PRF and noise refreshing",
+        "Diamond iO 2, supporting larger input sizes without compromising efficiency",
+        "SNARK verification over key-homomorphic encodings (kickoff Q4)",
       ],
       deliverables: [
-        "FHE multiplication + noise refreshing (dummy then real blind PRF)",
-        "First \u226564-bit obfuscation with reproducible benchmarks",
-        "Noise refreshing + security proof paper; Devcon 2026 dissemination",
-        "SNARK verification scheme selection and early prototype (Q4)",
+        "Implementation of FHE multiplication + blind FHE over key-homomorphic encodings, along with noise refreshing",
+        "Implementation of obfuscation with a 64-bit input size or its concrete estimation of the required hardware costs and performance",
+        "Papers on the new lookup table evaluation method and low-depth circuit in Q2 and the next diamond iO construction in Q3",
+        "Concrete specs for the SNARK verification circuit compatible with key-homomorphic encodings",
       ],
       impact: [
         "First practical-performance iO for nontrivial input size",
-        "Foundation for predicate encryption / LFE implementations",
+        "Foundation for practical implementations of key-homomorphic encodings",
         "Security and efficiency collaboration with academia",
       ],
     },
@@ -562,7 +546,7 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "Build Standards",
         description:
-        "If explorations into standardisation feaibility are successful, build ERC(s) with other teams.",
+          "If explorations into standardisation feaibility are successful, build ERC(s) with other teams.",
         status: "Planned \u00b7 Critical",
         statusDot: "yellow",
       },
