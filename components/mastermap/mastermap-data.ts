@@ -225,9 +225,23 @@ export const PROJECTS: ProjectData[] = [
     ],
     next: [
       {
+        name: "Noir version upgrade",
+        description:
+          "Upgrade Noir version to the latest stable release, ensuring compatibility with the latest features and improvements.",
+        status: "Planned \u00b7 ~2 weeks",
+        statusDot: "yellow",
+      },
+      {
         name: "TWDIW Integration",
         description:
           "Provides a PoC showcasing OpenAC × TWDIW privacy-preserving age verification solution for online alcohol purchases in Taiwan.",
+        status: "Planned \u00b7 ~2 weeks",
+        statusDot: "yellow",
+      },
+      {
+        name: "AI refactor",
+        description:
+          "Leverage AI to refactor mopro, enhancing code quality, maintainability, and overall developer experience.",
         status: "Planned \u00b7 ~1 month",
         statusDot: "yellow",
       },
@@ -238,27 +252,20 @@ export const PROJECTS: ProjectData[] = [
         status: "Planned \u00b7 ~2 weeks",
         statusDot: "yellow",
       },
-      {
-        name: "zkVM Mobile Study",
-        description:
-          "Port Jolt/Nexus/RISC0 to ARM64 mobile. Profile thermal throttling, battery impact.",
-        status: "Planned \u00b7 ~1 month",
-        statusDot: "yellow",
-      },
     ],
     later: [
       {
         name: "GPU Best Practice Reference",
         description:
           "1-2 proving schemes with GPU acceleration. At least one PQ scheme. Mobile-specific optimizations.",
-        status: "Q2-Q3 2026",
+        status: "Planned \u00b7 ~2 month",
         statusDot: "gray",
       },
       {
-        name: "Kohaku Mobile SDK",
+        name: "zkVM Mobile Study",
         description:
-          "Wrap Kohaku in Rust, package with mopro pack for mobile wallet integration.",
-        status: "Backlog",
+          "Port Jolt/Nexus/RISC0 to ARM64 mobile. Profile thermal throttling, battery impact.",
+        status: "Planned \u00b7 ~1 month",
         statusDot: "gray",
       },
     ],
