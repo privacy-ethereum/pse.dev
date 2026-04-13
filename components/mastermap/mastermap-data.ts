@@ -581,57 +581,131 @@ export const PROJECTS: ProjectData[] = [
     category: "private-writes",
     status: "Active",
     statusVariant: "active",
-    completion: 10,
+    completion: 40,
     description:
       "Institutional Privacy Task Force. PoCs, architecture reviews, workshops, market map.",
     href: "/mastermap/iptf",
     tags: ["Institutional", "PoCs", "Workshops", "Market Map"],
     now: [
       {
-        name: "PoCs (2-3)",
+        name: "PoCs (7 shipped)",
         description:
-          "3 weeks dev time per PoC. Usable demo slices. Validate institutional demand for privacy.",
-        status: "Planned",
-        statusDot: "yellow",
+          "Private Bonds (3 approaches: UTXO+ZK, Aztec L2, FHE), Private Transfers (shielded pool), Plasma Stablecoins, DIY Validium (RISC Zero), TEE Cross-Chain Atomic Swap. Each with blog write-up and open-source code.",
+        status: "Done",
+        statusDot: "green",
       },
       {
-        name: "Architecture Reviews",
+        name: "Privacy Market Map v0.3.0",
         description:
-          "Phased technical review of confidentiality architectures across blockchain ecosystems.",
-        status: "Planned",
-        statusDot: "yellow",
+          "Open-source knowledge base: 58 patterns, 12 approaches, 25 vendors, 22 use cases. CROPS evaluation framework, CI validation, external contributions.",
+        status: "Done · Ongoing",
+        statusDot: "green",
       },
       {
-        name: "Workshops (2-3)",
+        name: "Blog Series (10 posts)",
         description:
-          "Targeted engagement with institutional stakeholders. Capture constraints and build trust.",
-        status: "Planned",
-        statusDot: "yellow",
+          "Published on iptf.ethereum.org: Private Bonds (3 parts), Public Rails vs Private Ledgers, Private Transfers, Plasma Stablecoins, DIY Validium, TEE Atomic Swap (2 parts), Cypherpunk & Institutional Privacy.",
+        status: "Done",
+        statusDot: "green",
+      },
+      {
+        name: "Workshops & Engagement",
+        description:
+          "3 workshops delivered. Reached 14 financial institutions, 17 tech companies, 9 government orgs. 33% conversion rate on institutional outreach.",
+        status: "Done · Ongoing",
+        statusDot: "green",
+      },
+      {
+        name: "Survive Track (3 PoCs)",
+        description:
+          "Adversarial resilience sprint testing I2U protections: escape hatches, force withdrawal, rugpull protection. Feeds directly into CROPS I2U scoring.",
+        status: "In progress",
+        statusDot: "green",
       },
     ],
     next: [
       {
-        name: "Privacy Market Map Updates",
+        name: "Guide v0 (Web Product)",
         description:
-          "Keep the market map growing. Maintain contribution momentum.",
-        status: "Ongoing",
-        statusDot: "green",
+          "Persona-routed web app on iptf.ethereum.org. Pattern cards with CROPS visuals. Approach pages as case studies. Entry points for Legal, Risk, Business, and Technical personas.",
+        status: "Mid-May 2026 · Critical",
+        statusDot: "yellow",
       },
       {
-        name: "Reports & Specifications",
+        name: "PoCs (3-4 new)",
         description:
-          "Explainer documents building toward \"State of Institutional Privacy\" marquee report.",
-        status: "Planned",
+          "Mix of institutional and resilience PoCs. Candidates: encrypted mempool, PIR in shielded pool, private money market fund, private derivatives, PQ shielded pool.",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "End-User Privacy Protections",
+        description:
+          "Map patterns that cover end-user privacy against institutions: escape hatches, force withdrawal, rugpull protection, viewing-key limits.",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "Workshops & Institutional Engagement",
+        description:
+          "2+ workshops lined up, plus deeper second-tier engagements. Broadening reach to governments, NGOs, and central banks alongside financial institutions. Push for public collaboration announcements. Expand communications beyond crypto Twitter to LinkedIn and business journals.",
+        status: "Q2 2026",
         statusDot: "yellow",
       },
     ],
     later: [
       {
-        name: "State of Institutional Privacy",
+        name: "Specifications Repository",
         description:
-          "Marquee report with benchmarks, comparisons, and institutional landscape analysis.",
+          "Formal specification lifecycle for institutional privacy primitives. Scope decision pending: institutional specs vs broader access layer specs.",
         status: "H2 2026",
         statusDot: "gray",
+      },
+      {
+        name: "State of Institutional Privacy",
+        description:
+          "~50-page marquee report: use cases, approaches, PoC summaries, benchmarks. Physical copies for Devcon.",
+        status: "H2 2026",
+        statusDot: "gray",
+      },
+    ],
+    details: {
+      description: [
+        "Help institutions and enterprises adopt Ethereum with robust privacy protections",
+        "Turn the privacy market map into a product: guide, one-pagers, reports as projections of a single source of truth",
+        "Expand coverage to protect end users against institutional adversaries",
+      ],
+      deliverables: [
+        "7 PoCs shipped in Q1 with 10 blog posts and open-source code",
+        "Guide v0 on iptf.ethereum.org with persona-routed entry points",
+        "End-user protection patterns and resilience PoCs",
+      ],
+      impact: [
+        "Institutions have concrete, open-source references for building privacy on Ethereum",
+        "Ecosystem has a credibly neutral, verified map of privacy solutions and trade-offs",
+        "End-user protections proven in code alongside institutional privacy",
+      ],
+    },
+    kpis: [
+      {
+        label: "PoCs shipped",
+        target: "7 in Q1, ~5 in Q2",
+        status: "Q1 done · Q2 in progress",
+      },
+      {
+        label: "Map coverage",
+        target: "58 patterns, 25 vendors",
+        status: "Ongoing",
+      },
+      {
+        label: "Institutional engagement",
+        target: "Governments, NGOs, FIs",
+        status: "Expanding",
+      },
+      {
+        label: "Workshops per quarter",
+        target: "2-3",
+        status: "On track",
       },
     ],
   },
