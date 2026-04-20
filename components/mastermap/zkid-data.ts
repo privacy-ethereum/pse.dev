@@ -204,9 +204,11 @@ export const ZKID: ProjectData = {
       "X.509 Certificate support",
     ],
     impact: [
-      "2+ external integrations (wallet/sandbox/institution)",
-      "2+ governments using Ethereum as identity registry",
-      "ZKP standard inclusion in one identity framework",
+      "2 external OpenAC integrations (wallet, sandbox, or institution)",
+      "2 external projects integrating our generalized predicates solution/SDK/library",
+      "Inform revocation flow for 2 identity projects",
+      "2 governments using Ethereum (or L2) as an identity trust registry",
+      "OpenAC or ZKP standard inclusion in one identity framework",
     ],
   },
 }
