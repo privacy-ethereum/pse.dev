@@ -30,7 +30,7 @@ export const TLSNOTARY: ProjectData = {
       name: "Benchmarks",
       description:
         "Fully automated benchmarks across native and browser environments.",
-      status: "In progress",
+      status: "Finalizing",
       statusDot: "green",
     },
     {
@@ -39,6 +39,13 @@ export const TLSNOTARY: ProjectData = {
         "TLSNotary on Web/Mobile",
       status: "In progress",
       statusDot: "green",
+    },
+    {
+      name: "TLS 1.3",
+      description:
+        "Implement TLS 1.3 MPC KDF and full TLS 1.3 support.",
+      status: "Paused",
+      statusDot: "blue",
     },
     {
       name: "CI / Docs / Demos / Support",
@@ -55,22 +62,7 @@ export const TLSNOTARY: ProjectData = {
       statusDot: "green",
     },
   ],
-  next: [
-    {
-      name: "TLS 1.3",
-      description:
-        "Implement TLS 1.3 MPC KDF and full TLS 1.3 support.",
-      status: "Stretch goal",
-      statusDot: "blue",
-    },
-    {
-      name: "VOLE-zkVM Integration",
-      description:
-        "Integrate VOLE-based zkVM into the TLSNotary core protocol.",
-      status: "H2 2026",
-      statusDot: "yellow",
-    },
-    {
+  next: [        {
       name: "Production Ready Protocol",
       description:
         "1.0 release with production-grade protocol. Publish crates to crates.io.",
@@ -78,20 +70,20 @@ export const TLSNOTARY: ProjectData = {
       statusDot: "yellow",
     },
     {
-      name: "Smart Contract Attestation",
+      name: "VOLE-zkVM Integration",
       description:
-        "Attestation workflow for on-chain verification of TLSNotary proofs.",
-      status: "Scoping",
-      statusDot: "gray",
+        "Integrate VOLE-based zkVM into the TLSNotary core protocol, enabling more flexible selective disclosure and improved maintainability.",
+      status: "H2 2026",
+      statusDot: "yellow",
     },
   ],
-  later: [
+  later: [    
     {
       name: "Standard Interfaces for zkTLS",
       description:
         "Define and publish standard interfaces for the zkTLS ecosystem.",
       status: "H2 2026",
-      statusDot: "yellow",
+      statusDot: "gray",
     },
   ],
   details: {
