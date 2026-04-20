@@ -192,6 +192,9 @@ export const ZKID: ProjectData = {
       "Drive Ethereum as identity trust layer",
     ],
     deliverables: [
+      "Revised OpenAC paper",
+      "Generalized predicates support",
+      "OpenAC SDKs with full docs",
       "OpenAC v2 paper and documentation",
       "OpenAC SDK with generalized predicates",
       "mDOC/MDL and W3C VC format support",
