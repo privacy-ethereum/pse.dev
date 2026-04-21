@@ -41,7 +41,18 @@ export default function MasterMapPage() {
           <AppContent key={category.id} className="flex flex-col gap-5">
             <div>
               <h2 className="text-xl lg:text-2xl font-bold font-display text-tuatara-950 dark:text-white">
-                {category.name}
+                {category.url ? (
+                  <a
+                    href={category.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-anakiwa-500 transition-colors"
+                  >
+                    {category.name}
+                  </a>
+                ) : (
+                  category.name
+                )}
               </h2>
               <p className="text-sm lg:text-base text-tuatara-500 dark:text-tuatara-300 font-sans mt-1">
                 {category.description}

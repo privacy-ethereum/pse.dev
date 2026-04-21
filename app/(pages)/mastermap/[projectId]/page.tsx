@@ -6,6 +6,7 @@ import { NowNextLater } from "@/components/mastermap/now-next-later"
 import { ProgressBar } from "@/components/mastermap/progress-bar"
 import { StatusBadge } from "@/components/mastermap/status-badge"
 import { PROJECTS, CATEGORIES } from "@/components/mastermap/mastermap-data"
+import { renderLinks } from "@/components/mastermap/render-links"
 import type { Metadata } from "next"
 
 interface PageProps {
@@ -53,7 +54,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {project.name}
           </h1>
           <p className="text-base lg:text-lg text-tuatara-500 dark:text-tuatara-300 font-sans max-w-2xl leading-relaxed">
-            {project.description}
+            {renderLinks(project.description)}
           </p>
           {project.projectUrl && (
             <AppLink
@@ -113,23 +114,31 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       {/* Details Grid */}
       {project.details && (
         <AppContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <h3 className="font-sans text-base font-bold text-tuatara-950 dark:text-white mb-3">
-                Description
-              </h3>
-              <ul className="space-y-2">
-                {project.details.description.map((item, i) => (
-                  <li
-                    key={i}
-                    className="font-sans text-sm text-tuatara-500 dark:text-tuatara-300 flex gap-2"
-                  >
-                    <span className="text-anakiwa-500 shrink-0">&#10003;</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div
+            className={`grid grid-cols-1 gap-6 ${
+              project.details.description && project.details.description.length > 0
+                ? "md:grid-cols-3"
+                : "md:grid-cols-2"
+            }`}
+          >
+            {project.details.description && project.details.description.length > 0 && (
+              <div>
+                <h3 className="font-sans text-base font-bold text-tuatara-950 dark:text-white mb-3">
+                  Description
+                </h3>
+                <ul className="space-y-2">
+                  {project.details.description.map((item, i) => (
+                    <li
+                      key={i}
+                      className="font-sans text-sm text-tuatara-500 dark:text-tuatara-300 flex gap-2"
+                    >
+                      <span className="text-anakiwa-500 shrink-0">&#10003;</span>
+                      {renderLinks(item)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div>
               <h3 className="font-sans text-base font-bold text-tuatara-950 dark:text-white mb-3">
                 Deliverables
@@ -141,7 +150,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     className="font-sans text-sm text-tuatara-500 dark:text-tuatara-300 flex gap-2"
                   >
                     <span className="text-anakiwa-500 shrink-0">&#10003;</span>
-                    {item}
+                    {renderLinks(item)}
                   </li>
                 ))}
               </ul>
@@ -157,7 +166,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     className="font-sans text-sm text-tuatara-500 dark:text-tuatara-300 flex gap-2"
                   >
                     <span className="text-anakiwa-500 shrink-0">&#10003;</span>
-                    {item}
+                    {renderLinks(item)}
                   </li>
                 ))}
               </ul>

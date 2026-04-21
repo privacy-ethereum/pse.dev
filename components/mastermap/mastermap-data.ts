@@ -19,7 +19,7 @@ export interface ProjectData {
   later: RoadmapItem[]
   tags: string[]
   details?: {
-    description: string[]
+    description?: string[]
     deliverables: string[]
     impact: string[]
   }
@@ -39,6 +39,7 @@ export interface Category {
   color: string
   bgLight: string
   bgDark: string
+  url?: string
 }
 
 // Category colors use anakiwa (site brand) shades for consistency with the rest of the site.
