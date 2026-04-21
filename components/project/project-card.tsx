@@ -1,9 +1,4 @@
-import React from "react"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { VariantProps, cva } from "class-variance-authority"
-
-import { getProjectById } from "@/lib/projectsUtils"
+import { ProjectLink } from "../mappings/project-link"
 import {
   ProjectInterface,
   ProjectLinkWebsite,
@@ -11,9 +6,11 @@ import {
   ProjectStatusLabelMapping,
 } from "@/lib/types"
 import { cn } from "@/lib/utils"
-import { LocaleTypes } from "@/app/i18n/settings"
-
-import { ProjectLink } from "../mappings/project-link"
+import { VariantProps, cva } from "class-variance-authority"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import React from "react"
 
 interface ProjectCardProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -24,7 +21,7 @@ interface ProjectCardProps
 }
 
 const tagCardVariants = cva(
-  "text-xs font-sans text-tuatara-950 rounded-[3px] py-[2px] px-[6px]",
+  "text-xs font-sans text-white rounded-[3px] py-[2px] px-[6px] dark:text-black",
   {
     variants: {
       variant: {
@@ -43,7 +40,7 @@ const projectCardVariants = cva(
         false: "min-h-[200px]",
       },
       border: {
-        true: "border border-slate-900/20",
+        true: "border border-slate-900/20 dark:border-anakiwa-800",
       },
     },
   }
@@ -61,14 +58,11 @@ export default function ProjectCard({
   showBanner = false,
   border = false,
   className,
-  lang,
-}: ProjectCardProps & { lang: LocaleTypes }) {
+}: ProjectCardProps) {
   const router = useRouter()
 
-  const { id, image, links, name, imageAlt, projectStatus, cardTags } =
+  const { id, image, links, name, imageAlt, projectStatus, cardTags, tldr } =
     project ?? {}
-
-  const { content: projectContent } = getProjectById(id, lang)
 
   return (
     <div
@@ -85,8 +79,8 @@ export default function ProjectCard({
           }}
         >
           <Image
-            src={`/project-banners/${image ? image : "fallback.webp"}`}
-            alt={`${name} banner`}
+            src={image || "/project-banners/fallback.webp"}
+            alt="Project banner image"
             width={1200}
             height={630}
             className="h-[160px] w-full overflow-hidden rounded-t-lg border-none object-cover"
@@ -98,20 +92,17 @@ export default function ProjectCard({
           )}
         </div>
       )}
-      <div className="flex flex-col justify-between h-full gap-8 p-4 bg-white rounded-b-lg">
+      <div className="flex flex-col justify-between h-full gap-8 p-4 bg-white rounded-b-lg dark:bg-black">
         <div className="flex flex-col justify-start gap-2">
-          <h1
-            className="text-2xl font-bold leading-7 text-black duration-200 cursor-pointer hover:text-anakiwa-500"
-            onClick={() => {
-              router.push(`/projects/${id}`)
-            }}
-          >
-            {name}
-          </h1>
-          {projectContent?.tldr && (
+          <Link href={`/projects/${id}`}>
+            <h3 className="text-2xl font-bold leading-7 text-primary duration-200 cursor-pointer hover:text-anakiwa-500">
+              {name}
+            </h3>
+          </Link>
+          {(tldr ?? "")?.length > 0 && (
             <div className="flex flex-col h-24 gap-4">
-              <p className="text-slate-900/80 line-clamp-4">
-                {projectContent?.tldr}
+              <p className=" text-tuatara-500 text-base line-clamp-4 dark:text-tuatara-200">
+                {tldr}
               </p>
             </div>
           )}
@@ -133,7 +124,7 @@ export default function ProjectCard({
             )}
 
             <div
-              className="px-[6px] py-[2px] text-xs font-normal leading-none flex items-center justify-center rounded-[3px]"
+              className="px-[6px] py-[2px] text-xs font-normal leading-none flex items-center justify-center rounded-[3px] text-black dark:text-black"
               style={{
                 backgroundColor: ProjectStatusColorMapping[projectStatus],
               }}

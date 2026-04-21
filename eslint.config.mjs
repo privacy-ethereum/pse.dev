@@ -10,6 +10,11 @@ export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   { ignores: ["dist/*", ".cache", "public", "node_modules", "*.esm.js", ".next/*"] },
   { languageOptions: { globals: globals.browser } },
+  // Node.js config files
+  {
+    files: ["*.config.js", "*.config.mjs", "*.config.cjs"],
+    languageOptions: { globals: globals.node }
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {

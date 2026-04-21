@@ -1,9 +1,9 @@
 "use client"
 
-import { useTranslation } from "@/app/i18n/client"
-import Image from "next/image"
-import Link from "next/link"
+import { AppLink } from "../app-link"
 import { Icons } from "../icons"
+import { LABELS } from "@/app/labels"
+import Image from "next/image"
 import { useEffect, useState } from "react"
 
 interface VideoCardProps {
@@ -32,18 +32,19 @@ const VideoCard = ({ videoId }: VideoCardProps) => {
   }, [videoId])
 
   return (
-    <Link
+    <AppLink
       href={`https://www.youtube.com/watch?v=${videoId}`}
-      target="_blank"
-      rel="noopener noreferrer"
+      external
       className="group flex flex-col gap-4"
+      variant="button"
     >
-      <div className="relative overflow-hidden aspect-video rounded-sm">
+      <div className="relative overflow-hidden aspect-video rounded-sm dark:border-anakiwa-800">
         <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-60 transition-opacity duration-300 z-10"></div>
         <Image
           src={thumbnailUrl}
-          alt={title || "YouTube video"}
+          alt="Video thumbnail"
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{ objectFit: "cover" }}
           className="transition-transform duration-300 scale-105 group-hover:scale-110"
           onError={(e) => {
@@ -58,23 +59,20 @@ const VideoCard = ({ videoId }: VideoCardProps) => {
       </div>
       <h3 className="font-sans text-sm font-normal line-clamp-3 text-tuatara-800 group-hover:text-tuatara-600 transition-colors">
         {isLoading ? (
-          <div className="h-5 w-full bg-slate-200 animate-pulse rounded-sm"></div>
+          <div className="h-5 w-full bg-skeleton animate-pulse rounded-sm"></div>
         ) : (
           title || "YouTube Video"
         )}
       </h3>
-    </Link>
+    </AppLink>
   )
 }
 
 export const ProjectYouTubeVideos = ({
   youtubeLinks,
-  lang,
 }: {
   youtubeLinks: string[]
-  lang: string
 }) => {
-  const { t } = useTranslation(lang, "common")
   const [videoIds, setVideoIds] = useState<string[]>([])
 
   const extractVideoId = (url: string): string => {
@@ -111,8 +109,8 @@ export const ProjectYouTubeVideos = ({
       data-section-id="youtube-videos"
     >
       <div className="flex flex-col gap-6">
-        <h2 className="text-[22px] font-bold text-tuatara-700">
-          {t("projectVideos") || "Project Videos"}
+        <h2 className="text-[22px] font-bold text-secondary">
+          {LABELS.COMMON.YOUTUBE_VIDEOS}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

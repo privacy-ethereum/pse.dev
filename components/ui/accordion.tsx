@@ -61,7 +61,7 @@ const Accordion = ({
           <RadixAccordion.Trigger className="w-full">
             <div
               className={cn(
-                "relative grid w-full grid-cols-[1fr_20px] items-center justify-between border-t border-t-black ring-0 focus:outline-none md:grid-cols-[1fr_30px]",
+                "relative grid w-full grid-cols-[1fr_20px] items-center justify-between border-t border-t-primary ring-0 focus:outline-none md:grid-cols-[1fr_30px]",
                 className,
                 {
                   [AccordionSizeMapping.xs]: size === "xs",
@@ -70,11 +70,11 @@ const Accordion = ({
               )}
             >
               {size === "sm" ? (
-                <span className="block text-left font-sans text-base font-bold uppercase tracking-[3.36px] text-black md:text-xl md:tracking-[4.2px]">
+                <span className="block text-left font-sans text-base font-bold uppercase tracking-[3.36px] text-primary md:text-xl md:tracking-[4.2px]">
                   {label}
                 </span>
               ) : (
-                <span className="text-left font-sans text-base font-medium text-black">
+                <span className="text-left font-sans text-base font-medium text-primary">
                   {label}
                 </span>
               )}

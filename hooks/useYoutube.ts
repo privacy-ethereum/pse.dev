@@ -22,5 +22,10 @@ export const useYoutube = () => {
   return useQuery({
     queryKey: ["pse-youtube-videos"],
     queryFn: () => fetchYoutubeVideos(),
+    staleTime: 5 * 60 * 1000, // 5 minutes - videos don't change frequently
+    gcTime: 30 * 60 * 1000, // 30 minutes cache time
+    retry: 2,
+    retryDelay: 1000,
+    refetchOnWindowFocus: false, // Don't refetch on window focus
   })
 }

@@ -6,8 +6,6 @@ export enum ProjectCategory {
   RESEARCH = "RESEARCH", // Category has now it's own page
 }
 
-export const ProjectCategories = Object.values(ProjectCategory) as string[]
-// list of project groups
 export const ProjectSections = [
   "pse",
   "grant",
@@ -20,16 +18,6 @@ export enum ProjectStatus {
   ACTIVE = "active",
   INACTIVE = "inactive",
   MAINTAINED = "maintained",
-}
-export interface Faq {
-  question: string
-  answer: ReactNode
-}
-
-export const ProjectCategoryLabelMapping: Record<ProjectCategory, string> = {
-  [ProjectCategory.APPLICATION]: "DEVTOOLS",
-  [ProjectCategory.DEVTOOLS]: "APPLICATIONS",
-  [ProjectCategory.RESEARCH]: "RESEARCH", // Category has now it's own page
 }
 
 export const ProjectSectionLabelMapping: Record<ProjectSection, string> = {
@@ -51,35 +39,6 @@ export const ProjectStatusDescriptionMapping: Record<ProjectStatus, string> = {
     "The projects in our archive are not currently being worked on by PSE, but we encourage everyone to check out their findings and continue experimentation!",
   maintained:
     "Maintenance projects are still being monitored for bug fixes, but are not under active feature development",
-}
-
-export interface AnnounceInterface {
-  id: number
-  type?: number
-  content: string
-  attachments?: string[]
-  timestamp: string
-  message_snapshots?: {
-    message?: {
-      content?: string
-    }
-  }[]
-  embeds?: {
-    type: "link" | "article"
-    url: string
-    title: string
-    description: string
-    color: number
-  }[]
-}
-export interface NewsInterface {
-  type: string
-  title: string
-  expires?: string
-  action: {
-    label: string
-    url: string
-  }
 }
 
 export type ProjectLinkWebsite =
@@ -125,6 +84,7 @@ export interface ProjectTeamMember {
 export interface ProjectInterface {
   id: string
   hasWiki?: boolean // show project with wiki page template
+  graduated?: boolean
   youtubeLinks?: string[]
   team?: ProjectTeamMember[]
   license?: string
@@ -139,6 +99,7 @@ export interface ProjectInterface {
   projectStatus: ProjectStatus
   tags?: ProjectTags
   extraLinks?: ActionLinkType
+  tldr?: string
   cardTags?: {
     primary?: string
     secondary?: string

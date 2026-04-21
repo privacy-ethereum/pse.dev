@@ -1,4 +1,4 @@
-# Privacy & Scaling Explorations
+# Privacy Stewards of Ethereum
 
 Enhancing Ethereum through cryptographic research and collective experimentation.
 
@@ -11,31 +11,24 @@ Enhancing Ethereum through cryptographic research and collective experimentation
 
 ### Add/Edit article
 
-- For updating/adding a new article [you can follow this guide](https://github.com/privacy-scaling-explorations/pse.dev/blob/main/articles/README.md)
+- For updating/adding a new article [you can follow this guide](content/articles/README.md)
 
 ### Add/Edit project list
 
-- For updating/adding project detail [you can follow this guide](https://github.com/privacy-scaling-explorations/pse.dev/blob/main/data/projects/README.md)
+- For updating/adding project detail [you can follow this guide](content/projects/README.md)
 
 ## PR Review process
 
-#### For internal, PSE member:
-
-- Suggest to tag: @kalidiagne, @psedesign, @AtHeartEngineer for PR review.
-- If question, please reach out in discord channel #website-pse
-
-#### For external:
-
-- Translation PR: please tag a member you know that can help review your translation
-- Any type of PR: please state clear your intention
-  For any suggestion, feel free to open issue or send us a message on Discord #suggestion
+- Translation PRs: Please tag a member who can help review your translation.
+- All PRs: Please clearly state your intention or the purpose of the pull request.
+- Suggestions: If you have any suggestions, feel free to open an issue.
 
 ## Run Locally
 
 Clone the project
 
 ```commandline
-  git clone https://github.com/privacy-scaling-explorations/pse.dev
+  git clone https://github.com/privacy-ethereum/pse.dev
 ```
 
 Go to the project directory
@@ -65,3 +58,32 @@ Start the app
 - Tailwind CSS
 - Icons from [Lucide](https://lucide.dev)
 - Tailwind CSS class sorting, merging and linting.
+
+## Testing
+
+Quick commands:
+
+```bash
+# Run all tests (CI mode)
+yarn test
+
+# Watch mode (dev)
+yarn test:watch
+
+# UI runner
+yarn test:ui
+
+# Coverage report
+yarn test:coverage
+
+# Validate setup (sanity checks)
+yarn test:validation
+```
+
+Notes:
+
+- Tests live in `tests/` with utilities in `tests/test-utils.tsx`.
+- Mocks are under `tests/mocks/` (Next components, browser APIs, external libs).
+- Use the custom render from `@/tests/test-utils` to get providers.
+- Path alias `@/` points to project root.
+- jsdom environment is preconfigured.

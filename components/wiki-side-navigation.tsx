@@ -1,13 +1,11 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-
+import { Icons } from "./icons"
+import { LABELS } from "@/app/labels"
+import { useGetProjectRelatedArticles } from "@/hooks/useGetProjectRelatedArticles"
 import { ProjectExtraLinkType } from "@/lib/types"
 import { cn } from "@/lib/utils"
-import { useTranslation } from "@/app/i18n/client"
-
-import { Icons } from "./icons"
-import { useGetProjectRelatedArticles } from "@/hooks/useGetProjectRelatedArticles"
+import { useEffect, useRef, useState } from "react"
 
 interface Section {
   level: number
@@ -17,7 +15,6 @@ interface Section {
 
 interface WikiSideNavigationProps {
   className?: string
-  lang?: string
   content?: string
   project?: any
 }
@@ -44,7 +41,11 @@ const SideNavigationItem = ({
         }
       )}
     >
-      <button onClick={onClick} className="text-left">
+      <button
+        onClick={onClick}
+        className="text-left"
+        aria-label={`Navigate to ${text} section`}
+      >
         {text}
       </button>
     </li>
@@ -53,11 +54,9 @@ const SideNavigationItem = ({
 
 export const WikiSideNavigation = ({
   className,
-  lang = "en",
   content = "",
   project,
 }: WikiSideNavigationProps) => {
-  const { t } = useTranslation(lang, "common")
   const [sections, setSections] = useState<Section[]>([])
   const [activeSection, setActiveSection] = useState<string | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
@@ -142,19 +141,19 @@ export const WikiSideNavigation = ({
     }
   > = {
     buildWith: {
-      label: t("buildWith"),
+      label: LABELS.COMMON.BUILD_WITH,
       icon: <Icons.hammer />,
     },
     play: {
-      label: t("tryItOut"),
+      label: LABELS.COMMON.TRY_IT_OUT,
       icon: <Icons.hand />,
     },
     research: {
-      label: t("deepDiveResearch"),
+      label: LABELS.COMMON.DEEP_DIVE_RESEARCH,
       icon: <Icons.readme />,
     },
     learn: {
-      label: t("learnMore"),
+      label: LABELS.COMMON.LEARN_MORE,
     },
   }
 
@@ -165,17 +164,15 @@ export const WikiSideNavigation = ({
   const hasYoutubeVideos =
     Array.isArray(youtubeLinks) && youtubeLinks.length > 0
 
-  console.log(hasTeam, hasYoutubeVideos, youtubeLinks)
-
   if (sections.length === 0 || content.length === 0) return null
 
   return (
     <div className="sticky overflow-hidden top-20">
       <aside className={cn("flex flex-col", className)}>
-        <h6 className="text-lg font-bold font-display text-tuatara-700">
-          {t("contents")}
+        <h6 className="text-lg font-bold font-display text-secondary">
+          {LABELS.COMMON.CONTENTS}
         </h6>
-        <ul className="pt-4 font-sans text-black text-normal">
+        <ul className="pt-4 font-sans text-primary text-normal">
           {sections.map((section, index) => (
             <SideNavigationItem
               key={index}
@@ -206,7 +203,7 @@ export const WikiSideNavigation = ({
               key="youtube-videos"
               onClick={() => scrollToSection("youtube-videos")}
               activeSection={activeSection}
-              text={t("youtubeVideos") || "YouTube Videos"}
+              text={LABELS.COMMON.YOUTUBE_VIDEOS}
               id="youtube-videos"
             />
           )}
@@ -216,7 +213,7 @@ export const WikiSideNavigation = ({
               key="team"
               onClick={() => scrollToSection("team")}
               activeSection={activeSection}
-              text={t("projectTeam") || "Team"}
+              text={LABELS.COMMON.PROJECT_TEAM}
               id="team"
             />
           )}

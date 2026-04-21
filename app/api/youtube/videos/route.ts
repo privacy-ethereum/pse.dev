@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 
+// Cache video data for better performance
+export const revalidate = 1800 // Revalidate cache after 30 minutes
+
 interface YoutubeVideoResponse {
   items: {
     id: string
@@ -23,11 +26,12 @@ interface YoutubeVideoResponse {
   }[]
 }
 
-// Helper function to add CORS headers
+// Helper function to add CORS and cache headers
 function corsHeaders() {
   return {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=3600",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
   }
 }

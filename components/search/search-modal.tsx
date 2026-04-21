@@ -77,11 +77,11 @@ function Hit({
   return (
     <Link
       href={url}
-      className="block p-4 mb-2 bg-white hover:bg-gray-100 rounded-md shadow-sm border border-gray-200 text-black"
+      className="block p-4 mb-2 bg-background hover:bg-gray-100 rounded-md shadow-sm border border-gray-200 text-black dark:border-anakiwa-800 dark:hover:bg-anakiwa-400/10"
       onClick={() => setOpen(false)}
     >
       <div className="flex items-center justify-between mb-1">
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+        <h3 className="text-lg font-semibold text-primary">{title}</h3>
         <CategoryTag variant="blue">{section}</CategoryTag>
       </div>
       {snippet && (
@@ -109,7 +109,7 @@ function Hit({
               })
 
               return (
-                <span className="text-tuatara-700 font-sans text-base font-normal">
+                <span className="text-secondary font-sans text-lg font-normal">
                   {textContent}
                 </span>
               )
@@ -125,7 +125,7 @@ function Hit({
 
 function NoResults() {
   return (
-    <div className="text-center p-8 text-gray-500">
+    <div className="text-center p-8 text-gray-500 dark:text-white">
       No results found. Try a different search term.
     </div>
   )
@@ -133,7 +133,7 @@ function NoResults() {
 
 const LoadingIndicator = () => {
   return (
-    <div className="h-12 w-full rounded-md bg-gray-100 animate-pulse border border-gray-300"></div>
+    <div className="h-12 w-full rounded-md bg-skeleton animate-pulse border border-gray-300 dark:bg-anakiwa-800 dark:border-anakiwa-700"></div>
   )
 }
 
@@ -174,7 +174,7 @@ function DirectSearchResults({
         <div key={indexResult.indexName}>
           {indexResult.hits.length > 0 && (
             <div className="mb-4">
-              <div className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+              <div className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2 dark:text-white">
                 {indexResult.indexName}
               </div>
               {indexResult.hits.map((hit: SearchHit) => (
@@ -283,7 +283,7 @@ const CustomSearchResult = ({
   <div>
     {results.map((indexResult: IndexResult) => (
       <div key={indexResult.indexName} className="mb-6">
-        <div className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+        <div className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2 dark:text-white">
           {indexResult.indexName.replace(/-/g, " ")}
         </div>
         <div>
@@ -312,7 +312,7 @@ const MultiIndexSearchView = ({
 
   if (searchQuery.trim() === "") {
     return (
-      <div className="text-center p-8 text-gray-500">
+      <div className="text-center p-8 text-gray-500 dark:text-white">
         Enter a search term to begin
       </div>
     )
@@ -342,7 +342,7 @@ const MultiIndexSearchView = ({
     <div>
       {sortedIndexes.map((indexName: string) => (
         <div key={indexName} className="mb-6">
-          <div className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+          <div className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2 dark:text-white">
             {indexName.replace(/-/g, " ")}
           </div>
           <IndexSearchResults
@@ -393,7 +393,11 @@ export const SearchModal = ({ open, setOpen }: SearchModalProps) => {
   }
 
   return (
-    <Modal open={open} setOpen={setOpen} className="bg-page-header-gradient">
+    <Modal
+      open={open}
+      setOpen={setOpen}
+      className="bg-page-header-gradient dark:bg-transparent-gradient"
+    >
       <div className="pt-8">
         <Input
           type="text"

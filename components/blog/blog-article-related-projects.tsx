@@ -1,29 +1,29 @@
 "use client"
 
-import { LocaleTypes } from "@/app/i18n/settings"
-import { useProjectFiltersState } from "@/state/useProjectFiltersState"
+import { useMemo } from "react"
+import { useProjects } from "@/app/providers/ProjectsProvider"
 import ProjectCard from "../project/project-card"
 
 interface BlogArticleRelatedProjectsProps {
   projectsIds: string[]
-  lang: LocaleTypes
 }
 
 export const BlogArticleRelatedProjects = ({
   projectsIds,
-  lang,
 }: BlogArticleRelatedProjectsProps) => {
-  const { projects: allProjects } = useProjectFiltersState((state) => state)
+  const { projects: allProjects, researchs: allResearchs } = useProjects()
 
-  const projects = allProjects.filter((project) =>
-    projectsIds.includes(project.id)
-  )
+  const projects = useMemo(() => {
+    return [...allProjects, ...allResearchs].filter((project) =>
+      projectsIds.includes(project.id)
+    )
+  }, [allProjects, allResearchs, projectsIds])
 
   if (projects.length === 0) return null
 
   return (
     <div className="flex flex-col gap-8">
-      <h3 className="text-tuatara-950 text-lg font-semibold leading-6">
+      <h3 className="text-primary text-lg font-semibold leading-6">
         Related projects
       </h3>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-x-6 md:gap-y-10 lg:grid-cols-3">
@@ -31,7 +31,6 @@ export const BlogArticleRelatedProjects = ({
           <ProjectCard
             key={project.id}
             project={project}
-            lang={lang}
             showBanner
             border
             showLinks={false}

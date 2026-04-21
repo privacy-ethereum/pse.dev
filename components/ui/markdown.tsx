@@ -1,15 +1,69 @@
 "use client"
 
-import React from "react"
+import katex from "katex"
+import React, { useCallback } from "react"
 import ReactMarkdown, { Components } from "react-markdown"
 import remarkGfm from "remark-gfm"
-import katex from "katex"
 import "katex/dist/katex.min.css"
-import rehypeRaw from "rehype-raw"
 import { TableRowCard } from "../cards/table-row-card"
 import { Accordion } from "./accordion"
+import Prism from "prismjs"
+import rehypeRaw from "rehype-raw"
+import "prismjs/themes/prism-tomorrow.css"
+import "prismjs/components/prism-javascript"
+import "prismjs/components/prism-typescript"
+import "prismjs/components/prism-jsx"
+import "prismjs/components/prism-tsx"
+import "prismjs/components/prism-json"
+import "prismjs/components/prism-bash"
+import "prismjs/components/prism-css"
+import "prismjs/components/prism-markdown"
+import "prismjs/components/prism-yaml"
+import "prismjs/components/prism-python"
+import "prismjs/components/prism-rust"
+import "prismjs/components/prism-solidity"
+import { AppLink } from "../app-link"
+import { Icons } from "../icons"
 
-// Extend the Components type to include our custom component
+const SCROLL_OFFSET = 150
+
+const scrollToElementWithOffset = (target: HTMLElement) => {
+  const rect = target.getBoundingClientRect()
+  const targetPosition = rect.top + window.pageYOffset - SCROLL_OFFSET
+
+  // Set margin before scrolling
+  target.style.scrollMarginTop = `${SCROLL_OFFSET}px`
+
+  requestAnimationFrame(() => {
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    })
+  })
+}
+
+// Helper function to convert double dollar math blocks to a custom markdown syntax
+const preprocessMathBlocks = (content: string): string => {
+  // Replace $$...$$ with a custom markdown syntax that won't interfere with footnotes
+  return content.replace(/\$\$([\s\S]*?)\$\$/g, (match, mathContent) => {
+    const encodedMath = Buffer.from(mathContent.trim()).toString("base64")
+    return `\n\n<math-block data-math="${encodedMath}"></math-block>\n\n`
+  })
+}
+
+// Custom component for math blocks
+const MathBlockComponent = ({ "data-math": dataMath, ...props }: any) => {
+  const mathContent = React.useMemo(() => {
+    try {
+      return Buffer.from(dataMath, "base64").toString("utf8")
+    } catch {
+      return ""
+    }
+  }, [dataMath])
+
+  return <KaTeXBlock math={mathContent} />
+}
+
 interface CustomComponents extends Components {
   "table-row-card": React.ComponentType<{
     node: any
@@ -19,10 +73,26 @@ interface CustomComponents extends Components {
     node: any
     children: string
   }>
+  "footnote-ref": React.ComponentType<{
+    identifier: string
+    label: string
+  }>
+  "footnote-definition": React.ComponentType<{
+    identifier: string
+    label: string
+    children: React.ReactNode
+  }>
+  footnotes: React.ComponentType<{
+    children: React.ReactNode
+  }>
 }
 
 const generateSectionId = (text: string) => {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+  return text
+    .toLowerCase()
+    .replace(/[']/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
 }
 
 export const createMarkdownElement = (
@@ -44,7 +114,7 @@ export const createMarkdownElement = (
 const Table = (props: any) => {
   return (
     <div className="w-full overflow-x-auto border rounded-lg border-tuatara-300">
-      <table className="min-w-full" data-component="table">
+      <table className="min-w-full !bg-background" data-component="table">
         {props.children}
       </table>
     </div>
@@ -56,7 +126,6 @@ const TableRow = (props: any) => {
 }
 
 const TableHead = (props: any) => {
-  // Skip rendering the thead completely if there are no children
   if (!props.children || props.children.length === 0) {
     return null
   }
@@ -69,7 +138,6 @@ const TableHead = (props: any) => {
       if (thChildren.length === 0) return true
 
       return thChildren.every((thChild: any) => {
-        // Check if the th child is empty or contains only whitespace
         if (!thChild) return true
         if (typeof thChild === "string") return thChild.trim() === ""
         if (!thChild.props || !thChild.props.children) return true
@@ -96,7 +164,6 @@ const TableBody = (props: any) => {
   return <tbody>{props.children}</tbody>
 }
 
-// Custom plugin to handle /n as newline
 const remarkCustomNewlines = () => {
   return (tree: any) => {
     const visit = (node: any) => {
@@ -250,54 +317,88 @@ const extractMathBlocks = (content: string) => {
   return mathBlocks
 }
 
+// Helper to check if text contains unescaped math delimiters
+const containsMath = (text: string): boolean => {
+  // Skip markdown links
+  if (text.match(/\[.*?\]\(.*?\)/)) {
+    return false
+  }
+
+  if (!text.includes("$")) return false
+
+  // Check for currency pattern first
+  const currencyPattern = /\$\s*\d+(?:,\d{3})*(?:\.\d{2})?(?!\^|\{|\}|\d)/g
+  if (text.match(currencyPattern) && !text.match(/\$.*[\^_{}].*\$/)) {
+    return false
+  }
+
+  const blockMathRegex = /\$\$([\s\S]*?)\$\$/g
+  const inlineMathRegex =
+    /(?<![\\$])\$(?![\s\d,]*\d(?:\.\d{2})?(?!\^|\{|\}|\d))((?:[^$\\]|\\$|\\[^$])+?)\$/g
+
+  return blockMathRegex.test(text) || inlineMathRegex.test(text)
+}
+
 const MathText = ({ text }: { text: string }) => {
   const parts: React.ReactNode[] = []
   let lastIndex = 0
 
-  if (/^\$(.*?)\$$/m.test(text.trim())) {
-    const mathContent = text.trim().slice(1, -1)
-    return <KaTeXInline math={mathContent} />
-  }
-
   try {
-    // Regular expression to match dollar signs that aren't escaped with a backslash
-    const inlineMathRegex = /(?<![\\])\$((?:[^$\\]|\\$|\\[^$])+?)\$/g
+    // First handle block math ($$...$$)
+    const blockMathRegex = /\$\$([\s\S]*?)\$\$/g
     let match: RegExpExecArray | null
 
-    while ((match = inlineMathRegex.exec(text)) !== null) {
+    while ((match = blockMathRegex.exec(text))) {
       if (match.index > lastIndex) {
         parts.push(text.slice(lastIndex, match.index))
       }
 
       const mathContent = match[1].trim()
       parts.push(
-        <KaTeXInline key={`inline-math-${match.index}`} math={mathContent} />
+        <KaTeXBlock key={`block-math-${match.index}`} math={mathContent} />
       )
 
       lastIndex = match.index + match[0].length
     }
 
-    if (lastIndex < text.length) {
-      parts.push(text.slice(lastIndex))
-    }
+    // Then handle remaining text for inline math ($...$)
+    const remainingText = text.slice(lastIndex)
+    if (remainingText) {
+      const inlineParts: React.ReactNode[] = []
+      let inlineLastIndex = 0
+      const inlineMathRegex = /(?<![\\$])\$(?![$])([^$]+)\$/g
+      let inlineMatch: RegExpExecArray | null
 
-    if (parts.length === 0 && text.includes("$")) {
-      return <>{text}</>
+      while ((inlineMatch = inlineMathRegex.exec(remainingText))) {
+        if (inlineMatch.index > inlineLastIndex) {
+          inlineParts.push(
+            remainingText.slice(inlineLastIndex, inlineMatch.index)
+          )
+        }
+
+        const mathContent = inlineMatch[1].trim()
+        inlineParts.push(
+          <KaTeXInline
+            key={`inline-math-${inlineMatch.index}`}
+            math={mathContent}
+          />
+        )
+
+        inlineLastIndex = inlineMatch.index + inlineMatch[0].length
+      }
+
+      if (inlineLastIndex < remainingText.length) {
+        inlineParts.push(remainingText.slice(inlineLastIndex))
+      }
+
+      parts.push(...inlineParts)
     }
 
     return <>{parts}</>
   } catch (error) {
-    console.error("Error processing inline math:", error)
+    console.error("Error processing text with math:", error)
     return <>{text}</>
   }
-}
-
-// Helper to check if text contains unescaped math delimiters
-const containsMath = (text: string): boolean => {
-  if (!text.includes("$")) return false
-
-  const inlineMathRegex = /(?<![\\])\$((?:[^$\\]|\\$|\\[^$])+?)\$/g
-  return inlineMathRegex.test(text)
 }
 
 const rehypeProcessBrTags = () => {
@@ -350,76 +451,251 @@ const rehypeProcessBrTags = () => {
   }
 }
 
-// Styling for HTML attributes for markdown component
-const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
-  a: ({ ...props }) =>
-    createMarkdownElement("a", {
-      className: `${darkMode ? "text-anakiwa-300" : "text-anakiwa-500"} hover:text-orange duration-200`,
-      target: "_blank",
-      ...props,
-    }),
-  h1: ({ ...props }) =>
-    createMarkdownElement("h1", {
-      className: "text-neutral-800 text-4xl md:text-5xl font-bold",
-      ...props,
-    }),
-  h2: ({ ...props }) =>
-    createMarkdownElement("h2", {
-      className: "text-neutral-800 text-4xl",
-      ...props,
-    }),
-  h3: ({ ...props }) =>
-    createMarkdownElement("h3", {
-      className: "text-neutral-800 text-3xl",
-      ...props,
-    }),
-  h4: ({ ...props }) =>
-    createMarkdownElement("h4", {
-      className: "text-neutral-800 text-xl",
-      ...props,
-    }),
-  h5: ({ ...props }) =>
-    createMarkdownElement("h5", {
-      className: "text-neutral-800 text-lg font-bold",
-      ...props,
-    }),
-  h6: ({ ...props }) =>
-    createMarkdownElement("h6", {
-      className: "text-neutral-800 text-md font-bold",
-      ...props,
-    }),
-  p: ({ node, children, ...props }) => {
+const rehypeStyleAside = () => {
+  return (tree: any) => {
+    const visit = (node: any) => {
+      if (node.type === "element" && node.tagName === "aside") {
+        if (!node.properties) {
+          node.properties = {}
+        }
+        if (!node.properties.className) {
+          node.properties.className = []
+        }
+        const classes = Array.isArray(node.properties.className)
+          ? node.properties.className
+          : [node.properties.className]
+        node.properties.className = [
+          ...classes,
+          "my-6",
+          "p-4",
+          "rounded-lg",
+          "bg-tuatara-50",
+          "dark:bg-tuatara-900",
+          "border-l-4",
+          "border-anakiwa-500",
+          "dark:border-anakiwa-400",
+          "[&>p]:text-tuatara-700",
+          "dark:[&>p]:text-tuatara-200",
+          "[&>p]:my-2",
+          "[&>ul]:text-tuatara-700",
+          "dark:[&>ul]:text-tuatara-200",
+          "[&>ul]:my-2",
+          "[&>strong]:text-tuatara-900",
+          "dark:[&>strong]:text-tuatara-100",
+        ]
+      }
+
+      if (node.children) {
+        node.children.forEach(visit)
+      }
+
+      return node
+    }
+
+    return visit(tree)
+  }
+}
+
+const CodeBlock = ({
+  className,
+  children,
+}: {
+  className?: string
+  children: string
+}) => {
+  const language = className ? className.replace(/language-/, "") : "text"
+  const codeRef = React.useRef<HTMLElement>(null)
+
+  React.useEffect(() => {
+    if (codeRef.current) {
+      Prism.highlightElement(codeRef.current)
+    }
+  }, [children])
+
+  return (
+    <pre className="relative rounded-lg bg-tuatara-950 overflow-hidden">
+      <code ref={codeRef} className={`bg-tuatara-950 language-${language}`}>
+        {children}
+      </code>
+    </pre>
+  )
+}
+
+const HeadingLink = ({
+  level,
+  children,
+}: {
+  level: number
+  children: React.ReactNode
+}) => {
+  const [copied, setCopied] = React.useState(false)
+  const [showLink, setShowLink] = React.useState(false)
+
+  const id = React.useMemo(() => {
+    if (typeof children === "string") {
+      return generateSectionId(children)
+    }
     const text = React.Children.toArray(children)
       .map((child) => {
         if (typeof child === "string") return child
-        // @ts-expect-error - children props vary
-        if (child?.props?.children) return child.props.children
+        if (
+          React.isValidElement(child) &&
+          typeof child.props?.children === "string"
+        ) {
+          return child.props.children
+        }
+        return ""
+      })
+      .join("")
+    return generateSectionId(text)
+  }, [children])
+
+  const copyToClipboard = React.useCallback(() => {
+    const url = new URL(window.location.href)
+    url.hash = id
+    navigator.clipboard.writeText(url.toString())
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }, [id])
+
+  const headingClasses = React.useMemo(() => {
+    switch (level) {
+      case 1:
+        return "text-4xl md:text-5xl font-bold"
+      case 2:
+        return "text-4xl"
+      case 3:
+        return "text-3xl"
+      case 4:
+        return "text-xl"
+      case 5:
+        return "text-lg font-bold"
+      default:
+        return "text-md font-bold"
+    }
+  }, [level])
+
+  const Component = React.createElement(
+    `h${level}` as keyof JSX.IntrinsicElements,
+    {
+      id,
+      className: `group relative flex items-center gap-2 text-primary ${headingClasses}`,
+      onMouseEnter: () => setShowLink(true),
+      onMouseLeave: () => setShowLink(false),
+    },
+    <>
+      {children}
+      <button
+        onClick={copyToClipboard}
+        className={`ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${
+          copied ? "text-green-500" : "text-tuatara-400 hover:text-tuatara-600"
+        }`}
+        aria-label="Copy link to section"
+      >
+        {copied ? <Icons.copied /> : <Icons.copy />}
+      </button>
+    </>
+  )
+
+  return Component
+}
+
+const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
+  a: ({ href, children, ...props }) => {
+    if (href?.startsWith("#")) {
+      return (
+        <AppLink
+          href={href}
+          data-anchor="with-scroll-margin"
+          {...props}
+          onClick={(e) => {
+            e.preventDefault()
+            const targetId = href.slice(1)
+            const target = document.getElementById(targetId)
+            if (target) {
+              scrollToElementWithOffset(target)
+            }
+          }}
+        >
+          {children}
+        </AppLink>
+      )
+    }
+
+    return (
+      <AppLink href={href ?? ""} external {...props}>
+        {children}
+      </AppLink>
+    )
+  },
+  h1: ({ children }) => <HeadingLink level={1}>{children}</HeadingLink>,
+  h2: ({ children }) => <HeadingLink level={2}>{children}</HeadingLink>,
+  h3: ({ children }) => <HeadingLink level={3}>{children}</HeadingLink>,
+  h4: ({ children }) => <HeadingLink level={4}>{children}</HeadingLink>,
+  h5: ({ children }) => <HeadingLink level={5}>{children}</HeadingLink>,
+  h6: ({ children }) => <HeadingLink level={6}>{children}</HeadingLink>,
+  code: ({ node, inline, className, children, ...props }) => {
+    const match = /language-(\w+)/.exec(className || "")
+    return !inline ? (
+      <CodeBlock className={className} {...props}>
+        {String(children).replace(/\n$/, "")}
+      </CodeBlock>
+    ) : (
+      <code
+        className="bg-tuatara-950 px-1.5 py-0.5 rounded-md text-white"
+        {...props}
+      >
+        {children}
+      </code>
+    )
+  },
+  p: ({ node, children }: { node: any; children: React.ReactNode }) => {
+    const childArray = React.Children.toArray(children)
+    const isOnlyLink =
+      childArray.length === 1 &&
+      React.isValidElement(childArray[0]) &&
+      childArray[0].type === "a"
+
+    if (isOnlyLink) {
+      return <>{children}</>
+    }
+
+    // For other paragraphs, continue with normal processing
+    const text = childArray
+      .map((child) => {
+        if (typeof child === "string") return child
+        if (React.isValidElement(child) && child.props?.children) {
+          return child.props.children
+        }
         return ""
       })
       .join("")
 
     let isMathOnly = false
-
-    if (text.trim().startsWith("$") && text.trim().endsWith("$")) {
-      const innerContent = text.trim().slice(1, -1)
-      if (!innerContent.includes("$")) {
+    if (text.trim().startsWith("$$") && text.trim().endsWith("$$")) {
+      const innerContent = text.trim().slice(2, -2)
+      if (!innerContent.includes("$$")) {
         isMathOnly = true
       }
     }
 
-    if (text.includes("$")) {
-      return createMarkdownElement("p", {
-        className: `${darkMode ? "text-white" : "text-tuatara-700"} font-sans text-base font-normal ${isMathOnly ? "math-only" : ""}`,
-        children: <MathText text={text} />,
-        ...props,
-      })
+    if (containsMath(text)) {
+      return (
+        <p
+          className={`text-tuatara-600 dark:text-tuatara-200 font-sans text-lg font-normal ${
+            isMathOnly ? "math-only" : ""
+          }`}
+        >
+          <MathText text={text} />
+        </p>
+      )
     }
 
-    return createMarkdownElement("p", {
-      className: `${darkMode ? "text-white" : "text-tuatara-700"} font-sans text-base font-normal`,
-      children,
-      ...props,
-    })
+    return (
+      <p className="text-tuatara-600 dark:text-tuatara-200 font-sans text-lg font-normal">
+        {children}
+      </p>
+    )
   },
   // Handle math in list items
   li: ({ node, children, ...props }) => {
@@ -435,7 +711,7 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
     if (containsMath(text)) {
       return (
         <li
-          className="text-tuatara-700 font-sans text-base font-normal"
+          className="text-tuatara-500 font-sans text-base lg:text-lg font-normal dark:text-tuatara-100"
           {...props}
         >
           <MathText text={text} />
@@ -445,7 +721,7 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
 
     return (
       <li
-        className="text-tuatara-700 font-sans text-base font-normal"
+        className="text-tuatara-500 font-sans text-base lg:text-lg font-normal dark:text-tuatara-100"
         {...props}
       >
         {children}
@@ -455,13 +731,13 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
   ul: ({ ordered, ...props }) =>
     createMarkdownElement(ordered ? "ol" : "ul", {
       className:
-        "ml-6 list-disc text-tuatara-700 font-sans text-base font-normal",
+        "ml-6 list-disc text-tuatara-600  font-sans text-lg font-normal",
       ...props,
     }),
   ol: ({ ordered, ...props }) =>
     createMarkdownElement(ordered ? "ol" : "ul", {
       className:
-        "list-decimal text-tuatara-700 font-sans text-base font-normal mt-3",
+        "ml-6 list-decimal text-tuatara-600 font-sans text-lg font-normal mt-3 dark:text-tuatara-200",
       ...props,
     }),
   table: Table,
@@ -589,16 +865,93 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
       </th>
     )
   },
-  pre: ({ ...props }) =>
-    createMarkdownElement("pre", {
-      className: "bg-tuatara-950 p-4 rounded-lg text-white",
-      ...props,
-    }),
   img: ({ ...props }) =>
     createMarkdownElement("img", {
-      className: "w-auto w-auto mx-auto rounded-lg object-cover",
+      className:
+        "w-auto w-auto mx-auto rounded-lg object-cover dark:bg-white dark:p-3",
       ...props,
     }),
+  blockquote: ({ children }) => (
+    <blockquote className="border-l-4 border-tuatara-400 dark:border-tuatara-500 pl-4 italic text-tuatara-600 dark:text-tuatara-300">
+      {children}
+    </blockquote>
+  ),
+  "footnote-ref": ({ identifier, label }) => {
+    const handleClick = useCallback(
+      (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        const target = document.getElementById(`fn-${identifier}`)
+        if (target) {
+          scrollToElementWithOffset(target)
+        }
+      },
+      [identifier]
+    )
+
+    React.useEffect(() => {
+      console.log("Footnote ref mounted:", identifier)
+    }, [identifier])
+
+    return (
+      <sup>
+        <button
+          type="button"
+          id={`fnref-${identifier}`}
+          className="text-anakiwa-500 hover:text-orange duration-200"
+          onClick={handleClick}
+        >
+          [{label}]
+        </button>
+      </sup>
+    )
+  },
+  "footnote-definition": ({ identifier, label, children }) => {
+    const handleBackClick = useCallback(
+      (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        const target = document.getElementById(`fnref-${identifier}`)
+        if (target) {
+          scrollToElementWithOffset(target)
+        }
+      },
+      [identifier]
+    )
+
+    React.useEffect(() => {
+      console.log("Footnote definition mounted:", identifier)
+    }, [identifier])
+
+    return (
+      <div
+        id={`fn-${identifier}`}
+        className="flex gap-2 text-sm text-tuatara-600 mb-2"
+      >
+        <div className="flex-none">[{label}]</div>
+        <div className="flex-1">
+          {children}
+          <button
+            type="button"
+            className="text-anakiwa-500 hover:text-orange duration-200 ml-1"
+            onClick={handleBackClick}
+          >
+            ↩
+          </button>
+        </div>
+      </div>
+    )
+  },
+  footnotes: ({ children }) => {
+    return (
+      <div className="mt-8 pt-8 border-t border-tuatara-200">
+        <h2 className="text-xl font-bold mb-4">Footnotes</h2>
+        {children}
+      </div>
+    )
+  },
 })
 
 interface MarkdownProps {
@@ -615,67 +968,64 @@ export const Markdown = ({
   const [content, setContent] = React.useState<React.ReactNode[]>([])
 
   React.useEffect(() => {
+    const timer = setTimeout(() => {
+      const hash = window.location.hash
+      if (hash) {
+        const id = hash.slice(1) // Remove the # from the hash
+        const element = document.getElementById(id)
+        if (element) {
+          scrollToElementWithOffset(element)
+        }
+      }
+    }, 100)
+
+    return () => clearTimeout(timer)
+  }, [content])
+
+  React.useEffect(() => {
     if (!children) {
       setContent([])
       return
     }
 
     try {
-      const blockMathRegex = /\$\$([\s\S]*?)\$\$/g
-      const blockParts = children.split(blockMathRegex)
+      // Preprocess the content to convert $$ blocks to custom components
+      const processedContent = preprocessMathBlocks(children)
 
       const mathComponents = {
         ...REACT_MARKDOWN_CONFIG(darkMode),
+        "math-block": MathBlockComponent,
         ...components,
       }
 
-      const rehypePlugins = [rehypeRaw as any, rehypeProcessBrTags as any]
+      const rehypePlugins = [
+        rehypeRaw as any,
+        rehypeProcessBrTags as any,
+        rehypeStyleAside as any,
+      ]
 
-      if (blockParts.length === 1) {
-        setContent([
-          <ReactMarkdown
-            key="markdown"
-            skipHtml={false}
-            rehypePlugins={rehypePlugins}
-            components={mathComponents}
-            remarkPlugins={[remarkGfm, remarkCustomNewlines]}
-          >
-            {children}
-          </ReactMarkdown>,
-        ])
-        return
-      }
-
-      const parts: React.ReactNode[] = []
-
-      blockParts.forEach((part, index) => {
-        if (index % 2 === 0) {
-          if (part.trim()) {
-            parts.push(
-              <ReactMarkdown
-                key={`text-${index}`}
-                skipHtml={false}
-                rehypePlugins={rehypePlugins}
-                components={mathComponents}
-                remarkPlugins={[remarkGfm, remarkCustomNewlines]}
-              >
-                {part}
-              </ReactMarkdown>
-            )
-          }
-        } else {
-          parts.push(<KaTeXBlock key={`block-math-${index}`} math={part} />)
-        }
-      })
-
-      setContent(parts)
+      setContent([
+        <ReactMarkdown
+          key="markdown"
+          skipHtml={false}
+          rehypePlugins={rehypePlugins}
+          components={mathComponents}
+          remarkPlugins={[remarkGfm, remarkCustomNewlines]}
+        >
+          {processedContent}
+        </ReactMarkdown>,
+      ])
     } catch (error) {
       console.error("Error processing markdown with math:", error)
       setContent([
         <ReactMarkdown
           key="fallback"
           skipHtml={false}
-          rehypePlugins={[rehypeRaw as any, rehypeProcessBrTags as any]}
+          rehypePlugins={[
+            rehypeRaw as any,
+            rehypeProcessBrTags as any,
+            rehypeStyleAside as any,
+          ]}
           components={{
             ...REACT_MARKDOWN_CONFIG(darkMode),
             ...components,

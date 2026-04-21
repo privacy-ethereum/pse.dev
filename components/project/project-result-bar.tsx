@@ -1,45 +1,58 @@
 "use client"
 
 import {
-  DEFAULT_PROJECT_SORT_BY,
   ProjectFilter,
   ProjectSortBy,
-  useProjectFiltersState,
-} from "@/state/useProjectFiltersState"
+  useProjects,
+} from "@/app/providers/ProjectsProvider"
 
-import { LangProps } from "@/types/common"
-import { useTranslation } from "@/app/i18n/client"
+import { LABELS } from "@/app/labels"
+import { interpolate } from "@/lib/utils"
 
 import { CategoryTag } from "../ui/categoryTag"
 import { Dropdown } from "../ui/dropdown"
 
-const labelClass = "h-5 text-xs text-base md:h-6 text-slate-900/70 md:text-sm"
+const labelClass =
+  "h-5 text-xs text-base md:h-6 text-slate-900/70 md:text-sm dark:text-white"
 
-export const ProjectResultBar = ({ lang }: LangProps["params"]) => {
-  const { t } = useTranslation(lang, "common")
+export const ProjectResultBar = () => {
   const { activeFilters, toggleFilter, projects, sortProjectBy, sortBy } =
-    useProjectFiltersState((state) => state)
+    useProjects()
 
   const haveActiveFilters = Object.entries(activeFilters).some(
     ([, values]) => values?.length > 0
   )
 
-  const resultLabel = t(
-    haveActiveFilters ? "showingProjectsWith" : "showingProjects",
-    {
-      count: projects?.length,
-    }
-  )
+  const resultLabel = haveActiveFilters
+    ? interpolate(LABELS.COMMON.SHOWING_PROJECTS_WITH, {
+        count: projects?.length,
+      })
+    : interpolate(LABELS.COMMON.SHOWING_PROJECTS, { count: projects?.length })
 
   const projectSortItems: { label: string; value: ProjectSortBy }[] = [
-    { label: t("filterOptions.random"), value: "random" },
-    { label: t("filterOptions.asc"), value: "asc" },
-    { label: t("filterOptions.desc"), value: "desc" },
-    // { label: t("filterOptions.relevance"), value: "relevance" },
+    { label: LABELS.COMMON.FILTER_OPTIONS.RANDOM, value: "random" },
+    { label: LABELS.COMMON.FILTER_OPTIONS.ASC, value: "asc" },
+    { label: LABELS.COMMON.FILTER_OPTIONS.DESC, value: "desc" },
+    // { label: LABELS.COMMON.FILTER_OPTIONS.RELEVANCE, value: "relevance" },
   ]
 
-  const activeSortOption = t("sortBy", {
-    option: t(`filterOptions.${sortBy}`),
+  const getSortOptionLabel = (sortBy: string) => {
+    switch (sortBy) {
+      case "random":
+        return LABELS.COMMON.FILTER_OPTIONS.RANDOM
+      case "asc":
+        return LABELS.COMMON.FILTER_OPTIONS.ASC
+      case "desc":
+        return LABELS.COMMON.FILTER_OPTIONS.DESC
+      case "relevance":
+        return LABELS.COMMON.FILTER_OPTIONS.RELEVANCE
+      default:
+        return LABELS.COMMON.FILTER_OPTIONS.RANDOM
+    }
+  }
+
+  const activeSortOption = interpolate(LABELS.COMMON.SORT_BY, {
+    option: getSortOptionLabel(sortBy),
   })
 
   return (
@@ -48,7 +61,7 @@ export const ProjectResultBar = ({ lang }: LangProps["params"]) => {
         <span className={labelClass}>{resultLabel}</span>
         <Dropdown
           label={activeSortOption}
-          defaultItem={DEFAULT_PROJECT_SORT_BY}
+          defaultItem="asc"
           items={projectSortItems}
           onChange={(sortBy) => sortProjectBy(sortBy as ProjectSortBy)}
           disabled={!projects?.length}
@@ -56,31 +69,29 @@ export const ProjectResultBar = ({ lang }: LangProps["params"]) => {
       </div>
       {haveActiveFilters && (
         <div className="inline-flex flex-wrap gap-1 md:gap-4">
-          {Object.entries(activeFilters).map(([key, filters], index) => {
-            return (
-              <>
-                {filters?.map((filter) => {
-                  if (filter?.length === 0) return null
-
-                  return (
-                    <CategoryTag
-                      closable
-                      variant="gray"
-                      onClose={() =>
-                        toggleFilter({
-                          tag: key as ProjectFilter,
-                          value: filter,
-                        })
-                      }
-                      key={`${index}-${filter}`}
-                    >
-                      {filter}
-                    </CategoryTag>
-                  )
-                })}
-              </>
+          {Object.entries(activeFilters)
+            .flatMap(([key, filters]) =>
+              (filters ?? []).map((filter) => ({
+                key,
+                filter,
+              }))
             )
-          })}
+            .filter(({ filter }) => filter?.length > 0)
+            .map(({ key, filter }, index) => (
+              <CategoryTag
+                key={`${key}-${filter}-${index}`}
+                closable
+                variant="gray"
+                onClose={() =>
+                  toggleFilter({
+                    tag: key as ProjectFilter,
+                    value: filter,
+                  })
+                }
+              >
+                {filter}
+              </CategoryTag>
+            ))}
         </div>
       )}
     </div>

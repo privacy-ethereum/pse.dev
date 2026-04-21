@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 const cardVariants = cva("flex flex-col rounded-[8px] overflow-hidden", {
   variants: {
     variant: {
-      blue: "bg-anakiwa-100 border border-tuatara-300",
+      blue: "bg-anakiwa-100 border border-tuatara-300 dark:bg-black dark:border-anakiwa-800",
       transparent: "bg-transparent border border-tuatara-300",
     },
     padding: {

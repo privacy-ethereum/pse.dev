@@ -6,7 +6,14 @@ node_modules
 .pnp.js
 
 # testing
-coverage
+docs/
+docs/**/*
+coverage/
+coverage-vitest/
+.vitest/
+test-results/
+playwright-report/
+**/*.test.ts.snap
 
 # next.js
 .next/
@@ -46,3 +53,9 @@ yarn-error.log*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+.vercel
+.env*.local

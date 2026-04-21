@@ -1,32 +1,5 @@
 "use client"
 
-import React, { ChangeEvent, ReactNode, useEffect, useState } from "react"
-import Image from "next/image"
-import { useRouter, useSearchParams } from "next/navigation"
-import { projects } from "@/data/projects"
-import FiltersIcon from "@/public/icons/filters.svg"
-import {
-  FilterLabelMapping,
-  FilterTypeMapping,
-  ProjectFilter,
-  useProjectFiltersState,
-} from "@/state/useProjectFiltersState"
-import i18next from "i18next"
-import { useDebounce } from "react-use"
-
-import { IThemeStatus, IThemesButton, LangProps } from "@/types/common"
-import {
-  ProjectCategories,
-  ProjectCategory,
-  ProjectSectionLabelMapping,
-  ProjectSections,
-  ProjectStatus,
-  ProjectStatusLabelMapping,
-} from "@/lib/types"
-import { cn, queryStringToObject } from "@/lib/utils"
-import { useTranslation } from "@/app/i18n/client"
-import { LocaleTypes } from "@/app/i18n/settings"
-
 import { Icons } from "../icons"
 import Badge from "../ui/badge"
 import { Button } from "../ui/button"
@@ -34,6 +7,31 @@ import { CategoryTag } from "../ui/categoryTag"
 import { Checkbox } from "../ui/checkbox"
 import { Input } from "../ui/input"
 import { Modal } from "../ui/modal"
+import { LABELS } from "@/app/labels"
+import {
+  useProjects,
+  ProjectFilter,
+  FilterLabelMapping,
+} from "@/app/providers/ProjectsProvider"
+import {
+  ProjectSectionLabelMapping,
+  ProjectSections,
+  ProjectStatus,
+  ProjectStatusLabelMapping,
+} from "@/lib/types"
+import { cn, queryStringToObject } from "@/lib/utils"
+import { IThemeStatus, IThemesButton } from "@/types/common"
+import { useRouter, useSearchParams } from "next/navigation"
+import React, { ChangeEvent, ReactNode, useEffect, useState } from "react"
+import { useDebounce } from "react-use"
+
+// Define the mapping for filter types
+const FilterTypeMapping: Record<ProjectFilter, "checkbox" | "button"> = {
+  keywords: "checkbox",
+  builtWith: "checkbox",
+  themes: "button",
+  fundingSource: "checkbox",
+}
 
 interface FilterWrapperProps {
   label: string
@@ -44,48 +42,41 @@ interface FilterWrapperProps {
 const FilterWrapper = ({ label, children, className }: FilterWrapperProps) => {
   return (
     <div className={cn("flex flex-col gap-4 py-6", className)}>
-      <span className="text-xl font-bold">{label}</span>
+      <span className="text-sm font-medium text-primary md:text-base">
+        {label}
+      </span>
       {children}
     </div>
   )
 }
 
-export const ThemesButtonMapping = (lang: LocaleTypes): IThemesButton => {
-  const t = i18next.getFixedT(lang, "all")
-
-  return {
-    build: {
-      label: t("tags.build"),
-      icon: <Icons.hammer />,
-    },
-    play: {
-      label: t("tags.play"),
-      icon: <Icons.hand />,
-    },
-    research: {
-      label: t("tags.research"),
-      icon: <Icons.readme />,
-    },
-  }
+export const ThemesButtonMapping: IThemesButton = {
+  build: {
+    label: LABELS.COMMON.TAGS.BUILD,
+    icon: <Icons.hammer />,
+  },
+  play: {
+    label: LABELS.COMMON.TAGS.PLAY,
+    icon: <Icons.hand />,
+  },
+  research: {
+    label: LABELS.COMMON.TAGS.RESEARCH,
+    icon: <Icons.readme />,
+  },
 }
 
-export const ThemesStatusMapping = (lang: LocaleTypes): IThemeStatus => {
-  const t = i18next.getFixedT(lang, "common")
-
-  return {
-    active: {
-      label: t("status.active"),
-      icon: <Icons.checkActive />,
-    },
-    inactive: {
-      label: t("status.inactive"),
-      icon: <Icons.archived />,
-    },
-  }
+export const ThemesStatusMapping: IThemeStatus = {
+  active: {
+    label: LABELS.COMMON.STATUS.ACTIVE,
+    icon: <Icons.checkActive />,
+  },
+  inactive: {
+    label: LABELS.COMMON.STATUS.INACTIVE,
+    icon: <Icons.archived />,
+  },
 }
 
-export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
-  const { t } = useTranslation(lang as LocaleTypes, "common")
+export default function ProjectFiltersBar() {
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -98,21 +89,18 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
     queryString,
     activeFilters,
     onFilterProject,
-    currentCategory,
-    setCurrentCategory,
-  } = useProjectFiltersState((state) => state)
+    setFilterFromQueryString,
+  } = useProjects()
 
   useEffect(() => {
     if (!queryString) return
     router.push(`/projects?${queryString}`)
-  }, [queryString, router, lang])
+  }, [queryString, router])
 
   useEffect(() => {
     // set active filters from url
-    useProjectFiltersState.setState({
-      activeFilters: queryStringToObject(searchParams),
-    })
-  }, [searchParams])
+    setFilterFromQueryString(queryStringToObject(searchParams))
+  }, [searchParams, setFilterFromQueryString])
 
   useEffect(() => {
     const count = Object.values(activeFilters).reduce((acc, curr) => {
@@ -122,11 +110,7 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
   }, [activeFilters])
 
   const clearAllFilters = () => {
-    useProjectFiltersState.setState({
-      activeFilters: {},
-      queryString: "",
-      projects,
-    })
+    setFilterFromQueryString({})
     setSearchQuery("") // clear input
     router.push("/projects")
   }
@@ -143,7 +127,7 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
   return (
     <>
       <Modal
-        title="Filters"
+        title={LABELS.COMMON.FILTERS}
         footer={
           <div className="flex">
             <Button
@@ -152,7 +136,7 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
               size="sm"
               onClick={clearAllFilters}
             >
-              {t("clearAll")}
+              {LABELS.COMMON.CLEAR_ALL}
             </Button>
             <div className="ml-auto">
               <Button
@@ -160,7 +144,7 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
                 size="sm"
                 onClick={() => setShowModal(false)}
               >
-                {t("showProjects")}
+                {LABELS.COMMON.SHOW_PROJECTS}
               </Button>
             </div>
           </div>
@@ -168,10 +152,9 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
         open={showModal}
         setOpen={setShowModal}
       >
-        <div className="flex flex-col divide-y divide-tuatara-200">
+        <div className="flex flex-col divide-y divide-tuatara-200 w-full">
           {Object.entries(filters).map(([key, items]) => {
-            const filterLabel =
-              FilterLabelMapping(lang)?.[key as ProjectFilter] ?? ""
+            const filterLabel = FilterLabelMapping?.[key as ProjectFilter] ?? ""
             const type = FilterTypeMapping?.[key as ProjectFilter]
             const hasItems = items.length > 0
 
@@ -213,7 +196,7 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
                       }
 
                       if (type === "button") {
-                        const { icon, label } = ThemesButtonMapping(lang)[item]
+                        const { icon, label } = ThemesButtonMapping[item]
                         if (!isActive) return null
                         return (
                           <div key={index}>
@@ -248,7 +231,7 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
           })}
           <FilterWrapper
             className="hidden"
-            label={t("filterLabels.fundingSource")}
+            label={LABELS.COMMON.FILTER_LABELS.FUNDING_SOURCE}
           >
             {ProjectSections.map((section) => {
               const label = ProjectSectionLabelMapping[section]
@@ -257,7 +240,7 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
           </FilterWrapper>
           <FilterWrapper
             className="hidden"
-            label={t("filterLabels.projectStatus")}
+            label={LABELS.COMMON.FILTER_LABELS.PROJECT_STATUS}
           >
             {Object.keys(ProjectStatus).map((section: any) => {
               // @ts-expect-error - ProjectStatusLabelMapping is not typed
@@ -268,50 +251,16 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
         </div>
       </Modal>
       <div className="flex flex-col gap-4">
-        <nav className="container px-4 mx-auto">
-          <ul className="flex space-x-6">
-            <div
-              className={cn(
-                "relative block px-2 py-1 text-sm font-medium uppercase transition-colors cursor-pointer hover:text-primary",
-                currentCategory == null
-                  ? "text-sky-400 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-sky-400"
-                  : ""
-              )}
-              onClick={() => setCurrentCategory(null)}
-            >
-              All
-            </div>
-            {ProjectCategories.map((key) => {
-              if (key === ProjectCategory.RESEARCH) return null // Research category has now it's own page
-              return (
-                <div
-                  key={key}
-                  className={cn(
-                    "relative block px-2 py-1 text-sm font-medium uppercase transition-colors cursor-pointer hover:text-primary",
-                    currentCategory === key
-                      ? "text-sky-400 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-sky-400"
-                      : ""
-                  )}
-                  onClick={() => setCurrentCategory(key as ProjectCategory)}
-                >
-                  {key}
-                </div>
-              )
-            })}
-          </ul>
-        </nav>
         <div className="flex flex-col gap-6">
-          <div className="grid items-center justify-between grid-cols-1 gap-3 md:grid-cols-5 md:gap-12">
+          <div className="grid items-center justify-between grid-cols-1 gap-3 md:grid-cols-[1fr_122px_55px] md:gap-12">
             <div className="col-span-1 grid grid-cols-[1fr_auto] gap-2 md:col-span-3 md:gap-3">
               <Input
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
                   setSearchQuery(e?.target?.value)
-                  useProjectFiltersState.setState({
-                    searchQuery: e?.target?.value,
-                  })
+                  onFilterProject(e?.target?.value)
                 }}
                 value={searchQuery}
-                placeholder={t("searchProjectPlaceholder")}
+                placeholder={LABELS.COMMON.SEARCH_PROJECT_PLACEHOLDER}
               />
               <div className="flex items-center gap-3">
                 <Badge value={filterCount}>
@@ -323,18 +272,22 @@ export default function ProjectFiltersBar({ lang }: LangProps["params"]) {
                     })}
                   >
                     <div className="flex items-center gap-2">
-                      <Image src={FiltersIcon} alt="filter icon" />
-                      <span className="hidden md:block">{t("filters")}</span>
+                      <Icons.Filter className="text-anakiwa-950 dark:text-anakiwa-400" />
+                      <span className="hidden lg:block text-sm">
+                        {LABELS.COMMON.FILTERS}
+                      </span>
                     </div>
                   </Button>
                 </Badge>
                 <button
                   disabled={!hasActiveFilters}
                   onClick={clearAllFilters}
-                  className="hidden bg-transparent cursor-pointer opacity-85 text-primary hover:opacity-100 disabled:pointer-events-none disabled:opacity-50 md:block"
+                  className="hidden lg:block bg-transparent cursor-pointer opacity-85 text-primary hover:opacity-100 disabled:pointer-events-none disabled:opacity-50 dark:text-anakiwa-400 dark:hover:text-anakiwa-400"
                 >
-                  <div className="flex items-center gap-2 border-b-2 border-black">
-                    <span className="text-sm font-medium">{t("clearAll")}</span>
+                  <div className="flex items-center gap-2 border-b-2 border-black dark:border-anakiwa-800">
+                    <span className="text-sm font-medium">
+                      {LABELS.COMMON.CLEAR_ALL}
+                    </span>
                   </div>
                 </button>
               </div>

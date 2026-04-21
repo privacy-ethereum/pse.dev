@@ -8,14 +8,12 @@ import {
   ProjectExtraLinkType,
   ProjectInterface,
 } from "@/lib/types"
-import { useTranslation } from "@/app/i18n/client"
-import { LocaleTypes } from "@/app/i18n/settings"
+import { LABELS } from "@/app/labels"
 
 import { Icons } from "../icons"
 
 interface ProjectExtraLinksProps {
   project: ProjectInterface
-  lang: LocaleTypes
 }
 
 interface ExtraLinkItemsProps {
@@ -23,11 +21,7 @@ interface ExtraLinkItemsProps {
   links: ActionLinkTypeLink[]
 }
 
-export default function ProjectExtraLinks({
-  project,
-  lang,
-}: ProjectExtraLinksProps) {
-  const { t } = useTranslation(lang, "common")
+export default function ProjectExtraLinks({ project }: ProjectExtraLinksProps) {
   const { extraLinks = {} } = project
   const hasExtraLinks = Object.keys(extraLinks).length > 0
 
@@ -39,19 +33,19 @@ export default function ProjectExtraLinks({
     }
   > = {
     buildWith: {
-      label: t("buildWithThisTool"),
+      label: LABELS.COMMON.BUILD_WITH_THIS_TOOL,
       icon: <Icons.hammer />,
     },
     play: {
-      label: t("tryItOut"),
+      label: LABELS.COMMON.TRY_IT_OUT,
       icon: <Icons.hand />,
     },
     research: {
-      label: t("deepDiveResearch"),
+      label: LABELS.COMMON.DEEP_DIVE_RESEARCH,
       icon: <Icons.readme />,
     },
     learn: {
-      label: t("learnMore"),
+      label: LABELS.COMMON.LEARN_MORE,
     },
   }
 
@@ -65,7 +59,7 @@ export default function ProjectExtraLinks({
     return (
       <div className="flex flex-col gap-2" data-section-id={id}>
         <div className="flex items-center gap-2">
-          <p className="text-[22px] font-bold text-tuatara-700">{label}</p>
+          <p className="text-[22px] font-bold text-secondary">{label}</p>
         </div>
         <div className="flex flex-col items-start gap-2">
           {links.map((link: ActionLinkTypeLink, index) => {
@@ -76,7 +70,7 @@ export default function ProjectExtraLinks({
                 key={index}
                 href={url}
                 target="_blank"
-                className="flex items-center gap-1 overflow-hidden font-sans font-normal duration-200 ease-in-out border-b cursor-pointer border-anakiwa-400 text-tuatara-950 hover:border-orange"
+                className="flex items-center gap-1 overflow-hidden font-sans font-normal duration-200 ease-in-out border-b cursor-pointer border-anakiwa-400 text-primary hover:border-orange"
               >
                 {label}
                 <Icons.externalUrl />

@@ -1,9 +1,8 @@
-import { Article, getArticles } from "@/lib/blog"
-import Link from "next/link"
+import { Article, getArticles } from "@/lib/content"
 import { BlogArticleCard } from "./blog-article-card"
+import { AppLink } from "../app-link"
 
 interface BlogArticlesProps {
-  lang: string
   tag?: string
 }
 
@@ -14,13 +13,7 @@ async function fetchArticles(tag?: string) {
   })
 }
 
-function ArticlesGrid({
-  articles,
-  lang,
-}: {
-  articles: Article[]
-  lang: string
-}) {
+function ArticlesGrid({ articles }: { articles: Article[] }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {articles.length === 0 && (
@@ -30,13 +23,12 @@ function ArticlesGrid({
       )}
       {articles.map(
         ({ id, title, image, tldr = "", date, authors, content }: Article) => {
-          const url = `/${lang}/blog/${id}`
+          const url = `/blog/${id}`
           return (
             <div key={id} className="flex h-full">
-              <Link
+              <AppLink
                 className="flex-1 w-full hover:opacity-90 transition-opacity duration-300 rounded-xl overflow-hidden bg-white shadow-sm border border-slate-900/10"
                 href={url}
-                rel="noreferrer"
               >
                 <BlogArticleCard
                   id={id}
@@ -46,7 +38,7 @@ function ArticlesGrid({
                   authors={authors}
                   content={content}
                 />
-              </Link>
+              </AppLink>
             </div>
           )
         }
@@ -55,7 +47,7 @@ function ArticlesGrid({
   )
 }
 
-export async function BlogArticles({ lang, tag }: BlogArticlesProps) {
+export async function BlogArticles({ tag }: BlogArticlesProps) {
   const articles = await fetchArticles(tag)
-  return <ArticlesGrid articles={articles} lang={lang} />
+  return <ArticlesGrid articles={articles} />
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-const CHANNEL_ID = "UCh7qkafm95-kRiLMVPlbIcQ" // Privacy & Scaling Explorations channel ID
+const CHANNEL_ID = "UCh7qkafm95-kRiLMVPlbIcQ" // Privacy Stewards of Ethereum channel ID
 const MAX_VIDEOS = 6
 
 export const revalidate = 3600
@@ -11,7 +11,14 @@ export async function GET() {
 
     const videos = await getVideosFromRSS()
 
-    return NextResponse.json({ videos })
+    return NextResponse.json(
+      { videos },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=7200",
+        },
+      }
+    )
   } catch (error) {
     console.error("Error fetching videos:", error)
     return NextResponse.json({ videos: [] })
@@ -83,7 +90,7 @@ function parseVideosFromXml(xmlData: string) {
         description,
         thumbnailUrl,
         publishedAt,
-        channelTitle: "Privacy & Scaling Explorations",
+        channelTitle: "Privacy Stewards of Ethereum",
         url: `https://www.youtube.com/watch?v=${videoId}`,
       })
     } catch (error) {
@@ -99,6 +106,6 @@ function decodeHtmlEntities(text: string): string {
     .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
+    .replace(/&quot;/g, "\"")
     .replace(/&#39;/g, "'")
 }

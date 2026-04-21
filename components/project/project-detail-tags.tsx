@@ -1,15 +1,14 @@
 "use client"
 
-import { HtmlHTMLAttributes } from "react"
+import { HtmlHTMLAttributes, useMemo } from "react"
 import Link from "next/link"
 import {
   FilterLabelMapping,
   ProjectFilter,
-} from "@/state/useProjectFiltersState"
+} from "@/app/providers/ProjectsProvider"
 
 import { ProjectInterface } from "@/lib/types"
-import { useTranslation } from "@/app/i18n/client"
-import { LocaleTypes } from "@/app/i18n/settings"
+import { LABELS } from "@/app/labels"
 
 import { CategoryTag } from "../ui/categoryTag"
 
@@ -17,10 +16,16 @@ interface TagsProps extends HtmlHTMLAttributes<HTMLDivElement> {
   label: string
 }
 
+interface TagGroup {
+  key: string
+  label: string
+  tags: string[]
+}
+
 const TagsWrapper = ({ label, children }: TagsProps) => {
   return (
     <div className="flex flex-col items-start gap-2">
-      <h3 className="text-[22px] font-bold text-tuatara-700">{label}</h3>
+      <h3 className="text-[22px] font-bold text-secondary">{label}</h3>
       {children}
     </div>
   )
@@ -28,42 +33,56 @@ const TagsWrapper = ({ label, children }: TagsProps) => {
 
 type IProjectTags = {
   project: ProjectInterface
-  lang: LocaleTypes
 }
 
-export function ProjectTags({ project, lang }: IProjectTags) {
-  const { t } = useTranslation(lang, "common")
+export function ProjectTags({ project }: IProjectTags) {
+  const FilterKeyMapping = useMemo(
+    () => ({
+      keywords: LABELS.COMMON.FILTER_LABELS.KEYWORDS,
+      builtWith: LABELS.COMMON.FILTER_LABELS.BUILT_WITH,
+      themes: LABELS.COMMON.FILTER_LABELS.THEMES,
+      fundingSource: LABELS.COMMON.FILTER_LABELS.FUNDING_SOURCE,
+    }),
+    []
+  )
+
+  const filteredTags = useMemo(
+    () =>
+      Object.entries(FilterLabelMapping)
+        .filter(([key]) => !["themes", "builtWith"].includes(key))
+        .map(([key]) => {
+          const keyTags = project?.tags?.[key as ProjectFilter]
+          const hasItems = keyTags && keyTags?.length > 0
+
+          if (!hasItems) return null
+
+          return {
+            key,
+            label: FilterKeyMapping[key as ProjectFilter] || key,
+            tags: keyTags,
+          }
+        })
+        .filter((item): item is TagGroup => item !== null),
+    [project?.tags, FilterKeyMapping]
+  )
 
   return (
     <div className="flex flex-col gap-4 pt-10">
-      {Object.entries(FilterLabelMapping(lang)).map(([key]) => {
-        const keyTags = project?.tags?.[key as ProjectFilter]
-        const hasItems = keyTags && keyTags?.length > 0
-
-        if (["themes", "builtWith"].includes(key)) return null // keys to ignore
-        return (
-          hasItems && (
-            <div data-section-id={key} key={key}>
-              <TagsWrapper label={t(`filterLabels.${key}`)}>
-                <div className="flex flex-wrap gap-[6px]">
-                  {keyTags?.map((tag, index) => {
-                    return (
-                      <Link
-                        key={index}
-                        href={`/${lang}/projects?${key}=${tag}`}
-                      >
-                        <CategoryTag key={tag} variant="gray">
-                          {tag}
-                        </CategoryTag>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </TagsWrapper>
+      {filteredTags.map((tagGroup) => (
+        <div data-section-id={tagGroup.key} key={tagGroup.key}>
+          <TagsWrapper label={tagGroup.label}>
+            <div className="flex flex-wrap gap-[6px]">
+              {tagGroup.tags?.map((tag, index) => (
+                <Link key={index} href={`/projects?${tagGroup.key}=${tag}`}>
+                  <CategoryTag key={tag} variant="gray">
+                    {tag}
+                  </CategoryTag>
+                </Link>
+              ))}
             </div>
-          )
-        )
-      })}
+          </TagsWrapper>
+        </div>
+      ))}
     </div>
   )
 }

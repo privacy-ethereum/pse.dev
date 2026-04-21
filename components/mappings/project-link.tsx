@@ -1,8 +1,7 @@
 "use client"
 
-import { ProjectLinkWebsite } from "@/lib/types"
-
 import { ProjectLinkIconMap } from "./project-links"
+import { ProjectLinkWebsite } from "@/lib/types"
 
 interface ProjectLinkProps {
   url: string
@@ -11,6 +10,15 @@ interface ProjectLinkProps {
 
 export function ProjectLink({ website, url }: ProjectLinkProps) {
   const icon = ProjectLinkIconMap?.[website as ProjectLinkWebsite]
+
+  // Add aria-label mapping for accessibility
+  const ariaLabels: Record<string, string> = {
+    github: "View project on GitHub",
+    website: "Visit project website",
+    twitter: "Follow project on Twitter",
+    telegram: "Join project Telegram",
+    discord: "Join project Discord",
+  }
 
   if (!icon) return null
   return (
@@ -23,6 +31,7 @@ export function ProjectLink({ website, url }: ProjectLinkProps) {
       target="_blank"
       rel="noopener noreferrer"
       className="text-lg"
+      aria-label={ariaLabels[website] || "Visit external link"}
     >
       {icon}
     </a>

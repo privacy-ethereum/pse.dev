@@ -1,6 +1,4 @@
-import { t } from "i18next"
 import { Card } from "./card"
-import Link from "next/link"
 import { ReactNode } from "react"
 import { cn } from "@/lib/utils"
 interface TableRowCardProps {
@@ -23,8 +21,8 @@ export const TableRowCard = ({ items, className }: TableRowCardProps) => {
           key={index}
           className="grid grid-cols-1 divide-tuatara-300 md:grid-cols-[1fr_2.5fr] md:divide-x"
         >
-          <div className="flex h-[96px] items-center justify-center border-b border-tuatara-300 bg-anakiwa-100 p-2 text-center md:border-none">
-            <span className="max-w-[136px] text-xs font-bold uppercase tracking-[2.5px] text-tuatara-950">
+          <div className="flex h-[96px] items-center justify-center border-b border-tuatara-300 bg-anakiwa-100 p-2 text-center md:border-none dark:bg-anakiwa-800">
+            <span className="max-w-[136px] text-xs font-bold uppercase tracking-[2.5px] text-primary">
               {item.title}
             </span>
           </div>

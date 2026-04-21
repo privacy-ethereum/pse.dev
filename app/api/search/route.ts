@@ -1,33 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
-import algoliasearch from "algoliasearch"
+import { getArticles, getProjects } from "@/lib/content"
+import { searchArticles, searchProjects } from "@/lib/search"
 
-const appId =
-  process.env.ALGOLIA_APP_ID || process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || ""
-const apiKey =
-  process.env.ALGOLIA_SEARCH_API_KEY ||
-  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY ||
-  ""
-const additionalIndexes = (
-  process.env.ALGOLIA_ADDITIONAL_INDEXES ||
-  process.env.NEXT_PUBLIC_ALGOLIA_ADDITIONAL_INDEXES ||
-  ""
-)
-  .split(",")
-  .map((index) => index.trim())
-  .filter(Boolean)
+export const revalidate = 300 // 5 minutes
 
-const allIndexes = [...additionalIndexes].filter(Boolean) || [
-  "blog",
-  "projects",
-]
-const searchClient = appId && apiKey ? algoliasearch(appId, apiKey) : null
-
-function transformQuery(query: string) {
-  if (query.toLowerCase().includes("intmax")) {
-    return query.replace(/intmax/i, '"intmax"')
-  }
-  return query
-}
+const allIndexes = ["blog", "projects", "research"]
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
@@ -43,64 +20,104 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  if (!searchClient) {
-    return NextResponse.json(
-      {
-        error: "Search client not initialized - missing Algolia credentials",
-        availableIndexes: [],
-      },
-      { status: 500 }
-    )
-  }
+  const results = []
 
-  try {
-    const transformedQuery = transformQuery(query)
+  // Search articles
+  if (!indexName || indexName === "blog") {
+    const articles = getArticles()
+    const matches = searchArticles(articles, query)
+      .slice(0, hitsPerPage)
+      .map((article: any) => ({
+        objectID: article.id,
+        title: article.title,
+        content: article.tldr || article.content.slice(0, 200),
+        url: `/blog/${article.id}`,
+      }))
 
-    // If an index is specified, search only that index
-    if (indexName && indexName.trim() !== "") {
-      const index = searchClient.initIndex(indexName)
-      const response = await index.search(transformedQuery, { hitsPerPage })
-
-      return NextResponse.json({
-        hits: response.hits,
-        status: "success",
-        availableIndexes: allIndexes,
+    if (matches.length > 0) {
+      results.push({
+        indexName: "blog",
+        hits: matches,
       })
     }
+  }
 
-    // Otherwise search across all configured indexes
-    const searchPromises = allIndexes.map((idxName) => {
-      return searchClient!
-        .initIndex(idxName)
-        .search(transformedQuery, { hitsPerPage })
-        .then((response) => ({
-          indexName: idxName,
-          hits: response.hits,
-        }))
-        .catch((err) => {
-          console.error(`Search error for index ${idxName}:`, err)
-          return { indexName: idxName, hits: [] }
-        })
-    })
-
-    const indexResults = await Promise.all(searchPromises)
-    const nonEmptyResults = indexResults.filter(
-      (result) => result.hits && result.hits.length > 0
+  // Search projects (applications and devtools only)
+  if (!indexName || indexName === "projects") {
+    const allProjects = getProjects()
+    const projectsOnly = allProjects.filter(
+      (p: any) =>
+        p.category?.toLowerCase() === "application" ||
+        p.category?.toLowerCase() === "devtools"
     )
+    const matches = searchProjects(projectsOnly, query)
+      .slice(0, hitsPerPage)
+      .map((project: any) => ({
+        objectID: project.id,
+        title: project.name || project.title,
+        description: project.description || project.tldr,
+        url: `/projects/${project.id}`,
+      }))
 
-    return NextResponse.json({
-      results: nonEmptyResults,
-      status: "success",
-      availableIndexes: allIndexes,
-    })
-  } catch (error: any) {
-    console.error("Global search error:", error)
+    if (matches.length > 0) {
+      results.push({
+        indexName: "projects",
+        hits: matches,
+      })
+    }
+  }
+
+  // Search research (research category only)
+  if (!indexName || indexName === "research") {
+    const allProjects = getProjects()
+    const researchOnly = allProjects.filter(
+      (p: any) => p.category?.toLowerCase() === "research"
+    )
+    const matches = searchProjects(researchOnly, query)
+      .slice(0, hitsPerPage)
+      .map((project: any) => ({
+        objectID: project.id,
+        title: project.name || project.title,
+        description: project.description || project.tldr,
+        url: `/projects/${project.id}`,
+      }))
+
+    if (matches.length > 0) {
+      results.push({
+        indexName: "research",
+        hits: matches,
+      })
+    }
+  }
+
+  // If searching specific index, return single index format
+  if (indexName) {
+    const indexResult = results.find((r) => r.indexName === indexName)
     return NextResponse.json(
       {
-        error: error.message || "Search failed",
-        availableIndexes: [],
+        hits: indexResult?.hits || [],
+        status: "success",
+        availableIndexes: allIndexes,
       },
-      { status: 500 }
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+        },
+      }
     )
   }
+
+  // Return multi-index format
+  return NextResponse.json(
+    {
+      results,
+      status: "success",
+      availableIndexes: allIndexes,
+    },
+    {
+      headers: {
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+      },
+    }
+  )
 }

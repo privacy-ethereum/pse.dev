@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "buildCommand": "corepack enable && yarn install && yarn build",
+  "installCommand": "corepack enable && yarn install",
+  "framework": "nextjs",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "github": {
+    "autoJobCancelation": false
+  }
+}

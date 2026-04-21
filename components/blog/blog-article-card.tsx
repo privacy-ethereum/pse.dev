@@ -1,10 +1,10 @@
-import { Article } from "@/lib/blog"
+import { Article } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { cva } from "class-variance-authority"
 import Image from "next/image"
 
 export const blogArticleCardTagCardVariants = cva(
-  "text-xs font-sans text-tuatara-950 rounded-[3px] py-[2px] px-[6px] w-fit shrink-[0]",
+  "text-xs font-sans text-primary rounded-[3px] py-[2px] px-[6px] w-fit shrink-[0] dark:text-black",
   {
     variants: {
       variant: {
@@ -28,18 +28,21 @@ export const BlogArticleCard = ({
       <div className="relative h-48 w-full overflow-hidden bg-gray-100 flex-shrink-0">
         <Image
           src={imageUrl}
-          alt={title}
+          alt="Article cover image"
           fill
           className="object-cover"
-          quality={90}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={false}
+          quality={85}
+          loading="lazy"
         />
       </div>
 
       <div className="p-5 flex flex-col flex-grow gap-5 lg:gap-8 min-h-[180px]">
         <div className="flex flex-col gap-2">
-          <h2 className="text-2xl font-bold leading-7 text-black duration-200 cursor-pointer hover:text-anakiwa-500">
+          <h3 className="text-2xl font-bold leading-7 text-black duration-200 cursor-pointer hover:text-anakiwa-500">
             {title}
-          </h2>
+          </h3>
         </div>
 
         <div className="flex justify-between mt-auto gap-4 items-center">

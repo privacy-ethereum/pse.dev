@@ -1,12 +1,9 @@
 "use client"
 
-import React, { useCallback, useEffect, useRef, useState } from "react"
-import Image from "next/image"
-import NoResultIcon from "@/public/icons/no-result.svg"
-import { useProjectFiltersState } from "@/state/useProjectFiltersState"
-import { cva } from "class-variance-authority"
-
-import { LangProps } from "@/types/common"
+import ProjectCard from "./project-card"
+import { SectionWrapper } from "@/app/components/wrappers/SectionWrapper"
+import { LABELS } from "@/app/labels"
+import { useProjects } from "@/app/providers/ProjectsProvider"
 import {
   ProjectInterface,
   ProjectSection,
@@ -16,27 +13,21 @@ import {
   ProjectStatusDescriptionMapping,
 } from "@/lib/types"
 import { cn } from "@/lib/utils"
-import { useTranslation } from "@/app/i18n/client"
+import NoResultIcon from "@/public/icons/no-result.svg"
+import Image from "next/image"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 
-import ProjectCard from "./project-card"
-
-const sectionTitleClass = cva(
-  "relative font-sans text-base font-bold uppercase tracking-[3.36px] text-anakiwa-950 after:ml-8 after:absolute after:top-1/2 after:h-[1px] after:w-full after:translate-y-1/2 after:bg-anakiwa-300 after:content-['']"
-)
-
-const NoResults = ({ lang }: LangProps["params"]) => {
-  const { t } = useTranslation(lang, "common")
-
+const NoResults = () => {
   return (
     <div className="flex flex-col gap-2 pt-24 pb-40 text-center">
       <div className="mx-auto">
-        <Image className="h-9 w-9" src={NoResultIcon} alt="no result icon" />
+        <Image className="h-9 w-9" src={NoResultIcon} alt="No projects found" />
       </div>
-      <span className="text-2xl font-bold font-display text-tuatara-950">
-        {t("noResults")}
+      <span className="text-2xl font-bold font-display text-primary">
+        {LABELS.COMMON.NO_RESULTS}
       </span>
-      <span className="text-lg font-normal text-tuatara-950">
-        {t("noResultsDescription")}
+      <span className="text-lg font-normal text-primary">
+        {LABELS.COMMON.NO_RESULTS_DESCRIPTION}
       </span>
     </div>
   )
@@ -44,23 +35,25 @@ const NoResults = ({ lang }: LangProps["params"]) => {
 
 const ProjectStatusOrderList = ["active", "maintained", "inactive"]
 
-export const ProjectList = ({ lang }: LangProps["params"]) => {
-  const { t } = useTranslation(lang, "resources-page")
+export const ProjectList = () => {
   const SCROLL_OFFSET = -400
   const [activeId, setActiveId] = useState("")
   const [isManualScroll, setIsManualScroll] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
 
-  const { projects, searchQuery, queryString } = useProjectFiltersState(
-    (state) => state
-  )
+  const { projects, searchQuery, activeFilters, isLoading } = useProjects()
+  const hasSearchParams =
+    searchQuery?.length > 0 ||
+    Object.values({
+      keywords: activeFilters?.keywords ?? [],
+      builtWith: activeFilters?.builtWith ?? [],
+      themes: activeFilters?.themes ?? [],
+    }).some((arr) => arr.length > 0)
 
   const noItems = projects?.length === 0
 
   const sectionsRef = useRef<NodeListOf<HTMLElement> | null>(null) // sections are constant so useRef might be better here
 
   useEffect(() => {
-    setIsMounted(true)
     if (typeof window !== "undefined") {
       sectionsRef.current = document.querySelectorAll("div[data-section]")
 
@@ -98,10 +91,8 @@ export const ProjectList = ({ lang }: LangProps["params"]) => {
     }
   }, [])
 
-  const hasActiveFilters = searchQuery !== "" || queryString !== ""
-
   // loading state skeleton
-  if (!isMounted) {
+  if (isLoading) {
     return (
       <div className="grid items-start justify-between w-full grid-cols-1 gap-2 md:grid-cols-4 md:gap-6">
         <div className="min-h-[380px] border border-gray-200 rounded-lg overflow-hidden">
@@ -120,28 +111,23 @@ export const ProjectList = ({ lang }: LangProps["params"]) => {
     )
   }
 
-  if (noItems) return <NoResults lang={lang} />
+  if (noItems) return <NoResults />
 
-  const projectsGroupByStatus = projects.reduce(
-    (acc, project) => {
-      acc[project.projectStatus] = [
-        ...(acc[project.projectStatus] || []),
-        project,
-      ]
-      return acc
-    },
-    {} as Record<ProjectStatus, ProjectInterface[]>
-  )
+  const projectsGroupByStatus = projects.reduce((acc, project) => {
+    acc[project.projectStatus] = [
+      ...(acc[project.projectStatus] || []),
+      project,
+    ]
+    return acc
+  }, {} as Record<ProjectStatus, ProjectInterface[]>)
 
-  // show all projects without sections if there are active filters
-  if (hasActiveFilters) {
+  if (hasSearchParams) {
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-x-6 md:gap-y-10 lg:grid-cols-4">
-        {projects.map((project) => (
+        {projects?.map((project: any) => (
           <ProjectCard
             key={project?.id}
             project={project}
-            lang={lang}
             showBanner
             showLinks
             border
@@ -153,7 +139,7 @@ export const ProjectList = ({ lang }: LangProps["params"]) => {
 
   return (
     <div className="relative grid items-start justify-between grid-cols-1">
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-10">
         {ProjectStatusOrderList.map((status, index) => {
           const projects = projectsGroupByStatus[status as ProjectStatus] ?? []
           const description =
@@ -169,21 +155,17 @@ export const ProjectList = ({ lang }: LangProps["params"]) => {
               data-section={status}
               className="flex justify-between gap-10"
             >
-              <div className={cn("flex w-full flex-col gap-10 pt-10")}>
-                {!hasActiveFilters && (
-                  <div className="flex flex-col gap-6 overflow-hidden">
-                    <h3 className={cn(sectionTitleClass())}>{status}</h3>
-                    <span className="font-sans text-base italic text-tuatara-950">
-                      {description}
-                    </span>
-                  </div>
-                )}
+              <div className={cn("flex w-full flex-col gap-10")}>
+                <SectionWrapper
+                  title={status}
+                  description={description}
+                  showHeader={!hasSearchParams}
+                />
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-x-6 md:gap-y-10 lg:grid-cols-4">
-                  {projects.map((project) => (
+                  {projects.map((project: any) => (
                     <ProjectCard
                       key={project?.id}
                       project={project}
-                      lang={lang}
                       showBanner
                       showLinks
                       border
@@ -198,8 +180,8 @@ export const ProjectList = ({ lang }: LangProps["params"]) => {
 
       <div id="sidebar" className="sticky hidden p-8 top-20 bg-white/30">
         <div className="flex flex-col gap-4">
-          <h6 className="text-lg font-bold font-display text-tuatara-700">
-            {t("onThisPage")}
+          <h6 className="text-lg font-bold font-display text-secondary">
+            {LABELS.RESOURCES_PAGE.ON_THIS_PAGE}
           </h6>
           <ul className="font-sans text-black text-normal">
             {ProjectSections.map((id: ProjectSection) => {

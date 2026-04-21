@@ -1,9 +1,5 @@
-import React from "react"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { VariantProps, cva } from "class-variance-authority"
-
-import { getProjectById } from "@/lib/projectsUtils"
+import { ProjectLink } from "../mappings/project-link"
+import { useProjects } from "@/app/providers/ProjectsProvider"
 import {
   ProjectInterface,
   ProjectLinkWebsite,
@@ -11,9 +7,11 @@ import {
   ProjectStatusLabelMapping,
 } from "@/lib/types"
 import { cn } from "@/lib/utils"
-import { LocaleTypes } from "@/app/i18n/settings"
-
-import { ProjectLink } from "../mappings/project-link"
+import { VariantProps, cva } from "class-variance-authority"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import React from "react"
 
 interface ProjectCardProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -27,7 +25,7 @@ interface ProjectCardProps
 }
 
 const tagCardVariants = cva(
-  "text-xs font-sans text-tuatara-950 rounded-[3px] py-[2px] px-[6px]",
+  "text-xs font-sans text-primary rounded-[3px] py-[2px] px-[6px]",
   {
     variants: {
       variant: {
@@ -67,34 +65,32 @@ export default function ProjectCard({
   showStatus = true,
   className,
   contentClassName,
-  lang,
-}: ProjectCardProps & { lang: LocaleTypes }) {
+}: ProjectCardProps) {
   const router = useRouter()
 
-  const { id, image, links, name, imageAlt, projectStatus, cardTags } =
-    project ?? {}
-
-  const { content: projectContent } = getProjectById(id, lang)
+  const {
+    id,
+    image,
+    links,
+    name,
+    imageAlt,
+    projectStatus,
+    cardTags,
+    tldr = "",
+  } = project ?? {}
 
   return (
-    <div
+    <Link
+      href={`/projects/${id?.toLowerCase()}`}
       className={cn(
         "group cursor-pointer",
         projectCardVariants({ showLinks, border, className })
       )}
-      onClick={() => {
-        router.push(`/projects/${id?.toLowerCase()}`)
-      }}
     >
       {showBanner && (
-        <div
-          className="relative flex flex-col border-b border-black/10 cursor-pointer"
-          onClick={() => {
-            router.push(`/projects/${id?.toLowerCase()}`)
-          }}
-        >
+        <div className="relative flex flex-col border-b border-black/10 cursor-pointer">
           <Image
-            src={`/project-banners/${image ? image : "fallback.webp"}`}
+            src={image || "/project-banners/fallback.webp"}
             alt={`${name} banner`}
             width={1200}
             height={630}
@@ -109,22 +105,22 @@ export default function ProjectCard({
       )}
       <div
         className={cn(
-          "flex flex-col justify-between h-full gap-8 p-[30px] bg-white rounded-b-lg hover:bg-research-card-gradient duration-300",
+          "flex flex-col justify-between h-full rounded-lg overflow-hidden gap-8 p-[30px] hover:bg-research-card-gradient duration-300 dark:border dark:border-anakiwa-800",
           contentClassName,
           {
-            "bg-white": !showBanner,
+            "bg-white dark:bg-black": !showBanner,
             "bg-transparent": showBanner,
           }
         )}
       >
         <div className="flex flex-col justify-start gap-2">
-          <h1 className="text-2xl font-bold leading-7 duration-200 cursor-pointer text-anakiwa-700 line-clamp-2">
+          <h1 className="text-2xl font-bold leading-7 duration-200 cursor-pointer text-anakiwa-700 line-clamp-2 dark:text-white">
             {name}
           </h1>
-          {projectContent?.tldr && (
+          {(tldr ?? "")?.length > 0 && (
             <div className="flex flex-col h-24 gap-4">
-              <p className="text-slate-900/80 line-clamp-3">
-                {projectContent?.tldr}
+              <p className="text-tuatara-500 text-base lg:text-xl line-clamp-3 dark:text-anakiwa-100">
+                {tldr}
               </p>
             </div>
           )}
@@ -178,6 +174,6 @@ export default function ProjectCard({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

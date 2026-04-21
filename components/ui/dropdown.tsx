@@ -49,7 +49,7 @@ const Dropdown = ({
           aria-label="dropdown menu"
         >
           <div className="flex items-center gap-1">
-            <span className="break-words text-sm font-medium text-tuatara-950">
+            <span className="break-words text-sm font-medium text-primary">
               {selectedLabel ?? label}
             </span>
             <div className="ml-auto">
@@ -63,7 +63,7 @@ const Dropdown = ({
         <DropdownMenu.Content
           style={{ width: `${width}px` }}
           className={cn(
-            "z-[50] max-h-[250px] overflow-scroll rounded-md border border-tuatara-200 bg-white py-2",
+            "z-[50] max-h-[250px] overflow-scroll rounded-md border border-tuatara-200 bg-white py-2 dark:bg-black dark:border-anakiwa-800",
             {
               "max-w-[136px]": width === undefined,
             }
@@ -78,7 +78,7 @@ const Dropdown = ({
                 className={cn(
                   "text-duration-200 relative w-full cursor-pointer px-5 py-3 font-sans text-sm ring-0 hover:font-medium hover:text-anakiwa-500 focus:outline-none",
                   {
-                    "text-tuatara-950 font-normal": !active,
+                    "text-primary font-normal": !active,
                     "text-anakiwa-500 font-medium": active,
                   }
                 )}

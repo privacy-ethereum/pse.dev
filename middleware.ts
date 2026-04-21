@@ -1,48 +1,51 @@
 import { NextResponse } from "next/server"
-import acceptLanguage from "accept-language"
+import type { NextRequest } from "next/server"
 
-import { cookieName, fallbackLng, languages } from "./app/i18n/settings"
+// List of previous supported language
+const LANGUAGE_CODES = ["en", "it", "de", "es", "fr", "ja", "ko"]
 
-acceptLanguage.languages(languages as any)
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
 
-export const config = {
-  //matcher: "/:lang*",
-  matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)"],
-}
-const PUBLIC_FILE = /\.(.*)$/
-
-export function middleware(req: any) {
-  const COOKIE_NAME = cookieName ?? "i18next"
-  let lang
-  if (req.cookies.has(COOKIE_NAME))
-    lang = acceptLanguage.get(req.cookies.get(COOKIE_NAME).value)
-  if (!lang) lang = acceptLanguage.get(req.headers.get("Accept-Language"))
-  if (!lang) lang = fallbackLng
-
-  // Keep the file from public folder
-  if (PUBLIC_FILE.test(req.nextUrl.pathname)) {
-    return
+  if (LANGUAGE_CODES.includes(pathname.slice(1))) {
+    return NextResponse.redirect(new URL("/", request.url))
   }
 
-  // Redirect if lang in path is not supported
-  if (
-    !languages.some((loc) => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
-    !req.nextUrl.pathname.startsWith("/_next")
-  ) {
-    return NextResponse.redirect(
-      new URL(`/${lang}${req.nextUrl.pathname}`, req.url)
-    )
-  }
+  const languageCode = LANGUAGE_CODES.find((code) =>
+    pathname.startsWith(`/${code}/`)
+  )
 
-  if (req.headers.has("referer")) {
-    const refererUrl = new URL(req.headers.get("referer"))
-    const langInReferer = languages.find((l) =>
-      refererUrl.pathname.startsWith(`/${l}`)
-    )
-    const response = NextResponse.next()
-    if (langInReferer) response.cookies.set(COOKIE_NAME, langInReferer)
-    return response
+  if (languageCode) {
+    const newPathname = pathname.replace(`/${languageCode}`, "")
+    const newUrl = new URL(newPathname, request.url)
+
+    request.nextUrl.searchParams.forEach((value, key) => {
+      newUrl.searchParams.set(key, value)
+    })
+
+    return NextResponse.redirect(newUrl)
   }
 
   return NextResponse.next()
+}
+
+export const config = {
+  matcher: [
+    // Match exact language codes (e.g., /en, /fr)
+    "/en",
+    "/it",
+    "/de",
+    "/es",
+    "/fr",
+    "/ja",
+    "/ko",
+    // Match all paths that start with any of the language codes
+    "/en/:path*",
+    "/it/:path*",
+    "/de/:path*",
+    "/es/:path*",
+    "/fr/:path*",
+    "/ja/:path*",
+    "/ko/:path*",
+  ],
 }

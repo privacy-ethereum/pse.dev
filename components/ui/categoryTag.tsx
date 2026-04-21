@@ -12,7 +12,7 @@ const categoryTagVariants = cva(
       variant: {
         default: "bg-white text-black",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        gray: "bg-tuatara-100 text-tuatara-950",
+        gray: "bg-tuatara-100 text-primary",
         blue: "bg-anakiwa-300 text-black",
         selected: "bg-transparent border  text-black border",
       },
@@ -22,6 +22,12 @@ const categoryTagVariants = cva(
         lg: "h-11 px-8 rounded-md",
       },
     },
+    compoundVariants: [
+      {
+        variant: ["default", "ghost", "blue", "selected", "gray"],
+        className: "dark:bg-anakiwa-300 dark:text-tuatara-950",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",

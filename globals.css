@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Performance optimizations for font loading */
+.font-loading {
+  font-display: swap;
+  text-rendering: geometricPrecision !important;
+}
+
+/* Ensure fonts don't block rendering */
+html {
+  font-synthesis: none;
+}
+
+/* Custom responsive navigation */
+.nav-responsive {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .nav-responsive {
+    display: flex !important;
+  }
+}
+
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #0F172A;
+
+    --text-primary: #242528;
+    --text-secondary: #166F8E;
+
+    --gradient-research-card: linear-gradient(84deg, #FFF -1.95%, #EAFAFF 59.98%, #FFF 100.64%);
+    --skeleton-background: #f3f4f6;
+
+    --active-selection: #50C3E0;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+
+    --text-primary: #242528;
+    --text-secondary: #808590;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+    --anakiwa: 196 73% 97%;
+  }
+
+  .dark {
+    --background: #000000;
+    --foreground: #FFFFFF;
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #FFFFFF;
+
+    --gradient-research-card: linear-gradient(179deg, #29ACCE -202.54%, rgba(0, 0, 0, 0.00) 192.47%);
+    --skeleton-background: #175e75;
+
+    --active-selection: #E1523A;
+
+    --primary: #E1523A;
+    --primary-foreground: #FFF;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+
+  .writing-mode-vertical-rl {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
+
+.slick-dots ul li div {
+  background: #C2E8F5 !important;
+}
+
+.slick-dots li.slick-active div {
+  background: #29acce !important;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+    text-rendering: geometricPrecision !important;
+  }
+  body {
+    @apply font-sans bg-background text-foreground;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold font-display;
+  }
+
+  #privacy,
+  #scaling,
+  #explorations {
+    @apply fill-gray-900;
+  }
+}
+
+/**
+ * Custom styles for Markdown component
+ */
+@layer base {
+  table[data-component='table'] {
+    @apply overflow-hidden !border !border-solid !border-tuatara-300 rounded-lg table-auto bg-white;
+  }
+
+  table[data-component='table'] tr {
+    @apply !divide-solid !divide-x !divide-tuatara-300;
+  }
+
+  table[data-component='table'] thead > tr > th {
+    @apply px-4 py-1 text-sm font-medium text-left text-anakiwa-500;
+    @apply border border-tuatara-300;
+  }
+
+  table[data-component='table'] tbody > tr > td {
+    @apply px-4 py-1 text-sm font-medium text-left text-secondary;
+  }
+
+  /* Ensure line breaks in table cells work properly */
+  table[data-component='table'] td br {
+    @apply block content-[''] my-1;
+  }
+
+  /* Support for styled div elements in table cells */
+  table[data-component='table'] td div,
+  table[data-component='table'] th div {
+    @apply h-full w-full;
+  }
+
+  /* Style for emphasized content in tables */
+  table[data-component='table'] strong {
+    @apply font-bold;
+  }
+
+  table[data-component='table'] tbody > tr:not(:last-child) {
+    @apply border-b border-tuatara-300;
+  }
+}
+
+.link {
+  @apply border-b-2 border-transparent duration-200 ease-in-out hover:border-orange;
+}
+
+#howToApply a {
+  @apply underline;
+}
+
+/*Accordion open state*/
+.accordion > [data-state='open'] [data-icon='minus'] {
+  @apply block;
+}
+.accordion > [data-state='open'] [data-icon='plus'] {
+  @apply hidden;
+}
+
+/*Accordion close state*/
+.accordion > [data-state='closed'] [data-icon='plus'] {
+  @apply block;
+}
+.accordion > [data-state='closed'] [data-icon='minus'] {
+  @apply hidden;
+}
+
+/*Accordion hover state content*/
+.accordion.hover-icon > [data-state='closed'] [data-icon='plus'] {
+  @apply hidden;
+}
+.accordion.hover-icon > [data-state='closed']:hover [data-icon='plus'] {
+  @apply block;
+}
+
+p.math-only > .katex-math {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.katex-display {
+  width: 100%;
+  float: left;
+}
+/*Accordion hover state content*/
+@media screen and (max-width: 768px) {
+  .accordion.hover-icon > [data-state='closed'] [data-icon='plus'] {
+    @apply block;
+  }
+}
