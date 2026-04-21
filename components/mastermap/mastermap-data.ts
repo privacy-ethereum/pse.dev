@@ -65,10 +65,11 @@ export const CATEGORIES: Category[] = [
     id: "private-reads",
     name: "Private Reads",
     description:
-      "Enable reads from Ethereum without revealing identity or intent.",
+      "Protect Ethereum users from leaking _who_ they are and _what_ they are reading from the Ethereum blockchain.",
     color: "#50C3E0",
     bgLight: "bg-anakiwa-50",
     bgDark: "dark:bg-anakiwa-975/30",
+    url: "https://privreads.ethereum.foundation",
   },
 ]
 
@@ -718,110 +719,385 @@ export const PROJECTS: ProjectData[] = [
     category: "private-reads",
     status: "Active R&D",
     statusVariant: "rd",
-    completion: 20,
+    completion: 35,
     description:
-      "PIR schemes tailored for Ethereum state and history. Optimized for wallets, frontends, tax software, dApps.",
+      "[PIR schemes](https://privreads.ethereum.foundation/workstreams/pir) tailored for Ethereum state and history. Sharded multi-engine design that lets wallets, frontends, tax software, and dApps read chain data without revealing what they queried.",
     href: "/mastermap/pir",
-    tags: ["PIR", "Private state"],
+    projectUrl: "/projects/pir-ethereum-data",
+    tags: ["PIR", "Sharded PIR", "GPU", "Ethereum state"],
     now: [
       {
-        name: "PIR Systems (2-4 schemes)",
+        name: "LeanPIR (GPU-accelerated)",
         description:
-          "PIR schemes tailored for Ethereum state and history. Optimized for wallets, frontends, tax software, dApps.",
-        status: "In progress \u00b7 Critical",
+          "[New scheme](https://privreads.ethereum.foundation/feed/update-march-2026). Sub-second preprocessing on a 32 GB database and ~30 ms response time. Productionizing with GPU acceleration via external collaborators.",
+        status: "Q2 2026 · Critical",
+        statusDot: "green",
+      },
+      {
+        name: "Sharded PIR design",
+        description:
+          "Flesh out the multi-engine sharded architecture with ≥2 inaugural schemes; builds on our [sharded PIR design](https://privreads.ethereum.foundation/feed/sharded-pir-design) for Ethereum state.",
+        status: "Q2 2026",
+        statusDot: "green",
+      },
+      {
+        name: "VIA in Rust",
+        description:
+          "Port VIA from [Pythonic specs](https://github.com/turanzv/via-spec) to a Rust reference implementation; feeds into the sharded harness and benchmark comparisons.",
+        status: "Q2 2026",
+        statusDot: "green",
+      },
+      {
+        name: "Balance-retrieval demo",
+        description:
+          "End-to-end demo of ETH balance retrieval over LeanPIR, targeted at wallet integration.",
+        status: "Q2 2026",
+        statusDot: "green",
+      },
+      {
+        name: "Reproducible benchmarks",
+        description:
+          "[Reproducible harness](https://privreads.ethereum.foundation/docs/pir-benchmarks/) comparing PIR schemes via a mix of reported data, independent replication, and benchmarking under unified test vectors.",
+        status: "Ongoing",
         statusDot: "green",
       },
     ],
     next: [
       {
-        name: "PIR Integration",
-        description: "\u22651 integration with wallet and/or light client.",
-        status: "Planned",
-        statusDot: "yellow",
-      },
-    ],
-    later: [],
-  },
-  {
-    id: "ubt",
-    name: "UBT",
-    category: "private-reads",
-    status: "Active R&D",
-    statusVariant: "rd",
-    completion: 15,
-    description:
-      "Provably L1-equivalent EL node using UBT data structure. MPT-equivalent.",
-    href: "/mastermap/ubt",
-    tags: ["UBT", "EIP7864", "Execution layer"],
-    now: [
-      {
-        name: "UBT Node (EIP7864)",
+        name: "LeanPIR paper",
         description:
-          "Provably L1-equivalent EL node using UBT data structure. MPT-equivalent.",
-        status: "In progress",
-        statusDot: "green",
-      },
-    ],
-    next: [],
-    later: [],
-  },
-  {
-    id: "tor-js",
-    name: "tor-js",
-    category: "private-reads",
-    status: "Active R&D",
-    statusVariant: "rd",
-    completion: 20,
-    description:
-      "Arti Tor client in-browser for anonymized RPC. Kohaku integration for plug-in anonymous routing in wallets and frontends.",
-    href: "/mastermap/tor-js",
-    projectUrl: "/projects/tor-js",
-    tags: ["Arti", "Tor", "Kohaku"],
-    now: [
-      {
-        name: "Arti in-browser",
-        description:
-          "Tor client running in browser for anonymized RPC calls from wallets and frontends.",
-        status: "In progress",
-        statusDot: "green",
-      },
-      {
-        name: "Kohaku Integration",
-        description:
-          "Integrate Arti with Kohaku and at least one wallet SDK for plug-in anonymous routing.",
-        status: "In progress",
-        statusDot: "green",
-      },
-    ],
-    next: [
-      {
-        name: "Privacy Dashboard",
-        description:
-          "Showcase privacy affordances and adoption of anonymized routing in wallets and RPC providers.",
-        status: "Planned",
+          "Academic paper on LeanPIR and its GPU acceleration. EuroTT workshop keynote targeted for May 2026.",
+        status: "Q2 2026",
         statusDot: "yellow",
       },
       {
-        name: "Spotlight Series",
-        description: "2-5 articles communicating privacy to the public.",
-        status: "Planned",
+        name: "GPU multi-collaborator scale-up",
+        description:
+          "Multi-GPU (100+ GB scale) collaboration with external researchers (Seoul National University, Illinois) — microgrants and co-authorship.",
+        status: "Q2–Q3 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "PIR integration in wallet / light client",
+        description:
+          "Ad-hoc LeanPIR demo integrated into a wallet and/or light client.",
+        status: "Q3 2026 · Critical",
         statusDot: "yellow",
       },
     ],
     later: [
       {
-        name: "Certification Badges",
+        name: "[E2E](https://ethresear.ch/t/sharded-pir-design-for-the-ethereum-state/24552#p-59339-h-7-universal-pir-interface-17) sharded PIR on Ethereum state",
         description:
-          "Standardize certification badges of privacy adherence for wallets, frontends, RPC providers.",
-        status: "Q2 2026",
+          "End-to-end sharded PIR with ≥2 schemes over a non-trivial amount of Ethereum state data. Stretch carried from Q2.",
+        status: "H2 2026",
         statusDot: "gray",
       },
       {
-        name: "Wallet SDK Privacy",
+        name: "Archival-state snarkification",
         description:
-          "Drive integration of Arti for network-level-private RPC calls in wallet SDKs.",
-        status: "Q2 2026",
+          "Technical post on snarkifying archival state to reduce database size, enabling smaller PIR servers.",
+        status: "Q3 2026",
         statusDot: "gray",
+      },
+      {
+        name: "PIR ↔ Statelessness",
+        description:
+          "Exploring PIR served from Ethereum nodes and how that will work depending on the statelessness route taken by the protocol.",
+        status: "2027",
+        statusDot: "gray",
+      },
+    ],
+    details: {
+      deliverables: [
+        "Sharded PIR design fleshed out with ≥2 inaugural schemes",
+        "LeanPIR paper + GPU-accelerated reference implementation",
+        "VIA in Rust based on Pythonic specs",
+        "ETH balance-retrieval demo over LeanPIR",
+      ],
+      impact: [
+        "Wallets can fetch account state without revealing what they queried",
+        "Light clients gain private state access via a common interface",
+        "Scheme-specific tradeoffs surfaced by the sharded harness",
+      ],
+    },
+    kpis: [
+      {
+        label: "% of Ethereum state servable via PIR",
+        target: "Under practical overheads",
+        status: "Ongoing, various promising schemes for different slices",
+      },
+    ],
+  },
+  {
+    id: "access-layer",
+    name: "Anonymization Access Layer",
+    category: "private-reads",
+    status: "Research",
+    statusVariant: "research",
+    completion: 10,
+    description:
+      "Pluggable abstraction over anonymization networks (Tor, Nym, Nox, mixnets). Wallets, SDKs, and clients can swap networks without app-layer changes.",
+    href: "/mastermap/access-layer",
+    tags: ["Access Layer", "WebRTC", "Mixnet", "Onion routing"],
+    now: [
+      {
+        name: "Architecture sketch",
+        description:
+          "Design sketch (not implementation) for the access-layer abstraction; consulting Will (Protocol Labs, original Snowflake author) and peers on P2P + consensus-driven dialing.",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "WebRTC transport kit",
+        description:
+          "Foundational transport for the [access layer](https://privreads.ethereum.foundation/code) — connectivity from the edge (browsers, wallets) to a range of infrastructure: PIR servers, anonymity-network nodes (Tor, mixnets), and Ethereum p2p nodes. Born from [embedding Arti in the browser](https://privreads.ethereum.foundation/feed/embedding-arti-in-the-browser), then generalized; same wire behavior across TorJS, Geth (in-process go-webrtc), other EL clients, and Rust-based mixnet nodes.",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "Mixnet survey",
+        description:
+          "Survey of mixnet implementations (Nym, Nox, HOPR, Anyone.io, fileverse's 0) as candidate backends for the access layer.",
+        status: "In progress",
+        statusDot: "green",
+      },
+    ],
+    next: [
+      {
+        name: "Publish design sketch",
+        description:
+          "Publish the access-layer architecture sketch, with a companion community post inviting feedback. Share at an engineering monthly to convene wallets, SDKs, and anonymization-network maintainers around a common interface.",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "Reference transport spec",
+        description:
+          "Unified WebRTC transport spec usable identically from browser (WebRTC API) and Node.js (go-webrtc), with standardized WASM-binary validation across networks.",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+    ],
+    later: [
+      {
+        name: "LLM privacy scrubber",
+        description:
+          "Local-LLM-backed agent that sanitizes user queries before they leave the client, paired with the access layer for network-level privacy on top.",
+        status: "Q3 2026",
+        statusDot: "gray",
+      },
+      {
+        name: "Lean verifiable software integration",
+        description:
+          "Dip into Lean / formal methods for critical access-layer plumbing; early exploration of verified builds for privacy primitives.",
+        status: "Exploratory",
+        statusDot: "blue",
+      },
+    ],
+    details: {
+      deliverables: [
+        "Access-layer design sketch + community feedback",
+        "WebRTC transport PoC across TorJS and Geth",
+      ],
+      impact: [
+        "Apps are not bound to a single anonymization network; users and integrators can choose",
+        "Ethereum RPC traffic becomes routable over any anonym. network (onion, mixnet, or any other)",
+        "Censorship and centralized RPC outages no longer take wallets offline",
+      ],
+    },
+  },
+  {
+    id: "ubt",
+    name: "Verifiable UBT",
+    category: "private-reads",
+    status: "Active R&D",
+    statusVariant: "rd",
+    completion: 25,
+    description:
+      "Provably L1-equivalent execution-layer node using a [Unified Binary Tree](https://privreads.ethereum.foundation/workstreams/ubt) ([EIP-7864](https://eips.ethereum.org/EIPS/eip-7864)). MPT-equivalent state with a zk-friendlier structure, used as a base by light clients and PIR services that need provable state transitions.",
+    href: "/mastermap/ubt",
+    projectUrl: "/projects/verifiable-ubt",
+    tags: ["UBT", "EIP7864", "EL Clients", "PIR"],
+    now: [
+      {
+        name: "UBT sidecar on Geth",
+        description:
+          "Geth-based UBT node syncing mainnet. Most RPCs implemented; eth_call and debug_executionWitness pending. Blocked on inefficient binary-MPT conversion — upstream optimization work ongoing.",
+        status: "In progress · Carried from Q1",
+        statusDot: "green",
+      },
+      {
+        name: "UBT on Ethrex",
+        description:
+          "Rust EL client path, kicked off late Q1 via Lambdaclass PR. Preferred long-term for its Rust toolchain and zkVM-proving story.",
+        status: "In progress",
+        statusDot: "green",
+      },
+    ],
+    next: [
+      {
+        name: "Shadow chain sync to mainnet",
+        description:
+          "UBT shadow chain fully sync'd to mainnet head, producing MPT-equivalent state roots per block — validates the conversion pipeline under real load.",
+        status: "Q2 2026 · Critical",
+        statusDot: "yellow",
+      },
+      {
+        name: "Remaining RPC parity",
+        description:
+          "Implement eth_call and debug_executionWitness parity with MPT-backed Geth so UBT can back a full-featured node.",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+    ],
+    later: [
+      {
+        name: "zkVM proving of UBT transitions",
+        description:
+          "Recursive zkVM proof chain that UBT state updates match MPT updates per block. Pursue via microgrants once the node is sync'd.",
+        status: "Q3 2026",
+        statusDot: "gray",
+      },
+      {
+        name: "UBT↔PIR integration",
+        description:
+          "PIR services lean on provable UBT state — no need to trust the serving node.",
+        status: "Contingent",
+        statusDot: "blue",
+      },
+    ],
+    details: {
+      deliverables: [
+        "Fully sync'd UBT sidecar node on Geth and/or Ethrex",
+        "Recursive zkVM proof chain from genesis to head",
+        "MPT↔UBT comparison tooling",
+      ],
+      impact: [
+        "PIR services can rely on provable state without trusting a node",
+        "Light clients can verify state from genesis with a single proof chain",
+        "A concrete step toward stateless L1 execution",
+      ],
+    },
+    kpis: [
+      {
+        label: "Mainnet-sync'd shadow chain",
+        target: "End of Q2 2026",
+        status: "Geth + Ethrex paths in flight",
+      },
+      {
+        label: "RPC parity",
+        target: "All RPCs (incl. eth_call, debug_executionWitness)",
+        status: "isolated experimental impl worked in Geth",
+      },
+    ],
+  },
+  {
+    id: "tor-js",
+    name: "TorJS",
+    category: "private-reads",
+    status: "Active development",
+    statusVariant: "active",
+    completion: 50,
+    description:
+      "[Arti](https://privreads.ethereum.foundation/feed/embedding-arti-in-the-browser) — Tor's official Rust client — compiled to WebAssembly. Anonymized RPC from wallets, frontends, and dApps, running entirely in the browser. Q1 2026 milestone: full in-browser compile shipped.",
+    href: "/mastermap/tor-js",
+    projectUrl: "/projects/tor-js",
+    tags: ["Arti", "Anonymized RPC", "Onion routing"],
+    now: [
+      {
+        name: "Wallet / SDK / light-client integrations",
+        description:
+          "Ship Arti-backed RPC routing as a general transport for wallets, SDKs (ethers.js, viem.js), and light clients — wallet-agnostic, not tied to any single client. Kohaku is the Q2 reference integration.",
+        status: "Q2 2026 · Critical",
+        statusDot: "green",
+      },
+      {
+        name: "Upstream to Tor Project",
+        description:
+          "Merge async / time compatibility fixes back into Arti. WASM-readiness plumbing lands in Arti; the JS wrapper stays external.",
+        status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "WebRTC transport for Arti",
+        description:
+          "Browser-native WebRTC transport replacing WebSocket for Arti↔relay. In building it we saw a larger opportunity: a general-purpose transport for reaching anonymity and p2p networks from the edge (browsers, wallets). That broader effort is now the Anonymization Access Layer, with WebRTC as the core.",
+        status: "In progress",
+        statusDot: "green",
+      },
+    ],
+    next: [
+      {
+        name: "Arti security audit",
+        description:
+          "External audit of the WASM-compiled Arti client before broad wallet-SDK adoption.",
+        status: "Q2 2026 · Critical",
+        statusDot: "yellow",
+      },
+      {
+        name: "Broader SDK / light-client rollout",
+        description:
+          "Land Arti-backed routing in mainstream wallet SDKs (ethers.js, viem.js) and additional light clients (Helios, etc.) for network-level-private RPC.",
+        status: "Q2 2026",
+        statusDot: "yellow",
+      },
+      {
+        name: "Messenger-protocol survey",
+        description:
+          "Survey messenger apps/protocols and propose Arti-backed anonymization integrations; pursue one reference integration.",
+        status: "Q2–Q3 2026",
+        statusDot: "yellow",
+      },
+    ],
+    later: [
+      {
+        name: "PIR-over-Tor bootstrap",
+        description:
+          "Use our own PIR to privately retrieve the Tor directory on bootstrap, removing a plaintext metadata leak at the start of every session.",
+        status: "Q3 2026",
+        statusDot: "gray",
+      },
+      {
+        name: "Wallet P2P tx broadcasting / IP-leakage prevention",
+        description:
+          "Support wallets on optional P2P transaction broadcasting and IP-leakage prevention, leveraging WebRTC plus .onion-exposing infra providers (dRPC, Flashbots, …).",
+        status: "Q3 2026",
+        statusDot: "gray",
+      },
+    ],
+    details: {
+      deliverables: [
+        "WASM-compiled Arti client (shipped Q1 2026, see [privreads.ethereum.foundation/docs/torjs](https://privreads.ethereum.foundation/docs/torjs/))",
+        "Integrations across wallets, SDKs (ethers.js, viem.js), and light clients, seeded by a Kohaku reference integration",
+        "Arti security audit report and upstream merges into Tor Project's Arti",
+      ],
+      impact: [
+        "Ethereum users get network-level privacy without installing additional software",
+        "RPC providers can no longer correlate queries with user IPs",
+        "Any wallet, SDK, or light client that adopts the transport inherits anonymized routing",
+      ],
+    },
+    kpis: [
+      {
+        label: "Integrations",
+        target: "10+ wallets/sdk's/light clients",
+        status: "Ongoing",
+      },
+      {
+        label: "Bootstrap time",
+        target: "~3 seconds",
+        status: "Achieved (was ~3 minutes)",
+      },
+      {
+        label: "Upstream Arti PRs",
+        target: "5+ landed",
+        status: "Under review with Tor Project",
+      },
+      {
+        label: "Audit",
+        target: "External audit complete",
+        status: "Internal Audit 2Q26 (LLM swarm)",
       },
     ],
   },
