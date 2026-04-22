@@ -886,6 +886,7 @@ export const PROJECTS: ProjectData[] = [
         "WebRTC transport PoC across TorJS and Geth",
       ],
       impact: [
+        "Make Ethereum users' assumed-ISP-exposed web2 traffic unlinkable to transacting on or reading the Ethereum state — via any anonymization network they choose",
         "Apps are not bound to a single anonymization network; users and integrators can choose",
         "Ethereum RPC traffic becomes routable over any anonym. network (onion, mixnet, or any other)",
         "Censorship and centralized RPC outages no longer take wallets offline",
@@ -1058,11 +1059,12 @@ export const PROJECTS: ProjectData[] = [
     ],
     details: {
       deliverables: [
-        "WASM-compiled Arti client (shipped Q1 2026, see [privreads.ethereum.foundation/docs/torjs](https://privreads.ethereum.foundation/docs/torjs/))",
+        "WASM-compiled Arti client ([shipped Q1 2026](https://privreads.ethereum.foundation/docs/torjs/))",
         "Integrations across wallets, SDKs (ethers.js, viem.js), and light clients, seeded by a Kohaku reference integration",
         "Arti security audit report and upstream merges into Tor Project's Arti",
       ],
       impact: [
+        "Make Ethereum users' assumed-ISP-exposed web2 traffic unlinkable to transacting on or reading the Ethereum state",
         "Ethereum users get network-level privacy without installing additional software",
         "RPC providers can no longer correlate queries with user IPs",
         "Any wallet, SDK, or light client that adopts the transport inherits anonymized routing",
