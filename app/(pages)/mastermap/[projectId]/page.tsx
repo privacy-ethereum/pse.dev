@@ -133,7 +133,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                       className="font-sans text-sm text-tuatara-500 dark:text-tuatara-300 flex gap-2"
                     >
                       <span className="text-anakiwa-500 shrink-0">&#10003;</span>
-                      {renderLinks(item)}
+                      <span>{renderLinks(item)}</span>
                     </li>
                   ))}
                 </ul>
@@ -150,7 +150,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     className="font-sans text-sm text-tuatara-500 dark:text-tuatara-300 flex gap-2"
                   >
                     <span className="text-anakiwa-500 shrink-0">&#10003;</span>
-                    {renderLinks(item)}
+                    <span>{renderLinks(item)}</span>
                   </li>
                 ))}
               </ul>
@@ -166,7 +166,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     className="font-sans text-sm text-tuatara-500 dark:text-tuatara-300 flex gap-2"
                   >
                     <span className="text-anakiwa-500 shrink-0">&#10003;</span>
-                    {renderLinks(item)}
+                    <span>{renderLinks(item)}</span>
                   </li>
                 ))}
               </ul>

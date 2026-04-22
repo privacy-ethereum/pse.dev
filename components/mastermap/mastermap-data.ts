@@ -721,9 +721,8 @@ export const PROJECTS: ProjectData[] = [
     statusVariant: "rd",
     completion: 35,
     description:
-      "[PIR schemes](https://privreads.ethereum.foundation/workstreams/pir) tailored for Ethereum state and history. Sharded multi-engine design that lets wallets, frontends, tax software, and dApps read chain data without revealing what they queried.",
+      "[PIR schemes](https://privreads.ethereum.foundation/workstreams/pir) tailored for Ethereum state and history. Sharded multi-engine design that allows Ethereum users to read chain data from remote servers without revealing what they queried.",
     href: "/mastermap/pir",
-    projectUrl: "/projects/pir-ethereum-data",
     tags: ["PIR", "Sharded PIR", "GPU", "Ethereum state"],
     now: [
       {
@@ -816,9 +815,9 @@ export const PROJECTS: ProjectData[] = [
         "ETH balance-retrieval demo over LeanPIR",
       ],
       impact: [
-        "Wallets can fetch account state without revealing what they queried",
-        "Light clients gain private state access via a common interface",
-        "Scheme-specific tradeoffs surfaced by the sharded harness",
+        "Users can fetch account state without revealing what they queried, while expressing their queries using the same Ethereum RPC standard",
+        "Developers get a unified and stable PIR interface",
+        "[Sharded](https://ethresear.ch/t/sharded-pir-design-for-the-ethereum-state/24552#p-59339-h-51-sharding-13) design and other [optimizations](https://ethresear.ch/t/sharded-pir-design-for-the-ethereum-state/24552#p-59339-h-8-ongoing-research-optimizations-18) bring PIR closer to practical overall efficiency",
       ],
     },
     kpis: [
@@ -903,7 +902,6 @@ export const PROJECTS: ProjectData[] = [
     description:
       "Provably L1-equivalent execution-layer node using a [Unified Binary Tree](https://privreads.ethereum.foundation/workstreams/ubt) ([EIP-7864](https://eips.ethereum.org/EIPS/eip-7864)). MPT-equivalent state with a zk-friendlier structure, used as a base by light clients and PIR services that need provable state transitions.",
     href: "/mastermap/ubt",
-    projectUrl: "/projects/verifiable-ubt",
     tags: ["UBT", "EIP7864", "EL Clients", "PIR"],
     now: [
       {
