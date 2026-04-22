@@ -833,11 +833,11 @@ export const PROJECTS: ProjectData[] = [
     id: "access-layer",
     name: "Anonymization Access Layer",
     category: "private-reads",
-    status: "Research",
-    statusVariant: "research",
+    status: "Active R&D",
+    statusVariant: "rd",
     completion: 10,
     description:
-      "Pluggable abstraction over anonymization networks (Tor, Nym, Nox, mixnets). Wallets, SDKs, and clients can swap networks without app-layer changes.",
+      "Pluggable abstraction over anonymization networks (onion nets, mixnets, or any other). The edge ([in-browser] wallets, SDKs, light-clients, ..) can swap networks without app-layer changes.",
     href: "/mastermap/access-layer",
     tags: ["Access Layer", "WebRTC", "Mixnet", "Onion routing"],
     now: [
@@ -852,13 +852,6 @@ export const PROJECTS: ProjectData[] = [
         name: "WebRTC transport kit",
         description:
           "Foundational transport for the [access layer](https://privreads.ethereum.foundation/code) — connectivity from the edge (browsers, wallets) to a range of infrastructure: PIR servers, anonymity-network nodes (Tor, mixnets), and Ethereum p2p nodes. Born from [embedding Arti in the browser](https://privreads.ethereum.foundation/feed/embedding-arti-in-the-browser), then generalized; same wire behavior across TorJS, Geth (in-process go-webrtc), other EL clients, and Rust-based mixnet nodes.",
-        status: "In progress",
-        statusDot: "green",
-      },
-      {
-        name: "Mixnet survey",
-        description:
-          "Survey of mixnet implementations (Nym, Nox, HOPR, Anyone.io, fileverse's 0) as candidate backends for the access layer.",
         status: "In progress",
         statusDot: "green",
       },
@@ -880,13 +873,6 @@ export const PROJECTS: ProjectData[] = [
       },
     ],
     later: [
-      {
-        name: "LLM privacy scrubber",
-        description:
-          "Local-LLM-backed agent that sanitizes user queries before they leave the client, paired with the access layer for network-level privacy on top.",
-        status: "Q3 2026",
-        statusDot: "gray",
-      },
       {
         name: "Lean verifiable software integration",
         description:
@@ -955,14 +941,14 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "zkVM proving of UBT transitions",
         description:
-          "Recursive zkVM proof chain that UBT state updates match MPT updates per block. Pursue via microgrants once the node is sync'd.",
+          "Recursive zkVM proof chain that UBT state updates match MPT updates per block.",
         status: "Q3 2026",
         statusDot: "gray",
       },
       {
         name: "UBT↔PIR integration",
         description:
-          "PIR services lean on provable UBT state — no need to trust the serving node.",
+          "PIR servers and clients lean on provable UBT state — no need to trust the serving node.",
         status: "Contingent",
         statusDot: "blue",
       },
@@ -982,13 +968,13 @@ export const PROJECTS: ProjectData[] = [
     kpis: [
       {
         label: "Mainnet-sync'd shadow chain",
-        target: "End of Q2 2026",
+        target: "Q2 2026",
         status: "Geth + Ethrex paths in flight",
       },
       {
         label: "RPC parity",
         target: "All RPCs (incl. eth_call, debug_executionWitness)",
-        status: "isolated experimental impl worked in Geth",
+        status: "Blocked by node UBT-readiness",
       },
     ],
   },
@@ -996,20 +982,19 @@ export const PROJECTS: ProjectData[] = [
     id: "tor-js",
     name: "TorJS",
     category: "private-reads",
-    status: "Active development",
-    statusVariant: "active",
+    status: "Production",
+    statusVariant: "production",
     completion: 50,
     description:
-      "[Arti](https://privreads.ethereum.foundation/feed/embedding-arti-in-the-browser) — Tor's official Rust client — compiled to WebAssembly. Anonymized RPC from wallets, frontends, and dApps, running entirely in the browser. Q1 2026 milestone: full in-browser compile shipped.",
+      "[Arti](https://privreads.ethereum.foundation/feed/embedding-arti-in-the-browser) — Tor's official Rust client — compiled to WebAssembly. Anonymized RPC from wallets, frontends, and dApps, running entirely in the browser.",
     href: "/mastermap/tor-js",
-    projectUrl: "/projects/tor-js",
     tags: ["Arti", "Anonymized RPC", "Onion routing"],
     now: [
       {
         name: "Wallet / SDK / light-client integrations",
         description:
           "Ship Arti-backed RPC routing as a general transport for wallets, SDKs (ethers.js, viem.js), and light clients — wallet-agnostic, not tied to any single client. Kohaku is the Q2 reference integration.",
-        status: "Q2 2026 · Critical",
+        status: "In progress",
         statusDot: "green",
       },
       {
@@ -1024,6 +1009,13 @@ export const PROJECTS: ProjectData[] = [
         description:
           "Browser-native WebRTC transport replacing WebSocket for Arti↔relay. In building it we saw a larger opportunity: a general-purpose transport for reaching anonymity and p2p networks from the edge (browsers, wallets). That broader effort is now the Anonymization Access Layer, with WebRTC as the core.",
         status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "Internal Audit with LLM swarm",
+        description:
+          "Internal audit of the WASM-compiled Arti client using an LLM-based review swarm; ahead of external audit (includes dedicated audit for RustCrypto lib).",
+        status: "Q2 2026",
         statusDot: "green",
       },
     ],
