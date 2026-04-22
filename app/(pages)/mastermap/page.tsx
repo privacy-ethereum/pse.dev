@@ -2,6 +2,7 @@ import { LABELS } from "@/app/labels"
 import { AppContent } from "@/components/ui/app-content"
 import { ProjectCard } from "@/components/mastermap/project-card"
 import { CATEGORIES, PROJECTS } from "@/components/mastermap/mastermap-data"
+import { renderLinks } from "@/components/mastermap/render-links"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -55,7 +56,7 @@ export default function MasterMapPage() {
                 )}
               </h2>
               <p className="text-sm lg:text-base text-tuatara-500 dark:text-tuatara-300 font-sans mt-1">
-                {category.description}
+                {renderLinks(category.description)}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

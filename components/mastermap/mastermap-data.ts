@@ -65,7 +65,7 @@ export const CATEGORIES: Category[] = [
     id: "private-reads",
     name: "Private Reads",
     description:
-      "Protect Ethereum users from leaking _who_ they are and _what_ they are reading from the Ethereum blockchain.",
+      "Protect Ethereum users from leaking [who](https://privreads.ethereum.foundation/workstreams/torjs) they are and [what](https://privreads.ethereum.foundation/workstreams/pir) they are reading from the Ethereum [state](https://privreads.ethereum.foundation/workstreams/ubt/).",
     color: "#50C3E0",
     bgLight: "bg-anakiwa-50",
     bgDark: "dark:bg-anakiwa-975/30",
