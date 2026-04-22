@@ -740,13 +740,6 @@ export const PROJECTS: ProjectData[] = [
         statusDot: "green",
       },
       {
-        name: "VIA in Rust",
-        description:
-          "Port VIA from [Pythonic specs](https://github.com/turanzv/via-spec) to a Rust reference implementation; feeds into the sharded harness and benchmark comparisons.",
-        status: "Q2 2026",
-        statusDot: "green",
-      },
-      {
         name: "Balance-retrieval demo",
         description:
           "End-to-end demo of ETH balance retrieval over LeanPIR, targeted at wallet integration.",
@@ -763,24 +756,24 @@ export const PROJECTS: ProjectData[] = [
     ],
     next: [
       {
-        name: "LeanPIR paper",
+        name: "VIA in Rust",
         description:
-          "Academic paper on LeanPIR and its GPU acceleration. EuroTT workshop keynote targeted for May 2026.",
+          "Port VIA from [Pythonic specs](https://github.com/turanzv/via-spec) to a Rust reference implementation; feeds into the sharded harness and benchmark comparisons.",
         status: "Q2 2026",
         statusDot: "yellow",
       },
       {
-        name: "GPU multi-collaborator scale-up",
+        name: "LeanPIR paper",
         description:
-          "Multi-GPU (100+ GB scale) collaboration with external researchers (Seoul National University, Illinois) — microgrants and co-authorship.",
-        status: "Q2–Q3 2026",
+          "Academic paper on LeanPIR and its GPU acceleration. EuroTT workshop keynote targeted for May 2026.",
+        status: "Q2-3 2026",
         statusDot: "yellow",
       },
       {
-        name: "PIR integration in wallet / light client",
+        name: "GPU scale-up",
         description:
-          "Ad-hoc LeanPIR demo integrated into a wallet and/or light client.",
-        status: "Q3 2026 · Critical",
+          "Benchmark the leading candidates for GPU-accelerated PIR — Inspire, Onion v2, LeanPIR, VIA, and Harmony — at 100+ GB scale. Benchmark matrix being db/entry sizes, db segmentation, no. GPUs, ..",
+        status: "Q2–Q3 2026",
         statusDot: "yellow",
       },
     ],
