@@ -830,13 +830,13 @@ export const PROJECTS: ProjectData[] = [
   },
   {
     id: "access-layer",
-    name: "Anonymization Access Layer",
+    name: "Abstract Access Layer",
     category: "private-reads",
     status: "Active R&D",
     statusVariant: "rd",
     completion: 10,
     description:
-      "Pluggable abstraction over anonymization networks (onion nets, mixnets, or any other). The edge ([in-browser] wallets, SDKs, light-clients, ..) can swap networks without app-layer changes.",
+      "Pluggable abstraction over anonymization networks (onion nets, mixnets, or any other). The edge ([in-browser] wallets, SDKs, light-clients, ..) can swap networks without app-layer changes. The architecture and access/validation standard may be extended to accessing P2P networks generally (e.g. ethp2p, which may or may not itself be participating in anonymizing RPC traffic).",
     href: "/mastermap/access-layer",
     tags: ["Access Layer", "WebRTC", "Mixnet", "Onion routing"],
     now: [
@@ -883,13 +883,13 @@ export const PROJECTS: ProjectData[] = [
     details: {
       deliverables: [
         "Access-layer design sketch + community feedback",
-        "WebRTC transport PoC across TorJS and Geth",
+        "Pilot implementation of the standard using TorJS, Tor network, Geth",
       ],
       impact: [
-        "Make Ethereum users' assumed-ISP-exposed web2 traffic unlinkable to transacting on or reading the Ethereum state — via any anonymization network they choose",
+        "Censorship and centralized RPC outages no longer take wallets offline",
         "Apps are not bound to a single anonymization network; users and integrators can choose",
         "Ethereum RPC traffic becomes routable over any anonym. network (onion, mixnet, or any other)",
-        "Censorship and centralized RPC outages no longer take wallets offline",
+        "Make Ethereum users' assumed-ISP-exposed web2 traffic unlinkable to transacting on or reading the Ethereum state — via any anonymization network they choose",
       ],
     },
   },
@@ -1006,7 +1006,7 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "WebRTC transport for Arti",
         description:
-          "Browser-native WebRTC transport replacing WebSocket for Arti↔relay. In building it we saw a larger opportunity: a general-purpose transport for reaching anonymity and p2p networks from the edge (browsers, wallets). That broader effort is now the Anonymization Access Layer, with WebRTC as the core.",
+          "Browser-native WebRTC transport replacing WebSocket for Arti↔relay. In building it we saw a larger opportunity: a general-purpose transport for reaching anonymity and p2p networks from the edge (browsers, wallets). That broader effort is now the Abstract Access Layer, with WebRTC as the core.",
         status: "In progress",
         statusDot: "green",
       },
