@@ -2,6 +2,10 @@ import React from "react"
 
 const LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g
 
+export function stripLinks(text: string): string {
+  return text.replace(LINK_RE, "$1")
+}
+
 export function renderLinks(text: string): React.ReactNode[] {
   const nodes: React.ReactNode[] = []
   let lastIndex = 0

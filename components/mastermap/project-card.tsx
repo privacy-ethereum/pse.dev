@@ -6,7 +6,7 @@ import { ProgressBar } from "./progress-bar"
 import { StatusBadge } from "./status-badge"
 import type { ProjectData, Category } from "./mastermap-data"
 import { CATEGORIES } from "./mastermap-data"
-import { renderLinks } from "./render-links"
+import { stripLinks } from "./render-links"
 
 interface ProjectCardProps {
   project: ProjectData
@@ -49,7 +49,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       />
 
       <p className="font-sans text-sm text-tuatara-500 dark:text-tuatara-300 leading-relaxed mb-4">
-        {renderLinks(project.description)}
+        {stripLinks(project.description)}
       </p>
 
       <div className="flex items-center justify-between">
