@@ -1039,16 +1039,16 @@ export const PROJECTS: ProjectData[] = [
     ],
     later: [
       {
-        name: "PIR-over-Tor bootstrap",
+        name: "Direct Edge to P2P boradcasting+",
         description:
-          "Use our own PIR to privately retrieve the Tor directory on bootstrap, removing a plaintext metadata leak at the start of every session.",
+          "Support edge (wallets, light clients, ..) to P2P transaction broadcasting and IP-leakage prevention, leveraging WebRTC work in TorJS plus (a) .onion-exposing infra providers (dRPC, Flashbots, …) and (b) direct ethp2p peers after that [abstraction is implemented](/mastermap/access-layer).",
         status: "Q3 2026",
         statusDot: "gray",
       },
       {
-        name: "Wallet P2P tx broadcasting / IP-leakage prevention",
+        name: "PIR-over-Tor bootstrap",
         description:
-          "Support wallets on optional P2P transaction broadcasting and IP-leakage prevention, leveraging WebRTC plus .onion-exposing infra providers (dRPC, Flashbots, …).",
+          "Use our own PIR to privately retrieve the Tor directory on bootstrap, removing a plaintext metadata leak at the start of every session.",
         status: "Q3 2026",
         statusDot: "gray",
       },
