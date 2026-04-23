@@ -721,7 +721,7 @@ export const PROJECTS: ProjectData[] = [
     statusVariant: "rd",
     completion: 35,
     description:
-      "[PIR schemes](https://privreads.ethereum.foundation/workstreams/pir) tailored for Ethereum state and history. Sharded multi-engine design that allows Ethereum users to read chain data from remote servers without revealing what they queried.",
+      "[PIR schemes](https://privreads.ethereum.foundation/workstreams/pir) tailored to the Ethereum hot state can and archival history, allowing users to read chain data from remote servers without revealing what is being queried. The sharded approach allows optimizing for different data types, contexts of usage, and tolerance to latency.",
     href: "/mastermap/pir",
     tags: ["PIR", "Sharded PIR", "GPU", "Ethereum state"],
     now: [
@@ -808,7 +808,8 @@ export const PROJECTS: ProjectData[] = [
         "ETH balance-retrieval demo over LeanPIR",
       ],
       impact: [
-        "Users can fetch account state without revealing what they queried, while expressing their queries using the same Ethereum RPC standard",
+        "Users can read state data without revealing what they queried while expressing their queries using the same Ethereum RPC standard",
+        "Hardening the privacy guarantees provided by other privacy measures (shielding, network-level privacy)",
         "Developers get a unified and stable PIR interface",
         "[Sharded](https://ethresear.ch/t/sharded-pir-design-for-the-ethereum-state/24552#p-59339-h-51-sharding-13) design and other [optimizations](https://ethresear.ch/t/sharded-pir-design-for-the-ethereum-state/24552#p-59339-h-8-ongoing-research-optimizations-18) bring PIR closer to practical overall efficiency",
       ],
@@ -829,9 +830,9 @@ export const PROJECTS: ProjectData[] = [
     statusVariant: "rd",
     completion: 10,
     description:
-      "Pluggable abstraction over anonymization networks (onion nets, mixnets, or any other). The edge ([in-browser] wallets, SDKs, light-clients, ..) can swap networks without app-layer changes. The architecture and access/validation standard may be extended to accessing P2P networks generally (e.g. ethp2p, which may or may not itself be participating in anonymizing RPC traffic).",
+      "Pluggable abstraction over anonymization networks (onion nets, mixnets, or any other). The edge ([in-browser] wallets, SDKs, light-clients, ..) can swap networks without app-layer changes. The architecture and access/validation standard may be extended to accessing P2P networks generally.",
     href: "/mastermap/access-layer",
-    tags: ["Access Layer", "WebRTC", "Mixnet", "Onion routing"],
+    tags: ["Access Layer", "Standards", "WebRTC", "Mixnet", "Onion routing"],
     now: [
       {
         name: "Architecture sketch",
@@ -850,9 +851,9 @@ export const PROJECTS: ProjectData[] = [
     ],
     next: [
       {
-        name: "Publish design sketch",
+        name: "Publish the arch design",
         description:
-          "Publish the access-layer architecture sketch, with a companion community post inviting feedback. Share at an engineering monthly to convene wallets, SDKs, and anonymization-network maintainers around a common interface.",
+          "Publish the access-layer architecture, with a companion community post inviting feedback. Share at an engineering monthly to convene wallets, SDKs, and anonymization-network maintainers around a common interface.",
         status: "Q2 2026",
         statusDot: "yellow",
       },
@@ -868,19 +869,19 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "Lean verifiable software integration",
         description:
-          "Dip into Lean / formal methods for critical access-layer plumbing; early exploration of verified builds for privacy primitives.",
+          "Dip into Lean / formal methods for critical access-layer plumbing; early exploration of verified builds for privacy primitives, RustCrypto library being an initial candidate.",
         status: "Exploratory",
         statusDot: "blue",
       },
     ],
     details: {
       deliverables: [
-        "Access-layer design sketch + community feedback",
-        "Pilot implementation of the standard using TorJS, Tor network, Geth",
+        "Access architecture and standard + community feedback",
+        "Implement the standard and do a pilot implementation for a representative instantiation (wallet -> tor -> EL node)",
       ],
       impact: [
         "Censorship and centralized RPC outages no longer take wallets offline",
-        "Apps are not bound to a single anonymization network; users and integrators can choose",
+        "Apps are not bound to a single anonymization network; users and integrators can choose/swap",
         "Ethereum RPC traffic becomes routable over any anonym. network (onion, mixnet, or any other)",
         "Make Ethereum users' assumed-ISP-exposed web2 traffic unlinkable to transacting on or reading the Ethereum state — via any anonymization network they choose",
       ],
@@ -894,9 +895,9 @@ export const PROJECTS: ProjectData[] = [
     statusVariant: "rd",
     completion: 25,
     description:
-      "Provably L1-equivalent execution-layer node using a [Unified Binary Tree](https://privreads.ethereum.foundation/workstreams/ubt) ([EIP-7864](https://eips.ethereum.org/EIPS/eip-7864)). MPT-equivalent state with a zk-friendlier structure, used as a base by light clients and PIR services that need provable state transitions.",
+      "Provably L1-equivalent execution-layer node that is running against a [Unified Binary Tree](https://privreads.ethereum.foundation/workstreams/ubt) ([EIP-7864](https://eips.ethereum.org/EIPS/eip-7864)) PIR servers, wallets, and light clients can begin consuming binary-based state today ahead of EIP-7864 inclusion in protocol, while relying on equivalence proof for data validity.",
     href: "/mastermap/ubt",
-    tags: ["UBT", "EIP7864", "EL Clients", "PIR"],
+    tags: ["UBT", "EIP7864", "Statelessness", "EL Clients", "PIR"],
     now: [
       {
         name: "UBT sidecar on Geth",
@@ -947,14 +948,16 @@ export const PROJECTS: ProjectData[] = [
     ],
     details: {
       deliverables: [
-        "Fully sync'd UBT sidecar node on Geth and/or Ethrex",
+        "Fully sync'd UBT sidecar node on Geth / Ethrex",
         "Recursive zkVM proof chain from genesis to head",
-        "MPT↔UBT comparison tooling",
+        "MPT↔UBT utilities and monitoring tooling",
       ],
       impact: [
+        "Get the benefits of binary trie state today off-chain, and increase readiness for it when it goes on-chain (EIP-7864)",
         "PIR services can rely on provable state without trusting a node",
         "Light clients can verify state from genesis with a single proof chain",
         "A concrete step toward stateless L1 execution",
+        "Bonus: indirectly contributes to the testing and benchmarking of EIP-7864",
       ],
     },
     kpis: [
@@ -1052,8 +1055,8 @@ export const PROJECTS: ProjectData[] = [
     ],
     details: {
       deliverables: [
-        "WASM-compiled Arti client ([shipped Q1 2026](https://privreads.ethereum.foundation/docs/torjs/))",
-        "Integrations across wallets, SDKs (ethers.js, viem.js), and light clients, seeded by a Kohaku reference integration",
+        "[WASM](https://privreads.ethereum.foundation/feed/embedding-arti-in-the-browser/)-[compiled](https://privreads.ethereum.foundation/docs/torjs/) Arti client",
+        "Integrations across wallets, SDKs (ethers.js, viem.js), and light clients",
         "Arti security audit report and upstream merges into Tor Project's Arti",
       ],
       impact: [
@@ -1061,6 +1064,7 @@ export const PROJECTS: ProjectData[] = [
         "Ethereum users get network-level privacy without installing additional software",
         "RPC providers can no longer correlate queries with user IPs",
         "Any wallet, SDK, or light client that adopts the transport inherits anonymized routing",
+        "App developers can plug into onion routing using a familiar ([fetch](https://privreads.ethereum.foundation/docs/torjs/#fetch-flow)), without dealing with onionization complexity ([~3 lines of code](https://privreads.ethereum.foundation/docs/torjs))",
       ],
     },
     kpis: [
