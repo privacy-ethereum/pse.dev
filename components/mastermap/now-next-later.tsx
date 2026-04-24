@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import type { RoadmapItem } from "./mastermap-data"
+import { renderLinks } from "./render-links"
 
 const STATUS_DOT_COLORS = {
   green: "bg-emerald-500",
@@ -12,10 +13,10 @@ function RoadmapItemCard({ item }: { item: RoadmapItem }) {
   return (
     <div className="pb-4 mb-4 border-b border-tuatara-100 dark:border-tuatara-700 last:border-b-0 last:mb-0 last:pb-0">
       <h4 className="font-sans text-sm font-bold text-tuatara-950 dark:text-white mb-1">
-        {item.name}
+        {renderLinks(item.name)}
       </h4>
       <p className="font-sans text-[13px] text-tuatara-500 dark:text-tuatara-300 leading-relaxed mb-1.5">
-        {item.description}
+        {renderLinks(item.description)}
       </p>
       <div className="flex items-center gap-1.5">
         <span
