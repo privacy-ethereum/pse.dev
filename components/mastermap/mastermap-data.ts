@@ -837,7 +837,7 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "Architecture sketch",
         description:
-          "Design sketch (not implementation) for the access-layer abstraction; consulting Will (Protocol Labs, original Snowflake author) and peers on P2P + consensus-driven dialing.",
+          "Design of the arch for an abstracted access to anonymization networks (onion-based, mixnets, or any other). Comprised validation standard of client binaries, standard for signaling and discovery.",
         status: "In progress",
         statusDot: "green",
       },
@@ -895,7 +895,7 @@ export const PROJECTS: ProjectData[] = [
     statusVariant: "rd",
     completion: 25,
     description:
-      "Provably L1-equivalent execution-layer node that is running against a [Unified Binary Tree](https://privreads.ethereum.foundation/workstreams/ubt) ([EIP-7864](https://eips.ethereum.org/EIPS/eip-7864)) PIR servers, wallets, and light clients can begin consuming binary-based state today ahead of EIP-7864 inclusion in protocol, while relying on equivalence proof for data validity.",
+      "Provably L1-equivalent execution-layer node that is running against a [Unified Binary Tree](https://privreads.ethereum.foundation/workstreams/ubt) ([EIP-7864](https://eips.ethereum.org/EIPS/eip-7864)). PIR servers, wallets, and light clients can begin consuming binary-based state today ahead of EIP-7864 inclusion in protocol, while relying on equivalence proof for data validity.",
     href: "/mastermap/ubt",
     tags: ["UBT", "EIP7864", "Statelessness", "EL Clients", "PIR"],
     now: [
