@@ -2,6 +2,7 @@ import { LABELS } from "@/app/labels"
 import { AppContent } from "@/components/ui/app-content"
 import { ProjectCard } from "@/components/mastermap/project-card"
 import { CATEGORIES, PROJECTS } from "@/components/mastermap/mastermap-data"
+import { renderLinks } from "@/components/mastermap/render-links"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -41,10 +42,21 @@ export default function MasterMapPage() {
           <AppContent key={category.id} className="flex flex-col gap-5">
             <div>
               <h2 className="text-xl lg:text-2xl font-bold font-display text-tuatara-950 dark:text-white">
-                {category.name}
+                {category.url ? (
+                  <a
+                    href={category.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-anakiwa-500 transition-colors"
+                  >
+                    {category.name}
+                  </a>
+                ) : (
+                  category.name
+                )}
               </h2>
               <p className="text-sm lg:text-base text-tuatara-500 dark:text-tuatara-300 font-sans mt-1">
-                {category.description}
+                {renderLinks(category.description)}
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
