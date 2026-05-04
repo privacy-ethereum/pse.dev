@@ -449,64 +449,85 @@ export const PROJECTS: ProjectData[] = [
     category: "private-writes",
     status: "Active R&D",
     statusVariant: "rd",
-    completion: 20,
+    completion: 25,
     description:
-      "Plasmablind, Sonobe folding library, Wormholes v2, one-time programs and stealth mixers.",
+      "Four-track Q2/Q3 2026 program: L1 Privacy (PQ-secure private ETH transfers), Lean Staking (EIP-8222), Sonobe folding library, and Plasmablind (maintenance).",
     href: "/mastermap/ptr",
-    tags: ["Plasmablind", "Sonobe", "Wormholes", "Folding"],
+    tags: ["L1 Privacy", "Lean Staking", "Sonobe", "Plasmablind", "Folding", "Post-quantum"],
     now: [
       {
-        name: "Plasmablind Paper",
+        name: "L1 Privacy writeup",
         description:
-          "Finish paper writeup. ~300-500 TPS with instant proving on low-end devices.",
+          "End-of-June capstone bundling OMR, PIR, PQ signatures, hardware wallets and smart accounts.",
+        status: "End of June \u00b7 Critical path",
+        statusDot: "green",
+      },
+      {
+        name: "Lean Staking EIP iteration",
+        description:
+          "Bring EIP-8222 to an ACDE call and refine open issues.",
         status: "In progress",
         statusDot: "green",
       },
       {
-        name: "Sonobe dev\u2192main merge",
+        name: "AI vs human audit publication",
         description:
-          "Ship current dev branch with documented release, changelog, migration notes.",
+          "ethresearch post comparing AI and human Sonobe audit findings.",
         status: "In progress",
+        statusDot: "green",
+      },
+      {
+        name: "Intmax Sonobe migration",
+        description:
+          "Bring Intmax's zERC20 stack onto the audited Sonobe by end of May.",
+        status: "End of May",
         statusDot: "green",
       },
     ],
     next: [
       {
-        name: "Sonobe Audit",
+        name: "Sonobe ZK layer for folding",
         description:
-          "AI and human-assisted audit. Audit completion: report + fixes merged + final sign-off.",
-        status: "Planned \u00b7 Critical",
+          "Port BlindFold to Nova and ship to `main` by end of June.",
+        status: "End of June \u00b7 Critical",
         statusDot: "yellow",
       },
       {
-        name: "Wormholes v2",
+        name: "PQ signature circuits",
         description:
-          "Redesign leveraging beacon chain deposits. Re-derive security goals.",
-        status: "Research",
-        statusDot: "blue",
+          "Hash-based PQ signature R1CS/AIR circuits + cross-zkVM benchmarks (XMSS lead).",
+        status: "Q2\u2013Q3 2026",
+        statusDot: "yellow",
       },
       {
-        name: "Tokyo Meetup",
+        name: "Sonobe PQ folding + aggregation",
         description:
-          "Mar 20 - Apr 20 collaboration with Intmax on sonobe and ideation.",
-        status: "Planned",
+          "Generic PQ folding design plus folded PQ signature aggregation by end of September.",
+        status: "End of September",
+        statusDot: "yellow",
+      },
+      {
+        name: "Lean Staking Devcon package",
+        description:
+          "Presentation + project website + `0x03` withdrawal credential extension.",
+        status: "Through Devconnect",
         statusDot: "yellow",
       },
     ],
     later: [
       {
-        name: "zERC-20",
+        name: "Plasma Fold + Plasma Blind merged paper",
         description:
-          "Support Intmax on zERC-20 implementation using audited Sonobe.",
-        status: "Q2 2026",
+          "Submit a single reframed paper for reviewer feedback.",
+        status: "End of Q3 2026",
         statusDot: "gray",
       },
       {
-        name: "OTP / Stealth Mixers",
+        name: "L1 Privacy \u2192 Devcon Mumbai",
         description:
-          "Mixers using one-time programs with garbled circuits and extractable witness encryption.",
-        status: "Research",
-        statusDot: "blue",
+          "Lock sub-track implementation roadmap after the end-of-June review.",
+        status: "Devcon Mumbai",
+        statusDot: "gray",
       },
     ],
   },
