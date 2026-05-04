@@ -13,59 +13,52 @@ tags:
 team:
   - name: "Chengru"
   - name: "Pierre"
-  - name: "Mohammad"
 ---
 
-# Private Transactions Research (Jan–Jun 2026)
+# Private Transactions Research (Q2/Q3 2026)
 
-The Private Transactions Research Team works on privacy-preserving transaction protocols and supporting tooling for Ethereum. This page summarizes our planned work for January–June 2026.
+The Private Transactions Research Team works on privacy-preserving transaction protocols and supporting tooling for Ethereum. This page summarizes our planned work for Q2/Q3 2026.
 
 ## What we're working on
 
-### Sonobe hardening
-We are bringing `sonobe` to a production-ready state. The focus is to reduce the audit surface area, land security hardening changes, and ship a versioned release with clear constraints.
+### Sonobe
+We are bringing `sonobe` to a production-ready state — closing out the audit cycle, supporting downstream consumers on the audited version, and shipping the zero-knowledge layer that privacy-protocol consumers depend on. In Q3 we begin the post-quantum folding line.
 
 Planned outputs:
 - A `dev` → `main` merge and documented, versioned release (changelog + migration notes)
-- A clear audit scope and supported targets
-- Audit findings addressed (or explicitly documented) and fixes merged
-- Operator/developer documentation and reproducible build/CI checks
-- Selected upgrades (lookup support, performance work on key hot paths, and developer experience improvements)
+- AI vs human audit publication on ethResearch + a recommended audit workflow for ZK projects
+- Downstream migration support for consumers moving onto the audited version
+- Zero-knowledge layer for folding shipped to `main` by end of June with documentation
+- (Q3) Post-quantum folding design + initial implementation
+- (Q3) PQ signature aggregation circuits and benchmarks
 
-### PlasmaBlind (paper + potential adoption support)
-We are finishing the PlasmaBlind paper and preparing a conference submission package, including reproducible benchmarks. If teams adopt the scheme, we may provide bounded integration support.
+### PlasmaBlind (paper)
+We are merging Plasma Fold and PlasmaBlind into a single paper and preparing it for reviewer feedback. The combined work delivers sub-100 ms client-side proving with ~36k TPS centralised (~1,150–1,800 TPS decentralised). See [eprint 2026/634](https://eprint.iacr.org/2026/634.pdf).
 
 Planned outputs:
-- Submission-ready paper and supplementary material
+- Merged Plasma Fold + PlasmaBlind paper, submitted for reviewer feedback
 - Reproducible benchmarking notes (scripts/code pointers)
-- Minimal integration notes and reference implementation pointers (as needed)
 
-### Wormholes (redesign)
-We are treating wormholes as a redesign effort and are re-deriving security goals, evaluating design avenues (including beacon chain deposit–based approaches), gathering feedback, and building a prototype. By the end of May 2026, we plan to decide whether to pursue an EIP track, continue research only, or shelve.
-
-Planned outputs:
-- Security goals and threat model document
-- Design document and ethResearch post(s) for feedback
-- Research-grade prototype exploring feasibility constraints
-- If pursued: an initial EIP draft skeleton
-
-### One-time programs & stealth mixers (exploratory)
-We are researching one-time / pay-per-use programs using garbled circuits and extractable witness encryption, and exploring how these constructions could enable non-custodial, plausibly deniable mixers. The goal is to understand practicality constraints and publish findings and open questions.
+### Lean Staking
+Lean Staking turns the staking contract into a shielding mechanism for ETH — to our knowledge the first L1-native construction providing two-sided plausible deniability for ETH transfers, with both sender and recipient performing actions indistinguishable from routine staking. No consensus-layer changes required. This picks up the prior wormholes research line and matures it into a concrete EIP. See [EIP-8222](https://ethereum-magicians.org/t/eip-8222-lean-staking/28196).
 
 Planned outputs:
-- Literature review note (covering relevant OTP / witness encryption work)
-- Mixer design write-up (protocol sketch + security goals)
-- Toy prototype demonstrating the core flow and limitations
-- ethResearch post summarizing results and open questions
+- Updated EIP draft addressing open issues (network-level anonymity, gas-subsidised propagation for fresh-address private transactions, non-custodial validation)
+- ACDE discussion + a written summary of community feedback
+- `0x03` withdrawal credential extension to preserve two-sided plausible deniability
+- Devcon presentation package + project website
 
-### Misc (capped)
-We keep a small buffer (capped at ~10% of team time) for targeted contributions and ecosystem support. Current areas include mapping the security boundaries of TEE-assisted privacy designs and making select upstream contributions to cryptographic tooling.
+### L1 privacy
+We are writing on how to build an L1-native, post-quantum-secure private ETH transfer protocol — organised around the three classic questions for any private transfer protocol (solvency, spending authority, transaction detection), each evaluated under both PQ-soundness and PQ-privacy. The cycle deliverable is a single end-of-June writeup pulling the sub-track findings together; implementation continues toward Devcon Mumbai under a follow-on plan.
 
-Examples of work in scope:
-- A TEE literature summary and "what we will / won't rely on" stance (publication TBD)
-- Contributions around primitives and tooling (e.g., proxy re-encryption, `spongefish` R1CS support, early proof aggregation notes/benchmarks)
+Planned outputs:
+- End-of-June writeup integrating all sub-track findings
+- OMR (oblivious message retrieval): literature review, toy implementations, and a go / no-go memo by end of May
+- PIR (private information retrieval): primitive evaluation and integration sketch
+- PQ signature verification ZK circuits + cross-ZKVM benchmarks (shared with Sonobe Q3)
+- Hardware-wallet integration scoping + initial signer prototype
+- Smart account / new wallet design scoping doc
 
 ## Team
 - Chengru
 - Pierre
-- Mohammad
