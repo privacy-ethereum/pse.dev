@@ -1,6 +1,6 @@
 ---
 authors: ["John Guilding"] # Add your name or multiple authors in an array
-title: "Private Transfers: User Research" # The title of your article
+title: "User Research: Uncovering Problems in the Private Transfers Space" # The title of your article
 image: "/articles/private-transfers-engineering-user-research/cover.webp" # Image used as cover,  Keep in mind the image size, where possible use .webp format, possibly images less then 200/300kb
 tldr: "A summary of 38 interviews conducted for user research into private transfers" #Short summary
 date: "2026-05-01" # Publication date in ISO format
@@ -8,9 +8,11 @@ tags: ["Private Transfers", "User Research"] # (Optional) Add relevant tags as a
 projects: ["Private Transfers Engineering"]
 ---
 
-# Private Transfers: User Research
+# Private Transfers User Research
 
-The Private Transfers Engineering team conducted 38 user interviews with teams working in the private transfers space. We interviewed protocol teams building for end users — not end users themselves. The conversations were freeform, but three main lines of questioning were covered:
+As part of an effort to find technical problems in the private transfers space, we conducted 38 user interviews with teams working in the ecosystem. This work was undertaken by the Private Transfers Engineering team. Private Transfers Engineering is part of the Private Writes team in PSE. The team was created in November 2025, and we've spent the past 6 months conducting user research, researching different privacy protocols, and undertaking some targeted explorations. We'll be publishing additional content on what we've been up to soon — so stay tuned over the next few weeks.
+
+The motivating goal of this user research was to find technical problems teams were facing. This would aid our understanding of the space, generate shared knowledge for the ecosystem, and also inform our own roadmap. By finding important problems, we could target these specifically with our own efforts. We also took the opportunity to question teams about what changes they would like to see in the core protocol that would help their projects and enable private transfers in general. We interviewed protocol teams building for end users — not end users themselves. The conversations were freeform, but three main lines of questioning were covered:
 
 1. What technical problems they were facing
 2. What core protocol changes they would like to see
@@ -19,6 +21,8 @@ The Private Transfers Engineering team conducted 38 user interviews with teams w
 Roughly a quarter of projects interviewed had some sort of ZK-based shielded pool architecture. Approximately 3 were stealth address protocols, ~4 were FHE-based, ~3 were wormhole-based, ~7 were L2s, and ~3 used TEEs, followed by a long tail of other specific tech stacks and mixed-technology protocols. For example, some teams used a combination of technologies — ZK + stealth addresses, ZK + FHE, etc. ZK-based shielded pools and L2s therefore formed a large proportion of the sample size, and impact results accordingly.
 
 This does not constitute representative quantitative data, but can be used to assess what problems were most often mentioned across the aforementioned mix of teams and technologies. Technical problems faced and core protocol changes requested should not be interpreted as the most important issues to work on, or a vote on those changes.
+
+Regarding technical problems, cost and performance of ZK verification and proving was cited as the top problem. In addition, how private transfers should compose with DeFi was another top issue. Other problems cited often were: the privacy leaks when depositing/shielding and withdrawing/unshielding; lack of wallet support for privacy features; reliance on external services and networks such as relayers and coprocessor networks. Top non-technical problems raised were regulatory uncertainty and finding product-market fit.
 
 ## Technical Problems
 
@@ -44,9 +48,9 @@ A number of technical problems were raised across multiple categories. As mentio
 
 **Fragmented anonymity sets:** Shielded pools are fragmented across different dapps and chains, reducing the effective anonymity set for all users. Each new privacy protocol must bootstrap its own anonymity set. This also leads to walled garden effects.
 
-**Privacy protocol state growth:** State growth (e.g. nullifier state tree growth) is a long-term scaling concern. Unlike a regular transfer, where new state is added on a per-account basis (each new account adds new state for that account's balance), a UTXO-based private transfer protocol using a commitment and nullifier tree adds new state per transaction. This is because encrypted UTXOs need to be created, and also marked as spent using nullifiers to prevent double spends every transfer.
+**Privacy protocol state growth:** State growth (e.g. nullifier state tree growth) is a long-term scaling concern. Unlike a regular transfer, where new state is added on a per-account basis (each new account adds new state for that account's balance), a UTXO-based private transfer protocol using a commitment and nullifier tree adds new state per transaction. This is because encrypted UTXOs need to be created, and also marked as spent using nullifiers to prevent double spends.
 
-**State management and synchronisation scalability:** Syncing private state (scanning for incoming notes/events) is a bottleneck for clients. Client-side devices have to scan large amounts of chain state in order to construct their private balance state. This degrades UX as wallet users have to wait for scanning to complete before they can see their latest balance. Advances in PIR or OMR could unlock more scalable approaches, and using oblivious synchronisation such as outlined in Zcash's project Tachyon offers one path forward for handling protocol state growth.
+**State management and synchronisation scalability:** Syncing private state (scanning for incoming notes/events) is a bottleneck for clients. Client-side devices have to scan large amounts of chain state in order to construct their private balance state. This degrades UX as wallet users have to wait for scanning to complete before they can see their latest balance. Advances in PIR or OMR could unlock more scalable approaches, and using oblivious synchronisation such as outlined in Zcash's project Tachyon offers one path forward for handling core protocol state growth.
 
 **DeFi composability:** Wrapping/unwrapping tokens for DeFi operations leaks privacy and intent, and breaks composability with existing protocols. Smart contracts cannot easily interact with encrypted/private balances. Shielded assets lack an unencrypted balance, and stealth address balances lack a single unified balance, both of which conflict with existing protocol designs such as AMMs and lending protocols. DeFi operations by their nature have much richer transaction data than regular transfers, which makes it harder to hide in the crowd, and makes analysis easier. Another way of framing lack of composability is to say that private state is isolated, whereas contract state is normally shared state. This state model and lack of composability puts limits on the design space of applications. This problem was raised by a variety of teams as a difficult and important problem to solve.
 
@@ -76,7 +80,7 @@ A number of technical problems were raised across multiple categories. As mentio
 
 **Reliance on external networks:** Encrypted tokens and many privacy protocols rely on external networks to provide services such as encryption/decryption — for example, FHE coprocessors and TEEs. This introduces censorship and privacy risks. For example, FHE coprocessors use threshold-encryption schemes with a committee to perform decryption, which adds additional trust assumptions compared to sending a regular Ethereum transaction. It should be noted that these external networks offer significant advantages in other areas, which make them attractive for many use cases. FHE allows for composable and programmable encrypted smart contracts, and TEEs offer unmatched performance at the expense of hardware trust assumptions.
 
-**Collision risks with unspendable addresses:** Wormhole-based projects all suffer from the same security problem. Each unspendable address has 80 bits of entropy, which means an attacker can potentially generate a private key that collides with an unspendable address and claim the funds. While each attack would be limited to a single address, this level of security is not high enough. You can add a small proof of work to each address to generate an extra 12 bits of security, taking each address to 92 bits. For reference, L1 follows typical security guidance and targets 128 bits of security.
+**Collision risks with unspendable addresses:** Wormhole-based projects all suffer from the same security problem. Each unspendable address has 80 bits of entropy, which means an attacker can potentially generate a private key that collides with an unspendable address and claim the funds. While each attack would be limited to a single address, this level of security is not high enough. One mitigation used is adding a small proof of work to each address to generate an extra 12 bits of security, taking each address to 92 bits. While helpful, this still isn't enough. For reference, L1 follows typical security guidance and targets 128 bits of security.
 
 ## Core Protocol Changes Requested
 
@@ -84,7 +88,7 @@ A number of technical problems were raised across multiple categories. As mentio
 
 **State-tree improvements:** Several teams asked for improvements to the Ethereum state tree — Poseidon or other ZK-friendly tree hashes, and binary or otherwise more proof-friendly structures.
 
-**Native shielded pools:** Requests for a protocol-level shielded pool (similar to the Zcash model) where users can move funds into private state natively (including requests for a multi-asset shielded pool).
+**Native shielded pools:** Requests for a protocol-level shielded pool (similar to the Zcash model) where users can move funds into private state natively — including requests for private ETH transfers and a multi-asset shielded pool.
 
 **Protocol features that many privacy protocols can share:** A more general request — shared primitives to avoid fragmentation. For example, wormhole-style primitives, or a shared shielded pool.
 
@@ -94,13 +98,11 @@ A number of technical problems were raised across multiple categories. As mentio
 
 **Encrypted data types:** A standard way for the protocol to handle or point to encrypted data types, allowing smart contracts to interact with private balances more easily. Smart contracts today cannot represent encrypted values as a first-class data type. Encrypted state ends up passed around as bytes, stored off-chain with a commitment onchain, or emitted as events. Some FHE teams asked for the protocol to define how encrypted data is represented and accessed, so contracts can interact with private balances the way they interact with ERC-20s today. ERC-7995 was named as a candidate.
 
-**zkWormhole support:** Interest in mechanisms that allow for "plausibly deniable" deposits and withdrawals. 32-byte addresses would address the 80-bit security problem. At the same time, some teams expressed strong concern and opposition to wormholes at the L1. This is because the plausible deniability gained from using wormholes mixes clean and illicit funds. This contradicts certain interpretations of user sovereignty, whereby users should be able to choose which funds they associate with.
+**zkWormhole support:** Interest in mechanisms that allow for "plausibly deniable" deposits and withdrawals. 32-byte addresses would address the 80-bit security problem. At the same time, some teams expressed strong concern and opposition to wormholes at the L1. This is because the plausible deniability gained from using wormholes mixes clean and illicit funds. This contradicts certain ideas on user sovereignty, whereby users should be able to choose which funds they associate with.
 
 **Shorter block times and finality:** While not directly related to private transfers, shorter block times and faster finality were mentioned as an option to significantly improve private payments UX.
 
 **Deliberate stances of where not to change the protocol:** While there was appetite from many teams for L1 changes, some teams did not come back with requests for protocol changes, or came back with only a single request. This was mainly because they didn't have opinions on the core protocol, or because they didn't view something as important enough. While the case for private transfers, shared data structures, increased performance, etc. was much clearer, due to the state model on Ethereum, appetite for generalised private contract state was far more uncertain and was not directly requested. And as mentioned above, some opposed features that would provide plausibly deniable private transfers.
-
-The good news is that a number of these features are already on the Ethereum roadmap. A variant of Poseidon is landing as part of the Lean Ethereum roadmap and is undergoing cryptanalysis now. The long-awaited migration from the Merkle Patricia Trie is planned, native account abstraction proposals are progressing, and quicker finality and shorter slots are now high priority, with 3-slot finality being targeted. Importantly, private transfers at the L1 is now a planned feature. However, what shape this upgrade will take is currently unspecified.
 
 ## Non-Technical Problems
 
@@ -126,7 +128,7 @@ There are a number of non-technical concerns projects raised. These are not prob
 
 ## Top Topics (by team mention count)
 
-Rough mention counts across the 38 interviews. ZK-based shielded pools and L2s formed a large proportion of the teams interviewed compared to other categories. This impacts results, and the following table should not be interpreted as representative quantitative data from all privacy teams.
+Rough mention counts across the 38 interviews. ZK-based shielded pools and L2s formed a large proportion of the teams interviewed compared to other categories. This impacts results, and the following table should not be interpreted as representative quantitative data from all possible privacy teams.
 
 Non-technical problems showed up more often than many technical problems. High-level topics that had the largest share of mentions were: cost and performance of private transfers (raised as several distinct problems), composability with DeFi, regulatory uncertainty, and finding product-market fit.
 
@@ -136,28 +138,32 @@ Non-technical problems showed up more often than many technical problems. High-l
 |    2 | **ZK proof verification gas**                                   |                  13 |
 |    3 | **Regulatory uncertainty**                                      |                  11 |
 |    3 | **DeFi composability**                                          |                  11 |
-|    5 | **Deposit/withdrawal privacy leakage**                          |                  10 |
-|    5 | **Lack of native wallet support**                               |                  10 |
-|    7 | **Reliance on external networks**                               |                   9 |
-|    8 | **Hash function inefficiency**                                  |                   8 |
-|    8 | **Lack of standards**                                           |                   8 |
-|    8 | **Resource constraints and sustainability**                     |                   8 |
-|   11 | **Legal risk**                                                  |                   7 |
-|   12 | **Low demand and no product-market fit**                        |                   6 |
-|   12 | **Private state synchronisation**                               |                   6 |
-|   14 | **Tooling**                                                     |                   5 |
-|   14 | **Collision risks with unspendable addresses**                  |                   5 |
-|   14 | **EVM not designed for privacy**                                |                   5 |
-|   14 | **Fragmented anonymity sets**                                   |                   5 |
-|   18 | **Throughput**                                                  |                   4 |
-|   18 | **Institutional preference for confidentiality over anonymity** |                   4 |
-|   20 | **Cross-team coordination forum**                               |                   3 |
-|   20 | **Relayer reliance**                                            |                   3 |
-|   20 | **Large ciphertexts**                                           |                   3 |
-|   20 | **Full privacy is harder for account-based approaches**         |                   3 |
+|    4 | **Deposit/withdrawal privacy leakage**                          |                  10 |
+|    4 | **Lack of native wallet support**                               |                  10 |
+|    5 | **Reliance on external networks**                               |                   9 |
+|    6 | **Hash function inefficiency**                                  |                   8 |
+|    6 | **Lack of standards**                                           |                   8 |
+|    6 | **Resource constraints and sustainability**                     |                   8 |
+|    7 | **Legal risk**                                                  |                   7 |
+|    8 | **Low demand and no product-market fit**                        |                   6 |
+|    8 | **Private state synchronisation**                               |                   6 |
+|    9 | **Tooling**                                                     |                   5 |
+|    9 | **Collision risks with unspendable addresses**                  |                   5 |
+|    9 | **EVM not designed for privacy**                                |                   5 |
+|    9 | **Fragmented anonymity sets**                                   |                   5 |
+|   10 | **Throughput**                                                  |                   4 |
+|   10 | **Institutional preference for confidentiality over anonymity** |                   4 |
+|   11 | **Cross-team coordination forum**                               |                   3 |
+|   11 | **Relayer reliance**                                            |                   3 |
+|   11 | **Large ciphertexts**                                           |                   3 |
+|   11 | **Full privacy is harder for account-based approaches**         |                   3 |
 
-## What's next
+## Conclusion
 
 The user research uncovered a number of problems and surfaced what was important to many different teams. Making privacy protocols cheaper was a recurring mention, alongside finding a good way to compose with DeFi, and a number of non-technical problems were important to teams as well. It is clear that appetite exists amongst privacy teams for privacy at the L1 — improving cost and performance of privacy protocols, and having shared features different teams could plug into, were notable high-level goals mentioned.
 
-The Private Transfers Engineering team is publishing our exploration into L2 precompiles next. Stay tuned for our State of Private Transfers Report launching at the beginning of Q2, which will be accompanied by a dashboard.
+Regarding core protocol changes requested, teams wanted changes that improve cost and performance of private transfers, provide shared features for different protocols to plug into (including native privacy), native AA, and more. It's clear there are plenty of ways privacy can be supported at the L1. The good news is that a number of these features are already on the Ethereum roadmap. A variant of Poseidon is landing as part of the Lean Ethereum roadmap and is undergoing cryptanalysis now. The long-awaited migration from the Merkle Patricia Trie is planned, native account abstraction proposals are progressing, and quicker finality and shorter slots are now high priority, with 3-slot finality being targeted. Importantly, private transfers at the L1 is now a planned feature. However, what shape this upgrade will take is currently an open question.
+
+## What's next
+
+Private Transfers Engineering has been putting together a State of Private Transfers Report with a live dashboard, which will dive deep into a variety of different private transfer protocols. After completing our user research, we also undertook an exploration into L2 precompiles to solve the problem of privacy protocol cost, which we later dropped as we didn't validate the idea as useful enough at this point in time. We'll be publishing our exploration into L2 precompiles next, and stay tuned for our State of Private Transfers Report launching at the beginning of Q2.
