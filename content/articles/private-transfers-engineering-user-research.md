@@ -3,7 +3,7 @@ authors: ["John Guilding"] # Add your name or multiple authors in an array
 title: "User Research: Uncovering Problems in the Private Transfers Space" # The title of your article
 image: "/articles/private-transfers-engineering-user-research/cover.webp" # Image used as cover,  Keep in mind the image size, where possible use .webp format, possibly images less then 200/300kb
 tldr: "A summary of 38 interviews conducted for user research into private transfers" #Short summary
-date: "2026-05-01" # Publication date in ISO format
+date: "2026-05-08" # Publication date in ISO format
 tags: ["Private Transfers", "User Research"] # (Optional) Add relevant tags as an array of strings to categorize the article
 projects: ["Private Transfers Engineering"]
 ---
