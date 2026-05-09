@@ -366,9 +366,9 @@ export const PROJECTS: ProjectData[] = [
     category: "private-writes",
     status: "Research",
     statusVariant: "research",
-    completion: 20,
+    completion: 25,
     description:
-      "Practical indistinguishability obfuscation. 2026 focus: noise refreshing, blind PRF over key-homomorphic encodings, \u226564-bit obfuscation, SNARK verification kickoff.",
+      "Practical indistinguishability obfuscation. Roadmap through Q2 2027: blind PRF over key-homomorphic encodings, \u226564-bit obfuscation, SNARK verification, witness encryption.",
     href: "/mastermap/machina",
     tags: ["iO", "Lattice", "key-homomorphic encodings", "FHE", "GGH15"],
     now: [
@@ -419,8 +419,15 @@ export const PROJECTS: ProjectData[] = [
       {
         name: "SNARK verification over key-homomorphic encodings",
         description:
-          "Start implementing a SNARK verification circuit over key-homomorphic encodings. Continues into Q1 2027.",
-        status: "Q4 2026",
+          "Implement a SNARK verification circuit over key-homomorphic encodings; PV vs DV scheme selection (or new design) plus an Argo-style garbled-circuit path.",
+        status: "Q4 2026 – Q1 2027",
+        statusDot: "gray",
+      },
+      {
+        name: "Witness encryption",
+        description:
+          "Obfuscation that releases a hardcoded message iff a SNARK proof verifies, unlocking trustless bridges, encrypted mempools, one-time programs, and time-lock encryption.",
+        status: "Q1 – Q2 2027",
         statusDot: "gray",
       },
     ],
@@ -428,18 +435,19 @@ export const PROJECTS: ProjectData[] = [
       description: [
         "Improve efficiency of key-homomorphic encodings to enable blind PRF and noise refreshing",
         "Diamond iO 2, supporting larger input sizes without compromising efficiency",
-        "SNARK verification over key-homomorphic encodings (kickoff Q4)",
+        "SNARK verification over key-homomorphic encodings (Q4 2026 – Q1 2027)",
+        "Witness encryption as the first end-user-relevant deliverable (Q1 – Q2 2027)",
       ],
       deliverables: [
         "Implementation of FHE multiplication + blind FHE over key-homomorphic encodings, along with noise refreshing",
         "Implementation of obfuscation with a 64-bit input size or its concrete estimation of the required hardware costs and performance",
         "Papers on the new lookup table evaluation method and low-depth circuit in Q2 and the next diamond iO construction in Q3",
-        "Concrete specs for the SNARK verification circuit compatible with key-homomorphic encodings",
+        "SNARK verification circuit and prover (Q4 2026 – Q1 2027), then witness encryption with a demo application (Q1 – Q2 2027)",
       ],
       impact: [
         "First practical-performance iO for nontrivial input size",
-        "Foundation for practical implementations of key-homomorphic encodings",
-        "Security and efficiency collaboration with academia",
+        "First witness encryption for general NP, enabling trustless bridges, encrypted mempools, and time-lock encryption",
+        "Foundation for verifiable FHE and obfuscation for conditional FHE decryption (out of scope this cycle)",
       ],
     },
   },
