@@ -114,11 +114,9 @@ const nextConfig = {
     ],
     // Use modern compilation target
     esmExternals: true,
-    // Enable more aggressive optimizations for modern browsers
-    serverComponentsExternalPackages: [],
   },
-  // Enable SWC with modern target
-  swcMinify: true,
+  // Enable more aggressive optimizations for modern browsers
+  serverExternalPackages: [],
 
   // Optimize runtime chunk size
   webpack: (config, { isServer, dev }) => {

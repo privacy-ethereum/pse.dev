@@ -5,17 +5,16 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 type PageProps = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ id: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export interface ProjectProps {
   project: ProjectInterface
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata(props: PageProps): Promise<Metadata> {
+  const params = await props.params;
   const projects = await getProjects()
   const project = projects.find(
     (p: Project) =>
@@ -56,7 +55,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function ProjectDetailPage({ params }: PageProps) {
+export default async function ProjectDetailPage(props: PageProps) {
+  const params = await props.params;
   const projects = await getProjects()
   const project = projects.find(
     (p: Project) =>

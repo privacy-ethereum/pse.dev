@@ -1,5 +1,3 @@
-"use client"
-
 import "@/globals.css"
 import { LABELS } from "./labels"
 import { Button } from "@/components/ui/button"

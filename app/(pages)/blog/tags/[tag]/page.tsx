@@ -16,12 +16,11 @@ import Link from "next/link"
 import { Suspense } from "react"
 
 interface BlogTagPageProps {
-  params: { tag: string }
+  params: Promise<{ tag: string }>
 }
 
-export async function generateMetadata({
-  params,
-}: BlogTagPageProps): Promise<Metadata> {
+export async function generateMetadata(props: BlogTagPageProps): Promise<Metadata> {
+  const params = await props.params;
   const { tag } = params
   const tags = await getArticleTags()
   const tagInfo = tags.find((t) => t.id === tag)
@@ -73,7 +72,8 @@ const BlogLoadingSkeleton = () => {
   )
 }
 
-const BlogTagPage = async ({ params }: BlogTagPageProps) => {
+const BlogTagPage = async (props: BlogTagPageProps) => {
+  const params = await props.params;
   const { tag } = params
   const queryClient = new QueryClient()
 

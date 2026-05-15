@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 interface BlogPageProps {
-  searchParams?: { [key: string]: string | string[] | undefined }
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 const BlogLoadingSkeleton = () => {
@@ -59,7 +59,8 @@ const BlogLoadingSkeleton = () => {
   )
 }
 
-const BlogPage = async ({ searchParams }: BlogPageProps) => {
+const BlogPage = async (props: BlogPageProps) => {
+  const searchParams = await props.searchParams;
   const tag = searchParams?.tag as string | undefined
 
   const queryClient = new QueryClient()
