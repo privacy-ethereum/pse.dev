@@ -8,7 +8,7 @@ import { nextEslintPlugin } from "./next.eslint.config.mjs"
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
-  { ignores: ["dist/*", ".cache", "public", "node_modules", "*.esm.js", ".next/*"] },
+  { ignores: ["dist/*", ".cache", "public", "node_modules", "*.esm.js", ".next/*", "next-env.d.ts"] },
   { languageOptions: { globals: globals.browser } },
   // Node.js config files
   {
