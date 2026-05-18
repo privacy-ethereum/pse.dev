@@ -6,7 +6,7 @@ export const TLSNOTARY: ProjectData = {
   category: "private-proving",
   status: "Active development",
   statusVariant: "active",
-  completion: 75,
+  completion: 80,
   description:
     "Cryptographic proofs of web data authenticity using TLS and MPC. On track toward 1.0 release.",
   href: "/mastermap/tlsnotary",
@@ -16,7 +16,7 @@ export const TLSNOTARY: ProjectData = {
       name: "Proxy Mode",
       description:
         "TLS proxy that generates attestations without requiring MPC. Simpler setup, lower latency, but more trust assumptions.",
-      status: "In review",
+      status: "Finalizing",
       statusDot: "green",
     },
     {
@@ -27,26 +27,12 @@ export const TLSNOTARY: ProjectData = {
       statusDot: "green",
     },
     {
-      name: "Benchmarks",
-      description:
-        "Fully automated benchmarks across native and browser environments.",
-      status: "Finalizing",
-      statusDot: "green",
-    },
-    {
       name: "SDK",
       description:
         "TLSNotary on Web/Mobile",
       status: "In progress",
       statusDot: "green",
-    },
-    {
-      name: "TLS 1.3",
-      description:
-        "Implement TLS 1.3 MPC KDF and full TLS 1.3 support.",
-      status: "Paused",
-      statusDot: "blue",
-    },
+    },    
     {
       name: "CI / Docs / Demos / Support",
       description:
@@ -54,20 +40,21 @@ export const TLSNOTARY: ProjectData = {
       status: "Ongoing",
       statusDot: "green",
     },
-    {
-      name: "AI-assisted Security Review",
-      description:
-        "Internal security review of each crate using AI-assisted tooling.",
-      status: "In progress",
-      statusDot: "green",
-    },
   ],
-  next: [        {
+  next: [        
+    {
       name: "Production Ready Protocol",
       description:
         "1.0 release with production-grade protocol. Publish crates to crates.io.",
       status: "H2 2026 · Critical",
       statusDot: "yellow",
+    },
+    {
+      name: "TLS 1.3",
+      description:
+        "Implement TLS 1.3 MPC KDF and full TLS 1.3 support.",
+      status: "Paused",
+      statusDot: "blue",
     },
     {
       name: "VOLE-zkVM Integration",
