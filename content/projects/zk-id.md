@@ -88,7 +88,8 @@ zkID's work aims to create a world where individuals have full control over thei
 - [Privacy in Digital ID at Devconnect 2025 by Ying Tong (Slides)](https://docs.google.com/presentation/d/19iut5HjGO7PHBNZLctUmznb2LAmGbf5kYjtUtbtKLS8/edit?usp=sharing)
 - [Revocation in zkID: Merkle Tree-based Approaches at Devconnect 2025 by Vivian Plasencia (Slides)](https://docs.google.com/presentation/d/1QS0eneynnfMMXY0oFN4lj7vTmHzdYuXwegtGCf8Q7Ww/edit?usp=sharing)
 - [OpenAC presentation in December 2025 by zkID team (Slides)](https://docs.google.com/presentation/d/1l8dyAP3Ax26VqjXcvu2H5HCnLcZLCatwjwh72Dv7V64/edit?usp=sharing)
-- [ZK Human Verification spec: OpenAC + Taiwan Citizen Digital Certificate, proving Taiwanese citizenship without revealing personal information](https://github.com/privacy-ethereum/zkspecs/tree/main/specs/5)
+- [Demo: OpenAC-based proof of personhood for an online forum](https://proof-of-personhood-openac-web.vercel.app/)
+- [Generalized Predicates: extending OpenAC presentations with arbitrary predicates over credential attributes](https://github.com/privacy-ethereum/zkID/blob/main/generalized-predicates/README.md)
 - [zkID talk at zkSummit 2026 by Vivian Plasencia (starts at 1:57:05)](https://www.youtube.com/live/zCY-YHaSS1w?t=7025s)
 - [Anonymous Credentials for Trustless Agents (ACTA) — ethresear.ch post](https://ethresear.ch/t/anonymous-credentials-for-trustless-agents-acta/24797)
 
