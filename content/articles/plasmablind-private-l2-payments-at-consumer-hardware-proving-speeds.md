@@ -1,6 +1,7 @@
 ---
 authors: ["Pierre", "Chengru"]
 title: "PlasmaBlind: Private L2 Payments at Consumer-Hardware Proving Speeds"
+image: "/articles/plasmablind-private-l2-payments-at-consumer-hardware-proving-speeds/cover.png"
 tldr: "PlasmaBlind is a new design for a private, scalable L2 on Ethereum. It uses a folding-scheme technique called BlindFold for sub-100 ms client-side proving and a linked dual-IVC architecture for ~270 to 360 ms aggregator cost per transaction."
 date: "2026-05-18"
 tags:
