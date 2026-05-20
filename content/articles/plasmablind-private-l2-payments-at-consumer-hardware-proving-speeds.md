@@ -120,4 +120,4 @@ There are also deliberate privacy tradeoffs. Sender public keys leak per-block t
 If you want to engage:
 
 - The technical note: [eprint.iacr.org/2026/634](https://eprint.iacr.org/2026/634) (CC-BY 4.0).
-- The implementation: [github.com/dmpierre/plasma-fold](https://github.com/dmpierre/plasma-fold), built on [Sonobe](https://github.com/privacy-ethereum/sonobe).
+- The implementation: [github.com/winderica/plasma-blind](https://github.com/winderica/plasma-blind), built on [Sonobe](https://github.com/privacy-ethereum/sonobe).
