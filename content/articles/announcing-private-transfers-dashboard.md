@@ -3,7 +3,7 @@ authors: ["John Guilding"] # Add your name or multiple authors in an array
 title: "Announcing the Private Transfers Dashboard" # The title of your article
 image: "/articles/private-transfers-dashboard-announcement/cover.webp" # Image used as cover,  Keep in mind the image size, where possible use .webp format, possibly images less then 200/300kb
 tldr: "Compare private transfer protocols across a variety of different metrics" #Short summary
-date: "2026-05-15" # Publication date in ISO format
+date: "2026-05-22" # Publication date in ISO format
 tags: ["Private Transfers", "Benchmarks"] # (Optional) Add relevant tags as an array of strings to categorize the article
 projects: ["Private Transfers Engineering"]
 ---
