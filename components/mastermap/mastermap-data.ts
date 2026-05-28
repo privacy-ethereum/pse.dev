@@ -81,45 +81,45 @@ export const PROJECTS: ProjectData[] = [
     statusVariant: "rd",
     completion: 25,
     description:
-      "Benchmark ZKP systems, bridge ecosystem gaps, push toward PQ-sound on-chain verification.",
+      "Publish client-side proving benchmarks and develop transparent, post-quantum proving ZKP systems with potential on-chain verification.",
     href: "/mastermap/csp",
     tags: ["Benchmarks", "Post-quantum", "WHIR", "GPU Accel"],
     now: [
       {
-        name: "Benchmark 24 zkVMs",
+        name: "CSP Benchmarks",
         description:
-          "Expand benchmarking to SHA256, ECDSA, Poseidon2, Keccak across 24 zkVMs and proof systems.",
+          "Maintain Ethproofs benchmarks for 16 proof systems and zkVMs across SHA-256, Keccak, Poseidon/Poseidon2, and ECDSA workloads.",
         status: "In progress",
         statusDot: "green",
       },
       {
-        name: "WHIR Assessment",
+        name: "Spartan-WHIR R&D",
         description:
-          "Finish SotA assessment of WHIR-based ZKP systems. Author consultation for potential improvements.",
+          "Develop a Spartan-style sumcheck prover with WHIR PCS, compare it against ProveKit and other CSP candidates.",
         status: "In progress",
         statusDot: "green",
       },
       {
-        name: "GPU-accelerated Jolt",
+        name: "WHIR Small-Field Solidity Verifier",
         description:
-          "Apply mobile GPU acceleration to Jolt zkVM, targeting >20% proving improvement.",
-        status: "In progress",
+          "Measure standalone WHIR verification over a 31-bit field on EVM: 5.65M gas in software and 4.33M gas with experimental extension-field precompiles.",
+        status: "Published \u00b7 follow-up R&D",
         statusDot: "green",
       },
     ],
     next: [
       {
-        name: "KoalaBear Verifier",
+        name: "Spartan-WHIR Frontend",
         description:
-          "Refactor WHIR verifier for KoalaBear field. Smaller field enables gas cost optimizations.",
+          "Connect Spartan-WHIR to practical circuit frontend flows and include it in the benchmark harness.",
         status: "Planned",
         statusDot: "yellow",
       },
       {
-        name: "PQ ZKP On-chain",
+        name: "Full SNARK Verifier Path",
         description:
-          "Post-quantum sound ZKP system directly verifiable on-chain with <1.5M gas verification.",
-        status: "Planned \u00b7 Critical path",
+          "Use the standalone WHIR verifier results to design the amortized (recursive/aggregated) post-quantum onchain verifier.",
+        status: "Research",
         statusDot: "yellow",
       },
       {
@@ -153,26 +153,31 @@ export const PROJECTS: ProjectData[] = [
         "Push adoption of PQ-sound proving systems",
       ],
       deliverables: [
-        "Comprehensive benchmarks across 24 systems",
-        "PQ ZKP system verifiable on-chain (<1.5M gas)",
-        "GPU-accelerated Jolt with >20% improvement",
+        "Published CSP benchmarks on Ethproofs",
+        "Spartan-WHIR implementation and benchmark integration",
+        "Measured WHIR small-field Solidity verifier",
       ],
       impact: [
         "Ecosystem uses benchmarks for informed decisions",
-        "Post-quantum readiness for Ethereum proofs",
+        "Post-quantum readiness for on-chain ZKP verification",
         "Client-side proving becomes practical on mobile",
       ],
     },
     kpis: [
       {
-        label: "Verification gas cost",
-        target: "<1.5M gas (100+ bit security)",
-        status: "In research",
+        label: "Standalone WHIR verification",
+        target: "5.65M software / 4.33M precompile experiment",
+        status: "Published",
       },
       {
-        label: "GPU proving improvement",
-        target: ">20% reduction",
-        status: "In progress",
+        label: "Spartan-WHIR prover",
+        target: "Faster than ProveKit on selected CSP workloads",
+        status: "WIP",
+      },
+      {
+        label: "Benchmark coverage",
+        target: "SHA-256, Keccak, Poseidon/Poseidon2, ECDSA",
+        status: "Published and expanding",
       },
       {
         label: "Ecosystem citations per release",
@@ -182,7 +187,7 @@ export const PROJECTS: ProjectData[] = [
       {
         label: "Community contributions",
         target: "3+ per quarter",
-        status: "Approached by gnark, Kakarot",
+        status: "New contributions by maintainers of ProveKit, Barretenberg, Jolt",
       },
     ],
   },
