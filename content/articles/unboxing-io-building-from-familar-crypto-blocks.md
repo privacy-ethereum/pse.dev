@@ -5,7 +5,7 @@ image: "/articles/unboxing-io-building-from-familar-crypto-blocks/cover.webp"
 tldr: ""
 canonical: "https://machina-io.com/posts/unboxing.html"
 date: "2025-07-11"
-projects: ["machina-iO"]
+projects: ["machina-io"]
 ---
 
 # UNBOXING IO: BUILDING FROM FAMILIAR CRYPTO BLOCKS
