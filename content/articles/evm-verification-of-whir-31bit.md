@@ -17,7 +17,7 @@ projects: ["client-side-proving"]
 
 ## Abstract
 
-_We implemented a Solidity verifier for standalone WHIR as a PCS over the 31-bit KoalaBear field.[^sol-spartan-whir-repo] WHIR[^whir-paper] is a hash-based, transparent IOPP for constrained Reed--Solomon codes that is plausibly post-quantum sound._
+_We implemented a Solidity verifier for standalone WHIR as a PCS over the 31-bit KoalaBear field.[^sol-spartan-whir-repo] WHIR[^whir-paper] is a hash-based, transparent IOPP for constrained Reed&#8209;Solomon codes that is plausibly post-quantum sound._
 
 _Opening a committed polynomial of size 2<sup>22</sup> at 100 bits of provable soundness under the Johnson bound costs 5,646,080 gas as an EVM transaction. A separate precompile experiment shows that `EXTFIELD_MAC`, an extension-field inner-product primitive computing_
 
@@ -33,7 +33,7 @@ _A 31-bit field reduces gas (by ≈14% in our experiment). It shrinks calldata d
 
 The SNARKs currently verifiable on-chain at reasonable gas cost (almost exclusively Groth16) rely on elliptic-curve pairings and are vulnerable to quantum attacks. Within a SNARK, the post-quantum soundness comes from the polynomial commitment scheme. WHIR is a hash-based IOPP that can be instantiated as a transparent PCS with the smallest proof sizes known to us in this setting, and its verifier is fast. This project is based on _whir&#8209;p3_[^whir-p3], the Rust implementation of WHIR using Plonky3.
 
-_sol&#8209;whir_[^sol-whir-writeup], the earlier Solidity WHIR verifier, used a 254-bit field and relied on the capacity-bound proximity-gap conjecture, which has since been disproven[^rs-random-words][^rs-proximity-gaps][^rs-near-capacity]. Once that conjecture fails, the verifier needs more queries -- and therefore more gas -- to retain the same soundness. Our working assumption was that a small field would buy back enough gas to afford the safer Johnson-bound parameters.
+_sol&#8209;whir_[^sol-whir-writeup], the earlier Solidity WHIR verifier, used a 254-bit field and relied on the capacity-bound proximity-gap conjecture, which has since been disproven[^rs-random-words][^rs-proximity-gaps][^rs-near-capacity]. Once that conjecture fails, the verifier needs more queries - and therefore more gas - to retain the same soundness. Our working assumption was that a small field would buy back enough gas to afford the safer Johnson-bound parameters.
 
 Before building a production-ready verifier, we ran a small lower-security comparison[^lir6_ff5_rsv1] against _sol&#8209;whir_. It answers one narrow question: at comparable parameters, does the 31-bit field (KoalaBear + ext4) reduce EVM gas?
 
@@ -76,7 +76,7 @@ The unamortized per-call cost of the quintic kernels, compiled with `solc 0.8.28
 | Scalar field add      |  `ADDMOD`: 8 gas |            ext5 add: 394 gas; ext5 sub: 409 gas |
 | Scalar field multiply |  `MULMOD`: 8 gas |    ext5 multiply: 979 gas; ext5 square: 642 gas |
 
-Per-element multiplication gas grows roughly with the convolution work. The verifier spends most of its execution on row evaluations, equality products, constraint weights, and final checks, all over the extension field, and runs many thousands of these multiplications -- which is what drives execution gas.
+Per-element multiplication gas grows roughly with the convolution work. The verifier spends most of its execution on row evaluations, equality products, constraint weights, and final checks, all over the extension field, and runs many thousands of these multiplications - which is what drives execution gas.
 
 Small fields reduce calldata; the resulting verifier is dominated by extension arithmetic and has to amortize it rather than naively perform the individual operations. The next section explains how we did that.
 
@@ -94,7 +94,7 @@ Other large wins came from specialized Merkle and Keccak handling for 20-byte di
 
 Every change went through the same loop:
 
-1. Pick a candidate from the profile -- Foundry flamegraph, phase-by-phase gas, or microbenchmark. Inspect compiled assembly when a hand-written rewrite of a hot kernel looked plausible.
+1. Pick a candidate from the profile - Foundry flamegraph, phase-by-phase gas, or microbenchmark. Inspect compiled assembly when a hand-written rewrite of a hot kernel looked plausible.
 2. Implement it.
 3. Re-measure the real verifier path on the same fixture.
 4. Check `forge build --sizes` against the EIP&#8209;170 budget.
@@ -104,7 +104,7 @@ Many candidates were reverted. `via_ir` often already generated better code than
 
 ## 4. What exactly was measured
 
-For Reed--Solomon proximity testing, verifier cost depends heavily on the assumed relation between code rate, query count, and soundness. Until 2025 it was common to choose FRI-style and WHIR-style verifier parameters from capacity-bound estimates, which give the smallest verifier for a claimed security level. Recent Reed–Solomon proximity-gap results rule out the up-to-capacity forms of the conjectures used for aggressive parameter selection, including the WHIR mutual-correlated-agreement up-to-capacity conjecture.[^rs-random-words][^rs-proximity-gaps][^rs-near-capacity] We therefore use Johnson-bound parameters for the main verifier measurement, so the reported security claim rests on a proven bound.
+For Reed&#8209;Solomon proximity testing, verifier cost depends heavily on the assumed relation between code rate, query count, and soundness. Until 2025 it was common to choose FRI-style and WHIR-style verifier parameters from capacity-bound estimates, which give the smallest verifier for a claimed security level. Recent Reed–Solomon proximity-gap results rule out the up-to-capacity forms of the conjectures used for aggressive parameter selection, including the WHIR mutual-correlated-agreement up-to-capacity conjecture.[^rs-random-words][^rs-proximity-gaps][^rs-near-capacity] We therefore use Johnson-bound parameters for the main verifier measurement, so the reported security claim rests on a proven bound.
 
 We chose the target soundness of 100 bits. 96 bits, the level common in modern proof-system configurations and benchmarks,[^ethproofs-security] is uncomfortably close to attacker capability: Bitcoin's annual hashrate is approaching 2^96^ operations,[^bitcoin-hashrate] leaving about a year of margin. 128-bit Johnson-bound security would need a larger extension degree and more queries, and would be substantially more expensive.
 
@@ -112,7 +112,7 @@ The committed polynomial size is 2^22^, the upper bound treated as relevant in _
 
 The verifier uses 80-bit effective Merkle digests, following both _sol&#8209;whir_ and deployed STARK verifiers such as StarkNet's, where this digest-masking convention is the practical default for hash-based proof systems.[^sol-whir-writeup] A no-truncation measurement remains future work.
 
-WHIR schedule selection was a separate search. The candidate had to be chosen as a trade-off between prover time and verifier gas cost. The sweep covered a wide range on most parameters (folding factor, first-round folding behavior, starting inverse rate, initial Reed--Solomon domain reduction), bounded by two protocol- and use-case-driven cutoffs. The first is on proof-of-work grinding: _whir&#8209;p3_ carries the grinding witness as a single base-field element, so the bit capacity usable for grinding without modifying the protocol was capped at `pow_bits = 30`. The second is on prover time. The verifier is meant for practical (ideally client-side) proving, so we treated 600 seconds on an M4 Pro as the cutoff for real measurements.
+WHIR schedule selection was a separate search. The candidate had to be chosen as a trade-off between prover time and verifier gas cost. The sweep covered a wide range on most parameters (folding factor, first-round folding behavior, starting inverse rate, initial Reed&#8209;Solomon domain reduction), bounded by two protocol- and use-case-driven cutoffs. The first is on proof-of-work grinding: _whir&#8209;p3_ carries the grinding witness as a single base-field element, so the bit capacity usable for grinding without modifying the protocol was capped at `pow_bits = 30`. The second is on prover time. The verifier is meant for practical (ideally client-side) proving, so we treated 600 seconds on an M4 Pro as the cutoff for real measurements.
 
 The Pareto front[^pareto-front] plot below shows the measured schedules and nearby interpolated schedules used for the quintic selection (quartic extension was insufficient to reach 100 bits of security). Horizontal axis: synthetic verifier score, in gas-equivalent units, derived from the WHIR schedule and Solidity microbenchmarks.[^verifier-score-formula] Vertical axis: prover time in seconds, measured where available and interpolated elsewhere. Points on the frontier are schedules where improving one objective costs the other.
 
@@ -262,7 +262,7 @@ The small-field choice gives a real but limited gas improvement. It reduces call
 
 At today's prices of 0.554 gwei and \$2,359 per ETH, the 5.65&nbsp;MGas software path costs about \$3.98, and the 4.33&nbsp;MGas precompile path costs about \$3.05. That is much more than Groth16 verification, but it is in the same gas range as deployed STARK settlement: StarkNet's 2021 checkpoint post cited roughly 5&nbsp;MGas for on-chain STARK verification,[^starknet-checkpoints] and a 2024 StarkNet cost note reports roughly 6&nbsp;MGas per SHARP train for proof verification.[^starknet-2024]
 
-The comparison to those earlier STARK verifiers needs care, because the systems and security assumptions differ. "On the Concrete Security of Non-interactive FRI"[^concrete-fri-security] reports that some of those deployments only carried 59 bits of provable FRI security once the conjectured assumptions are removed, and the 2021 checkpoint post does not specify a circuit size in a directly comparable way.[^starknet-estimated-params] The cost picture has also changed. On the date of the 2021 post, Ethereum's average gas price was about 50.1 gwei and ETH was about \$2,889, so a 5&nbsp;MGas verification cost roughly 0.25 ETH, or about \$724 (before EIP-1559). Today, at sub-gwei or low-single-digit-gwei L1 gas prices, and certainly on L2s, a 5--6&nbsp;MGas verification is a tractable settlement cost. What is new here is that a WHIR verifier stays under 6&nbsp;MGas with provable Johnson-bound 100-bit soundness rather than under capacity-bound assumptions that have since been disproven.
+The comparison to those earlier STARK verifiers needs care, because the systems and security assumptions differ. "On the Concrete Security of Non-interactive FRI"[^concrete-fri-security] reports that some of those deployments only carried 59 bits of provable FRI security once the conjectured assumptions are removed, and the 2021 checkpoint post does not specify a circuit size in a directly comparable way.[^starknet-estimated-params] The cost picture has also changed. On the date of the 2021 post, Ethereum's average gas price was about 50.1 gwei and ETH was about \$2,889, so a 5&nbsp;MGas verification cost roughly 0.25 ETH, or about \$724 (before EIP-1559). Today, at sub-gwei or low-single-digit-gwei L1 gas prices, and certainly on L2s, a 5&#8209;6&nbsp;MGas verification is a tractable settlement cost. What is new here is that a WHIR verifier stays under 6&nbsp;MGas with provable Johnson-bound 100-bit soundness rather than under capacity-bound assumptions that have since been disproven.
 
 WHIR is also well-suited to recursive verification. This EVM verifier instantiates WHIR with Keccak because Ethereum has the `KECCAK256` opcode, but a Poseidon-based WHIR instance is much faster to prove and much easier to verify recursively, since Poseidon is designed for arithmetic circuits. One plausible architecture is to recursively aggregate many application proofs over Poseidon, then verify one final WHIR proof on EVM with the Keccak-based verifier measured here.
 
@@ -278,13 +278,13 @@ Thanks to Miha Stopar for helpful reviews and suggestions on the implementation 
 
 [^whir-p3]: _whir&#8209;p3_ repository: https://github.com/tcoratger/whir-p3/. At the time of writing, the WHIR codebase is integrated natively into Plonky3: https://github.com/Plonky3/Plonky3.
 
-[^whir-paper]: Gal Arnon, Alessandro Chiesa, Giacomo Fenzi, and Eylon Yogev, "WHIR: Reed-Solomon Proximity Testing with Super-Fast Verification," IACR ePrint 2024/1586: https://eprint.iacr.org/2024/1586.
+[^whir-paper]: Gal Arnon, Alessandro Chiesa, Giacomo Fenzi, and Eylon Yogev, "WHIR: Reed&#8209;Solomon Proximity Testing with Super-Fast Verification," IACR ePrint 2024/1586: https://eprint.iacr.org/2024/1586.
 
-[^verifier-score-formula]: For a schedule $s$, the scorer computes $\operatorname{score}(s)=\alpha\cdot(M(s)+F(s)+T(s)+S(s)+C(s))$. Here $M$ is the Merkle/STIR-row term from query counts, compression counts, row-fold costs, OOD leaves, and PoW verification; $F$ is folding work from equality-product steps, inversions, and packed-element validation; $T$ is transcript observation work; $S$ is sumcheck observation plus round-polynomial extrapolation; $C=16\cdot\text{nonzero calldata bytes}+4\cdot\text{zero calldata bytes}$. The scale $\alpha$ calibrates the raw microbenchmark score to measured quintic native verifier transaction gas. The raw sweep covered `pow_bits = 27..30`, first-round folding factor `ff = 1..22`, starting log inverse rate `lir = 1..6`, initial Reed--Solomon reduction `rsv = 1..ff`, and both constant folding and `ConstantFromSecondRound(first, rest)` schedules with `rest < first`. Labels use that convention: `constant_pow28_ff4_lir4_rsv3` means constant folding, 28 proof-of-work bits, folding factor 4, starting log inverse rate 4, and initial Reed--Solomon reduction 3; `cfsr_pow28_ff5_rest3_lir4_rsv4` means `ConstantFromSecondRound(5, 3)` with the same remaining fields.
+[^verifier-score-formula]: For a schedule $s$, the scorer computes $\operatorname{score}(s)=\alpha\cdot(M(s)+F(s)+T(s)+S(s)+C(s))$. Here $M$ is the Merkle/STIR-row term from query counts, compression counts, row-fold costs, OOD leaves, and PoW verification; $F$ is folding work from equality-product steps, inversions, and packed-element validation; $T$ is transcript observation work; $S$ is sumcheck observation plus round-polynomial extrapolation; $C=16\cdot\text{nonzero calldata bytes}+4\cdot\text{zero calldata bytes}$. The scale $\alpha$ calibrates the raw microbenchmark score to measured quintic native verifier transaction gas. The raw sweep covered `pow_bits = 27..30`, first-round folding factor `ff = 1..22`, starting log inverse rate `lir = 1..6`, initial Reed&#8209;Solomon reduction `rsv = 1..ff`, and both constant folding and `ConstantFromSecondRound(first, rest)` schedules with `rest < first`. Labels use that convention: `constant_pow28_ff4_lir4_rsv3` means constant folding, 28 proof-of-work bits, folding factor 4, starting log inverse rate 4, and initial Reed&#8209;Solomon reduction 3; `cfsr_pow28_ff5_rest3_lir4_rsv4` means `ConstantFromSecondRound(5, 3)` with the same remaining fields.
 
 [^rs-random-words]: Benjamin E. Diamond and Angus Gruen, "On the Distribution of the Distances of Random Words," IACR ePrint 2025/2010: https://eprint.iacr.org/2025/2010.
 
-[^rs-proximity-gaps]: Elizabeth C. Crites and Alistair Stewart, "On Reed-Solomon Proximity Gaps Conjectures," IACR ePrint 2025/2046: https://eprint.iacr.org/2025/2046.
+[^rs-proximity-gaps]: Elizabeth C. Crites and Alistair Stewart, "On Reed&#8209;Solomon Proximity Gaps Conjectures," IACR ePrint 2025/2046: https://eprint.iacr.org/2025/2046.
 
 [^rs-near-capacity]: Antonio Kambiré, "Proximity Gaps Conjecture Fails Near Capacity over Prime Fields," arXiv:2604.09724: https://arxiv.org/abs/2604.09724.
 
