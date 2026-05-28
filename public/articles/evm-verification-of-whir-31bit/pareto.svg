@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620">
+<rect width="100%" height="100%" fill="white"/>
+<line x1="70" y1="550" x2="830" y2="550" stroke="#333"/>
+<line x1="70" y1="70" x2="70" y2="550" stroke="#333"/>
+<text x="450.0" y="600" text-anchor="middle" font-size="14">synthetic verifier score, gas-equivalent units (lower is better)</text>
+<text x="18" y="310.0" transform="rotate(-90 18 310.0)" text-anchor="middle" font-size="14">prover time, seconds (measured or interpolated)</text>
+<line x1="126.6" y1="550" x2="126.6" y2="555" stroke="#333"/>
+<text x="126.6" y="570" text-anchor="middle" font-size="11" fill="#333">8.0M</text>
+<line x1="227.4" y1="550" x2="227.4" y2="555" stroke="#333"/>
+<text x="227.4" y="570" text-anchor="middle" font-size="11" fill="#333">9.0M</text>
+<line x1="328.3" y1="550" x2="328.3" y2="555" stroke="#333"/>
+<text x="328.3" y="570" text-anchor="middle" font-size="11" fill="#333">10.0M</text>
+<line x1="429.2" y1="550" x2="429.2" y2="555" stroke="#333"/>
+<text x="429.2" y="570" text-anchor="middle" font-size="11" fill="#333">11.0M</text>
+<line x1="530.1" y1="550" x2="530.1" y2="555" stroke="#333"/>
+<text x="530.1" y="570" text-anchor="middle" font-size="11" fill="#333">12.0M</text>
+<line x1="630.9" y1="550" x2="630.9" y2="555" stroke="#333"/>
+<text x="630.9" y="570" text-anchor="middle" font-size="11" fill="#333">13.0M</text>
+<line x1="731.8" y1="550" x2="731.8" y2="555" stroke="#333"/>
+<text x="731.8" y="570" text-anchor="middle" font-size="11" fill="#333">14.0M</text>
+<line x1="65" y1="512.7" x2="70" y2="512.7" stroke="#333"/>
+<text x="61" y="516.7" text-anchor="end" font-size="11" fill="#333">100s</text>
+<line x1="65" y1="410.7" x2="70" y2="410.7" stroke="#333"/>
+<text x="61" y="414.7" text-anchor="end" font-size="11" fill="#333">200s</text>
+<line x1="65" y1="308.8" x2="70" y2="308.8" stroke="#333"/>
+<text x="61" y="312.8" text-anchor="end" font-size="11" fill="#333">300s</text>
+<line x1="65" y1="206.8" x2="70" y2="206.8" stroke="#333"/>
+<text x="61" y="210.8" text-anchor="end" font-size="11" fill="#333">400s</text>
+<line x1="65" y1="104.9" x2="70" y2="104.9" stroke="#333"/>
+<text x="61" y="108.9" text-anchor="end" font-size="11" fill="#333">500s</text>
+<polyline points="70.0,335.1 147.5,357.7 155.6,471.4 187.3,478.5 272.0,529.3 276.2,549.6 276.3,550.0" fill="none" stroke="#0072B2" stroke-width="1.5" opacity="0.8"/>
+<g><circle id="point-marker-0" data-stroke-width="1" cx="364.3" cy="528.6" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-1" data-stroke-width="1" cx="281.2" cy="525.6" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-2" data-stroke-width="1" d="M 576.0 516.9 L 581.0 521.9 L 576.0 526.9 L 571.0 521.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-3" data-stroke-width="1" d="M 576.0 515.7 L 581.0 520.7 L 576.0 525.7 L 571.0 520.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-4" data-stroke-width="1" d="M 577.5 513.0 L 582.5 518.0 L 577.5 523.0 L 572.5 518.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-5" data-stroke-width="1" cx="516.2" cy="535.4" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-6" data-stroke-width="1" d="M 403.8 523.0 L 408.8 528.0 L 403.8 533.0 L 398.8 528.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-7" data-stroke-width="1" cx="672.6" cy="469.7" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-8" data-stroke-width="1" d="M 481.9 515.7 L 486.9 520.7 L 481.9 525.7 L 476.9 520.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-9" data-stroke-width="1" cx="272.0" cy="529.3" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-10" data-stroke-width="1" d="M 350.6 543.1 L 355.6 548.1 L 350.6 553.1 L 345.6 548.1 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-11" data-stroke-width="1" d="M 601.9 522.9 L 606.9 527.9 L 601.9 532.9 L 596.9 527.9 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-12" data-stroke-width="1" cx="276.2" cy="549.6" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-13" data-stroke-width="1" cx="276.3" cy="550.0" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-14" data-stroke-width="1" d="M 828.9 509.4 L 833.9 514.4 L 828.9 519.4 L 823.9 514.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-15" data-stroke-width="1" cx="830.0" cy="493.4" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-16" data-stroke-width="1" d="M 469.9 514.8 L 474.9 519.8 L 469.9 524.8 L 464.9 519.8 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-17" data-stroke-width="1" d="M 724.5 522.1 L 729.5 527.1 L 724.5 532.1 L 719.5 527.1 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-18" data-stroke-width="1" d="M 486.0 538.8 L 491.0 543.8 L 486.0 548.8 L 481.0 543.8 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-19" data-stroke-width="1" d="M 725.3 537.2 L 730.3 542.2 L 725.3 547.2 L 720.3 542.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-20" data-stroke-width="1" d="M 486.7 529.2 L 491.7 534.2 L 486.7 539.2 L 481.7 534.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-21" data-stroke-width="1" d="M 607.8 529.8 L 612.8 534.8 L 607.8 539.8 L 602.8 534.8 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-22" data-stroke-width="1" d="M 498.2 504.9 L 503.2 509.9 L 498.2 514.9 L 493.2 509.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-23" data-stroke-width="1" d="M 498.3 508.0 L 503.3 513.0 L 498.3 518.0 L 493.3 513.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-24" data-stroke-width="1" d="M 689.8 509.3 L 694.8 514.3 L 689.8 519.3 L 684.8 514.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-25" data-stroke-width="1" d="M 553.5 502.5 L 558.5 507.5 L 553.5 512.5 L 548.5 507.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-26" data-stroke-width="1" d="M 531.7 518.8 L 536.7 523.8 L 531.7 528.8 L 526.7 523.8 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-27" data-stroke-width="1" cx="280.9" cy="549.9" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-28" data-stroke-width="1" cx="282.6" cy="549.0" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-29" data-stroke-width="1" cx="556.8" cy="507.4" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-30" data-stroke-width="1" cx="245.7" cy="268.4" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-31" data-stroke-width="1" cx="396.9" cy="379.2" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-32" data-stroke-width="1" cx="187.3" cy="478.5" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-33" data-stroke-width="1" d="M 397.2 417.3 L 402.2 422.3 L 397.2 427.3 L 392.2 422.3 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-34" data-stroke-width="1" d="M 382.3 530.7 L 387.3 535.7 L 382.3 540.7 L 377.3 535.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-35" data-stroke-width="1" cx="195.0" cy="442.0" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-36" data-stroke-width="1" cx="195.0" cy="440.3" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-37" data-stroke-width="1" d="M 385.7 522.5 L 390.7 527.5 L 385.7 532.5 L 380.7 527.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-38" data-stroke-width="1" d="M 441.9 529.7 L 446.9 534.7 L 441.9 539.7 L 436.9 534.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-39" data-stroke-width="1" d="M 454.8 500.5 L 459.8 505.5 L 454.8 510.5 L 449.8 505.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-40" data-stroke-width="1" d="M 455.3 495.3 L 460.3 500.3 L 455.3 505.3 L 450.3 500.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-41" data-stroke-width="1" d="M 581.9 505.2 L 586.9 510.2 L 581.9 515.2 L 576.9 510.2 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-42" data-stroke-width="1" cx="337.5" cy="386.5" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-43" data-stroke-width="1" d="M 510.3 531.5 L 515.3 536.5 L 510.3 541.5 L 505.3 536.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-44" data-stroke-width="1" d="M 294.3 473.3 L 299.3 478.3 L 294.3 483.3 L 289.3 478.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-45" data-stroke-width="1" d="M 653.9 479.9 L 658.9 484.9 L 653.9 489.9 L 648.9 484.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-46" data-stroke-width="1" d="M 415.3 484.6 L 420.3 489.6 L 415.3 494.6 L 410.3 489.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-47" data-stroke-width="1" d="M 655.0 477.6 L 660.0 482.6 L 655.0 487.6 L 650.0 482.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-48" data-stroke-width="1" d="M 416.1 487.6 L 421.1 492.6 L 416.1 497.6 L 411.1 492.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-49" data-stroke-width="1" d="M 494.7 387.7 L 499.7 392.7 L 494.7 397.7 L 489.7 392.7 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-50" data-stroke-width="1" d="M 771.8 480.6 L 776.8 485.6 L 771.8 490.6 L 766.8 485.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-51" data-stroke-width="1" d="M 403.7 518.4 L 408.7 523.4 L 403.7 528.4 L 398.7 523.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-52" data-stroke-width="1" d="M 231.7 324.6 L 236.7 329.6 L 231.7 334.6 L 226.7 329.6 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-53" data-stroke-width="1" cx="180.5" cy="417.7" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-54" data-stroke-width="1" d="M 523.3 488.3 L 528.3 493.3 L 523.3 498.3 L 518.3 493.3 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-55" data-stroke-width="1" d="M 336.4 462.1 L 341.4 467.1 L 336.4 472.1 L 331.4 467.1 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-56" data-stroke-width="1" cx="155.6" cy="471.4" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-57" data-stroke-width="1" d="M 566.3 519.8 L 571.3 524.8 L 566.3 529.8 L 561.3 524.8 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-58" data-stroke-width="1" d="M 308.2 352.6 L 313.2 357.6 L 308.2 362.6 L 303.2 357.6 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-59" data-stroke-width="1" d="M 320.0 337.7 L 325.0 342.7 L 320.0 347.7 L 315.0 342.7 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-60" data-stroke-width="1" d="M 534.5 483.6 L 539.5 488.6 L 534.5 493.6 L 529.5 488.6 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-61" data-stroke-width="1" d="M 662.8 416.3 L 667.8 421.3 L 662.8 426.3 L 657.8 421.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-62" data-stroke-width="1" d="M 448.8 492.8 L 453.8 497.8 L 448.8 502.8 L 443.8 497.8 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-63" data-stroke-width="1" d="M 339.4 481.5 L 344.4 486.5 L 339.4 491.5 L 334.4 486.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-64" data-stroke-width="1" d="M 395.8 447.6 L 400.8 452.6 L 395.8 457.6 L 390.8 452.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-65" data-stroke-width="1" d="M 430.9 483.4 L 435.9 488.4 L 430.9 493.4 L 425.9 488.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-66" data-stroke-width="1" cx="161.1" cy="183.4" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-67" data-stroke-width="1" d="M 492.3 518.2 L 497.3 523.2 L 492.3 528.2 L 487.3 523.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-68" data-stroke-width="1" d="M 474.7 448.7 L 479.7 453.7 L 474.7 458.7 L 469.7 453.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-69" data-stroke-width="1" d="M 470.6 467.4 L 475.6 472.4 L 470.6 477.4 L 465.6 472.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-70" data-stroke-width="1" d="M 264.8 316.9 L 269.8 321.9 L 264.8 326.9 L 259.8 321.9 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-71" data-stroke-width="1" d="M 637.9 473.2 L 642.9 478.2 L 637.9 483.2 L 632.9 478.2 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-72" data-stroke-width="1" d="M 546.1 459.9 L 551.1 464.9 L 546.1 469.9 L 541.1 464.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-73" data-stroke-width="1" cx="101.7" cy="165.2" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-74" data-stroke-width="1" d="M 682.7 437.7 L 687.7 442.7 L 682.7 447.7 L 677.7 442.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-75" data-stroke-width="1" d="M 381.7 289.4 L 386.7 294.4 L 381.7 299.4 L 376.7 294.4 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-76" data-stroke-width="1" d="M 507.9 469.2 L 512.9 474.2 L 507.9 479.2 L 502.9 474.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-77" data-stroke-width="1" d="M 193.3 407.0 L 198.3 412.0 L 193.3 417.0 L 188.3 412.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-78" data-stroke-width="1" d="M 194.4 418.7 L 199.4 423.7 L 194.4 428.7 L 189.4 423.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-79" data-stroke-width="1" d="M 577.3 492.4 L 582.3 497.4 L 577.3 502.4 L 572.3 497.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-80" data-stroke-width="1" cx="363.0" cy="481.9" r="4" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-81" data-stroke-width="1" d="M 214.2 394.2 L 219.2 399.2 L 214.2 404.2 L 209.2 399.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-82" data-stroke-width="1" d="M 467.6 482.4 L 472.6 487.4 L 467.6 492.4 L 462.6 487.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-83" data-stroke-width="1" d="M 284.5 374.2 L 289.5 379.2 L 284.5 384.2 L 279.5 379.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-84" data-stroke-width="1" d="M 246.1 320.8 L 251.1 325.8 L 246.1 330.8 L 241.1 325.8 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-85" data-stroke-width="1" d="M 269.8 273.7 L 274.8 278.7 L 269.8 283.7 L 264.8 278.7 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-86" data-stroke-width="1" d="M 351.7 486.1 L 356.7 491.1 L 351.7 496.1 L 346.7 491.1 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-87" data-stroke-width="1" d="M 222.9 326.2 L 227.9 331.2 L 222.9 336.2 L 217.9 331.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-88" data-stroke-width="1" d="M 268.0 406.2 L 273.0 411.2 L 268.0 416.2 L 263.0 411.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-89" data-stroke-width="1" cx="147.5" cy="357.7" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-90" data-stroke-width="1" d="M 292.3 265.1 L 297.3 270.1 L 292.3 275.1 L 287.3 270.1 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-91" data-stroke-width="1" d="M 752.9 423.4 L 757.9 428.4 L 752.9 433.4 L 747.9 428.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-92" data-stroke-width="1" d="M 624.0 440.7 L 629.0 445.7 L 624.0 450.7 L 619.0 445.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-93" data-stroke-width="1" d="M 303.6 253.3 L 308.6 258.3 L 303.6 263.3 L 298.6 258.3 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-94" data-stroke-width="1" d="M 338.8 343.3 L 343.8 348.3 L 338.8 353.3 L 333.8 348.3 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-95" data-stroke-width="1" d="M 564.6 345.0 L 569.6 350.0 L 564.6 355.0 L 559.6 350.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-96" data-stroke-width="1" d="M 375.1 294.0 L 380.1 299.0 L 375.1 304.0 L 370.1 299.0 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-97" data-stroke-width="1" d="M 673.9 454.5 L 678.9 459.5 L 673.9 464.5 L 668.9 459.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-98" data-stroke-width="1" d="M 561.1 481.3 L 566.1 486.3 L 561.1 491.3 L 556.1 486.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-99" data-stroke-width="1" d="M 389.0 368.2 L 394.0 373.2 L 389.0 378.2 L 384.0 373.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-100" data-stroke-width="1" d="M 154.0 214.4 L 159.0 219.4 L 154.0 224.4 L 149.0 219.4 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-101" data-stroke-width="1" d="M 442.7 464.7 L 447.7 469.7 L 442.7 474.7 L 437.7 469.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-102" data-stroke-width="1" d="M 228.8 423.5 L 233.8 428.5 L 228.8 433.5 L 223.8 428.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-103" data-stroke-width="1" d="M 497.6 420.2 L 502.6 425.2 L 497.6 430.2 L 492.6 425.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-104" data-stroke-width="1" d="M 268.1 408.2 L 273.1 413.2 L 268.1 418.2 L 263.1 413.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-105" data-stroke-width="1" cx="95.2" cy="269.0" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-106" data-stroke-width="1" cx="432.0" cy="460.9" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-107" data-stroke-width="1" cx="102.6" cy="83.6" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-108" data-stroke-width="1" d="M 447.3 396.6 L 452.3 401.6 L 447.3 406.6 L 442.3 401.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-109" data-stroke-width="1" cx="282.4" cy="457.8" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-110" data-stroke-width="1" d="M 468.9 213.5 L 473.9 218.5 L 468.9 223.5 L 463.9 218.5 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-111" data-stroke-width="1" d="M 465.1 433.0 L 470.1 438.0 L 465.1 443.0 L 460.1 438.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-112" data-stroke-width="1" d="M 431.5 451.0 L 436.5 456.0 L 431.5 461.0 L 426.5 456.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-113" data-stroke-width="1" d="M 650.3 311.0 L 655.3 316.0 L 650.3 321.0 L 645.3 316.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-114" data-stroke-width="1" d="M 110.5 218.6 L 115.5 223.6 L 110.5 228.6 L 105.5 223.6 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-115" data-stroke-width="1" d="M 176.5 291.2 L 181.5 296.2 L 176.5 301.2 L 171.5 296.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-116" data-stroke-width="1" d="M 503.7 443.8 L 508.7 448.8 L 503.7 453.8 L 498.7 448.8 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-117" data-stroke-width="1" d="M 425.5 388.4 L 430.5 393.4 L 425.5 398.4 L 420.5 393.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-118" data-stroke-width="1" d="M 398.0 432.3 L 403.0 437.3 L 398.0 442.3 L 393.0 437.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-119" data-stroke-width="1" d="M 536.2 364.9 L 541.2 369.9 L 536.2 374.9 L 531.2 369.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-120" data-stroke-width="1" d="M 483.4 433.6 L 488.4 438.6 L 483.4 443.6 L 478.4 438.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-121" data-stroke-width="2.6" cx="70.0" cy="335.1" r="4" fill="#009E73" stroke="#000000" stroke-width="2.6"/></g>
+<g><path id="point-marker-122" data-stroke-width="1" d="M 329.9 335.8 L 334.9 340.8 L 329.9 345.8 L 324.9 340.8 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-123" data-stroke-width="1" d="M 257.7 374.2 L 262.7 379.2 L 257.7 384.2 L 252.7 379.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-124" data-stroke-width="1" d="M 333.5 372.3 L 338.5 377.3 L 333.5 382.3 L 328.5 377.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-125" data-stroke-width="1" d="M 338.6 443.6 L 343.6 448.6 L 338.6 453.6 L 333.6 448.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-126" data-stroke-width="1" d="M 569.5 366.3 L 574.5 371.3 L 569.5 376.3 L 564.5 371.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-127" data-stroke-width="1" d="M 167.6 265.0 L 172.6 270.0 L 167.6 275.0 L 162.6 270.0 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-128" data-stroke-width="1" d="M 371.8 103.8 L 376.8 108.8 L 371.8 113.8 L 366.8 108.8 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-129" data-stroke-width="1" d="M 249.6 82.3 L 254.6 87.3 L 249.6 92.3 L 244.6 87.3 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-130" data-stroke-width="1" d="M 250.2 79.6 L 255.2 84.6 L 250.2 89.6 L 245.2 84.6 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-131" data-stroke-width="1" d="M 551.3 332.5 L 556.3 337.5 L 551.3 342.5 L 546.3 337.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-132" data-stroke-width="1" d="M 304.7 77.2 L 309.7 82.2 L 304.7 87.2 L 299.7 82.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-133" data-stroke-width="1" d="M 304.9 84.2 L 309.9 89.2 L 304.9 94.2 L 299.9 89.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-134" data-stroke-width="1" d="M 356.1 351.9 L 361.1 356.9 L 356.1 361.9 L 351.1 356.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-135" data-stroke-width="1" d="M 518.1 336.8 L 523.1 341.8 L 518.1 346.8 L 513.1 341.8 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-136" data-stroke-width="1" d="M 615.3 337.3 L 620.3 342.3 L 615.3 347.3 L 610.3 342.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-137" data-stroke-width="1" d="M 664.3 365.4 L 669.3 370.4 L 664.3 375.4 L 659.3 370.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-138" data-stroke-width="1" d="M 427.2 405.0 L 432.2 410.0 L 427.2 415.0 L 422.2 410.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-139" data-stroke-width="1" d="M 483.0 360.2 L 488.0 365.2 L 483.0 370.2 L 478.0 365.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-140" data-stroke-width="1" cx="316.2" cy="216.2" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-141" data-stroke-width="1" d="M 145.2 68.7 L 150.2 73.7 L 145.2 78.7 L 140.2 73.7 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-142" data-stroke-width="1" d="M 477.5 344.9 L 482.5 349.9 L 477.5 354.9 L 472.5 349.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-143" data-stroke-width="1" d="M 216.8 330.6 L 221.8 335.6 L 216.8 340.6 L 211.8 335.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-144" data-stroke-width="1" d="M 265.0 394.3 L 270.0 399.3 L 265.0 404.3 L 260.0 399.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-145" data-stroke-width="1" d="M 455.3 301.2 L 460.3 306.2 L 455.3 311.2 L 450.3 306.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-146" data-stroke-width="1" d="M 259.5 285.8 L 264.5 290.8 L 259.5 295.8 L 254.5 290.8 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-147" data-stroke-width="1" d="M 404.1 365.1 L 409.1 370.1 L 404.1 375.1 L 399.1 370.1 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-148" data-stroke-width="1" d="M 492.7 324.3 L 497.7 329.3 L 492.7 334.3 L 487.7 329.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-149" data-stroke-width="1" d="M 420.2 383.4 L 425.2 388.4 L 420.2 393.4 L 415.2 388.4 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-150" data-stroke-width="1" d="M 323.0 125.9 L 328.0 130.9 L 323.0 135.9 L 318.0 130.9 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-151" data-stroke-width="1" d="M 270.5 125.8 L 275.5 130.8 L 270.5 135.8 L 265.5 130.8 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-152" data-stroke-width="1" d="M 292.5 271.7 L 297.5 276.7 L 292.5 281.7 L 287.5 276.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-153" data-stroke-width="1" d="M 229.6 100.4 L 234.6 105.4 L 229.6 110.4 L 224.6 105.4 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-154" data-stroke-width="1" d="M 158.8 70.0 L 163.8 75.0 L 158.8 80.0 L 153.8 75.0 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-155" data-stroke-width="1" d="M 158.8 76.0 L 163.8 81.0 L 158.8 86.0 L 153.8 81.0 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-156" data-stroke-width="1" d="M 663.2 226.8 L 668.2 231.8 L 663.2 236.8 L 658.2 231.8 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-157" data-stroke-width="1" d="M 620.9 268.1 L 625.9 273.1 L 620.9 278.1 L 615.9 273.1 Z" fill="#0072B2" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-158" data-stroke-width="1" d="M 249.8 291.3 L 254.8 296.3 L 249.8 301.3 L 244.8 296.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-159" data-stroke-width="1" d="M 327.6 333.9 L 332.6 338.9 L 327.6 343.9 L 322.6 338.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-160" data-stroke-width="1" cx="87.3" cy="240.0" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-161" data-stroke-width="1" d="M 268.4 242.4 L 273.4 247.4 L 268.4 252.4 L 263.4 247.4 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-162" data-stroke-width="1" d="M 192.7 129.0 L 197.7 134.0 L 192.7 139.0 L 187.7 134.0 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-163" data-stroke-width="1" d="M 193.7 143.5 L 198.7 148.5 L 193.7 153.5 L 188.7 148.5 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-164" data-stroke-width="1" d="M 161.5 123.2 L 166.5 128.2 L 161.5 133.2 L 156.5 128.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-165" data-stroke-width="1" d="M 337.1 363.6 L 342.1 368.6 L 337.1 373.6 L 332.1 368.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-166" data-stroke-width="1" d="M 254.6 169.3 L 259.6 174.3 L 254.6 179.3 L 249.6 174.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-167" data-stroke-width="1" d="M 796.4 189.3 L 801.4 194.3 L 796.4 199.3 L 791.4 194.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-168" data-stroke-width="1" d="M 288.4 216.2 L 293.4 221.2 L 288.4 226.2 L 283.4 221.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-169" data-stroke-width="1" d="M 369.4 80.6 L 374.4 85.6 L 369.4 90.6 L 364.4 85.6 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-170" data-stroke-width="1" d="M 159.5 77.5 L 164.5 82.5 L 159.5 87.5 L 154.5 82.5 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-171" data-stroke-width="1" d="M 211.1 253.6 L 216.1 258.6 L 211.1 263.6 L 206.1 258.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-172" data-stroke-width="1" d="M 256.8 311.8 L 261.8 316.8 L 256.8 321.8 L 251.8 316.8 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-173" data-stroke-width="1" d="M 410.8 250.8 L 415.8 255.8 L 410.8 260.8 L 405.8 255.8 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-174" data-stroke-width="1" d="M 122.9 191.0 L 127.9 196.0 L 122.9 201.0 L 117.9 196.0 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-175" data-stroke-width="1" d="M 176.1 144.5 L 181.1 149.5 L 176.1 154.5 L 171.1 149.5 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-176" data-stroke-width="1" d="M 255.3 270.6 L 260.3 275.6 L 255.3 280.6 L 250.3 275.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-177" data-stroke-width="1" d="M 486.2 287.3 L 491.2 292.3 L 486.2 297.3 L 481.2 292.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-178" data-stroke-width="1" cx="303.6" cy="156.1" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-179" data-stroke-width="1" d="M 319.1 187.0 L 324.1 192.0 L 319.1 197.0 L 314.1 192.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-180" data-stroke-width="1" d="M 215.2 196.0 L 220.2 201.0 L 215.2 206.0 L 210.2 201.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-181" data-stroke-width="1" d="M 248.9 77.3 L 253.9 82.3 L 248.9 87.3 L 243.9 82.3 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-182" data-stroke-width="1" d="M 246.2 177.2 L 251.2 182.2 L 246.2 187.2 L 241.2 182.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-183" data-stroke-width="1" d="M 378.7 130.7 L 383.7 135.7 L 378.7 140.7 L 373.7 135.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-184" data-stroke-width="1" d="M 399.6 84.9 L 404.6 89.9 L 399.6 94.9 L 394.6 89.9 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-185" data-stroke-width="1" d="M 477.4 67.7 L 482.4 72.7 L 477.4 77.7 L 472.4 72.7 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-186" data-stroke-width="1" cx="292.5" cy="93.9" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><circle id="point-marker-187" data-stroke-width="1" cx="284.6" cy="70.0" r="4" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-188" data-stroke-width="1" d="M 450.2 397.9 L 455.2 402.9 L 450.2 407.9 L 445.2 402.9 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-189" data-stroke-width="1" d="M 403.8 377.2 L 408.8 382.2 L 403.8 387.2 L 398.8 382.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-190" data-stroke-width="1" d="M 458.9 316.6 L 463.9 321.6 L 458.9 326.6 L 453.9 321.6 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-191" data-stroke-width="1" d="M 459.9 329.0 L 464.9 334.0 L 459.9 339.0 L 454.9 334.0 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-192" data-stroke-width="1" d="M 232.4 307.1 L 237.4 312.1 L 232.4 317.1 L 227.4 312.1 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-193" data-stroke-width="1" d="M 128.9 181.2 L 133.9 186.2 L 128.9 191.2 L 123.9 186.2 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-194" data-stroke-width="1" d="M 223.4 275.2 L 228.4 280.2 L 223.4 285.2 L 218.4 280.2 Z" fill="#E69F00" stroke="#333" stroke-width="1"/></g>
+<g><path id="point-marker-195" data-stroke-width="1" d="M 207.9 105.8 L 212.9 110.8 L 207.9 115.8 L 202.9 110.8 Z" fill="#009E73" stroke="#333" stroke-width="1"/></g>
+<rect x="74.0" y="304.1" width="176" height="16" fill="white" opacity="0.88" stroke="#d0d0d0" stroke-width="0.5"/>
+<text x="78.0" y="317.1" font-size="11" fill="#222">constant_pow28_ff4_lir4_rsv3</text>
+<rect x="151.5" y="326.7" width="188" height="16" fill="white" opacity="0.88" stroke="#d0d0d0" stroke-width="0.5"/>
+<text x="155.5" y="339.7" font-size="11" fill="#222">cfsr_pow28_ff5_rest3_lir4_rsv4</text>
+<rect x="159.6" y="440.4" width="188" height="16" fill="white" opacity="0.88" stroke="#d0d0d0" stroke-width="0.5"/>
+<text x="163.6" y="453.4" font-size="11" fill="#222">cfsr_pow27_ff5_rest3_lir4_rsv4</text>
+<rect x="191.3" y="411.5" width="176" height="16" fill="white" opacity="0.88" stroke="#d0d0d0" stroke-width="0.5"/>
+<text x="195.3" y="424.5" font-size="11" fill="#222">constant_pow27_ff4_lir4_rsv4</text>
+<rect x="276.0" y="498.3" width="188" height="16" fill="white" opacity="0.88" stroke="#d0d0d0" stroke-width="0.5"/>
+<text x="280.0" y="511.3" font-size="11" fill="#222">cfsr_pow27_ff4_rest3_lir3_rsv3</text>
+<rect x="280.2" y="518.6" width="188" height="16" fill="white" opacity="0.88" stroke="#d0d0d0" stroke-width="0.5"/>
+<text x="284.2" y="531.6" font-size="11" fill="#222">cfsr_pow27_ff5_rest3_lir3_rsv3</text>
+<rect x="280.3" y="465.0" width="188" height="16" fill="white" opacity="0.88" stroke="#d0d0d0" stroke-width="0.5"/>
+<text x="284.3" y="478.0" font-size="11" fill="#222">cfsr_pow28_ff5_rest3_lir3_rsv3</text>
+<g font-size="12">
+<circle cx="570" cy="28" r="4" fill="none" stroke="#333" stroke-width="1.5"/>
+<text x="582" y="32">measured prover time</text>
+<path d="M 570.0 43 L 575.0 48 L 570.0 53 L 565.0 48 Z" fill="none" stroke="#333" stroke-width="1.5"/>
+<text x="582" y="52">interpolated</text>
+<line x1="566" y1="72" x2="578" y2="72" stroke="#0072B2" stroke-width="1.5"/>
+<text x="582" y="76">measured frontier</text>
+<circle cx="570" cy="96" r="4" fill="white" stroke="#000000" stroke-width="2.6"/>
+<text x="582" y="100">implemented quintic verifier</text>
+<circle cx="570" cy="120" r="4" fill="#0072B2" stroke="#333"/>
+<text x="582" y="124">lir = 2</text>
+<circle cx="570" cy="140" r="4" fill="#E69F00" stroke="#333"/>
+<text x="582" y="144">lir = 3</text>
+<circle cx="570" cy="160" r="4" fill="#009E73" stroke="#333"/>
+<text x="582" y="164">lir = 4</text>
+</g>
+</svg>
