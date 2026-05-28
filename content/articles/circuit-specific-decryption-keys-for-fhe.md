@@ -12,7 +12,7 @@ tags:
     "cryptography",
     "Machina iO",
   ]
-projects: ["machina-iO"]
+projects: ["machina-io"]
 ---
 
 # Circuit-specific decryption keys for FHE: a new four-part series from Machina iO
