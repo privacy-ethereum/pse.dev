@@ -106,9 +106,9 @@ Many candidates were reverted. `via_ir` often already generated better code than
 
 For Reed&#8209;Solomon proximity testing, verifier cost depends heavily on the assumed relation between code rate, query count, and soundness. Until 2025 it was common to choose FRI-style and WHIR-style verifier parameters from capacity-bound estimates, which give the smallest verifier for a claimed security level. Recent Reed–Solomon proximity-gap results rule out the up-to-capacity forms of the conjectures used for aggressive parameter selection, including the WHIR mutual-correlated-agreement up-to-capacity conjecture.[^rs-random-words][^rs-proximity-gaps][^rs-near-capacity] We therefore use Johnson-bound parameters for the main verifier measurement, so the reported security claim rests on a proven bound.
 
-We chose the target soundness of 100 bits. 96 bits, the level common in modern proof-system configurations and benchmarks,[^ethproofs-security] is uncomfortably close to attacker capability: Bitcoin's annual hashrate is approaching 2^96^ operations,[^bitcoin-hashrate] leaving about a year of margin. 128-bit Johnson-bound security would need a larger extension degree and more queries, and would be substantially more expensive.
+We chose the target soundness of 100 bits. 96 bits, the level common in modern proof-system configurations and benchmarks,[^ethproofs-security] is uncomfortably close to attacker capability: Bitcoin's annual hashrate is approaching 2<sup>96</sup> operations,[^bitcoin-hashrate] leaving about a year of margin. 128-bit Johnson-bound security would need a larger extension degree and more queries, and would be substantially more expensive.
 
-The committed polynomial size is 2^22^, the upper bound treated as relevant in _sol&#8209;whir_.[^sol-whir-writeup] It is large enough for many modern circuits.
+The committed polynomial size is 2<sup>22</sup>, the upper bound treated as relevant in _sol&#8209;whir_.[^sol-whir-writeup] It is large enough for many modern circuits.
 
 The verifier uses 80-bit effective Merkle digests, following both _sol&#8209;whir_ and deployed STARK verifiers such as StarkNet's, where this digest-masking convention is the practical default for hash-based proof systems.[^sol-whir-writeup] A no-truncation measurement remains future work.
 
