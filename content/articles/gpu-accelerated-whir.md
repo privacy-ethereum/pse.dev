@@ -4,7 +4,7 @@ title: "GPU-Accelerated WHIR Proving on Apple Silicon" # The title of your artic
 image: null
 tldr: "Apple Silicon GPU acceleration for WHIR proving reaches up to 2x speedups on M1 by fusing NTT, Poseidon2 Merkle hashing, and proof-of-work grinding in Metal."
 date: "2026-05-13"
-canonical: ""
+canonical: "https://ethresear.ch/t/gpu-accelerated-whir-proving-on-apple-silicon/24762"
 tags: ["client-side proving", "gpu", "whir", "metal", "zkp", "post-quantum"]
 projects: ["client-side-proving"]
 ---
