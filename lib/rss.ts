@@ -5,31 +5,30 @@ import matter from "gray-matter"
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://pse.dev"
 
-function formatDate(dateString: string | undefined): Date {
-  if (!dateString) {
-    console.warn("No date provided, using current date")
-    return new Date()
+function parseDate(rawDate: unknown): Date | null {
+  if (!rawDate) return null
+
+  // YAML auto-parses unquoted `YYYY-MM-DD` frontmatter into Date objects.
+  if (rawDate instanceof Date) {
+    return isNaN(rawDate.getTime()) ? null : rawDate
   }
 
+  if (typeof rawDate !== "string") return null
+
   try {
-    const [year, month, day] = dateString.split("-").map(Number)
+    const [year, month, day] = rawDate.split("-").map(Number)
 
     if (!year || !month || !day || isNaN(year) || isNaN(month) || isNaN(day)) {
-      console.warn(`Invalid date format: ${dateString}, using current date`)
-      return new Date()
+      return null
     }
 
     const date = new Date(year, month - 1, day)
 
-    if (isNaN(date.getTime())) {
-      console.warn(`Invalid date: ${dateString}, using current date`)
-      return new Date()
-    }
+    if (isNaN(date.getTime())) return null
 
     return date
   } catch (error) {
-    console.warn(`Error parsing date: ${dateString}, using current date`)
-    return new Date()
+    return null
   }
 }
 
@@ -59,18 +58,32 @@ export async function generateRssFeed() {
     const articlesDirectory = path.join(process.cwd(), "content/articles")
     const articleFiles = fs.readdirSync(articlesDirectory)
 
+    const excludedSlugs = new Set(["readme", "_readme", "_article-template"])
+
     const articles = articleFiles
-      .filter((file) => file.endsWith(".md") && file !== "_article-template.md")
+      .filter((file) => file.endsWith(".md"))
       .map((file) => {
+        const slug = file.replace(/\.md$/, "")
+        if (excludedSlugs.has(slug.toLowerCase())) return null
+
         try {
           const filePath = path.join(articlesDirectory, file)
           const fileContents = fs.readFileSync(filePath, "utf8")
           const { data, content } = matter(fileContents)
 
+          const pubDate = parseDate(data.date)
+          if (!pubDate) {
+            console.warn(
+              `Skipping ${file} in RSS feed: missing or invalid date`
+            )
+            return null
+          }
+
           return {
-            slug: file.replace(/\.md$/, ""),
+            slug,
             frontmatter: data,
             content,
+            pubDate,
           }
         } catch (error) {
           console.warn(`Error processing article ${file}:`, error)
@@ -80,17 +93,13 @@ export async function generateRssFeed() {
       .filter(
         (article): article is NonNullable<typeof article> => article !== null
       )
-      .sort(
-        (a, b) =>
-          formatDate(b.frontmatter.date).getTime() -
-          formatDate(a.frontmatter.date).getTime()
-      )
+      .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
 
     // Add articles to feed
     articles.forEach((article) => {
       try {
         const url = `${SITE_URL}/blog/${article.slug}`
-        const pubDate = formatDate(article.frontmatter.date)
+        const pubDate = article.pubDate
 
         feed.addItem({
           title: article.frontmatter.title || "Untitled Article",
