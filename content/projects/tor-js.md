@@ -22,11 +22,11 @@ tags:
   types: ["Library", "Toolkit", "Protocol"]
   builtWith: ["Rust", "WebAssembly", "TypeScript"]
 links:
-  github: "https://github.com/voltrevo/arti/tree/main/crates/tor-js/ts-wrapper"
+  github: "https://github.com/privacy-ethereum/tor-js"
 extraLinks:
   play:
     - label: "tor-js Live Demo"
-      url: "https://voltrevo.github.io/arti/"
+      url: "https://privacy-ethereum.github.io/tor-js/"
   buildWith:
     - label: "tor-js NPM Package"
       url: "https://www.npmjs.com/package/tor-js"
@@ -72,7 +72,8 @@ import { TorClient } from 'tor-js';
 
 const client = new TorClient({
   // gateway: 'https://tor-js-gateway.HOSTME.com',
-  // (Required in browsers; optional in Node.js / Deno.)
+  // (Required in browsers; optional in Node.js / Deno.
+  // https://github.com/privacy-ethereum/tor-js-gateway)
 });
 
 const response = await client.fetch('https://check.torproject.org/api/ip');
@@ -83,16 +84,16 @@ client.close();
 
 ## Status
 
-[Experimental](https://github.com/voltrevo/arti/issues/2).
+[Experimental](https://github.com/privacy-ethereum/tor-js/issues/6).
 
 It is your responsibilty to decide whether tor-js meets your security requirements. This software is provided for free and without warranty, per the MIT license.
 
-Please reach out ([on github](https://github.com/voltrevo/arti/issues/2) or otherwise) if you'd like to see more security validation for tor-js.
+Please reach out ([on github](https://github.com/privacy-ethereum/tor-js/issues/6) or otherwise) if you'd like to see more security validation for tor-js.
 
 ## Contributing
 
 Contributions are most welcome.
 
-- Report issues and suggest features [on GitHub](https://github.com/voltrevo/arti/tree/main/crates/tor-js/ts-wrapper)
+- Report issues and suggest features [on GitHub](https://github.com/privacy-ethereum/tor-js)
 - Submit pull requests for bug fixes and improvements
 - Test in your applications and provide feedback
