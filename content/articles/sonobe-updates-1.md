@@ -4,6 +4,7 @@ title: "Sonobe Updates 2026 Part 1: Audit Report" # The title of your article
 image: "/articles/articles-name-folder/cover.webp" # Image used as cover,  Keep in mind the image size, where possible use .webp format, possibly images less then 200/300kb
 tldr: "Ahead of Sonobe's first release, we had our folding-schemes and IVC library audited by both a human auditor and an AI auditor. This article summarizes their findings." #Short summary
 date: "2026-06-01" # Publication date in ISO format
+canonical: "https://github.com/privacy-ethereum/sonobe/issues/262"
 tags: ["Sonobe", "folding schemes"] # (Optional) Add relevant tags as an array of strings to categorize the article
 projects: ["sonobe"]
 ---
@@ -14,7 +15,7 @@ Sonobe is a cryptographic library for folding schemes and IVC, developed by 0xPA
 
 Over the past year, the library has been refactored for better modularization and user/developver experience, and now we plan to publish the first crates.io release. We believe folding schemes will be a future infrastructure of scalable and private blockchains and wish to make sure our library is secure enough to support various applications.
 
-To this end, we have been working with a human auditor, Aleph_v (Twitter: https://twitter.com/alpeh_v), and an AI auditor, V12 by Zellic (https://v12.sh/) to find potential vulnerabilities in Sonobe. We have a limited scope for our first audits, so we can focus on core schemes and features used by existing downstream projects. Specifically, the audits cover the following modules.
+To this end, we have been working with a human auditor, Aleph_v (Twitter: https://twitter.com/alpeh_v), and an AI auditor, V12 (https://v12.sh/) to find potential vulnerabilities in Sonobe. We have a limited scope for our first audits, so we can focus on core schemes and features used by existing downstream projects. Specifically, the audits cover the following modules.
 
 - Folding schemes
   - Nova
