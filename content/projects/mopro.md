@@ -8,7 +8,19 @@ category: "devtools"
 tldr: "The easiest way to ship ZK proofs to mobile and web."
 license: "MIT"
 tags:
-  keywords: ["Mobile", "Client", "iOS", "Android", "SDK", "Swift", "Kotlin", "React Native", "Flutter", "GPU"]
+  keywords:
+    [
+      "Mobile",
+      "Client",
+      "iOS",
+      "Android",
+      "SDK",
+      "Swift",
+      "Kotlin",
+      "React Native",
+      "Flutter",
+      "GPU",
+    ]
   themes: ["build", "play"]
   types:
     [
@@ -48,6 +60,7 @@ Mobile-native execution outperforms browser-based ZK proving, and **client-side 
 
 ### Applications
 
-- Zuma - [TestFlight](https://testflight.apple.com/join/ZmHHSrmP) | [GitHub](https://github.com/chengggkk/zuma)
-- Stealthnote Mobile - [TestFlight](https://testflight.apple.com/join/8hqYwe8C) | [Android APK](https://drive.google.com/file/d/1IMsH0fBpaLGkFgFX0oqnlS6LQk3WCr3t/view?usp=sharing) | [GitHub](https://github.com/vivianjeng/stealthnote-mobile)
-- Solid(ar)ity - [App Store](https://apps.apple.com/us/app/solid-ar-ity/id6752410250) | [GitHub](https://github.com/kidneyweakx/solidarity)
+- **Zuma** - [TestFlight](https://testflight.apple.com/join/ZmHHSrmP) | [GitHub](https://github.com/chengggkk/zuma)
+- **Stealthnote Mobile** - [TestFlight](https://testflight.apple.com/join/8hqYwe8C) | [Android APK](https://drive.google.com/file/d/1IMsH0fBpaLGkFgFX0oqnlS6LQk3WCr3t/view?usp=sharing) | [GitHub](https://github.com/vivianjeng/stealthnote-mobile)
+- **Solid(ar)ity** - [App Store](https://apps.apple.com/us/app/solid-ar-ity/id6752410250) | [GitHub](https://github.com/kidneyweakx/solidarity)
+- [**OpenAC**](https://github.com/privacy-ethereum/zkID) × [**Taiwan Citizen Digital Certificate**](https://fido.moi.gov.tw/) - [TestFlight](https://testflight.apple.com/join/UuVzqwHk) | [Android APK](https://drive.google.com/file/d/15ukmBzA5Ih1SFu0uuf1LursOIYai7ooU/view?usp=sharing) | [Web App](https://proof-of-personhood-openac-web.vercel.app/) | [GitHub](https://github.com/privacy-ethereum/ZK-based-Proof-of-Personhood)
