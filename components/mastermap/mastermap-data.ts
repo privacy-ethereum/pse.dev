@@ -202,11 +202,11 @@ export const PROJECTS: ProjectData[] = [
     category: "private-proving",
     status: "Active development",
     statusVariant: "active",
-    completion: 20,
+    completion: 40,
     description:
-      "Mobile-first proving infrastructure. Native provers for Swift/Kotlin/RN/Flutter. GPU crypto libraries.",
+      "Ship ZK protocols to mobile and web. Native provers for Swift, Kotlin, React Native, and Flutter. GPU-accelerated crypto libraries.",
     href: "/mastermap/mopro",
-    tags: ["Mobile", "GPU", "zkVM"],
+    tags: ["Mobile", "GPU", "zkVM", "SDK"],
     now: [
       {
         name: "Native Prover (Swift/Kotlin/RN/Flutter)",
@@ -223,26 +223,26 @@ export const PROJECTS: ProjectData[] = [
         statusDot: "green",
       },
       {
-        name: "ZK-Based Human Verification at Scale",
+        name: "ZK-Based Proof of Personhood at Scale",
         description:
-          "Native mobile and desktop provers powering privacy-preserving human verification using government-grade identity credentials. Designed for real-world adoption, with an initial rollout targeting 100,000+ verified users.",
-        status: "In progress \u00b7 Critical",
+          "Native mobile and desktop provers powering privacy-preserving proof of personhood using government-grade identity credentials. Designed for real-world adoption, with an initial rollout targeting 100,000+ verified users.",
+        status: "Done",
         statusDot: "green",
       },
-    ],
-    next: [
       {
         name: "Noir version upgrade",
         description:
           "Upgrade Noir version to the latest stable release, ensuring compatibility with the latest features and improvements.",
-        status: "Planned \u00b7 ~2 weeks",
-        statusDot: "yellow",
-      },
+        status: "Done",
+        statusDot: "green",
+      }
+    ],
+    next: [
       {
         name: "TWDIW Integration",
         description:
           "Provides a PoC showcasing OpenAC × TWDIW privacy-preserving age verification solution for online alcohol purchases in Taiwan.",
-        status: "Planned \u00b7 ~2 weeks",
+        status: "In progress \u00b7 ~2 months",
         statusDot: "yellow",
       },
       {
@@ -259,6 +259,13 @@ export const PROJECTS: ProjectData[] = [
         status: "Planned \u00b7 ~2 weeks",
         statusDot: "yellow",
       },
+      {
+        name: "zkVM Mobile Study",
+        description:
+          "Port Jolt to ARM64 mobile. Profile thermal throttling, battery impact.",
+        status: "Planned \u00b7 ~1 month",
+        statusDot: "yellow",
+      },
     ],
     later: [
       {
@@ -269,28 +276,28 @@ export const PROJECTS: ProjectData[] = [
         statusDot: "gray",
       },
       {
-        name: "zkVM Mobile Study",
+        name: "Integration of definitive CSP result",
         description:
-          "Port Jolt/Nexus/RISC0 to ARM64 mobile. Profile thermal throttling, battery impact.",
-        status: "Planned \u00b7 ~1 month",
+          "Integrate the definitive CSP result (spartan-whir) into Mopro, enhancing the performance of the prover.",
+        status: "Planned \u00b7 ~1.5 month",
         statusDot: "gray",
-      },
+      }
     ],
     details: {
       description: [
-        "No complex Rust setup required for native mobile ZK",
-        "Saves up to three major integration steps",
+        "No complex setup — native mobile bindings work out of the box",
+        "Compile and run proving systems across iOS, Android, and web",
         "Foundation for client-side GPU proving ecosystem",
       ],
       deliverables: [
-        "Native prover SDK (Swift, Kotlin, RN, Flutter)",
-        "Community GPU crypto libraries",
-        "Taiwan citizen ID verification (100K+ users)",
+        "mopro CLI — streamlined setup for native mobile and web ZK integration",
+        "ZK in production — Taiwan citizen ID verification deployed to 100k+ users",
+        "Community GPU crypto libraries — shared, open-source acceleration primitives",
       ],
       impact: [
-        "ZK proving dropped into mature codebases easily",
-        "Harvest Now Decrypt Later defense via PQ GPU libs",
-        "Mass adoption through mobile zkVM feasibility",
+        "Expanded ZK accessibility beyond Rust experts to Swift, Kotlin, React Native, and Flutter developers",
+        "Bridging ZK protocols and real-world products, making privacy-preserving technology accessible to everyday users",
+        "Advancing frontier research on client-side GPU acceleration for ZK",
       ],
     },
   },
