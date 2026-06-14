@@ -401,6 +401,78 @@ const MathText = ({ text }: { text: string }) => {
   }
 }
 
+const getMarkdownElementTag = (element: React.ReactElement): string | null => {
+  if (typeof element.type === "string") {
+    return element.type
+  }
+
+  const node = (element.props as { node?: { tagName?: unknown } })?.node
+  return typeof node?.tagName === "string" ? node.tagName : null
+}
+
+const shouldSkipMathChildren = (element: React.ReactElement): boolean => {
+  const tagName = getMarkdownElementTag(element)
+  return tagName === "code" || tagName === "pre"
+}
+
+const getTextContent = (children: React.ReactNode): string => {
+  return React.Children.toArray(children)
+    .map((child) => {
+      if (typeof child === "string" || typeof child === "number") {
+        return String(child)
+      }
+
+      if (React.isValidElement(child)) {
+        return getTextContent(
+          (child.props as { children?: React.ReactNode }).children
+        )
+      }
+
+      return ""
+    })
+    .join("")
+}
+
+const containsMathInChildren = (children: React.ReactNode): boolean => {
+  return React.Children.toArray(children).some((child) => {
+    if (typeof child === "string") {
+      return containsMath(child)
+    }
+
+    if (React.isValidElement(child) && !shouldSkipMathChildren(child)) {
+      return containsMathInChildren(
+        (child.props as { children?: React.ReactNode }).children
+      )
+    }
+
+    return false
+  })
+}
+
+const renderMathInChildren = (children: React.ReactNode): React.ReactNode => {
+  return React.Children.map(children, (child) => {
+    if (typeof child === "string") {
+      return containsMath(child) ? <MathText text={child} /> : child
+    }
+
+    if (React.isValidElement(child) && !shouldSkipMathChildren(child)) {
+      const childProps = child.props as { children?: React.ReactNode }
+
+      if (childProps.children === undefined) {
+        return child
+      }
+
+      return React.cloneElement(
+        child as React.ReactElement<{ children?: React.ReactNode }>,
+        undefined,
+        renderMathInChildren(childProps.children)
+      )
+    }
+
+    return child
+  })
+}
+
 const rehypeProcessBrTags = () => {
   return (tree: any) => {
     const visit = (node: any) => {
@@ -535,18 +607,7 @@ const HeadingLink = ({
     if (typeof children === "string") {
       return generateSectionId(children)
     }
-    const text = React.Children.toArray(children)
-      .map((child) => {
-        if (typeof child === "string") return child
-        if (
-          React.isValidElement(child) &&
-          typeof child.props?.children === "string"
-        ) {
-          return child.props.children
-        }
-        return ""
-      })
-      .join("")
+    const text = getTextContent(children)
     return generateSectionId(text)
   }, [children])
 
@@ -661,15 +722,7 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
     }
 
     // For other paragraphs, continue with normal processing
-    const text = childArray
-      .map((child) => {
-        if (typeof child === "string") return child
-        if (React.isValidElement(child) && child.props?.children) {
-          return child.props.children
-        }
-        return ""
-      })
-      .join("")
+    const text = getTextContent(children)
 
     let isMathOnly = false
     if (text.trim().startsWith("$$") && text.trim().endsWith("$$")) {
@@ -679,14 +732,14 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
       }
     }
 
-    if (containsMath(text)) {
+    if (containsMathInChildren(children)) {
       return (
         <p
           className={`text-tuatara-600 dark:text-tuatara-200 font-sans text-lg font-normal ${
             isMathOnly ? "math-only" : ""
           }`}
         >
-          <MathText text={text} />
+          {renderMathInChildren(children)}
         </p>
       )
     }
@@ -699,22 +752,13 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
   },
   // Handle math in list items
   li: ({ node, children, ...props }) => {
-    const text = React.Children.toArray(children)
-      .map((child) => {
-        if (typeof child === "string") return child
-        // @ts-expect-error - children props vary
-        if (child?.props?.children) return child.props.children
-        return ""
-      })
-      .join("")
-
-    if (containsMath(text)) {
+    if (containsMathInChildren(children)) {
       return (
         <li
           className="text-tuatara-500 font-sans text-base lg:text-lg font-normal dark:text-tuatara-100"
           {...props}
         >
-          <MathText text={text} />
+          {renderMathInChildren(children)}
         </li>
       )
     }
@@ -775,14 +819,7 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
     const { node, children, ...rest } = props
 
     // Convert children to text to check for math
-    const text = React.Children.toArray(children)
-      .map((child) => {
-        if (typeof child === "string") return child
-        // @ts-expect-error - children props vary
-        if (child?.props?.children) return child.props.children
-        return ""
-      })
-      .join("")
+    const text = getTextContent(children)
 
     // Handle line breaks in table cells by replacing <br> with actual line breaks
     const hasBrTags = typeof text === "string" && text.includes("<br>")
@@ -792,10 +829,10 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
       typeof text === "string" && (text.includes("<div style=") || hasBrTags)
 
     // Check if there's math content
-    if (containsMath(text)) {
+    if (containsMathInChildren(children)) {
       return (
         <td className="p-4 text-left" {...rest}>
-          <MathText text={text} />
+          {renderMathInChildren(children)}
         </td>
       )
     }
@@ -824,14 +861,7 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
     }
 
     // Convert children to text to check for math
-    const text = React.Children.toArray(children)
-      .map((child) => {
-        if (typeof child === "string") return child
-        // @ts-expect-error - children props vary
-        if (child?.props?.children) return child.props.children
-        return ""
-      })
-      .join("")
+    const text = getTextContent(children)
 
     // Handle line breaks in table headers by replacing <br> with actual line breaks
     const hasBrTags = typeof text === "string" && text.includes("<br>")
@@ -840,10 +870,10 @@ const REACT_MARKDOWN_CONFIG = (darkMode: boolean): CustomComponents => ({
     const hasHtmlContent =
       typeof text === "string" && (text.includes("<div style=") || hasBrTags)
 
-    if (containsMath(text)) {
+    if (containsMathInChildren(children)) {
       return (
         <th className="p-4 text-left font-medium" {...rest}>
-          <MathText text={text} />
+          {renderMathInChildren(children)}
         </th>
       )
     }
