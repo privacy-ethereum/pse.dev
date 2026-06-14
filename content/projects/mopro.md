@@ -5,10 +5,10 @@ image: "mopro.webp"
 section: "pse"
 projectStatus: "active"
 category: "devtools"
-tldr: "Mopro makes client-side proving on mobile simple."
+tldr: "The easiest way to ship ZK proofs to mobile and web."
 license: "MIT"
 tags:
-  keywords: ["Mobile", "Client", "iOS", "Android"]
+  keywords: ["Mobile", "Client", "iOS", "Android", "SDK", "Swift", "Kotlin", "React Native", "Flutter", "GPU"]
   themes: ["build", "play"]
   types:
     [
@@ -17,7 +17,7 @@ tags:
       "Infrastructure/protocol",
       "Plugin",
     ]
-  builtWith: ["halo2", "circom"]
+  builtWith: ["halo2", "circom", "noir"]
 links:
   github: "https://github.com/zkmopro"
   website: "https://zkmopro.org/"
@@ -28,30 +28,26 @@ extraLinks:
     - label: "Getting Started with mopro"
       url: "https://zkmopro.org/docs/getting-started"
   play:
-    - label: "Try it out: Mopro Benchmark"
-      url: "https://testflight.apple.com/join/TBlBDicy"
+    - label: "Try it out: Solid(ar)ity - P2P Connection"
+      url: "https://apps.apple.com/us/app/solid-ar-ity-p2p-connection/id6752410250"
 ---
 
 ### Overview
 
-Mopro makes client-side proving simple. You can think of it as a toolkit for ZK app development. It primarily focuses on running natively mobile.
+mopro makes it easy for ZK developers to ship **cross-platform SDKs** and apps to **real-world users**. It abstracts away FFI complexity and platform-specific configuration, so you can focus on your ZK protocol — not the mobile build toolchain.
 
-How? Mopro connects different adapters with different platforms. You can think of an adapter as a way to use a library with some proof system and performance profile. Because Mopro takes care of hooking up your circuit to some library, and generating bindings for use on multiple platforms, you can focus on what you do best: ZK app development.
+Mobile-native execution outperforms browser-based ZK proving, and **client-side GPU acceleration** stands to improve performance even more — making mopro a foundation for high-performance, real-world ZK deployment.
 
 ### Features
 
-With mopro, developers can overcome the limitations of existing tools like `snarkjs`, which struggles with small circuit sizes and slow performance in browsers. Our solution leverages the growing power of mobile GPUs to deliver a fast, scalable, and secure proving experience directly on client-side applications
-
-Mopro, short for Mobile Prover, redefines the landscape of mobile app development by introducing an innovative toolkit designed for zero-knowledge (zk) proofs.
-
-Developer Capabilities:
-
-- **Ease of use**: mopro simplifies the complexity of integrating zk-proofs into mobile apps, making it accessible even for developers new to mobile development.
-- **Scalability**: Designed to scale with your needs, mopro supports a wide range of proving systems, facilitating the development of versatile, high-performance applications.
-- **X-platform compatibility**: Whether you're developing for iOS, Android, Windows, or Mac, mopro supports you with a unified toolkit that works seamlessly across all platforms.
-- **Performance**: By optimizing for mobile GPUs, mopro significantly enhances the speed and capacity for handling large circuits, surpassing traditional browser-based solutions.
-- **Security**: Users can generate claims securely on their devices, ensuring data privacy and integrity.
+- **Multi-prover support** — Rust wrappers for Circom, Halo2, Noir, and more, compiled cross-platform across iOS, Android, and web
+- **Zero boilerplate** — CLI commands abstract away FFI setup, prover integration, mobile SDK, and app configuration
+- **Composable** — drop mopro into any existing Rust project to build cross-platform SDKs
+- **Production-ready** — ship ZK protocols directly to end users on native mobile and web apps
+- **Performance-first** — optimized for iOS and Android, with ongoing exploration of client-side GPU acceleration
 
 ### Applications
 
-- iOS Mopro Benchmark - [TestFlight](https://testflight.apple.com/join/TBlBDicy) | [GitHub](https://github.com/zkmopro/benchmark-app)
+- Zuma - [TestFlight](https://testflight.apple.com/join/ZmHHSrmP) | [GitHub](https://github.com/chengggkk/zuma)
+- Stealthnote Mobile - [TestFlight](https://testflight.apple.com/join/8hqYwe8C) | [Android APK](https://drive.google.com/file/d/1IMsH0fBpaLGkFgFX0oqnlS6LQk3WCr3t/view?usp=sharing) | [GitHub](https://github.com/vivianjeng/stealthnote-mobile)
+- Solid(ar)ity - [App Store](https://apps.apple.com/us/app/solid-ar-ity/id6752410250) | [GitHub](https://github.com/kidneyweakx/solidarity)

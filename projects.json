@@ -50,9 +50,9 @@
   {
     "objectID": "mopro",
     "title": "Mopro",
-    "description": "Mobile-optimized zero-knowledge proof generation",
+    "description": "The easiest way to ship ZK proofs to mobile and web.",
     "url": "https://pse.dev/en/projects/mopro",
-    "tags": ["Mobile", "Zero Knowledge", "Performance"],
+    "tags": ["Mobile", "Zero Knowledge", "Performance", "SDK", "iOS", "Android", "Web", "GPU"],
     "type": "project"
   },
   {
