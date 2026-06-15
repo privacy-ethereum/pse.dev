@@ -3,7 +3,7 @@ title: Summon Major Update
 image: "/articles/summon-major-update/cover.webp"
 tldr: I’m excited to share the biggest Summon update yet. 🎉
 authors: ["Andrew Morris"]
-date: 2025-05-21
+date: "2025-05-21"
 tags:
   [
     summon,

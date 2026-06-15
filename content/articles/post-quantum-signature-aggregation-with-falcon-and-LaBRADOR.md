@@ -1,6 +1,6 @@
 ---
 title: "Post-Quantum Signature Aggregation with Falcon + LaBRADOR"
-date: 2025-05-19
+date: "2025-05-19"
 author: PSE Research
 image: "/articles/post-quantum-signature-aggregation-with-falcon-and-LaBRADOR/cover.webp"
 tagline: "Compact lattice-based proofs for Ethereum"
