@@ -1,7 +1,7 @@
 ---
 authors: ["Winderica"]
 title: "Sonobe Updates 2026 Part 1: Audit Report" # The title of your article
-image: "/articles/articles-name-folder/cover.webp" # Image used as cover,  Keep in mind the image size, where possible use .webp format, possibly images less then 200/300kb
+image: null # Image used as cover,  Keep in mind the image size, where possible use .webp format, possibly images less then 200/300kb
 tldr: "Ahead of Sonobe's first release, we had our folding-schemes and IVC library audited by both a human auditor and an AI auditor. This article summarizes their findings." #Short summary
 date: "2026-06-01" # Publication date in ISO format
 canonical: "https://github.com/privacy-ethereum/sonobe/issues/262"
