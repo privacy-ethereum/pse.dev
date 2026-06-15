@@ -441,7 +441,7 @@ We regard this as invalid for the in-scope configuration: we always require a cu
 >
 > $$r_1 = p_2, \quad r_2 = p_1$$
 >
-> with $\#E_i = h_i \cdot r_i$ (cofactor $h_i$). By Hasse's theorem, $\#E_i = p_i + 1 - t_i$ with $|t_i| \le 2\sqrt{p_i}$. Substituting:
+> with $\\#E_i = h_i \cdot r_i$ (cofactor $h_i$). By Hasse's theorem, $\\#E_i = p_i + 1 - t_i$ with $|t_i| \le 2\sqrt{p_i}$. Substituting:
 >
 > $$h_1 \cdot p_2 = p_1 + 1 - t_1$$
 > $$h_2 \cdot p_1 = p_2 + 1 - t_2$$
