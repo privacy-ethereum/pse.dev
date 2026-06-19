@@ -2,6 +2,7 @@
 authors: ["N"]
 title: "Post-Quantum Threats to Ethereum Privacy"
 tldr: "Privacy migration to post-quantum cryptography is more time-sensitive than authentication migration — harvest-now-decrypt-later turns every encrypted on-chain ciphertext into a permanent exposure. Ethereum inherits PQ transport from Go's TLS, but stealth addresses, zkID, zkTLS, and confidential transfers all need Ethereum-specific work."
+canonical: "https://ethresear.ch/t/post-quantum-threats-to-ethereum-privacy/24450"
 date: "2026-05-13"
 tags: ["post-quantum", "privacy", "stealth-addresses", "zkid", "zktls", "confidentiality", "client-side-proving"]
 ---
